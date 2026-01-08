@@ -5,6 +5,13 @@ editor: visual
 ---
 
 ```{r}
+#| label: setup
+library(PxWebApiData)
+library(dplyr)
+library(stringr)
+```
+
+```{r}
 load("nor_knr24_vec.rdata")
 load("newknr.rdata")
 ```
