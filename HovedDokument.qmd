@@ -73,8 +73,16 @@ Arb <- PxData12(
   Tid = as.character(2008:2024),
   HovArbStyrkStatus = c("A", "A.09"), 
   Alder = "15+",
-  InnvandrKat = "A-G")
-  # select(HovArbStyrkStatus, Alder, Value)
+  InnvandrKat = "A-G") |> 
+select(region, år, HovArbStyrkStatus, value) |>
+  pivot_wider(
+    names_from  = HovArbStyrkStatus,
+    values_from = value
+  ) |>
+  rename(
+    arbeidsstyrke = A,
+    registrerte_ledige = `A.09`
+  )
 ```
 
 #### NAV
@@ -154,3 +162,7 @@ Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-a
 ## En multippel regresjonsmodell for sysselsettingsvekst
 
 ## Konklusjon og diskusjon
+
+## Vedlegg
+
+## Kildeliste

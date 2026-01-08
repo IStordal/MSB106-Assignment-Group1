@@ -49,10 +49,6 @@ select(region, år, HovArbStyrkStatus, value) |>
   )
 ```
 
-```{r}
-rm(Arb)
-```
-
 ## NAV
 
 ```{r}
@@ -77,7 +73,7 @@ NAV <- NAV |>
   ) |>
   filter(Kommunenr != -1)
 
-# Lager et eget data for nav_aar, der en gjør om månedstall til ett gjennomsnittstall for hvert år i hver kommune.
+# Lager et eget data for nav_aar, der en gjør om månedstall til ett gjennomsnittstall for hvert år i hver kommune
 nav_aar <- NAV |>
   group_by(Kommunenr, Kommunenavn, År) |>
   summarise(
