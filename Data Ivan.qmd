@@ -1,0 +1,55 @@
+---
+title: "Assigment"
+format: html
+editor: visual
+---
+
+```{r}
+load("nor_knr24_vec.rdata")
+load("newknr.rdata")
+```
+
+```{r}
+knr <- sort(unique(newknr$knr))
+```
+
+```{r}
+flytting <- pxwebData12(
+  urlToData = "https://data.ssb.no/api/v0/no/table/13255/",
+  Region = list("*"),
+  Alder = c("18-29", "30+"),
+  Tid = as.character(2010:2024)
+  
+)
+```
+
+```{r}
+test <- flytting |>
+  rename(knr= Region) |> 
+  left_join(newknr, join_by(knr)) |>
+  filter(!is.na(knr2023)) |>
+  group_by(knr2023, år) |>
+  filter(knr2023 != "9999")
+```
+
+
+```{r}
+flytting_clean <- flytting %>%
+  rename(knr = Region) %>%
+  left_join(newknr, by = "knr", suffix = c("", "_map")) %>% 
+  filter(!is.na(knr2023), knr2023 != "9999") %>%
+  transmute(
+    knr2023,
+    kommune = region,   # eller RegionName hvis du har annet navn
+    år = Tid,
+    alder = Alder,
+    innflytting = Innflyttinger,
+    utflytting  = Utflyttinger
+  )
+
+```
+
+```{r}
+flytting_clean <- flytting_clean %>%
+  mutate(kommune = str_remove(kommune, "\\s*\\(.*\\)$"))
+```
