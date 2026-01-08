@@ -39,7 +39,6 @@ test <- flytting |>
   filter(knr2023 != "9999")
 ```
 
-
 ```{r}
 flytting_clean <- flytting %>%
   rename(knr = Region) %>%
