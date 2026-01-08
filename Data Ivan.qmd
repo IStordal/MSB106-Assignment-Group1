@@ -59,5 +59,3 @@ flytting_clean <- flytting %>%
 flytting_clean <- flytting_clean %>%
   mutate(kommune = str_remove(kommune, "\\s*\\(.*\\)$"))
 ```
-
-Test
