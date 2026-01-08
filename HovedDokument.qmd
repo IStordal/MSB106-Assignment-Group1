@@ -1,7 +1,31 @@
 ---
-title: "Antonio"
-format: html
+title: "Oppgave 1, MSB106-gruppe 1, 2026"
+author: Amanda Wessel Skaar, Antonio Isa Jakobsen, Frida Alendal, Irjan Ananiassen Vikre, Ivan Stordal & Magnus Eidesmo 
 editor: visual
+csl: hvl_apa7_stil_bokmal_v1
+lang: NO_nb
+
+format:
+  html:
+    fig-cap-location: bottom
+    fig-number: true
+  pdf:
+    documentclass: article
+    number-sections: true
+    keep-tex: true
+    papersize: A4
+    linestretch: 1.5
+    mainfont: "Times New Roman"
+    
+execute:
+  warning: false
+  message: false
+  error: false
+  echo: false
+  
+bibliography: MSB104Assignments.bib (Skriv ny bib)
+abstract: Skriv en abstract
+keywords: ["regional utvikling", "sentralitet", "kommuner", "arbeidsledighet", "sysselsetting", "boligpriser", "flytting", "pendling"]
 ---
 
 ```{r}
@@ -18,12 +42,24 @@ library(PxWebApiData)
 library(modelsummary)
 ```
 
+## Innledning
+
+## Innhenting av data
+
+### Folketall
+
+### Demografisk data
+
+### Sentralitetsindeksen for norske kommuner
+
+### Prosentvis arbeidsledighet
+
 ```{r}
 options(encoding = "UTF-8")
 Sys.setlocale("LC_CTYPE", "Norwegian")
 ```
 
-## SSB
+#### SSB
 
 ```{r}
 load("nor_knr24_vec.rdata")
@@ -37,23 +73,11 @@ Arb <- PxData12(
   Tid = as.character(2008:2024),
   HovArbStyrkStatus = c("A", "A.09"), 
   Alder = "15+",
-  InnvandrKat = "A-G") |> 
-select(region, år, HovArbStyrkStatus, value) |>
-  pivot_wider(
-    names_from  = HovArbStyrkStatus,
-    values_from = value
-  ) |>
-  rename(
-    arbeidsstyrke = A,
-    registrerte_ledige = `A.09`
-  )
+  InnvandrKat = "A-G")
+  # select(HovArbStyrkStatus, Alder, Value)
 ```
 
-```{r}
-rm(Arb)
-```
-
-## NAV
+#### NAV
 
 ```{r}
 # NA verdier har ikke blitt fjernet, hvis du lurte :)
@@ -92,9 +116,9 @@ nav_aar <- NAV |>
 
 NAV og SSB (AKU) måler begge arbeidsledighet, men de gjør det på forksjellige måter.
 
-NAV sine tall måler arbeidsledighet utifra hvor mange som er registrert som helt arbeidsledige hos NAV.
-Det betyr at statistikken bygger på hvem som har meldt seg ledige i NAV-systemet.
-NAV sine tall er derfor avhengige av at arbeidsledige registrerte ledigeheten sin.
+NAV måler arbeidsledigheten utifra hvor mange som er registrert som helt arbeidsledige hos NAV.
+Dataen til NAV bygger seg dermed opp på grunnlag av hvem som har meldt seg arbeidsledig i NAV-systemet.
+NAV sine tall er avhengige av at arbeidsledige registrerte ledigeheten sin.
 De blir og indirekte påvirket av hvilke regler som gjelder for å få hjelp (dagpenger) og at man må holde registreringen aktiv (fornye/holde registrering aktiv).
 
 SSB sine tall kommer derimot fra AKU (Arbeidskraftundersøkelsen), som er en spørreundersøkelse der et utvalg av befolkningen blir intervjuet.
@@ -106,3 +130,27 @@ AKU fanger opp arbeidsledige som ikke melder seg hos NAV, og noen som er registr
 I tillegg kan forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at NAV- og AKU-tallene ikke blir like.
 
 Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-arbeidsledighetstall>
+
+### Sysselsetting
+
+### Gjennomsnittlig kvadratmeterpris for bolig
+
+### Utdanningsnivå
+
+### Ut- og innflytnninger pr 1000 innbyggere
+
+### Inn- og utpendling
+
+## Tilstand og utvikling for ulike variabler
+
+## Korrelasjonsberegninger
+
+## Sammenhengen mellom befolkning og sysselsetting
+
+## Relevant hypoteser basert på deskriptiv statistikk
+
+## En multippel regresjonsmodell for folketallsutvikling
+
+## En multippel regresjonsmodell for sysselsettingsvekst
+
+## Konklusjon og diskusjon
