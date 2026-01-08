@@ -4,9 +4,6 @@ format: html
 editor: visual
 ---
 
-
-bruh
-
 ```{r}
 #| label: setup
 library(PxWebApiData)
