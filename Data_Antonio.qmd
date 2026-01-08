@@ -41,12 +41,15 @@ Arb <- PxData12(
 select(region, år, HovArbStyrkStatus, value) |>
   pivot_wider(
     names_from  = HovArbStyrkStatus,
-    values_from = value
-  ) |>
+    values_from = value) |>
   rename(
     arbeidsstyrke = A,
-    registrerte_ledige = `A.09`
-  )
+    registrerte_ledige = `A.09`) |> 
+ mutate(
+    prosentvis_arbledig = if_else(
+      is.na(arbeidsstyrke) | arbeidsstyrke == 0,
+      NA_real_,
+      100 * registrerte_ledige / arbeidsstyrke))
 ```
 
 ## NAV
