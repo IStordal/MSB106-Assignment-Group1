@@ -23,6 +23,8 @@ options(encoding = "UTF-8")
 Sys.setlocale("LC_CTYPE", "Norwegian")
 ```
 
+## SSB
+
 ```{r}
 load("nor_knr24_vec.rdata")
 load("newknr.rdata")
