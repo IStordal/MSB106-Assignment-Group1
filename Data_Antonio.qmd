@@ -1,0 +1,94 @@
+---
+title: "Antonio"
+format: html
+editor: visual
+---
+
+```{r}
+#| label: setup
+#| message: false
+#| echo: true
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(sf)
+library(spdep)
+library(writexl)
+library(PxWebApiData)
+library(modelsummary)
+```
+
+```{r}
+options(encoding = "UTF-8")
+Sys.setlocale("LC_CTYPE", "Norwegian")
+```
+
+```{r}
+load("nor_knr24_vec.rdata")
+load("newknr.rdata")
+```
+
+```{r}
+Arb <- PxData12(
+  "https://data.ssb.no/api/v0/no/table/13563/",
+  Region = list("agg:KommSummer", knr24),
+  Tid = as.character(2008:2024),
+  HovArbStyrkStatus = c("A", "A.09"), 
+  Alder = "15+",
+  InnvandrKat = "A-G")
+  # select(HovArbStyrkStatus, Alder, Value)
+```
+
+## NAV
+
+```{r}
+# NA verdier har ikke blitt fjernet, hvis du lurte :)
+# Leser inn excel tabell NavTabell.xlsx
+NAV <- read_excel("NavTabell.xlsx",
+                  sheet = 1,
+                  skip = 4,
+                  col_types = "text")
+
+# Gjør om Karakterer til Nummeriske tall
+NAV <- NAV |>
+  mutate(
+    År = as.numeric(År),
+    Kommunenr = as.numeric(Kommunenr)
+  )
+
+NAV <- NAV |>
+  mutate(
+    beholdning = as.numeric(Beholdning),
+    andel = as.numeric(`Andel av arbeidsstyrken`)
+  ) |>
+  filter(Kommunenr != -1)
+
+# Lager et eget data for nav_aar, der en gjør om månedstall til ett gjennomsnittstall for hvert år i hver kommune.
+nav_aar <- NAV |>
+  group_by(Kommunenr, Kommunenavn, År) |>
+  summarise(
+    prosent_ledige_i_året = mean(andel, na.rm = TRUE),
+    antall_ledige_i_året = mean(beholdning, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Sletter NAV grunnet til at de viktige tallene vi trenger ligger i nav_aar
+ rm(NAV)
+```
+
+NAV og SSB (AKU) måler begge arbeidsledighet, men de gjør det på forksjellige måter.
+
+NAV sine tall måler arbeidsledighet utifra hvor mange som er registrert som helt arbeidsledige hos NAV.
+Det betyr at statistikken bygger på hvem som har meldt seg ledige i NAV-systemet.
+NAV sine tall er derfor avhengige av at arbeidsledige registrerte ledigeheten sin.
+De blir og indirekte påvirket av hvilke regler som gjelder for å få hjelp (dagpenger) og at man må holde registreringen aktiv (fornye/holde registrering aktiv).
+
+SSB sine tall kommer derimot fra AKU (Arbeidskraftundersøkelsen), som er en spørreundersøkelse der et utvalg av befolkningen blir intervjuet.
+AKU måler arbeidsledigheten i hele befolkningen, Dette gjelder også personer som ikke er registrert hos NAV.
+I AKU blir man regnet som arbeidsledig dersom man er uten jobb, har søkt jobb og er tilgjengelig for arbeid.
+
+Begge disse statistikkene bygger på samme ide om hva arbeidsledighet er, men tallene kan bli forskjellige.
+AKU fanger opp arbeidsledige som ikke melder seg hos NAV, og noen som er registrert hos NAV kan i AKU svare slik at de ikke blir klassifisert som arbeidsledige der.
+I tillegg kan forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at NAV- og AKU-tallene ikke blir like.
+
+Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-arbeidsledighetstall>
