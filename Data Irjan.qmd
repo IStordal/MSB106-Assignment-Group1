@@ -28,6 +28,7 @@ library(writexl)
 library(PxWebApiData)
 library(modelsummary)
 library(dplyr)
+library(stringr)
 ```
 
 
@@ -65,6 +66,10 @@ spa <- spa |>
   ) |>
   fill(knr, kommunenavn, .direction = "down")
 ```
+
+
+
+
 
 ```{r}
 gkmp <- gkmp |> mutate(knr = as.character(knr))
@@ -106,7 +111,38 @@ bolig <- gkmp_long |>
 ```
 
 
+```{r}
+bolig <- bolig |> 
+  mutate(
+    kommunenavn_clean = kommunenavn |> 
+      str_replace("\\s*[\\(\\d].*$", "") |> 
+      str_trim()
+  )
+```
 
 
+```{r}
+bolig <- bolig |> 
+  mutate(
+    kvm_pris = ifelse(kvm_pris == ".", NA, kvm_pris),
+    kvm_pris = as.numeric(kvm_pris),
+    antall   = as.numeric(antall)
+  )
+```
+
+
+```{r}
+bolig_sammenslått <- bolig |> 
+  group_by(kommunenavn_clean, år, Boligtype) |> 
+  summarise(
+    antall = sum(antall, na.rm = TRUE),
+    kvm_pris = if_else(
+      sum(antall, na.rm = TRUE) > 0,
+      sum(kvm_pris * antall, na.rm = TRUE) / sum(antall, na.rm = TRUE),
+      NA_real_
+    ),
+    .groups = "drop"
+  )
+```
 
 
