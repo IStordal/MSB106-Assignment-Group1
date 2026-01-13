@@ -46,7 +46,7 @@ flytting_clean <- flytting %>%
   filter(!is.na(knr2023), knr2023 != "9999") %>%
   transmute(
     knr2023,
-    kommune = region,   # eller RegionName hvis du har annet navn
+    kommune = region,
     år = Tid,
     alder = Alder,
     innflytting = Innflyttinger,
@@ -95,7 +95,7 @@ befald_long <- befald %>%
 ```
 
 ```{r}
-# Vi trenger 0-9, 10-19, 20-29 for å bygge 18-29 og 30+
+# 0-9, 10-19, 20-29 for å bygge 18-29 og 30+
 bef_nevner <- befald_long %>%
   filter(alder %in% c("0-9 år", "10-19 år", "20-29 år")) %>%
   select(kommunenummer, år, alder, bef) %>%
@@ -116,7 +116,7 @@ bef_nevner <- befald_long %>%
 ```
 
 ```{r}
-# Sørg for at koder matcher (knr2023 er 4-sifret tekst)
+# Sørger for at koder matcher (knr2023 er 4-sifret tekst)
 flytting_clean2 <- flytting_clean %>%
   mutate(
     knr2023 = str_pad(as.character(knr2023), 4, pad = "0"),
