@@ -4,7 +4,6 @@ format: html
 editor: visual
 ---
 
-
 ```{r}
 #| label: setup
 #| message: false
@@ -19,13 +18,10 @@ library(PxWebApiData)
 library(modelsummary)
 ```
 
-
-
 ```{r}
 load("nor_knr24_vec.rdata")
 load("newknr.rdata")
 ```
-
 
 ```{r}
 #| cache: true
@@ -46,7 +42,6 @@ load("newknr.rdata")
    filter(!kommunenummer %in% c("K-21-22", "K-23", "K-Rest")) |> 
    mutate(kommunenummer = str_sub(kommunenummer, 3, 6))
 ```
-
 
 ```{r}
 befald <- PxData12(
@@ -83,16 +78,14 @@ befald <- PxData12(
 
 ```
 
-
 ```{r}
 bef <- left_join(befald, beftot, by = join_by("kommunenummer"))
 ```
 
-
-
-
-
-
-
+```{r}
+saveRDS(beftot, "beftot.rds")
+saveRDS(befald, "befald.rds")
+saveRDS(bef,    "bef.rds")
+```
 
 
