@@ -467,15 +467,15 @@ flytting_clean <- flytting_clean %>%
 ```
 
 ```{r}
-beftot <- readRDS("beftot.rds")
-befald <- readRDS("befald.rds")
-bef    <- readRDS("bef.rds")
+beftot_Ivan <- readRDS("beftot.rds")
+befald_Ivan <- readRDS("befald.rds")
+bef_Ivan    <- readRDS("bef.rds")
 
 ```
 
 ```{r}
 # beftot: totalbefolkning (wide -> long)
-beftot_long <- beftot %>%
+beftot_long <- beftot_Ivan %>%
   pivot_longer(
     cols = starts_with("bef"),
     names_to = "år",
@@ -486,7 +486,7 @@ beftot_long <- beftot %>%
   mutate(kommunenummer = str_pad(as.character(kommunenummer), 4, pad = "0"))
 
 # befald: aldersfordelt (wide -> long)
-befald_long <- befald %>%
+befald_long <- befald_Ivan %>%
   pivot_longer(
     cols = starts_with("bef"),
     names_to = "år",
