@@ -730,6 +730,12 @@ Master <- Master |>
   left_join(utdanning_clean, by = c("knr", "år"))
 ```
 
+```{r}
+Master <- Master %>%
+  relocate(kommune, .after = knr)
+```
+
+
 ## Tilstand og utvikling for ulike variabler
 
 ## Korrelasjonsberegninger
