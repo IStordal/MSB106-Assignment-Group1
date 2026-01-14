@@ -9,6 +9,7 @@ editor: visual
 library(PxWebApiData)
 library(dplyr)
 library(stringr)
+library(writexl)
 ```
 
 ```{r}
@@ -182,3 +183,11 @@ flytting_resultat <- netto_18pluss %>%
   left_join(innflytting_30plus, by = c("knr2023", "kommune", "år"))
 
 ```
+
+```{r}
+write_xlsx(
+  flytting_resultat,
+  path = "flytting_resultat.xlsx"
+)
+```
+
