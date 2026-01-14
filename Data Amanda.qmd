@@ -24,13 +24,9 @@ utdanning <- pxwebData12(
 )
 ```
 
-```{r}
-# save(utdanning, file = "utdanning7024.rdata")
-load("utdanning7024.rdata")
-```
 
 ```{r}
-utdanning <- utdanning |>
+tmp <- utdanning |>
   rename(knr= Region) |> 
   left_join(newknr, join_by(knr)) |>
   filter(!is.na(knr2023)) |>
