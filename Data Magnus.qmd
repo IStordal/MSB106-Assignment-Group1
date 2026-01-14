@@ -26,47 +26,28 @@ load("newknr24.rdata")
 #| warning: false
 
 pendl <- pxwebData12(
-
   "11616",
-
   Region = list("*"),
-
-  ContentsCode = c("Bosatt", "Innpendlere",
-
-                   "Utpendlere", "Arbeidssted"),
-
+  ContentsCode = c("Bosatt", "Innpendlere", "Utpendlere", "Arbeidssted"),
   Tid = as.character(2000:2024),
-
   Alder = "15-74"
-
 )
 
 ```
 
- 
 
 ```{r}
 
 tip <- pendl |>
-
   select(knr = Region, år, Bosatt, Innpendlere, Utpendlere, Arbeidssted) |>
-
   left_join(newknr, join_by(knr)) |>
-
   group_by(knr24, år) |>
-
   summarise(Bosatt = sum(Bosatt),
-
-            Innpendlere = sum(Innpendlere),
-
-            Utpendlere = sum(Utpendlere),
-
-            Arbeidssted = sum(Arbeidssted),
-
-            .groups = "drop") |>
-
+      Innpendlere = sum(Innpendlere),
+      Utpendlere = sum(Utpendlere),
+      Arbeidssted = sum(Arbeidssted),
+      .groups = "drop") |>
   filter(knr24 != "9999")
-
 ```
 
 
