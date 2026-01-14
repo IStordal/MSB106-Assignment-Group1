@@ -20,7 +20,7 @@ utdanning <- pxwebData12(
     Tid = as.character(c(1970, 1980:2024)),
     Nivaa = c("03a", "04a"),
     Kjonn = "0",
-    ContentsCode = "PersonerProsent"
+    ContentsCode = "Personer"
 )
 ```
 
@@ -29,12 +29,12 @@ save(utdanning, file = "utdanning7024.rdata")
 ```
 
 ```{r}
-test <- utdanning |>
+utdanning <- utdanning |>
   rename(knr= Region) |> 
   left_join(newknr, join_by(knr)) |>
   filter(!is.na(knr2023)) |>
   group_by(knr2023, år) |>
-  summarise(UH_pct = sum(PersonerProsent), .groups = "drop") |>
+  summarise(UH = sum(Personer), .groups = "drop") |>
   filter(knr2023 != "9999")
 ```
 
