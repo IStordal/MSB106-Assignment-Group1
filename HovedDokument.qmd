@@ -45,10 +45,6 @@ library(stringr)
 library(writexl)
 ```
 
-
-
-
-
 ## Innledning
 
 ## Innhenting av data
@@ -73,7 +69,6 @@ load("newknr.rdata")
    filter(!kommunenummer %in% c("K-21-22", "K-23", "K-Rest")) |> 
    mutate(kommunenummer = str_sub(kommunenummer, 3, 6))
 ```
-
 
 ### Demografisk data
 
@@ -112,7 +107,6 @@ bef_andel <- befald |>
   mutate(bef_andel_age = round((befage/beftot)*100, 2))
 ```
 
-
 ```{r}
 befendr0025 <- beftot |> 
   filter(år %in% c(2000, 2025)) |> 
@@ -128,8 +122,6 @@ befendr0025 <- beftot |>
   ))
 ```
 
-
-
 ### Sentralitetsindeksen for norske kommuner
 
 ```{r}
@@ -144,11 +136,21 @@ sentralitet2023_2024 <-
 Sentralitet <- left_join(sentralitet2020, sentralitet2023_2024, by = c("Kommune" = "Kommune 2024"), keep = TRUE)
 ```
 
-SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger. Dette blir målt gjennom hvor lett det er for innbyggerne å komme seg til viktige funksjoner. Indeksen SSB bruker bygger på beregnet reisetid med bil fra bebodde område istedenfor liftlonjeavstand eller innbyggertall som kunne vært bedre. Poenget for indeksen er å fange opp faktisk tilgjengelighet som er at kommunene regnes som mer sentrale hvis mange arbeidsplasser og ulike tjenestetilbud kan nås innenfor rimelig reisetid.
+SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger.
+Dette blir målt gjennom hvor lett det er for innbyggerne å komme seg til viktige funksjoner.
+Indeksen SSB bruker bygger på beregnet reisetid med bil fra bebodde område istedenfor liftlonjeavstand eller innbyggertall som kunne vært bedre.
+Poenget for indeksen er å fange opp faktisk tilgjengelighet som er at kommunene regnes som mer sentrale hvis mange arbeidsplasser og ulike tjenestetilbud kan nås innenfor rimelig reisetid.
 
-Indeksen består av to deler. Den ene handler om hvor stort arbeidsmarked innbyggerne har innenfor en reiseramme (opptil 90 minutter), altså hvor mange arbeidsplasser som kan nås. Den andre handler om tilgang til et bredt tjenestetilbud, som typisk er ulike typer varer og tjenester (for eksempel handel og offentlige tjenester). I begge delene er det lagt opp til korte reiser teller mer enn lange reiser. Det vil si at en arbeidsplass eller tjeneste i nærheten påvirker sentraliteten mer enn en som ligger langt unna. Kommunens endelige verdi uttrykkes som en kontinuerlig indeks (høyere verdi = mer sentral), og verdiene kan også sorteres inn i seks sentralitetsklasser.
+Indeksen består av to deler.
+Den ene handler om hvor stort arbeidsmarked innbyggerne har innenfor en reiseramme (opptil 90 minutter), altså hvor mange arbeidsplasser som kan nås.
+Den andre handler om tilgang til et bredt tjenestetilbud, som typisk er ulike typer varer og tjenester (for eksempel handel og offentlige tjenester).
+I begge delene er det lagt opp til korte reiser teller mer enn lange reiser.
+Det vil si at en arbeidsplass eller tjeneste i nærheten påvirker sentraliteten mer enn en som ligger langt unna.
+Kommunens endelige verdi uttrykkes som en kontinuerlig indeks (høyere verdi = mer sentral), og verdiene kan også sorteres inn i seks sentralitetsklasser.
 
-Når vi skulle se på 2017 indeksen så var det ikke direkte sammenlignbart med de senere årene, vi valgte derfor å heller ta år 2020 å sammenligne de med 2023-2024. En grunn til dette i indeksen for 2017 kan være pågrunn av i denne perioden har det vært endringer i kommuneinndelingen (sammenslåinger og grensejusteringer), som kan påvirke hvilken samlet verdi en kommune får. I tillegg ble det påpekt feil knyttet til deler av beregningen i den tidlige versjonen av indeksen, som senere er korrigert.
+Når vi skulle se på 2017 indeksen så var det ikke direkte sammenlignbart med de senere årene, vi valgte derfor å heller ta år 2020 å sammenligne de med 2023-2024.
+En grunn til dette i indeksen for 2017 kan være pågrunn av i denne perioden har det vært endringer i kommuneinndelingen (sammenslåinger og grensejusteringer), som kan påvirke hvilken samlet verdi en kommune får.
+I tillegg ble det påpekt feil knyttet til deler av beregningen i den tidlige versjonen av indeksen, som senere er korrigert.
 
 ```{r}
 # Dette er hentet med hjelp av ChatGPT
@@ -174,7 +176,13 @@ oppsummering
 test_t <- t.test(Sentralitet_test$diff_20_23, mu = 0)
 ```
 
-Utifra t-testen finner vi ut at sentralitetsindeksen fra 2020 til 2023 har ikke så store endringer. Vi har med 341 kommuner, og i gjennomsnitt har indeksen økt med ca. 2,8 poeng. Medianen er 2 som betyr at for de fleste kommunene er endringen veldig liten. Det er likevel noen kommuner som skiller seg ut, der den største nedgangen er -17 og den største økningen er 79. Totalt sett tyder dette på at sentraliteten er ganske stabil i perioden, men med noen få unntak. Alt i alt virker det som at sentralitetsmønsteret ikke har endret seg noe særlig, og at endringene heller handler om små oppdateringer enn store skift.
+Utifra t-testen finner vi ut at sentralitetsindeksen fra 2020 til 2023 har ikke så store endringer.
+Vi har med 341 kommuner, og i gjennomsnitt har indeksen økt med ca.
+2,8 poeng.
+Medianen er 2 som betyr at for de fleste kommunene er endringen veldig liten.
+Det er likevel noen kommuner som skiller seg ut, der den største nedgangen er -17 og den største økningen er 79.
+Totalt sett tyder dette på at sentraliteten er ganske stabil i perioden, men med noen få unntak.
+Alt i alt virker det som at sentralitetsmønsteret ikke har endret seg noe særlig, og at endringene heller handler om små oppdateringer enn store skift.
 
 ### Prosentvis arbeidsledighet
 
@@ -251,11 +259,18 @@ nav_aar <- NAV |>
 
 NAV og SSB (AKU) måler begge arbeidsledighet, men de gjør det på forksjellige måter.
 
-NAV måler arbeidsledigheten utifra hvor mange som er registrert som helt arbeidsledige hos NAV. Dataen til NAV bygger seg dermed opp på grunnlag av hvem som har meldt seg arbeidsledig i NAV-systemet. NAV sine tall er avhengige av at arbeidsledige registrerte ledigeheten sin. De blir og indirekte påvirket av hvilke regler som gjelder for å få hjelp (dagpenger) og at man må holde registreringen aktiv (fornye/holde registrering aktiv).
+NAV måler arbeidsledigheten utifra hvor mange som er registrert som helt arbeidsledige hos NAV.
+Dataen til NAV bygger seg dermed opp på grunnlag av hvem som har meldt seg arbeidsledig i NAV-systemet.
+NAV sine tall er avhengige av at arbeidsledige registrerte ledigeheten sin.
+De blir og indirekte påvirket av hvilke regler som gjelder for å få hjelp (dagpenger) og at man må holde registreringen aktiv (fornye/holde registrering aktiv).
 
-SSB sine tall kommer derimot fra AKU (Arbeidskraftundersøkelsen), som er en spørreundersøkelse der et utvalg av befolkningen blir intervjuet. AKU måler arbeidsledigheten i hele befolkningen, Dette gjelder også personer som ikke er registrert hos NAV. I AKU blir man regnet som arbeidsledig dersom man er uten jobb, har søkt jobb og er tilgjengelig for arbeid.
+SSB sine tall kommer derimot fra AKU (Arbeidskraftundersøkelsen), som er en spørreundersøkelse der et utvalg av befolkningen blir intervjuet.
+AKU måler arbeidsledigheten i hele befolkningen, Dette gjelder også personer som ikke er registrert hos NAV.
+I AKU blir man regnet som arbeidsledig dersom man er uten jobb, har søkt jobb og er tilgjengelig for arbeid.
 
-Begge disse statistikkene bygger på samme ide om hva arbeidsledighet er, men tallene kan bli forskjellige. AKU fanger opp arbeidsledige som ikke melder seg hos NAV, og noen som er registrert hos NAV kan i AKU svare slik at de ikke blir klassifisert som arbeidsledige der. I tillegg kan forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at NAV- og AKU-tallene ikke blir like.
+Begge disse statistikkene bygger på samme ide om hva arbeidsledighet er, men tallene kan bli forskjellige.
+AKU fanger opp arbeidsledige som ikke melder seg hos NAV, og noen som er registrert hos NAV kan i AKU svare slik at de ikke blir klassifisert som arbeidsledige der.
+I tillegg kan forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at NAV- og AKU-tallene ikke blir like.
 
 Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-arbeidsledighetstall>
 
@@ -589,10 +604,40 @@ flytting_resultat <- netto_18pluss %>%
 
 ```
 
-Master Data Set
+### Inn- og utpendling
 
 ```{r}
-{r}
+load("newknr24.rdata")
+```
+
+```{r}
+#| warning: false
+
+pendl <- pxwebData12(
+  "11616",
+  Region = list("*"),
+  ContentsCode = c("Bosatt", "Innpendlere", "Utpendlere", "Arbeidssted"),
+  Tid = as.character(2000:2024),
+  Alder = "15-74"
+)
+```
+
+```{r}
+Pendling <- pendl |>
+  select(knr = Region, år, Bosatt, Innpendlere, Utpendlere, Arbeidssted) |>
+  left_join(newknr, join_by(knr)) |>
+  group_by(knr24, år) |>
+  summarise(Bosatt = sum(Bosatt),
+      Innpendlere = sum(Innpendlere),
+      Utpendlere = sum(Utpendlere),
+      Arbeidssted = sum(Arbeidssted),
+      .groups = "drop") |>
+  filter(knr24 != "9999")
+```
+
+# Master Data Set
+
+```{r}
 Master <- left_join(
   Sentralitet,
   nav_aar,
@@ -637,38 +682,6 @@ Master <- Master |>
   ) |>
   select(-any_of(c("knr.x", "knr 2024", "knr2023", "knr_bolig", "Kommunenr", "kommunenr", "kommunenavn")))
 ```
-
-### Inn- og utpendling
-
-```{r}
-load("newknr24.rdata")
-```
-
-```{r}
-#| warning: false
-
-pendl <- pxwebData12(
-  "11616",
-  Region = list("*"),
-  ContentsCode = c("Bosatt", "Innpendlere", "Utpendlere", "Arbeidssted"),
-  Tid = as.character(2000:2024),
-  Alder = "15-74"
-)
-```
-
-```{r}
-Pendling <- pendl |>
-  select(knr = Region, år, Bosatt, Innpendlere, Utpendlere, Arbeidssted) |>
-  left_join(newknr, join_by(knr)) |>
-  group_by(knr24, år) |>
-  summarise(Bosatt = sum(Bosatt),
-      Innpendlere = sum(Innpendlere),
-      Utpendlere = sum(Utpendlere),
-      Arbeidssted = sum(Arbeidssted),
-      .groups = "drop") |>
-  filter(knr24 != "9999")
-```
-
 
 ## Tilstand og utvikling for ulike variabler
 
