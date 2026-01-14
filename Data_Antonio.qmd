@@ -120,6 +120,10 @@ sentralitet2023_2024 <-
 Sentralitet <- left_join(sentralitet2020, sentralitet2023_2024, by = c("Kommune" = "Kommune 2024"), keep = TRUE)
 ```
 
+```{r}
+
+```
+
 SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger.
 Dette blir målt gjennom hvor lett det er for innbyggerne å komme seg til viktige funksjoner.
 Indeksen SSB bruker bygger på beregnet reisetid med bil fra bebodde område istedenfor liftlonjeavstand eller innbyggertall som kunne vært bedre.
@@ -135,3 +139,5 @@ Kommunens endelige verdi uttrykkes som en kontinuerlig indeks (høyere verdi = m
 Når vi skulle se på 2017 indeksen så var det ikke direkte sammenlignbart med de senere årene, vi valgte derfor å heller ta år 2020 å sammenligne de med 2023-2024.
 En grunn til dette i indeksen for 2017 kan være pågrunn av i denne perioden har det vært endringer i kommuneinndelingen (sammenslåinger og grensejusteringer), som kan påvirke hvilken samlet verdi en kommune får.
 I tillegg ble det påpekt feil knyttet til deler av beregningen i den tidlige versjonen av indeksen, som senere er korrigert.
+
+Indeks 2024 - Indeks 2020
