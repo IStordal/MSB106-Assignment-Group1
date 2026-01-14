@@ -183,11 +183,3 @@ flytting_resultat <- netto_18pluss %>%
   left_join(innflytting_30plus, by = c("knr2023", "kommune", "år"))
 
 ```
-
-```{r}
-write_xlsx(
-  flytting_resultat,
-  path = "flytting_resultat.xlsx"
-)
-```
-
