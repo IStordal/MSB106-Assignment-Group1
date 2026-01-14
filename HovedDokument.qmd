@@ -40,6 +40,9 @@ library(spdep)
 library(writexl)
 library(PxWebApiData)
 library(modelsummary)
+library(dplyr)
+library(stringr)
+library(writexl)
 ```
 
 ## Innledning
@@ -149,6 +152,178 @@ Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-a
 ### Utdanningsnivå
 
 ### Ut- og innflytnninger pr 1000 innbyggere
+
+```{r}
+load("nor_knr24_vec.rdata")
+load("newknr.rdata")
+```
+
+```{r}
+knr <- sort(unique(newknr$knr))
+```
+
+```{r}
+flytting <- pxwebData12(
+  urlToData = "https://data.ssb.no/api/v0/no/table/13255/",
+  Region = list("*"),
+  Alder = c("18-29", "30+"),
+  Tid = as.character(2010:2024)
+  
+)
+```
+
+```{r}
+test <- flytting |>
+  rename(knr= Region) |> 
+  left_join(newknr, join_by(knr)) |>
+  filter(!is.na(knr2023)) |>
+  group_by(knr2023, år) |>
+  filter(knr2023 != "9999")
+```
+
+```{r}
+flytting_clean <- flytting %>%
+  rename(knr = Region) %>%
+  left_join(newknr, by = "knr", suffix = c("", "_map")) %>% 
+  filter(!is.na(knr2023), knr2023 != "9999") %>%
+  transmute(
+    knr2023,
+    kommune = region,
+    år = Tid,
+    alder = Alder,
+    innflytting = Innflyttinger,
+    utflytting  = Utflyttinger
+  )
+
+```
+
+```{r}
+flytting_clean <- flytting_clean %>%
+  mutate(kommune = str_remove(kommune, "\\s*\\(.*\\)$"))
+```
+
+```{r}
+beftot <- readRDS("beftot.rds")
+befald <- readRDS("befald.rds")
+bef    <- readRDS("bef.rds")
+
+```
+
+```{r}
+# beftot: totalbefolkning (wide -> long)
+beftot_long <- beftot %>%
+  pivot_longer(
+    cols = starts_with("bef"),
+    names_to = "år",
+    values_to = "bef_total"
+  ) %>%
+  mutate(år = as.integer(str_remove(år, "^bef"))) %>%
+  filter(år >= 2010, år <= 2024) %>%
+  mutate(kommunenummer = str_pad(as.character(kommunenummer), 4, pad = "0"))
+
+# befald: aldersfordelt (wide -> long)
+befald_long <- befald %>%
+  pivot_longer(
+    cols = starts_with("bef"),
+    names_to = "år",
+    values_to = "bef"
+  ) %>%
+  mutate(år = as.integer(str_remove(år, "^bef"))) %>%
+  filter(år >= 2010, år <= 2024) %>%
+  mutate(
+    kommunenummer = str_pad(as.character(kommunenummer), 4, pad = "0"),
+    alder = str_replace_all(alder, "–", "-")
+  )
+```
+
+```{r}
+# 0-9, 10-19, 20-29 for å bygge 18-29 og 30+
+bef_nevner <- befald_long %>%
+  filter(alder %in% c("0-9 år", "10-19 år", "20-29 år")) %>%
+  select(kommunenummer, år, alder, bef) %>%
+  pivot_wider(names_from = alder, values_from = bef) %>%
+  left_join(beftot_long, by = c("kommunenummer", "år")) %>%
+  mutate(
+    bef_0_9   = `0-9 år`,
+    bef_10_19 = `10-19 år`,
+    bef_20_29 = `20-29 år`,
+    # 18–29 ≈ 20–29 + 2/10 av 10–19 (18–19)
+    bef_18_29 = bef_20_29 + 0.2 * bef_10_19,
+    # 30+ = total - (0–29)
+    bef_0_29 = bef_0_9 + bef_10_19 + bef_20_29,
+    bef_30_pluss = bef_total - bef_0_29
+  ) %>%
+  select(kommunenummer, år, bef_total, bef_18_29, bef_30_pluss)
+
+```
+
+```{r}
+# Sørger for at koder matcher (knr2023 er 4-sifret tekst)
+flytting_clean2 <- flytting_clean %>%
+  mutate(
+    knr2023 = str_pad(as.character(knr2023), 4, pad = "0"),
+    år = as.integer(år),
+    alder = str_replace_all(as.character(alder), "–", "-")
+  )
+
+flytt_per1000 <- flytting_clean2 %>%
+  left_join(
+    bef_nevner,
+    by = c("knr2023" = "kommunenummer", "år" = "år")
+  ) %>%
+  mutate(
+    nevner = case_when(
+      alder %in% c("18-29", "18-29 år") ~ bef_18_29,
+      alder %in% c("30+", "30 år eller eldre", "30 år og over") ~ bef_30_pluss,
+      TRUE ~ NA_real_
+    ),
+    inn_per_1000 = 1000 * innflytting / nevner,
+    ut_per_1000  = 1000 * utflytting  / nevner
+  )
+
+```
+
+```{r}
+# 1) Utflytting per 1000 for 18–29
+utflytting_18_29 <- flytt_per1000 %>%
+  filter(alder %in% c("18-29", "18-29 år")) %>%
+  transmute(
+    knr2023, kommune, år,
+    utflytting_18_29_per_1000 = ut_per_1000
+  )
+
+# 2) Innflytting per 1000 for 30+
+innflytting_30plus <- flytt_per1000 %>%
+  filter(alder %in% c("30+", "30 år eller eldre", "30 år og over")) %>%
+  transmute(
+    knr2023, kommune, år,
+    innflytting_30pluss_per_1000 = inn_per_1000
+  )
+
+# 3) Netto-kategori (her: basert på 18+ siden vi har 18–29 og 30+)
+netto_18pluss <- flytt_per1000 %>%
+  filter(alder %in% c("18-29", "18-29 år", "30+", "30 år eller eldre", "30 år og over")) %>%
+  group_by(knr2023, kommune, år) %>%
+  summarise(
+    inn = sum(innflytting, na.rm = TRUE),
+    ut  = sum(utflytting,  na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    netto_antall_18pluss = inn - ut,
+    netto_kategori_18pluss = case_when(
+      netto_antall_18pluss > 0 ~ "Netto innflytting (18+)",
+      netto_antall_18pluss < 0 ~ "Netto utflytting (18+)",
+      TRUE ~ "Null"
+    )
+  )
+
+# Samlet tabell
+flytting_resultat <- netto_18pluss %>%
+  left_join(utflytting_18_29, by = c("knr2023", "kommune", "år")) %>%
+  left_join(innflytting_30plus, by = c("knr2023", "kommune", "år"))
+
+```
 
 ### Inn- og utpendling
 
