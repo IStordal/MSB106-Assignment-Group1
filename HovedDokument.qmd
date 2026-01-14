@@ -535,6 +535,55 @@ flytting_resultat <- netto_18pluss %>%
 
 ```
 
+Master Data Set
+
+```{r}
+{r}
+Master <- left_join(
+  Sentralitet,
+  nav_aar,
+  by = c("Kommune" = "Kommunenavn"),
+  keep = TRUE,
+  suffix = c("", "_nav")
+)
+
+Master <- left_join(
+  Master,
+  bolig_sammenslått,
+  by = c("Kommune" = "kommunenavn_clean"),
+  keep = TRUE,
+  suffix = c("", "_bolig")
+)
+
+Master <- left_join(
+  Master,
+  flytting_resultat,
+  by = c("Kommune" = "kommune"),
+  keep = TRUE,
+  suffix = c("", "_flytt")
+)
+
+
+Master <- Master |>
+  mutate(
+    kommune = coalesce(kommune, Kommune, `Kommune 2024`, Kommunenavn, kommunenavn_clean)
+  ) |>
+  select(-any_of(c("Kommune", "Kommune 2024", "Kommunenavn", "kommunenavn_clean")))
+
+
+Master <- Master |>
+  mutate(
+    knr = coalesce(
+      as.character(knr),
+      as.character(`knr 2024`),
+      as.character(knr2023),
+      as.character(knr_bolig),
+      as.character(Kommunenr)
+    )
+  ) |>
+  select(-any_of(c("knr.x", "knr 2024", "knr2023", "knr_bolig", "Kommunenr", "kommunenr", "kommunenavn")))
+```
+
 ### Inn- og utpendling
 
 ## Tilstand og utvikling for ulike variabler
