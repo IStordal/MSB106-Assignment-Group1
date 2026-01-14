@@ -25,7 +25,8 @@ utdanning <- pxwebData12(
 ```
 
 ```{r}
-save(utdanning, file = "utdanning7024.rdata")
+# save(utdanning, file = "utdanning7024.rdata")
+load("utdanning7024.rdata")
 ```
 
 ```{r}
