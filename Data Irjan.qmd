@@ -146,3 +146,18 @@ bolig_sammenslått <- bolig |>
 ```
 
 
+```{r}
+knr_nokkel <- bolig |> 
+  group_by(kommunenavn_clean) |> 
+  summarise(
+    knr = max(as.numeric(knr), na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+
+```{r}
+bolig_sammenslått <- bolig_sammenslått |> 
+  left_join(knr_nokkel, by = "kommunenavn_clean")
+```
+
