@@ -211,6 +211,43 @@ Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-a
 
 ### Utdanningsnivå
 
+```{r}
+knr <- sort(unique(newknr$knr))
+```
+
+```{r}
+utdanning <- pxwebData12(
+    urlToData = "https://data.ssb.no/api/v0/no/table/09429/",
+    Region = list("*"),
+    Tid = as.character(c(1970, 1980:2024)),
+    Nivaa = c("03a", "04a"),
+    Kjonn = "0",
+    ContentsCode = "Personer"
+)
+```
+
+```{r}
+# save(utdanning, file = "utdanning7024.rdata")
+load("utdanning7024.rdata")
+```
+
+```{r}
+utdanning <- utdanning |>
+  rename(knr= Region) |> 
+  left_join(newknr, join_by(knr)) |>
+  filter(!is.na(knr2023)) |>
+  group_by(knr2023, år) |>
+  summarise(UH = sum(Personer), .groups = "drop") |>
+  filter(knr2023 != "9999")
+```
+
+For å finne utdanningsnivå har vi brukt tabellen 09429.
+Denne tabellen har ikke et datasett for nye kommuner per 2024.
+Vi måtte derfor hente ut alle kommunene og så sortere etter de nye kommunenavnene ved å bruke "newknr".
+Videre hentet vi ut data for begge kjønn og hentet ut bare høyere utdanning da vi så at det er det oppgaven krever.
+Dataene var delt inn i "Universitets- og høgskolenivå, kort" og "Universitets- og høgskolenivå, lang", disse har vi slått sammen.
+Vi har også filtrert vekk data for hele landet samlet.
+
 ### Ut- og innflytnninger pr 1000 innbyggere
 
 ```{r}
