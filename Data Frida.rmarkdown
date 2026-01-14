@@ -1,0 +1,90 @@
+---
+title: "Data Frida"
+format: html
+editor: visual
+---
+
+```{r}
+#| label: setup
+#| message: false
+#| echo: true
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(sf)
+library(spdep)
+library(writexl)
+library(PxWebApiData)
+library(modelsummary)
+```
+
+```{r}
+load("nor_knr24_vec.rdata")
+load("newknr.rdata")
+```
+
+```{r}
+#| cache: true
+ beftot <- PxData12(
+   "https://data.ssb.no/api/v0/no/table/07459/",
+   Region = list("agg:KommSummer", knr24),
+   Tid = as.character(2000:2025),
+   Alder = list("agg:TodeltGrupperingB", c("H17", "H18"))) |> 
+   select(Region, år, value) |> 
+   group_by(Region, år) |> 
+   summarise(bef = sum(value), .groups = "drop") |> 
+   pivot_wider(
+     names_prefix = "bef",
+     names_from = år,
+     values_from = bef
+   ) |> 
+   rename(kommunenummer = Region) |> 
+   filter(!kommunenummer %in% c("K-21-22", "K-23", "K-Rest")) |> 
+   mutate(kommunenummer = str_sub(kommunenummer, 3, 6))
+```
+
+```{r}
+befald <- PxData12(
+  "https://data.ssb.no/api/v0/no/table/07459/",
+  Region = list("agg:KommSummer", knr24),
+  Tid = as.character(2000:2025),
+  Alder = list("agg:TiAarigGruppering", c("F00-09",
+          "F10-19",
+          "F20-29",
+          "F30-39",
+          "F40-49",
+          "F50-59",
+          "F60-69",
+          "F70-79",
+          "F80-89",
+          "F90-99",
+          "F100G10+"))) |> 
+  select(Region, år, alder, value) |> 
+  group_by(Region, år, alder) |> 
+  summarise(bef = sum(value), .groups = "drop") |> 
+  pivot_wider(
+    names_prefix = "bef",
+    names_from = år,
+    values_from = bef
+  ) |> 
+  rename(kommunenummer = Region) |> 
+  filter(!kommunenummer %in% c("K-21-22", "K-23", "K-Rest")) |> 
+  mutate(kommunenummer = str_sub(kommunenummer, 3, 6)) |> 
+  mutate(bef_endr = (bef2025/bef2000)*100) |> 
+  mutate(bef_endr = case_when(
+    is.infinite(bef_endr) ~ 100,
+    .default = bef_endr
+  ))
+
+```
+
+```{r}
+bef <- left_join(befald, beftot, by = join_by("kommunenummer"))
+```
+
+```{r}
+saveRDS(beftot, "beftot.rds")
+saveRDS(befald, "befald.rds")
+saveRDS(bef,    "bef.rds")
+```
+
