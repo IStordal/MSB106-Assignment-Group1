@@ -1,0 +1,163 @@
+---
+title: "Arbeid med kart i RStudio og QGIS"
+author: "Karl-Gunnar Severinsen"
+date: last-modified
+date-format: "DD MMMM YYYY"
+format: 
+  pdf:
+    number-sections: true
+    geometry: 
+      - bottom=25mm
+      - left=25mm
+      - right=25mm
+      - top=30mm
+language: 
+    crossref-fig-title: "Figur"
+---
+
+```{r}
+#| label: setup
+#| message: false
+#| echo: true
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(sf)
+library(spdep)
+library(writexl)
+library(PxWebApiData)
+library(modelsummary)
+library(dplyr)
+library(stringr)
+```
+
+
+
+```{r}
+gkmp <- read_excel("gkmp.xlsx")
+spa  <- read_excel("spa.xlsx")
+```
+
+```{r}
+gkmp <- gkmp %>%
+  fill(Kommune, .direction = "down")
+
+spa <- spa %>%
+  fill(Kommune, .direction = "down")
+```
+
+```{r}
+gkmp <- gkmp |>
+  separate(
+    Kommune,
+    into = c("knr", "kommunenavn"),
+    sep = " ",
+    extra = "merge"
+  )
+```
+
+```{r}
+spa <- spa |>
+  separate(
+    Kommune,
+    into = c("knr", "kommunenavn"),
+    sep = " ",
+    extra = "merge"
+  ) |>
+  fill(knr, kommunenavn, .direction = "down")
+```
+
+
+
+
+
+```{r}
+gkmp <- gkmp |> mutate(knr = as.character(knr))
+spa  <- spa  |> mutate(knr = as.character(knr))
+spa <- spa %>%
+  mutate(across(starts_with("20"), ~ as.numeric(.)))
+
+```
+
+```{r}
+gkmp_long <- gkmp |> 
+  pivot_longer(
+    cols = starts_with("20"),  # velger alle år-kolonner (f.eks. 2002, 2003, ...)
+    names_to = "år",
+    values_to = "kvm_pris"
+  ) |> 
+  mutate(
+    år = as.integer(år),
+    knr = as.character(knr)
+  )
+```
+
+```{r}
+spa_long <- spa |> 
+  pivot_longer(
+    cols = starts_with("20"),  # år-kolonner også her
+    names_to = "år",
+    values_to = "antall"
+  ) |> 
+  mutate(
+    år = as.integer(år),
+    knr = as.character(knr)
+  )
+```
+
+```{r}
+bolig <- gkmp_long |> 
+  left_join(spa_long, by = c("knr", "kommunenavn", "Boligtype", "år"))
+```
+
+
+```{r}
+bolig <- bolig |> 
+  mutate(
+    kommunenavn_clean = kommunenavn |> 
+      str_replace("\\s*[\\(\\d].*$", "") |> 
+      str_trim()
+  )
+```
+
+
+```{r}
+bolig <- bolig |> 
+  mutate(
+    kvm_pris = ifelse(kvm_pris == ".", NA, kvm_pris),
+    kvm_pris = as.numeric(kvm_pris),
+    antall   = as.numeric(antall)
+  )
+```
+
+
+```{r}
+bolig_sammenslått <- bolig |> 
+  group_by(kommunenavn_clean, år, Boligtype) |> 
+  summarise(
+    antall = sum(antall, na.rm = TRUE),
+    kvm_pris = if_else(
+      sum(antall, na.rm = TRUE) > 0,
+      sum(kvm_pris * antall, na.rm = TRUE) / sum(antall, na.rm = TRUE),
+      NA_real_
+    ),
+    .groups = "drop"
+  )
+```
+
+
+```{r}
+knr_nokkel <- bolig |> 
+  group_by(kommunenavn_clean) |> 
+  summarise(
+    knr = max(as.numeric(knr), na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+
+```{r}
+bolig_sammenslått <- bolig_sammenslått |> 
+  left_join(knr_nokkel, by = "kommunenavn_clean")
+```
+
