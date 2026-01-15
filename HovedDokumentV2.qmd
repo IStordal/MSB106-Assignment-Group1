@@ -1,0 +1,678 @@
+---
+title: "Oppgave 1, MSB106-gruppe 1, 2026"
+author: Amanda Wessel Skaar, Antonio Isa Jakobsen, Frida Alendal, Irjan Ananiassen Vikre, Ivan Stordal & Magnus Eidesmo 
+csl: hvl_apa7_stil_bokmal_v1
+lang: NO_nb
+
+format:
+  html:
+    fig-cap-location: bottom
+    fig-number: true
+  pdf:
+    documentclass: article
+    number-sections: true
+    keep-tex: true
+    papersize: A4
+    linestretch: 1.5
+    mainfont: "Times New Roman"
+    
+execute:
+  warning: false
+  message: false
+  error: false
+  echo: false
+  
+bibliography: MSB104Assignments.bib (Skriv ny bib)
+abstract: Skriv en abstract
+keywords: ["regional utvikling", "sentralitet", "kommuner", "arbeidsledighet", "sysselsetting", "boligpriser", "flytting", "pendling"]
+---
+
+```{r}
+#| label: setup
+#| message: false
+#| echo: true
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(sf)
+library(spdep)
+library(writexl)
+library(PxWebApiData)
+library(modelsummary)
+library(dplyr)
+library(stringr)
+library(writexl)
+```
+
+```{r}
+t <- Sys.time()
+```
+
+
+# Innledning
+
+# Innhenting av data
+
+Merk at kommuneinndeling er gjeldende inntil 31. desebember 2025 benyttes, grunnet endringer 1. januar 2026 (disse vil ikke bli synlige i statistikken før i 2027, med unntak av folketall som kommer i februar 2026).
+
+## Folketall
+
+```{r}
+load("nor_knr24_vec.rdata")
+load("newknr24.rdata")
+```
+
+```{r}
+ beftot <- PxData12(
+   "https://data.ssb.no/api/v0/no/table/07459/",
+   Region = list("agg:KommSummer", knr24),
+   Tid = as.character(1986:2025),
+   Alder = list("agg:TodeltGrupperingB", c("H17", "H18"))) |> 
+   select(Region, år, value) |> 
+   group_by(Region, år) |> 
+   summarise(beftot = sum(value), .groups = "drop") |> 
+   rename(knr24 = Region) |> 
+   filter(!knr24 %in% c("K-21-22", "K-23", "K-Rest")) |> 
+   mutate(knr24 = str_sub(knr24, 3, 6))
+```
+
+### Prosentvis folketallsvekst for ulike kommuner etter år 2000
+
+```{r}
+befendr0025 <- beftot |> 
+  filter(år %in% c(2000, 2025)) |> 
+   pivot_wider(
+     names_prefix = "bef",
+     names_from = år,
+     values_from = beftot
+   ) |> 
+  mutate(befendr0025 = round(((bef2025-bef2000)/bef2000)*100, digits = 2)) |> 
+  mutate(befendr0025 = case_when(
+    is.infinite(befendr0025) ~ 0,
+    .default = befendr0025
+  )) |> 
+  select(-c(bef2000, bef2025))
+```
+
+
+## Demografiske data
+
+```{r}
+befald <- PxData12(
+  "https://data.ssb.no/api/v0/no/table/07459/",
+  Region = list("agg:KommSummer", knr24),
+  Tid = as.character(1986:2025),
+  Alder = list("agg:TiAarigGruppering", 
+               c("F00-09", "F10-19", "F20-29", "F30-39", "F40-49",
+                 "F50-59", "F60-69", "F70-79", "F80-89", "F90-99",
+                 "F100G10+"))) |> 
+  select(Region, år, Alder, value) |> 
+  group_by(Region, år, Alder) |> 
+  summarise(befage = sum(value), .groups = "drop") |>
+  rename(knr24 = Region) |> 
+  filter(!knr24 %in% c("K-21-22", "K-23", "K-Rest")) |> 
+  mutate(knr24 = str_sub(knr24, 3, 6))
+```
+
+### Andelen av befolkningen i aldersgruppen (20-29), for 2024
+
+```{r}
+befald <- befald |>
+  left_join(
+    y = beftot,
+    join_by(knr24, år)
+  ) |> 
+  mutate(bef_andel_age = round((befage/beftot)*100, 2))
+```
+
+```{r}
+befandel_wide <- befald |> 
+  select(-c(befage, beftot)) |> 
+  pivot_wider(
+    names_from = Alder,
+    names_prefix = "befAndel_",
+    values_from = bef_andel_age
+  ) |> 
+  select(knr24:`befAndel_F10-19`, `befAndel_F20-29`:`befAndel_F90-99`, everything())
+```
+
+
+```{r}
+bef_andel24 <- befald |> 
+  filter(år == "2024",
+         Alder == "F20-29") |> 
+  select(-c(år, Alder, befage, beftot))
+```
+
+
+## Sentralitetsindeksen for norske kommuner
+
+```{r}
+sentralitet2023_2024 <-
+  read_xlsx("sentralitet_2023-2024_kommuner.xlsx")
+```
+
+```{r}
+sentralitet24 <- sentralitet2023_2024 |> 
+  rename(knr24 = `knr 2024`,
+         index = `Indeks 2023`,
+         klasse = `Klasse 2023`) |> 
+  select(knr24, index, klasse)
+```
+
+
+## Prosentvis arbeidsledighet
+
+### SSB
+
+```{r}
+arbledSSB <- PxData12(
+  "https://data.ssb.no/api/v0/no/table/13563/",
+  Region = list("agg:KommSummer", knr24),
+  Tid = as.character(2008:2024),
+  HovArbStyrkStatus = c("A", "A.09"), 
+  Alder = "15+",
+  InnvandrKat = "A-G") |> 
+  select(Region, år, HovArbStyrkStatus, value) |>
+  pivot_wider(
+    names_from  = HovArbStyrkStatus,
+    values_from = value) |>
+  rename(
+    arbstrk = A,
+    regled_SSB = `A.09`) |>
+  rename(knr24 = Region) |> 
+  filter(!knr24 %in% c("K-21-22", "K-23", "K-Rest")) |> 
+  mutate(knr24 = str_sub(knr24, 3, 6),
+         andel_SSB = round((regled_SSB/arbstrk)* 100, 
+                           digits = 2))
+```
+
+#### Prosentvis arbeidsledighet for 2024
+
+```{r}
+arbledSSB24 <- arbledSSB |> 
+  filter(år == "2024") |> 
+  select(-c(år, arbstrk, regled_SSB))
+```
+
+
+### NAV
+
+```{r}
+arbledNAV <- read_excel("NavTabell.xlsx",
+                  sheet = 1,
+                  skip = 4,
+                  col_types = "text") 
+```
+
+```{r}
+#| warning: false
+arbledNAV <- arbledNAV |> 
+  mutate(knr = str_pad(Kommunenr, 4, "left", "0"),
+         regled_NAV = as.numeric(Beholdning),
+         andel_NAV = as.numeric(`Andel av arbeidsstyrken`)) |> # Strengt tatt ikke nødvendig
+  rename(år = År,
+         mnd = Månedsnummer) |> 
+  select(knr, år, mnd, regled_NAV) |> 
+  left_join(
+    y = newknr,
+    join_by(knr)
+  ) |> 
+  group_by(knr24, år) |> 
+  summarise(regled_NAV = round(mean(regled_NAV),
+                               digits = 0),
+            .groups = "drop") |> 
+  left_join(
+    y = arbledSSB,
+    join_by(knr24, år)
+  ) |> 
+  mutate(andel_NAV = round((regled_NAV/arbstrk)* 100, 
+                           digits = 2))
+```
+
+
+NAV og SSB (AKU) måler begge arbeidsledighet, men de gjør det på forksjellige måter.
+
+NAV måler arbeidsledigheten utifra hvor mange som er registrert som helt arbeidsledige hos NAV.
+Dataen til NAV bygger seg dermed opp på grunnlag av hvem som har meldt seg arbeidsledig i NAV-systemet.
+NAV sine tall er avhengige av at arbeidsledige registrerte ledigeheten sin.
+De blir og indirekte påvirket av hvilke regler som gjelder for å få hjelp (dagpenger) og at man må holde registreringen aktiv (fornye/holde registrering aktiv).
+
+SSB sine tall kommer derimot fra AKU (Arbeidskraftundersøkelsen), som er en spørreundersøkelse der et utvalg av befolkningen blir intervjuet.
+AKU måler arbeidsledigheten i hele befolkningen, Dette gjelder også personer som ikke er registrert hos NAV.
+I AKU blir man regnet som arbeidsledig dersom man er uten jobb, har søkt jobb og er tilgjengelig for arbeid.
+
+Begge disse statistikkene bygger på samme ide om hva arbeidsledighet er, men tallene kan bli forskjellige.
+AKU fanger opp arbeidsledige som ikke melder seg hos NAV, og noen som er registrert hos NAV kan i AKU svare slik at de ikke blir klassifisert som arbeidsledige der.
+I tillegg kan forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at NAV- og AKU-tallene ikke blir like.
+
+Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-arbeidsledighetstall>
+
+## Sysselsetting
+
+```{r}
+#| warning: false
+
+arbpl <- pxwebData12(
+  "https://data.ssb.no/api/v0/no/table/11616",
+  Region = list("*"),
+  ContentsCode = c("Arbeidssted"),
+  Tid = as.character(2000:2024),
+  Alder = "15-74"
+)
+```
+
+```{r}
+arbpl <- arbpl |>
+  select(knr = Region, år, Arbeidssted) |>
+  left_join(newknr, join_by(knr)) |>
+  group_by(knr24, år) |>
+  summarise(Arbeidssted = sum(Arbeidssted),
+            .groups = "drop") |>
+  filter(knr24 != "9999")
+```
+
+
+### Prosentvis sysselsettingsvekst for ulike kommuner etter år 2000
+
+```{r}
+syssendr0024 <- arbpl |> 
+  filter(år %in% c(2000, 2024)) |> 
+   pivot_wider(
+     names_prefix = "syss",
+     names_from = år,
+     values_from = Arbeidssted
+   ) |> 
+  mutate(syssendr0024 = round(((syss2024-syss2000)/syss2000)*100, digits = 2)) |> 
+  mutate(syssendr0024 = case_when(
+    is.infinite(syssendr0024) ~ 0,
+    .default = syssendr0024
+  )) |> 
+  select(-c(syss2000, syss2024))
+```
+
+
+## Gjennomsnittlig kvadratmeterpris for bolig
+
+```{r}
+#| warning: false
+kvmBolig <- pxwebData12(
+    urlToData = "https://data.ssb.no/api/v0/no/table/06035/",
+    Region = list("*"),
+    Boligtype = c("01", "03"),
+    Tid = as.character(c(2002:2024)),
+    ContentsCode = "KvPris"
+) |> 
+  select(knr = Region, år, boligtype, KvPris)
+```
+
+```{r}
+kvmBolig <- kvmBolig |> 
+  left_join(
+    y = newknr,
+    join_by(knr)
+  ) |> 
+  group_by(knr24, år, boligtype) |> 
+  summarise(KvPris = round(mean(KvPris, na.rm = TRUE), 0),
+            .groups = "drop") |> 
+  pivot_wider(
+    names_from = boligtype,
+    names_prefix = "KvPris_",
+    values_from = KvPris
+  ) |> 
+  filter(knr24 != "9999",
+         !is.na(knr24))
+```
+
+### Gjennomsnittlig kvadratmeterpris for boliger i 2024
+
+```{r}
+kvmBolig24 <- kvmBolig |> 
+  filter(år == "2024") |> 
+  mutate(KvPris_Blokkleiligheter = case_when(
+    is.na(KvPris_Blokkleiligheter) ~ 0,
+    .default = KvPris_Blokkleiligheter
+  )) |> 
+  mutate(KvPris_Eneboliger = case_when(
+    is.na(KvPris_Eneboliger) ~ 0,
+    .default = KvPris_Eneboliger
+  )) |> 
+  select(-år)
+```
+
+
+## Utdanningsnivå
+
+```{r}
+#| warning: false
+utdanning <- pxwebData12(
+    urlToData = "https://data.ssb.no/api/v0/no/table/09429/",
+    Region = list("*"),
+    Tid = as.character(c(1970, 1980:2024)),
+    Nivaa = c("03a", "04a"),
+    Kjonn = "0",
+    ContentsCode = "Personer"
+)
+```
+
+```{r}
+utdanning <- utdanning |>
+  rename(knr= Region) |> 
+  left_join(newknr, join_by(knr)) |>
+  filter(!is.na(knr24)) |>
+  group_by(knr24, år) |>
+  summarise(UH = sum(Personer), .groups = "drop") |>
+  filter(knr24 != "9999") |> 
+  left_join(
+    y = beftot,
+    join_by(knr24, år)
+  ) |> 
+  group_by(knr24, år) |> 
+  summarise(UH = sum(UH),
+            beftot = sum(beftot),
+            .groups = "drop") |> 
+  mutate(UH_pct = round((UH/beftot)*100,
+                        digits = 2))
+```
+
+For å finne utdanningsnivå har vi brukt tabellen 09429.
+Denne tabellen har ikke et datasett for nye kommuner per 2024.
+Vi måtte derfor hente ut alle kommunene og så sortere etter de nye kommunenavnene ved å bruke "newknr".
+Videre hentet vi ut data for begge kjønn og hentet ut bare høyere utdanning da vi så at det er det oppgaven krever.
+Dataene var delt inn i "Universitets- og høgskolenivå, kort" og "Universitets- og høgskolenivå, lang", disse har vi slått sammen.
+Vi har også filtrert vekk data for hele landet samlet.
+
+### Andelen av innbyggerne med universitetsutdanning, i 2024
+
+```{r}
+utd24 <- utdanning |> 
+  filter(år == "2024") |> 
+  select(-c(år, UH, beftot))
+```
+
+
+### Utviklingen i andelen av innbyggerne med universitetsutdanning, etter 1970
+
+```{r}
+utdAndel <- utdanning |> 
+  left_join(
+    y = sentralitet24,
+    join_by(knr24)
+  ) |> 
+  group_by(klasse, år) |> 
+  summarise(UH = sum(UH),
+            beftot = sum(beftot),
+            .groups = "drop") |> 
+  mutate(UH_pct = round((UH/beftot)*100,
+                        digits = 2))
+```
+
+## Ut- og innflytnninger pr 1000 innbyggere
+
+```{r}
+#| warning: false
+flytting <- pxwebData12(
+  urlToData = "https://data.ssb.no/api/v0/no/table/13255/",
+  Region = list("*"),
+  Alder = c("18-29", "30+"),
+  Tid = as.character(2010:2024)
+)
+```
+
+```{r}
+flytting <- flytting |>
+  rename(knr = Region) |> 
+  left_join(newknr, join_by(knr)) |>
+  filter(!is.na(knr24)) |>
+  select(knr24, år, Alder, Innflytting, Utflytting) |> 
+  group_by(knr24, år, Alder) |>
+  summarise(innflytting = sum(Innflytting),
+            utflytting = sum(Utflytting), 
+            .groups = "drop") |>
+  filter(knr24 != "9999") |> 
+  mutate(innflytting = case_when(
+    is.na(innflytting) ~ 0,
+    .default = innflytting
+  )) |> 
+  mutate(utflytting = case_when(
+    is.na(utflytting) ~ 0,
+    .default = utflytting
+  )) |> 
+  mutate(nettoflytting = innflytting - utflytting) 
+```
+
+### "Prosentvis" netto utflytting pr 1000 innbyggere
+
+```{r}
+# Merk at prosentvis er misvisende når en ønsker en rate per 1000 innbyggere
+
+nettoFlytt24 <- flytting |> 
+  filter(år == "2024") |> 
+  left_join(
+    y = beftot,
+    join_by(knr24, år)
+  ) |> 
+  mutate(nettoflytting1k = round((nettoflytting/beftot)*1000,
+                                 digits = 2)) |> 
+  select(knr24, år, Alder, nettoflytting1k) |> 
+  pivot_wider(
+    names_from = Alder,
+    names_prefix = "nettoflytting_",
+    values_from = nettoflytting1k
+  ) |> 
+  select(-år)
+```
+
+## Inn- og utpendling
+
+```{r}
+#| warning: false
+pendl <- pxwebData12(
+  "https://data.ssb.no/api/v0/no/table/11616",
+  Region = list("*"),
+  ContentsCode = c("Bosatt", "Innpendlere", "Utpendlere", "Arbeidssted"),
+  Tid = as.character(2000:2024),
+  Alder = "15-74"
+)
+```
+
+```{r}
+pendl <- pendl |>
+  select(knr = Region, år, Bosatt, Innpendlere, Utpendlere, Arbeidssted) |>
+  left_join(newknr, join_by(knr)) |>
+  group_by(knr24, år) |>
+  summarise(Bosatt = sum(Bosatt),
+      Innpendlere = sum(Innpendlere),
+      Utpendlere = sum(Utpendlere),
+      Arbeidssted = sum(Arbeidssted),
+      .groups = "drop") |>
+  filter(knr24 != "9999") |> 
+  mutate(nettoPendl = Innpendlere - Utpendlere)
+```
+
+### "Prosentvis" netto innpendling pr 1000 arbeidsplasser
+
+```{r}
+# Merk at prosentvis er misvisende når en ønsker en rate per 1000 arp.plasser
+
+nettoPendl24 <- pendl |> 
+  filter(år == "2024") |> 
+  mutate(nettoInnPendl1k = round((nettoPendl/Arbeidssted)*1000,
+                               digits = 2)) |> 
+  mutate(nettoInnPendl1k = case_when(
+    is.infinite(nettoInnPendl1k) ~ 0,
+    .default = nettoInnPendl1k
+  )) |> 
+  select(knr24, nettoInnPendl1k)
+```
+
+___________________________________________________________
+
+Gjenstår også å sette sammen datasett for alle kurveframstillinger (utenom utvkl. UH-utdanning). 
+Denne jobben er imidlertid stort sett copy/paste der sentr joines på og aktuelle data grupperes på klasse.
+
+
+
+
+
+# Master Data Sets
+
+## Data kart -- "Oppgave" 2, del 1 
+
+```{r}
+kartdata <- befendr0025  |> 
+  left_join(
+    y = bef_andel24,
+    join_by(knr24)
+  ) |> 
+  left_join(
+    y = arbledSSB24,
+    join_by(knr24)
+  ) |> 
+  left_join(
+    y = syssendr0024,
+    join_by(knr24)
+  ) |> 
+  left_join(
+    y = kvmBolig24,
+    join_by(knr24)
+  ) |> 
+  left_join(
+    y = utd24,
+    join_by(knr24)
+  ) |> 
+  left_join(
+    y = nettoFlytt24,
+    join_by(knr24)
+  ) |> 
+  left_join(
+    y = nettoPendl24,
+    join_by(knr24)
+  )
+```
+
+
+## Data graf -- "Oppgave" 2, del 2 
+
+```{r}
+
+```
+
+## Data tidsserier -- Samlet innlest data fra "Oppgave" 1
+
+```{r}
+
+```
+
+
+```{r}
+Sys.time() - t
+```
+
+## Koble kart
+
+```{r}
+kyst <- st_read(
+  dsn = "knr_kart_norge_kystlinje.gpkg",
+  layer = "Kommuner"
+) |> 
+  rename(knr24 = kommunenummer)
+```
+
+```{r}
+kyst2 <- kyst |> 
+  left_join(
+    y = kartdata,
+    join_by(knr24)
+  )
+```
+
+```{r}
+#| eval: false
+st_write(
+  obj = kyst2,
+  dsn = "Kart_ArbkravMSB106.gpkg",
+  layer = "knr_data",
+  append = FALSE
+)
+```
+
+# Sammenligning sentralitet over tid
+
+```{r}
+# Importerer og leser av excel-filene
+sentralitet2020 <- 
+  read_xlsx("sentralitet2020Kommuner.xlsx")
+
+sentralitet2023_2024 <-
+  read_xlsx("sentralitet_2023-2024_kommuner.xlsx")
+
+# Sammenslåeing av tabellene sånn at vi kan se utvikling.
+Sentralitet <- left_join(sentralitet2020, sentralitet2023_2024, by = c("Kommune" = "Kommune 2024"), keep = TRUE)
+```
+
+SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger.
+Dette blir målt gjennom hvor lett det er for innbyggerne å komme seg til viktige funksjoner.
+Indeksen SSB bruker bygger på beregnet reisetid med bil fra bebodde område istedenfor liftlonjeavstand eller innbyggertall som kunne vært bedre.
+Poenget for indeksen er å fange opp faktisk tilgjengelighet som er at kommunene regnes som mer sentrale hvis mange arbeidsplasser og ulike tjenestetilbud kan nås innenfor rimelig reisetid.
+
+Indeksen består av to deler.
+Den ene handler om hvor stort arbeidsmarked innbyggerne har innenfor en reiseramme (opptil 90 minutter), altså hvor mange arbeidsplasser som kan nås.
+Den andre handler om tilgang til et bredt tjenestetilbud, som typisk er ulike typer varer og tjenester (for eksempel handel og offentlige tjenester).
+I begge delene er det lagt opp til korte reiser teller mer enn lange reiser.
+Det vil si at en arbeidsplass eller tjeneste i nærheten påvirker sentraliteten mer enn en som ligger langt unna.
+Kommunens endelige verdi uttrykkes som en kontinuerlig indeks (høyere verdi = mer sentral), og verdiene kan også sorteres inn i seks sentralitetsklasser.
+
+Når vi skulle se på 2017 indeksen så var det ikke direkte sammenlignbart med de senere årene, vi valgte derfor å heller ta år 2020 å sammenligne de med 2023-2024.
+En grunn til dette i indeksen for 2017 kan være pågrunn av i denne perioden har det vært endringer i kommuneinndelingen (sammenslåinger og grensejusteringer), som kan påvirke hvilken samlet verdi en kommune får.
+I tillegg ble det påpekt feil knyttet til deler av beregningen i den tidlige versjonen av indeksen, som senere er korrigert.
+
+```{r}
+# Dette er hentet med hjelp av ChatGPT
+# Klargjør datasett for test
+Sentralitet_test <- Sentralitet %>%
+  filter(!is.na(`Indeks 2020`), !is.na(`Indeks 2023`)) %>%
+  mutate(diff_20_23 = `Indeks 2023` - `Indeks 2020`)
+
+# Her velger vi hva vi vil ha i tabellen
+oppsummering <- Sentralitet_test %>%
+  summarise(
+    n = n(),
+    mean_change = mean(diff_20_23),
+    median_change = median(diff_20_23),
+    sd_change = sd(diff_20_23),
+    min_change = min(diff_20_23),
+    max_change = max(diff_20_23)
+  )
+
+oppsummering
+
+# Signifikans-test
+test_t <- t.test(Sentralitet_test$diff_20_23, mu = 0)
+```
+
+Utifra t-testen finner vi ut at sentralitetsindeksen fra 2020 til 2023 har ikke så store endringer.
+Vi har med 341 kommuner, og i gjennomsnitt har indeksen økt med ca.
+2,8 poeng.
+Medianen er 2 som betyr at for de fleste kommunene er endringen veldig liten.
+Det er likevel noen kommuner som skiller seg ut, der den største nedgangen er -17 og den største økningen er 79.
+Totalt sett tyder dette på at sentraliteten er ganske stabil i perioden, men med noen få unntak.
+Alt i alt virker det som at sentralitetsmønsteret ikke har endret seg noe særlig, og at endringene heller handler om små oppdateringer enn store skift.
+
+# Tilstand og utvikling for ulike variabler
+
+# Korrelasjonsberegninger
+
+# Sammenhengen mellom befolkning og sysselsetting
+
+# Relevant hypoteser basert på deskriptiv statistikk
+
+# En multippel regresjonsmodell for folketallsutvikling
+
+# En multippel regresjonsmodell for sysselsettingsvekst
+
+# Konklusjon og diskusjon
+
+# Vedlegg
+
+# Kildeliste

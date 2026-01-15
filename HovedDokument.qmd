@@ -735,7 +735,6 @@ Master <- Master %>%
   relocate(kommune, .after = knr)
 ```
 
-
 ## Tilstand og utvikling for ulike variabler
 
 ## Korrelasjonsberegninger
