@@ -376,6 +376,17 @@ solgteBolig <- solgteBolig |>
 ```
 
 
+## Slår sammen datasett for boliger
+
+```{r}
+bolig <- left_join(
+  kvmBolig,
+  solgteBolig,
+  by = c("knr24", "år")
+)
+```
+
+
 ## Utdanningsnivå
 
 ```{r}
