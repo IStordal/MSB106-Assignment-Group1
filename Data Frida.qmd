@@ -28,26 +28,24 @@ load("newknr.rdata")
  beftot <- PxData12(
    "https://data.ssb.no/api/v0/no/table/07459/",
    Region = list("agg:KommSummer", knr24),
-   Tid = as.character(2000:2025),
+   Tid = as.character(1986:2025),
    Alder = list("agg:TodeltGrupperingB", c("H17", "H18"))) |> 
    select(Region, år, value) |> 
    group_by(Region, år) |> 
-   summarise(bef = sum(value), .groups = "drop") |> 
-   pivot_wider(
-     names_prefix = "bef",
-     names_from = år,
-     values_from = bef
-   ) |> 
+   summarise(beftot = sum(value), .groups = "drop") |> 
    rename(kommunenummer = Region) |> 
    filter(!kommunenummer %in% c("K-21-22", "K-23", "K-Rest")) |> 
    mutate(kommunenummer = str_sub(kommunenummer, 3, 6))
 ```
 
+
+
+
 ```{r}
 befald <- PxData12(
   "https://data.ssb.no/api/v0/no/table/07459/",
   Region = list("agg:KommSummer", knr24),
-  Tid = as.character(2000:2025),
+  Tid = as.character(1986:2025),
   Alder = list("agg:TiAarigGruppering", c("F00-09",
           "F10-19",
           "F20-29",
@@ -61,31 +59,53 @@ befald <- PxData12(
           "F100G10+"))) |> 
   select(Region, år, alder, value) |> 
   group_by(Region, år, alder) |> 
-  summarise(bef = sum(value), .groups = "drop") |> 
-  pivot_wider(
-    names_prefix = "bef",
-    names_from = år,
-    values_from = bef
-  ) |> 
+  summarise(befage = sum(value), .groups = "drop") |>
   rename(kommunenummer = Region) |> 
   filter(!kommunenummer %in% c("K-21-22", "K-23", "K-Rest")) |> 
-  mutate(kommunenummer = str_sub(kommunenummer, 3, 6)) |> 
-  mutate(bef_endr = (bef2025/bef2000)*100) |> 
-  mutate(bef_endr = case_when(
-    is.infinite(bef_endr) ~ 100,
-    .default = bef_endr
+  mutate(kommunenummer = str_sub(kommunenummer, 3, 6))
+
+
+```
+
+```{r}
+bef_andel <- befald |>
+  left_join(
+    y = beftot,
+    join_by(kommunenummer, år)
+  ) |> 
+  mutate(bef_andel_age = round((befage/beftot)*100, 2))
+```
+
+
+```{r}
+befendr0025 <- beftot |> 
+  filter(år %in% c(2000, 2025)) |> 
+   pivot_wider(
+     names_prefix = "bef",
+     names_from = år,
+     values_from = beftot
+   ) |> 
+  mutate(befendr0025 = round(((bef2025-bef2000)/bef2000)*100, digits = 2)) |> 
+  mutate(befendr0025 = case_when(
+    is.infinite(befendr0025) ~ 0,
+    .default = befendr0025
   ))
+```
 
+
+```{r}
+bef_andel2029 <- bef_andel |> 
+  filter(år == "2024",
+         alder == "20-29 år") |> 
+  select(kommunenummer, bef_andel_age24 = bef_andel_age)
 ```
 
 ```{r}
-bef <- left_join(befald, beftot, by = join_by("kommunenummer"))
-```
-
-```{r}
-saveRDS(beftot, "beftot.rds")
-saveRDS(befald, "befald.rds")
-saveRDS(bef,    "bef.rds")
+bef_map <- befendr0025 |> 
+  left_join(
+    y = bef_andel2029,
+    join_by(kommunenummer)
+  )
 ```
 
 

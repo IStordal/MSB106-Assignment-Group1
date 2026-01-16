@@ -53,7 +53,7 @@ library(writexl)
 
 ```{r}
 load("nor_knr24_vec.rdata")
-load("newknr.rdata")
+load("newknr24.rdata")
 ```
 
 ```{r}
@@ -134,6 +134,7 @@ sentralitet2023_2024 <-
 
 # Sammenslåeing av tabellene sånn at vi kan se utvikling.
 Sentralitet <- left_join(sentralitet2020, sentralitet2023_2024, by = c("Kommune" = "Kommune 2024"), keep = TRUE)
+# Kommentar fra K-G: Oppdater gjerne intervall med periode for å unngå .x og .y variabler.
 ```
 
 SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger.
@@ -194,11 +195,6 @@ Sys.setlocale("LC_CTYPE", "Norwegian")
 #### SSB
 
 ```{r}
-load("nor_knr24_vec.rdata")
-load("newknr.rdata")
-```
-
-```{r}
 Arb <- PxData12(
   "https://data.ssb.no/api/v0/no/table/13563/",
   Region = list("agg:KommSummer", knr24),
@@ -206,7 +202,7 @@ Arb <- PxData12(
   HovArbStyrkStatus = c("A", "A.09"), 
   Alder = "15+",
   InnvandrKat = "A-G") |> 
-select(region, år, HovArbStyrkStatus, value) |>
+select(Region, år, HovArbStyrkStatus, value) |>
   pivot_wider(
     names_from  = HovArbStyrkStatus,
     values_from = value) |>
@@ -217,7 +213,10 @@ select(region, år, HovArbStyrkStatus, value) |>
     prosentvis_arbledig = if_else(
       is.na(arbeidsstyrke) | arbeidsstyrke == 0,
       NA_real_,
-      100 * registrerte_ledige / arbeidsstyrke))
+      100 * registrerte_ledige / arbeidsstyrke)) |>
+  rename(kommunenummer = Region) |> 
+  filter(!kommunenummer %in% c("K-21-22", "K-23", "K-Rest")) |> 
+  mutate(kommunenummer = str_sub(kommunenummer, 3, 6))
 ```
 
 #### NAV
@@ -228,21 +227,23 @@ select(region, år, HovArbStyrkStatus, value) |>
 NAV <- read_excel("NavTabell.xlsx",
                   sheet = 1,
                   skip = 4,
-                  col_types = "text")
-
-# Gjør om Karakterer til Nummeriske tall
-NAV <- NAV |>
+                  col_types = "text") |> 
+  rename(knr = Kommunenr, 
+         år = År) |> 
+  mutate(knr = str_pad(knr, 4, "left", "0")) |> 
   mutate(
-    År = as.numeric(År),
-    Kommunenr = as.numeric(Kommunenr)
+    arbled_nav = as.numeric(Beholdning),
+    andel_nav = as.numeric(`Andel av arbeidsstyrken`)
+  ) |> 
+  select(knr, år, Månedsnummer, arbled_nav, andel_nav)
+
+nav24 <- NAV |> 
+  left_join(
+    y = newknr,
+    join_by(knr)
   )
 
-NAV <- NAV |>
-  mutate(
-    beholdning = as.numeric(Beholdning),
-    andel = as.numeric(`Andel av arbeidsstyrken`)
-  ) |>
-  filter(Kommunenr != -1)
+# Her må Bosatt fra pendleinfo kobles, for å få total arbeidsstyrke. Deretter group_by (knr24, år, mnd) + summarise for å telle opp aggregert beholdning, slik at aggregerte andeler kan beregnes! HUSK HUSK! :)
 
 # Lager et eget data for nav_aar, der en gjør om månedstall til ett gjennomsnittstall for hvert år i hver kommune.
 nav_aar <- NAV |>
@@ -251,7 +252,8 @@ nav_aar <- NAV |>
     prosent_ledige_i_året = mean(andel, na.rm = TRUE),
     antall_ledige_i_året = mean(beholdning, na.rm = TRUE),
     .groups = "drop"
-  )
+  )  |> 
+  select(kommunenummer, )
 
 # Sletter NAV grunnet til at de viktige tallene vi trenger ligger i nav_aar
  rm(NAV)
@@ -279,6 +281,9 @@ Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-a
 ### Gjennomsnittlig kvadratmeterpris for bolig
 
 ```{r}
+# Anbefaler at disse leses inn via API!
+# Vil spare dere for masse mellomberegninger og rydding av datasettene...
+
 gkmp <- read_excel("gkmp.xlsx")
 spa  <- read_excel("spa.xlsx")
 ```
@@ -399,8 +404,15 @@ bolig_sammenslått <- bolig_sammenslått |>
 ### Utdanningsnivå
 
 ```{r}
-knr <- sort(unique(newknr$knr))
+# Bør kanskje flyttes opp til sentralitet.
+
+sentralitet24 <- sentralitet2023_2024 |> 
+  rename(knr24 = `knr 2024`,
+         index = `Indeks 2023`,
+         klasse = `Klasse 2023`) |> 
+  select(knr24, index, klasse)
 ```
+
 
 ```{r}
 utdanning <- pxwebData12(
@@ -414,14 +426,50 @@ utdanning <- pxwebData12(
 ```
 
 ```{r}
-utdanning <- utdanning |>
-  rename(knr= Region) |> 
+utd_sentralitet <- utdanning |>
+  rename(knr = Region) |> 
   left_join(newknr, join_by(knr)) |>
-  filter(!is.na(knr2023)) |>
-  group_by(knr2023, år) |>
+  group_by(knr24, år) |>
   summarise(UH = sum(Personer), .groups = "drop") |>
-  filter(knr2023 != "9999")
+  filter(knr24 != "9999") |> 
+  left_join(
+    y = sentralitet24,
+    join_by(knr24)
+  ) |> 
+  rename(kommunenummer = knr24) |> 
+  left_join(
+    y = beftot,
+    join_by(kommunenummer, år)) |> 
+  group_by(klasse, år) |> 
+  summarise(UH = sum(UH),
+            beftot = sum(beftot),
+            .groups = "drop")
 ```
+
+```{r}
+utdandel <- utd_sentralitet |> 
+  mutate(UH_pct = round((UH/beftot)*100, 2))
+```
+
+```{r}
+utdandel |> 
+  ggplot(aes(
+    x = år,
+    y = UH_pct
+  )) + 
+  geom_point(aes(colour = klasse))
+```
+
+
+```{r}
+
+# kommentar: Må ha de 3 datasett for å levere: 1. kommunedata for enkelt år (til kart), 2. Aggregert sentralitetsklasse,  3. Tidsseriedata. 
+# I alle tre datasette kan i utgangspunktet alle variablene med fellers aggregering/format samles. Dette vil gjøre det vesentlig lettere å plukke ut nødvendig data senere, istedenfor å sitte med ørten ulike datasett, og vil totalt være mye ryddigere.
+
+```
+
+
+
 
 For å finne utdanningsnivå har vi brukt tabellen 09429.
 Denne tabellen har ikke et datasett for nye kommuner per 2024.
@@ -434,7 +482,7 @@ Vi har også filtrert vekk data for hele landet samlet.
 
 ```{r}
 load("nor_knr24_vec.rdata")
-load("newknr.rdata")
+load("newknr24.rdata")
 ```
 
 ```{r}
