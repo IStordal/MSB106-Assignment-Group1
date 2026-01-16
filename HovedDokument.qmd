@@ -710,7 +710,6 @@ Master <- left_join(
   suffix = c("", "_flytt")
 )
 
-
 Master <- Master |>
   mutate(
     kommune = coalesce(kommune, Kommune, `Kommune 2024`, Kommunenavn, kommunenavn_clean)
@@ -729,6 +728,59 @@ Master <- Master |>
     )
   ) |>
   select(-any_of(c("knr.x", "knr 2024", "knr2023", "knr_bolig", "Kommunenr", "kommunenr", "kommunenavn")))
+```
+
+```{r}
+Master <- Master |>
+  mutate(
+    knr = str_pad(as.character(knr), 4, pad = "0"),
+    år  = coalesce(as.integer(år), as.integer(År))
+  ) |>
+  select(-any_of("År"))
+
+
+bef_andel_wide <- bef_andel |>
+  transmute(
+    knr = str_pad(as.character(kommunenummer), 4, pad = "0"),
+    år  = as.integer(år),
+    alder = as.character(alder),
+    bef_andel_age = as.numeric(bef_andel_age)
+  ) |>
+  pivot_wider(
+    names_from   = alder,
+    values_from  = bef_andel_age,
+    names_prefix = "bef_andel_"
+  )
+
+Master <- Master |>
+  left_join(bef_andel_wide, by = c("knr", "år"))
+
+
+Pendling_clean <- Pendling |>
+  transmute(
+    knr = str_pad(as.character(knr24), 4, pad = "0"),
+    år  = as.integer(år),
+    Bosatt, Innpendlere, Utpendlere, Arbeidssted
+  )
+
+Master <- Master |>
+  left_join(Pendling_clean, by = c("knr", "år"))
+
+
+utdanning_clean <- utdanning |>
+  transmute(
+    knr = str_pad(as.character(knr2023), 4, pad = "0"),
+    år  = as.integer(år),
+    UH
+  )
+
+Master <- Master |>
+  left_join(utdanning_clean, by = c("knr", "år"))
+```
+
+```{r}
+Master <- Master %>%
+  relocate(kommune, .after = knr)
 ```
 
 ## Tilstand og utvikling for ulike variabler
