@@ -48,18 +48,22 @@ library(writexl)
 t <- Sys.time()
 ```
 
-
 # Innledning
 
 # Innhenting av data
 
-Merk at kommuneinndeling er gjeldende inntil 31. desebember 2025 benyttes, grunnet endringer 1. januar 2026 (disse vil ikke bli synlige i statistikken før i 2027, med unntak av folketall som kommer i februar 2026).
+Merk at kommuneinndeling er gjeldende inntil 31.
+desebember 2025 benyttes, grunnet endringer 1.
+januar 2026 (disse vil ikke bli synlige i statistikken før i 2027, med unntak av folketall som kommer i februar 2026).
 
 ## Folketall
 
 ```{r}
 load("nor_knr24_vec.rdata")
 load("newknr24.rdata")
+Sys.setlocale("LC_ALL", "Norwegian")
+Sys.setlocale("LC_CTYPE", "Norwegian")
+
 ```
 
 ```{r}
@@ -93,7 +97,6 @@ befendr0025 <- beftot |>
   )) |> 
   select(-c(bef2000, bef2025))
 ```
-
 
 ## Demografiske data
 
@@ -136,14 +139,12 @@ befandel_wide <- befald |>
   select(knr24:`befAndel_F10-19`, `befAndel_F20-29`:`befAndel_F90-99`, everything())
 ```
 
-
 ```{r}
 bef_andel24 <- befald |> 
   filter(år == "2024",
          Alder == "F20-29") |> 
   select(-c(år, Alder, befage, beftot))
 ```
-
 
 ## Sentralitetsindeksen for norske kommuner
 
@@ -159,7 +160,6 @@ sentralitet24 <- sentralitet2023_2024 |>
          klasse = `Klasse 2023`) |> 
   select(knr24, index, klasse)
 ```
-
 
 ## Prosentvis arbeidsledighet
 
@@ -195,7 +195,6 @@ arbledSSB24 <- arbledSSB |>
   select(-c(år, arbstrk, regled_SSB))
 ```
 
-
 ### NAV
 
 ```{r}
@@ -229,7 +228,6 @@ arbledNAV <- arbledNAV |>
   mutate(andel_NAV = round((regled_NAV/arbstrk)* 100, 
                            digits = 2))
 ```
-
 
 NAV og SSB (AKU) måler begge arbeidsledighet, men de gjør det på forksjellige måter.
 
@@ -272,7 +270,6 @@ arbpl <- arbpl |>
   filter(knr24 != "9999")
 ```
 
-
 ### Prosentvis sysselsettingsvekst for ulike kommuner etter år 2000
 
 ```{r}
@@ -290,7 +287,6 @@ syssendr0024 <- arbpl |>
   )) |> 
   select(-c(syss2000, syss2024))
 ```
-
 
 ## Gjennomsnittlig kvadratmeterpris for bolig
 
@@ -340,7 +336,6 @@ kvmBolig24 <- kvmBolig |>
   select(-år)
 ```
 
-
 ## Utdanningsnivå
 
 ```{r}
@@ -389,7 +384,6 @@ utd24 <- utdanning |>
   filter(år == "2024") |> 
   select(-c(år, UH, beftot))
 ```
-
 
 ### Utviklingen i andelen av innbyggerne med universitetsutdanning, etter 1970
 
@@ -506,18 +500,73 @@ nettoPendl24 <- pendl |>
   select(knr24, nettoInnPendl1k)
 ```
 
-___________________________________________________________
+------------------------------------------------------------------------
 
-Gjenstår også å sette sammen datasett for alle kurveframstillinger (utenom utvkl. UH-utdanning). 
+Gjenstår også å sette sammen datasett for alle kurveframstillinger (utenom utvkl. UH-utdanning).
 Denne jobben er imidlertid stort sett copy/paste der sentr joines på og aktuelle data grupperes på klasse.
-
-
-
-
 
 # Master Data Sets
 
-## Data kart -- "Oppgave" 2, del 1 
+```{r}
+#master for 2024 per kommune
+master <- reduce(
+  list(
+    befendr0025,
+    bef_andel24,
+    arbledSSB24,
+    syssendr0024,
+    kvmBolig24,
+    utd24,
+    nettoFlytt24,
+    nettoPendl24
+  ),
+  left_join,
+  by = "knr24"
+)
+```
+
+```{r}
+#Samlet master sett med knr24 x år
+
+#wide på Alder
+flytting_wide <- flytting |>
+  left_join(beftot, by = c("knr24", "år")) |>
+  mutate(nettoflytting1k = round((nettoflytting / beftot) * 1000, 2)) |>
+  mutate(nettoflytting1k = if_else(is.infinite(nettoflytting1k), 0, nettoflytting1k)) |>
+  select(knr24, år, Alder, nettoflytting1k) |>
+  pivot_wider(
+    names_from = Alder,
+    names_prefix = "nettoflytting1k_",
+    values_from = nettoflytting1k
+  )
+
+#Pendling (rate per 1000 arbeidsplasser)
+pendl_rate <- pendl |>
+  mutate(nettoInnPendl1k = round((nettoPendl / Arbeidssted) * 1000, 2)) |>
+  mutate(nettoInnPendl1k = if_else(is.infinite(nettoInnPendl1k), 0, nettoInnPendl1k)) |>
+  select(knr24, år, nettoInnPendl1k)
+
+#Lager master (knr24 x år) + legg på kommune-only variablar
+panel_list <- list(
+  beftot,
+  befandel_wide,
+  arbledSSB,
+  arbledNAV,
+  arbpl,
+  kvmBolig,
+  utdanning,
+  flytting_wide,
+  pendl_rate
+)
+
+master <- reduce(panel_list, left_join, by = c("knr24","år")) |>
+  left_join(sentralitet24, by = "knr24") |>
+  left_join(befendr0025,  by = "knr24") |>
+  left_join(syssendr0024, by = "knr24")
+
+```
+
+## Data kart -- "Oppgave" 2, del 1
 
 ```{r}
 kartdata <- befendr0025  |> 
@@ -551,8 +600,7 @@ kartdata <- befendr0025  |>
   )
 ```
 
-
-## Data graf -- "Oppgave" 2, del 2 
+## Data graf -- "Oppgave" 2, del 2
 
 ```{r}
 
@@ -563,7 +611,6 @@ kartdata <- befendr0025  |>
 ```{r}
 
 ```
-
 
 ```{r}
 Sys.time() - t
