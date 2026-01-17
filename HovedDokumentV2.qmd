@@ -336,6 +336,52 @@ kvmBolig24 <- kvmBolig |>
   select(-år)
 ```
 
+
+## Boliger solt per år
+
+```{r}
+solgteBolig <- pxwebData12(
+  urlToData = "https://data.ssb.no/api/v0/no/table/06035/",
+  Region = list("*"),
+  Boligtype = c("01", "03"),          
+  Tid = as.character(2002:2024),
+  ContentsCode = "Omsetninger"
+) |>
+  select(
+    knr = Region, år, boligtype, Omsetninger
+  )
+```
+
+```{r}
+solgteBolig <- solgteBolig |>
+  left_join(newknr, join_by(knr)) |>
+  group_by(knr24, år, boligtype) |>
+  summarise(
+    Omsetninger = sum(Omsetninger, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  pivot_wider(
+    names_from = boligtype,
+    names_prefix = "Antall_",
+    values_from = Omsetninger
+  ) |>
+  filter(
+    knr24 != "9999",
+    !is.na(knr24)
+  )
+```
+
+
+## Slår sammen datasett for boliger
+
+```{r}
+bolig <- left_join(
+  kvmBolig,
+  solgteBolig,
+  by = c("knr24", "år")
+)
+```
+
 ## Utdanningsnivå
 
 ```{r}
