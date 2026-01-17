@@ -336,7 +336,6 @@ kvmBolig24 <- kvmBolig |>
   select(-år)
 ```
 
-
 ## Boliger solt per år
 
 ```{r}
@@ -370,7 +369,6 @@ solgteBolig <- solgteBolig |>
     !is.na(knr24)
   )
 ```
-
 
 ## Slår sammen datasett for boliger
 
@@ -555,7 +553,7 @@ Denne jobben er imidlertid stort sett copy/paste der sentr joines på og aktuell
 
 ```{r}
 #master for 2024 per kommune
-master <- reduce(
+master24 <- reduce(
   list(
     befendr0025,
     bef_andel24,
