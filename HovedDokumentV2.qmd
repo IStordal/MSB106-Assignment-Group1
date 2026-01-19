@@ -754,6 +754,99 @@ Alt i alt virker det som at sentralitetsmønsteret ikke har endret seg noe særl
 
 # Korrelasjonsberegninger
 
+Lager en funksjon som kan brukes til å utføre korelasjons beregningene med mindre koding
+
+```{r}
+kor_år <- function(data, x, y) {
+  data |>
+    filter(år %in% c(2014, 2024)) |>
+    group_by(år) |>
+    summarise(
+      korrelasjon = cor(
+        .data[[x]],
+        .data[[y]],
+        use = "complete.obs"
+      ),
+      n = sum(!is.na(.data[[x]]) & !is.na(.data[[y]])),
+      .groups = "drop"
+    )
+}
+```
+
+Prosentvis arbeidsledighet og brutto/netto utflytting pr 1000 innbyggere
+
+```{r}
+kor_år(master, "andel_SSB.x", "nettoflytting1k_18-29")
+```
+
+Prosentvis arbeidsledighet og brutto/netto utpendling pr 1000 innbyggere
+
+```{r}
+kor_år(master, "andel_SSB.x", "nettoInnPendl1k")
+```
+
+Gjennomsnittlig kvadratmeterpris for bolig og andelen av innbyggerne med høyere utdanning
+
+```{r}
+kor_år(master, "KvPris_Blokkleiligheter", "UH")
+```
+
+Gjennomsnittlig kvadratmeterpris for bolig og andelen av innbyggerne som er i aldersgruppen (20-29)
+
+```{r}
+kor_år(master, "KvPris_Blokkleiligheter", "befAndel_F20-29")
+```
+
+
+Gjennomsnittlig kvadratmeterpris for bolig og innpendling pr 1000 innbyggere
+
+```{r}
+kor_år(master, "KvPris_Blokkleiligheter", "nettoInnPendl1k")
+```
+
+
+
+
+
+ Gjennomsnittlig kvadratmeterpris for bolig og utflytting pr 1000 innbyggere
+
+
+```{r}
+kor_år(master, "KvPris_Blokkleiligheter", "nettoflytting1k_18-29")
+```
+
+
+ Gjennomsnittlig kvadratmeterpris for bolig og innflytting pr 1000 innbyggere
+
+```{r}
+
+```
+
+
+
+
+ Netto utflytting og andelen av innbyggerne som er i aldersgruppen (20-29)
+
+```{r}
+kor_år(master, "nettoflytting1k_18-29", "befAndel_F20-29")
+```
+
+
+
+ Netto utflytting og netto utpendling pr 1000 innbyggere
+ 
+```{r}
+kor_år(master, "nettoflytting1k_18-29", "nettoInnPendl1k")
+```
+ 
+
+
+
+ Netto utpendling og gjennomsnittlig kvadratmeterpris på boliger i tilgrensende kommuner
+
+
+
+
 # Sammenhengen mellom befolkning og sysselsetting
 
 # Relevant hypoteser basert på deskriptiv statistikk
