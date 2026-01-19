@@ -688,6 +688,17 @@ st_write(
 )
 ```
 
+```{r}
+#| eval: false
+st_write(
+  obj = kyst2,
+  dsn = "knr_kart_norge_kystlinje.gpkg",
+  layer = "knr_data",
+  append = FALSE
+)
+```
+
+![Caption](Prosentvis_arbeidsledighet_for_2024.jpg)
 # Sammenligning sentralitet over tid
 
 ```{r}
