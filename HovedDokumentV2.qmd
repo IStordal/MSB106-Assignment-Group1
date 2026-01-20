@@ -954,3 +954,11 @@ knitr::kable(
 # Vedlegg
 
 # Kildeliste
+
+```{r}
+write_xlsx(
+  master,
+  path = "master.xlsx"
+)
+```
+
