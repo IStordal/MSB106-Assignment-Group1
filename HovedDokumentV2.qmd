@@ -937,7 +937,53 @@ knitr::kable(
 
 
  Netto utpendling og gjennomsnittlig kvadratmeterpris på boliger i tilgrensende kommuner
+ 
+ 
 
+
+# Paneldata analyse oppgave 3
+
+For å undersøke sammenhenger målt i endring fra år til år, lages et nytt datasett hvor delta endring beregnes for aktuelle variabler. 
+
+```{r}
+arlig_endring <- master |>
+  arrange(knr24, år) |>
+  group_by(knr24) |>
+  mutate(
+    # Årlig endring i nivå
+    d_bef = beftot.x - lag(beftot.x),
+    d_boligpris = KvPris_Eneboliger - lag(KvPris_Eneboliger),
+    d_innpendl1k = nettoInnPendl1k - lag(nettoInnPendl1k),
+    d_nettoflytt1k = nettoflytting1k_tot - lag(nettoflytting1k_tot),
+
+    # Årlig prosentvis endring
+    pct_syssel = 100 * (arbstrk.x - lag(arbstrk.x)) / lag(arbstrk.x),
+    pct_ledighet = 100 * (andel_SSB.x - lag(andel_SSB.x)) / lag(andel_SSB.x)
+  ) |>
+  ungroup() |>
+  filter(!is.na(d_bef))
+```
+
+```{r}
+kor_kommune <- arlig_endring |>
+  group_by(knr24) |>
+  summarise(
+    kor_bef_syssel =
+      if (sum(complete.cases(d_bef, pct_syssel)) >= 2)
+        cor(d_bef, pct_syssel, use = "complete.obs")
+      else NA_real_,
+
+    kor_bolig_flytt =
+      if (sum(complete.cases(d_boligpris, d_nettoflytt1k)) >= 2)
+        cor(d_boligpris, d_nettoflytt1k, use = "complete.obs")
+      else NA_real_,
+
+    kor_pendl_syssel =
+      if (sum(complete.cases(d_innpendl1k, pct_syssel)) >= 2)
+        cor(d_innpendl1k, pct_syssel, use = "complete.obs")
+      else NA_real_
+  )
+```
 
 
 
