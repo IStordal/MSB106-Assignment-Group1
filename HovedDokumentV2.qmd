@@ -590,6 +590,11 @@ flytting_wide <- flytting |>
     names_from = Alder,
     names_glue = "{.value}_{Alder}",
     values_from = c(innflytting1k, utflytting1k, nettoflytting1k)
+  ) |>
+  mutate(
+    innflytting1k_tot = coalesce(`innflytting1k_18-29`, 0) + coalesce(`innflytting1k_30+`, 0),
+    utflytting1k_tot = coalesce(`utflytting1k_18-29`, 0) + coalesce(`utflytting1k_30+`, 0),
+    nettoflytting1k_tot = coalesce(`nettoflytting1k_18-29`, 0) + coalesce(`nettoflytting1k_30+`, 0)
   )
 
 #Pendling (rate per 1000 arbeidsplasser)
@@ -809,13 +814,33 @@ kor_år <- function(data, x, y) {
 Prosentvis arbeidsledighet og brutto/netto utflytting pr 1000 innbyggere
 
 ```{r}
-kor_år(master, "andel_SSB.x", "nettoflytting1k_18-29")|>
+
+
+kor_år(master, "andel_SSB.x", "utflytting1k_tot")|>
 knitr::kable(
-    caption = "Arbeidsledighet og netto flytting"
+    caption = "Arbeidsledighet og brutto utflytting"
+  )
+
+```
+
+```{r}
+kor_år(master, "andel_SSB.x", "nettoflytting1k_tot")|>
+knitr::kable(
+    caption = "Arbeidsledighet og netto utflytting"
   )
 ```
 
+
 Prosentvis arbeidsledighet og brutto/netto utpendling pr 1000 innbyggere
+
+
+```{r}
+kor_år(master, "andel_SSB.x", "utPendl1k")|>
+knitr::kable(
+    caption = "Arbeidsledighet og brutto utpendling"
+  )
+```
+
 
 ```{r}
 kor_år(master, "andel_SSB.x", "nettoInnPendl1k")|>
@@ -841,7 +866,7 @@ Gjennomsnittlig kvadratmeterpris for bolig og andelen av innbyggerne som er i al
 ```{r}
 kor_år(master, "KvPris_Blokkleiligheter", "befAndel_F20-29")|>
 knitr::kable(
-    caption = "Gjennomsnittlig KVM pris og andel innbyggere mellom 20-29"
+    caption = "Gjennomsnittlig KVM pris og andel innbyggere i alder 20-29"
   )
 ```
 
@@ -871,14 +896,20 @@ knitr::kable(
 
 
 ```{r}
-kor_år(master, "KvPris_Blokkleiligheter", "nettoflytting1k_18-29")
+kor_år(master, "KvPris_Blokkleiligheter", "utflytting1k_tot")|>
+knitr::kable(
+    caption = "Gjennomsnittlig KVM pris og utflytting"
+  )
 ```
 
 
  Gjennomsnittlig kvadratmeterpris for bolig og innflytting pr 1000 innbyggere
 
 ```{r}
-
+kor_år(master, "KvPris_Blokkleiligheter", "innflytting1k_tot")|>
+knitr::kable(
+    caption = "Gjennomsnittlig KVM pris og innflytting"
+  )
 ```
 
 
@@ -887,7 +918,10 @@ kor_år(master, "KvPris_Blokkleiligheter", "nettoflytting1k_18-29")
  Netto utflytting og andelen av innbyggerne som er i aldersgruppen (20-29)
 
 ```{r}
-kor_år(master, "nettoflytting1k_18-29", "befAndel_F20-29")
+kor_år(master, "nettoflytting1k_tot", "befAndel_F20-29")|>
+knitr::kable(
+    caption = "Netto flytting og andel befolkning alder 20-29"
+  )
 ```
 
 
@@ -895,7 +929,10 @@ kor_år(master, "nettoflytting1k_18-29", "befAndel_F20-29")
  Netto utflytting og netto utpendling pr 1000 innbyggere
  
 ```{r}
-kor_år(master, "nettoflytting1k_18-29", "nettoInnPendl1k")
+kor_år(master, "nettoflytting1k_tot", "nettoInnPendl1k")|>
+knitr::kable(
+    caption = "Netto utflytting og netto utpendling"
+  )
 ```
  
 
