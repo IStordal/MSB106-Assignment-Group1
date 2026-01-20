@@ -574,14 +574,22 @@ master24 <- reduce(
 
 #wide på Alder
 flytting_wide <- flytting |>
-  left_join(beftot, by = c("knr24", "år")) |>
-  mutate(nettoflytting1k = round((nettoflytting / beftot) * 1000, 2)) |>
-  mutate(nettoflytting1k = if_else(is.infinite(nettoflytting1k), 0, nettoflytting1k)) |>
-  select(knr24, år, Alder, nettoflytting1k) |>
+  left_join(beftot, by = c("knr24", "år")) |>  # beftot har totalbefolkning per kommune-år
+  mutate(
+    innflytting1k = round((innflytting / beftot) * 1000, 2),
+    utflytting1k = round((utflytting / beftot) * 1000, 2),
+    nettoflytting1k = round((innflytting - utflytting) / beftot * 1000, 2)
+  ) |>
+  mutate(
+    innflytting1k = if_else(is.infinite(innflytting1k), 0, innflytting1k),
+    utflytting1k = if_else(is.infinite(utflytting1k), 0, utflytting1k),
+    nettoflytting1k = if_else(is.infinite(nettoflytting1k), 0, nettoflytting1k)
+  ) |>
+  select(knr24, år, Alder, innflytting1k, utflytting1k, nettoflytting1k) |>
   pivot_wider(
     names_from = Alder,
-    names_prefix = "nettoflytting1k_",
-    values_from = nettoflytting1k
+    names_glue = "{.value}_{Alder}",
+    values_from = c(innflytting1k, utflytting1k, nettoflytting1k)
   )
 
 #Pendling (rate per 1000 arbeidsplasser)
@@ -853,7 +861,7 @@ Gjennomsnittlig kvadratmeterpris for bolig og utpendling pr 1000 innbyggere
 ```{r}
 kor_år(master, "KvPris_Blokkleiligheter", "utPendl1k")|>
 knitr::kable(
-    caption = "Gjennomsnittlig KVM pris og utpendling"
+    caption = "Gjennomsnittlig KVM pris og innpendling"
   )
 ```
 
