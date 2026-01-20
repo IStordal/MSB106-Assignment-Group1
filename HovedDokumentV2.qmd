@@ -586,9 +586,23 @@ flytting_wide <- flytting |>
 
 #Pendling (rate per 1000 arbeidsplasser)
 pendl_rate <- pendl |>
-  mutate(nettoInnPendl1k = round((nettoPendl / Arbeidssted) * 1000, 2)) |>
-  mutate(nettoInnPendl1k = if_else(is.infinite(nettoInnPendl1k), 0, nettoInnPendl1k)) |>
-  select(knr24, år, nettoInnPendl1k)
+  mutate(
+    innPendl1k = round((Innpendlere / Arbeidssted) * 1000, 2),
+    utPendl1k  = round((Utpendlere / Arbeidssted) * 1000, 2),
+    nettoInnPendl1k = round((nettoPendl / Arbeidssted) * 1000, 2)
+  ) |>
+  mutate(
+    innPendl1k = if_else(is.infinite(innPendl1k), 0, innPendl1k),
+    utPendl1k  = if_else(is.infinite(utPendl1k), 0, utPendl1k),
+    nettoInnPendl1k = if_else(is.infinite(nettoInnPendl1k), 0, nettoInnPendl1k)
+  ) |>
+  select(
+    knr24,
+    år,
+    innPendl1k,
+    utPendl1k,
+    nettoInnPendl1k
+  )
 
 #Lager master (knr24 x år) + legg på kommune-only variablar
 panel_list <- list(
@@ -827,13 +841,21 @@ knitr::kable(
 Gjennomsnittlig kvadratmeterpris for bolig og innpendling pr 1000 innbyggere
 
 ```{r}
-kor_år(master, "KvPris_Blokkleiligheter", "nettoInnPendl1k")|>
+kor_år(master, "KvPris_Blokkleiligheter", "innPendl1k")|>
 knitr::kable(
     caption = "Gjennomsnittlig KVM pris og innpendling"
   )
 ```
 
 
+Gjennomsnittlig kvadratmeterpris for bolig og utpendling pr 1000 innbyggere
+
+```{r}
+kor_år(master, "KvPris_Blokkleiligheter", "utPendl1k")|>
+knitr::kable(
+    caption = "Gjennomsnittlig KVM pris og utpendling"
+  )
+```
 
 
 
