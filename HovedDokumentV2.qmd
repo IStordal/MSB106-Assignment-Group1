@@ -63,7 +63,6 @@ load("nor_knr24_vec.rdata")
 load("newknr24.rdata")
 Sys.setlocale("LC_ALL", "Norwegian")
 Sys.setlocale("LC_CTYPE", "Norwegian")
-
 ```
 
 ```{r}
@@ -160,6 +159,66 @@ sentralitet24 <- sentralitet2023_2024 |>
          klasse = `Klasse 2023`) |> 
   select(knr24, index, klasse)
 ```
+
+```{r}
+# Importerer og leser av excel-filene
+sentralitet2020 <- 
+  read_xlsx("sentralitet2020Kommuner.xlsx")
+
+sentralitet2023_2024 <-
+  read_xlsx("sentralitet_2023-2024_kommuner.xlsx")
+
+# Sammenslåeing av tabellene sånn at vi kan se utvikling.
+Sentralitet <- left_join(sentralitet2020, sentralitet2023_2024, by = c("Kommune" = "Kommune 2024"), keep = TRUE)
+```
+
+SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger.
+Dette blir målt gjennom hvor lett det er for innbyggerne å komme seg til viktige funksjoner.
+Indeksen SSB bruker bygger på beregnet reisetid med bil fra bebodde område istedenfor liftlonjeavstand eller innbyggertall som kunne vært bedre.
+Poenget for indeksen er å fange opp faktisk tilgjengelighet som er at kommunene regnes som mer sentrale hvis mange arbeidsplasser og ulike tjenestetilbud kan nås innenfor rimelig reisetid.
+
+Indeksen består av to deler.
+Den ene handler om hvor stort arbeidsmarked innbyggerne har innenfor en reiseramme (opptil 90 minutter), altså hvor mange arbeidsplasser som kan nås.
+Den andre handler om tilgang til et bredt tjenestetilbud, som typisk er ulike typer varer og tjenester (for eksempel handel og offentlige tjenester).
+I begge delene er det lagt opp til korte reiser teller mer enn lange reiser.
+Det vil si at en arbeidsplass eller tjeneste i nærheten påvirker sentraliteten mer enn en som ligger langt unna.
+Kommunens endelige verdi uttrykkes som en kontinuerlig indeks (høyere verdi = mer sentral), og verdiene kan også sorteres inn i seks sentralitetsklasser.
+
+Når vi skulle se på 2017 indeksen så var det ikke direkte sammenlignbart med de senere årene, vi valgte derfor å heller ta år 2020 å sammenligne de med 2023-2024.
+En grunn til dette i indeksen for 2017 kan være pågrunn av i denne perioden har det vært endringer i kommuneinndelingen (sammenslåinger og grensejusteringer), som kan påvirke hvilken samlet verdi en kommune får.
+I tillegg ble det påpekt feil knyttet til deler av beregningen i den tidlige versjonen av indeksen, som senere er korrigert.
+
+```{r}
+# Dette er hentet med hjelp av ChatGPT
+# Klargjør datasett for test
+Sentralitet_test <- Sentralitet %>%
+  filter(!is.na(`Indeks 2020`), !is.na(`Indeks 2023`)) %>%
+  mutate(diff_20_23 = `Indeks 2023` - `Indeks 2020`)
+
+# Her velger vi hva vi vil ha i tabellen
+oppsummering <- Sentralitet_test %>%
+  summarise(
+    n = n(),
+    mean_change = mean(diff_20_23),
+    median_change = median(diff_20_23),
+    sd_change = sd(diff_20_23),
+    min_change = min(diff_20_23),
+    max_change = max(diff_20_23)
+  )
+
+oppsummering
+
+# Signifikans-test
+test_t <- t.test(Sentralitet_test$diff_20_23, mu = 0)
+```
+
+Utifra t-testen finner vi ut at sentralitetsindeksen fra 2020 til 2023 har ikke så store endringer.
+Vi har med 341 kommuner, og i gjennomsnitt har indeksen økt med ca.
+2,8 poeng.
+Medianen er 2 som betyr at for de fleste kommunene er endringen veldig liten.
+Det er likevel noen kommuner som skiller seg ut, der den største nedgangen er -17 og den største økningen er 79.
+Totalt sett tyder dette på at sentraliteten er ganske stabil i perioden, men med noen få unntak.
+Alt i alt virker det som at sentralitetsmønsteret ikke har endret seg noe særlig, og at endringene heller handler om små oppdateringer enn store skift.
 
 ## Prosentvis arbeidsledighet
 
@@ -726,67 +785,6 @@ st_write(
 ```
 
 ![Caption](Prosentvis_arbeidsledighet_for_2024.jpg)
-# Sammenligning sentralitet over tid
-
-```{r}
-# Importerer og leser av excel-filene
-sentralitet2020 <- 
-  read_xlsx("sentralitet2020Kommuner.xlsx")
-
-sentralitet2023_2024 <-
-  read_xlsx("sentralitet_2023-2024_kommuner.xlsx")
-
-# Sammenslåeing av tabellene sånn at vi kan se utvikling.
-Sentralitet <- left_join(sentralitet2020, sentralitet2023_2024, by = c("Kommune" = "Kommune 2024"), keep = TRUE)
-```
-
-SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger.
-Dette blir målt gjennom hvor lett det er for innbyggerne å komme seg til viktige funksjoner.
-Indeksen SSB bruker bygger på beregnet reisetid med bil fra bebodde område istedenfor liftlonjeavstand eller innbyggertall som kunne vært bedre.
-Poenget for indeksen er å fange opp faktisk tilgjengelighet som er at kommunene regnes som mer sentrale hvis mange arbeidsplasser og ulike tjenestetilbud kan nås innenfor rimelig reisetid.
-
-Indeksen består av to deler.
-Den ene handler om hvor stort arbeidsmarked innbyggerne har innenfor en reiseramme (opptil 90 minutter), altså hvor mange arbeidsplasser som kan nås.
-Den andre handler om tilgang til et bredt tjenestetilbud, som typisk er ulike typer varer og tjenester (for eksempel handel og offentlige tjenester).
-I begge delene er det lagt opp til korte reiser teller mer enn lange reiser.
-Det vil si at en arbeidsplass eller tjeneste i nærheten påvirker sentraliteten mer enn en som ligger langt unna.
-Kommunens endelige verdi uttrykkes som en kontinuerlig indeks (høyere verdi = mer sentral), og verdiene kan også sorteres inn i seks sentralitetsklasser.
-
-Når vi skulle se på 2017 indeksen så var det ikke direkte sammenlignbart med de senere årene, vi valgte derfor å heller ta år 2020 å sammenligne de med 2023-2024.
-En grunn til dette i indeksen for 2017 kan være pågrunn av i denne perioden har det vært endringer i kommuneinndelingen (sammenslåinger og grensejusteringer), som kan påvirke hvilken samlet verdi en kommune får.
-I tillegg ble det påpekt feil knyttet til deler av beregningen i den tidlige versjonen av indeksen, som senere er korrigert.
-
-```{r}
-# Dette er hentet med hjelp av ChatGPT
-# Klargjør datasett for test
-Sentralitet_test <- Sentralitet %>%
-  filter(!is.na(`Indeks 2020`), !is.na(`Indeks 2023`)) %>%
-  mutate(diff_20_23 = `Indeks 2023` - `Indeks 2020`)
-
-# Her velger vi hva vi vil ha i tabellen
-oppsummering <- Sentralitet_test %>%
-  summarise(
-    n = n(),
-    mean_change = mean(diff_20_23),
-    median_change = median(diff_20_23),
-    sd_change = sd(diff_20_23),
-    min_change = min(diff_20_23),
-    max_change = max(diff_20_23)
-  )
-
-oppsummering
-
-# Signifikans-test
-test_t <- t.test(Sentralitet_test$diff_20_23, mu = 0)
-```
-
-Utifra t-testen finner vi ut at sentralitetsindeksen fra 2020 til 2023 har ikke så store endringer.
-Vi har med 341 kommuner, og i gjennomsnitt har indeksen økt med ca.
-2,8 poeng.
-Medianen er 2 som betyr at for de fleste kommunene er endringen veldig liten.
-Det er likevel noen kommuner som skiller seg ut, der den største nedgangen er -17 og den største økningen er 79.
-Totalt sett tyder dette på at sentraliteten er ganske stabil i perioden, men med noen få unntak.
-Alt i alt virker det som at sentralitetsmønsteret ikke har endret seg noe særlig, og at endringene heller handler om små oppdateringer enn store skift.
 
 # Tilstand og utvikling for ulike variabler
 
