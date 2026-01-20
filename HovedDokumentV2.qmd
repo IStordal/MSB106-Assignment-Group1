@@ -950,38 +950,33 @@ arlig_endring <- master |>
   arrange(knr24, år) |>
   group_by(knr24) |>
   mutate(
-    # Årlig endring i nivå
-    d_bef = beftot.x - lag(beftot.x),
-    d_boligpris = KvPris_Eneboliger - lag(KvPris_Eneboliger),
-    d_innpendl1k = nettoInnPendl1k - lag(nettoInnPendl1k),
-    d_nettoflytt1k = nettoflytting1k_tot - lag(nettoflytting1k_tot),
+    # Absolutte årlige endringer
+    d_bef = beftot.x - lag(beftot.x),                 # Folketall
+    d_andel_ledighet = andel_NAV - lag(andel_NAV),    # Arbeidsledighet (i prosentpoeng, absolutt endring)
+    d_boligpris = KvPris_Eneboliger - lag(KvPris_Eneboliger),  # Boligpris (absolutt)
 
-    # Årlig prosentvis endring
-    pct_syssel = 100 * (arbstrk.x - lag(arbstrk.x)) / lag(arbstrk.x),
-    pct_ledighet = 100 * (andel_SSB.x - lag(andel_SSB.x)) / lag(andel_SSB.x)
+    d_nettoflytting1k = nettoflytting1k_tot - lag(nettoflytting1k_tot), # Netto innflytting (absolutt endring)
+    d_innpendl1k = nettoInnPendl1k - lag(nettoInnPendl1k),             # Innpendling (absolutt endring)
+    
+    # Prosentvise årlige endringer
+    pct_syssel = 100 * (syssendr0024 - lag(syssendr0024)) / lag(syssendr0024)  # Prosentvis endring i sysselsetting
   ) |>
-  ungroup() |>
-  filter(!is.na(d_bef))
+  ungroup()
 ```
+
+
+Lager en kode som beregner koefisienten for alle kommuner for 
 
 ```{r}
 kor_kommune <- arlig_endring |>
   group_by(knr24) |>
   summarise(
-    kor_bef_syssel =
-      if (sum(complete.cases(d_bef, pct_syssel)) >= 2)
-        cor(d_bef, pct_syssel, use = "complete.obs")
-      else NA_real_,
-
-    kor_bolig_flytt =
-      if (sum(complete.cases(d_boligpris, d_nettoflytt1k)) >= 2)
-        cor(d_boligpris, d_nettoflytt1k, use = "complete.obs")
-      else NA_real_,
-
-    kor_pendl_syssel =
-      if (sum(complete.cases(d_innpendl1k, pct_syssel)) >= 2)
-        cor(d_innpendl1k, pct_syssel, use = "complete.obs")
-      else NA_real_
+    kor_bef_syssel = if (sum(complete.cases(d_bef, pct_syssel)) >= 2) cor(d_bef, pct_syssel, use = "complete.obs") else NA_real_,
+    kor_ledighet_syssel = if (sum(complete.cases(d_andel_ledighet, pct_syssel)) >= 2) cor(d_andel_ledighet, pct_syssel, use = "complete.obs") else NA_real_,
+    kor_bolig_flytt = if (sum(complete.cases(d_boligpris, d_nettoflytting1k)) >= 2) cor(d_boligpris, d_nettoflytting1k, use = "complete.obs") else NA_real_,
+    kor_syssel_bolig = if (sum(complete.cases(pct_syssel, d_boligpris)) >= 2) cor(pct_syssel, d_boligpris, use = "complete.obs") else NA_real_,
+    kor_pendl_syssel = if (sum(complete.cases(d_innpendl1k, pct_syssel)) >= 2) cor(d_innpendl1k, pct_syssel, use = "complete.obs") else NA_real_,
+    .groups = "drop"
   )
 ```
 
