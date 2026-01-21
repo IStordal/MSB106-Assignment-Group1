@@ -730,21 +730,6 @@ kartdata <- befendr0025  |>
   )
 ```
 
-## Data graf -- "Oppgave" 2, del 2
-
-```{r}
-
-```
-
-## Data tidsserier -- Samlet innlest data fra "Oppgave" 1
-
-```{r}
-
-```
-
-```{r}
-Sys.time() - t
-```
 
 ## Koble kart
 
@@ -784,7 +769,66 @@ st_write(
 )
 ```
 
-![Caption](Prosentvis_arbeidsledighet_for_2024.jpg)
+![Caption](Bilde_folketallsvekst.png)
+
+## Data graf -- "Oppgave" 2, del 2
+
+### Folketallsutvikling for årene etter 2000 for ulike sentralitetskategorier av kommuner
+
+```{r}
+befutv0025 <- beftot |>
+  left_join(y = sentralitet24, join_by(knr24)) |> 
+  group_by(klasse, år) |>
+  summarise(beftot = sum(beftot), .groups = "drop")
+```
+
+
+```{r}
+befutv0025 |>
+filter(år %in% as.character(2000:2024)) |> 
+  mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = beftot/1000, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Befolkning (1000)")
+```
+
+### Utviklingen i andelen av innbyggere i aldersgruppen (20-29) for årene etter 2000
+
+```{r}
+befald0025 <- befald |> filter(Alder == "F20-29") |>
+  left_join(y = sentralitet24, join_by(knr24)) |> 
+  group_by(klasse, år) |>
+  summarise(befage = sum(befage), beftot = sum(beftot), .groups = "drop") |>
+  mutate(bef_andel_age = round((befage/beftot)*100, 2))
+```
+
+```{r}
+befald0025 |> 
+  filter(år %in% as.character(2000:2024)) |> 
+  mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = bef_andel_age, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Ung befolkning i %")
+```
+### Utviklingen i prosentvis arbeidsledighet etter 2008
+
+```{r}
+
+```
+
+
+## Data tidsserier -- Samlet innlest data fra "Oppgave" 1
+
+```{r}
+
+```
+
+```{r}
+Sys.time() - t
+```
+
 
 # Tilstand og utvikling for ulike variabler
 
