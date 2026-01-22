@@ -42,6 +42,9 @@ library(modelsummary)
 library(dplyr)
 library(stringr)
 library(writexl)
+library(lmtest)
+
+options(scipen = 999)
 ```
 
 ```{r}
@@ -356,9 +359,8 @@ kvmBolig <- pxwebData12(
     Region = list("*"),
     Boligtype = c("01", "03"),
     Tid = as.character(c(2002:2024)),
-    ContentsCode = "KvPris"
-) |> 
-  select(knr = Region, år, boligtype, KvPris)
+    ContentsCode = c("KvPris", "Omsetninger"))|> 
+  select(knr = Region, år, boligtype, KvPris, Omsetninger)
 ```
 
 ```{r}
@@ -368,13 +370,14 @@ kvmBolig <- kvmBolig |>
     join_by(knr)
   ) |> 
   group_by(knr24, år, boligtype) |> 
-  summarise(KvPris = round(mean(KvPris, na.rm = TRUE), 0),
+  summarise(KvPris = round(mean(KvPris, na.rm = TRUE), 0), 
+            Omsetninger = sum(Omsetninger, na.rm = TRUE),
             .groups = "drop") |> 
-  pivot_wider(
-    names_from = boligtype,
-    names_prefix = "KvPris_",
-    values_from = KvPris
-  ) |> 
+  # pivot_wider(
+  #   names_from = boligtype,
+  #   names_prefix = "KvPris_",
+  #   values_from = KvPris
+  # ) |>
   filter(knr24 != "9999",
          !is.na(knr24))
 ```
@@ -497,7 +500,7 @@ utdAndel <- utdanning |>
     join_by(knr24)
   ) |> 
   group_by(klasse, år) |> 
-  summarise(UH = sum(UH),
+  summarise(UH = sum(UH, na.rm = TRUE),
             beftot = sum(beftot),
             .groups = "drop") |> 
   mutate(UH_pct = round((UH/beftot)*100,
@@ -871,8 +874,8 @@ syssvekst0024 |>
   mutate(klasse = fct(as.character(klasse))) |>
   mutate(år = as.Date.character(år, format = "%Y")) |>
   ggplot(
-  aes(x = år, y = Arbeidssted, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
-  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("sysselsatte")
+  aes(x = år, y = Arbeidssted/1000, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Sysselsatte (1000)")
 ```
 ### Utvikling i kvadratmeterpris for boliger etter år 2002
 
@@ -880,30 +883,28 @@ syssvekst0024 |>
 ```{r}
 kvmpris0224 <- kvmBolig |>
       left_join(y = sentralitet24, join_by(knr24)) |> 
-  group_by(klasse, år) |>
-  summarise(KvPris_Eneboliger = sum(KvPris_Eneboliger), .groups = "drop")
+  group_by(klasse, år, boligtype) |>
+  summarise(OmsetningerT = sum(Omsetninger, na.rm = TRUE),
+            KvPrisW = ifelse(OmsetningerT>0, weighted.mean(KvPris, Omsetninger, na.rm = TRUE), NA), .groups = "drop")
 
 ```
 
 
 ```{r}
 kvmpris0224 |>
-   mutate(klasse = fct(as.character(klasse))) |>
+  mutate(klasse = fct(as.character(klasse))) |>
   mutate(år = as.Date.character(år, format = "%Y")) |>
   ggplot(
-  aes(x = år, y = KvPris_Eneboliger, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  aes(x = år, y = KvPrisW, group = klasse, color = klasse)) + 
+  facet_wrap(~ boligtype) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Kvm pris")
 ```
+
 ### Utviklingen i andelen av innbyggerne med universitetsutdanning
 
-```{r}
-utd8624 <- utdAndel |>
-  group_by(klasse, år) |>
-  summarise(UH_pct = sum(UH_pct), .groups = "drop")
-```
 
 ```{r}
-utd8624 |> 
+utdAndel |> 
   filter(år %in% as.character(1986:2024)) |>
   mutate(klasse = fct(as.character(klasse))) |>
   mutate(år = as.Date.character(år, format = "%Y")) |>
@@ -916,8 +917,13 @@ utd8624 |>
 ```{r}
 flytt1024 <- flytting |>
   left_join(y = sentralitet24, join_by(knr24)) |> 
-  group_by(klasse, år) |>
-  summarise(nettoflytting = sum(nettoflytting), .groups = "drop")
+  left_join(y = beftot, join_by(knr24, år)) |>
+  group_by(klasse, år, Alder) |>
+  summarise(beftotS = sum(beftot), 
+            innflytting = sum(innflytting),
+            utflytting = sum(utflytting), .groups = "drop") |>
+  mutate(nettoflytting = innflytting - utflytting) |>
+  mutate(nettoflytting1k = round((nettoflytting/beftotS)*1000, digits = 2))
 ```
 
 ```{r}
@@ -926,7 +932,7 @@ flytt1024 |>
   mutate(klasse = fct(as.character(klasse))) |>
   mutate(år = as.Date.character(år, format = "%Y")) |>
   ggplot(
-  aes(x = år, y = nettoflytting, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  aes(x = år, y = nettoflytting1k, group = klasse, color = klasse)) + facet_wrap(~ Alder) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Netto utflytting")
 ```
 
@@ -934,9 +940,19 @@ flytt1024 |>
 
 ```{r}
 pendl0024 <- pendl |> 
-  left_join(y = sentralitet24, join_by(knr24)) |> 
+  left_join(y = sentralitet24, join_by(knr24)) |>
   group_by(klasse, år) |>
-  summarise(nettoPendl = sum(nettoPendl), .groups = "drop")
+  summarise(Bosatt = sum(Bosatt),
+      Innpendlere = sum(Innpendlere),
+      Utpendlere = sum(Utpendlere),
+      Arbeidssted = sum(Arbeidssted),
+      .groups = "drop") |>
+  mutate(nettoPendl = Innpendlere - Utpendlere) |>
+  mutate(nettoInnPendl1k = round((nettoPendl/Arbeidssted)*1000, digits = 2)) |>
+  mutate(nettoInnPendl1k = case_when(
+    is.infinite(nettoInnPendl1k) ~ 0,
+    .default = nettoInnPendl1k
+  ))
 ```
   
 ```{r}
@@ -945,7 +961,7 @@ pendl0024 |>
   mutate(klasse = fct(as.character(klasse))) |>
   mutate(år = as.Date.character(år, format = "%Y")) |>
   ggplot(
-  aes(x = år, y = nettoPendl, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  aes(x = år, y = nettoInnPendl1k, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Netto innpendlig")
 ```
 
@@ -1158,7 +1174,7 @@ kor_kommune <- arlig_endring |>
 
 
 
-# Sammenhengen mellom befolkning og sysselsetting
+# 4. Sammenhengen mellom befolkning og sysselsetting
 
 # Relevant hypoteser basert på deskriptiv statistikk
 
