@@ -769,7 +769,31 @@ st_write(
 )
 ```
 
+### Prosentvis folketallsvekst for ulike kommuner etter år 2000
+
 ![Caption](Bilde_folketallsvekst.png)
+### Andelen av befolkningen i aldersgruppen (20-29), for 2024
+
+![Caption](Bilde_andel_befolkning.png)
+### Prosentvis arbeidsledighet for 2024
+
+![Caption](Bilde_Andel_arbeidsledighet.png)
+### Prosentvis sysselsettingsvekst for ulike kommuner etter år 2000
+
+![Caption](Bilde_Andel_sysselsettingsvekst.png)
+### Gjennomsnittlig kvadratmeterpris for boliger i 2024
+
+![Caption](Bilde_kvadratmeterpris_eneboliger.png)
+### Andelen av innbyggerne med universitetsutdanning, i 2024
+
+![Caption](Bilde_universitetsutdannig.png)
+### Prosentvis netto utflytting pr 1000 innbyggere
+
+![Caption](Bilde_Utflytting_1829.png)
+![Caption](Bilde_utflytting_30.png)
+### Prosentvis netto innpendling pr 1000 arbeidsplasser 
+
+![Caption](Bilde_innpendling.png)
 
 ## Data graf -- "Oppgave" 2, del 2
 
@@ -815,8 +839,116 @@ befald0025 |>
 ### Utviklingen i prosentvis arbeidsledighet etter 2008
 
 ```{r}
+arbled0024 <- arbledSSB |> 
+    left_join(y = sentralitet24, join_by(knr24)) |> 
+  group_by(klasse, år) |>
+  summarise(regled_SSB = sum(regled_SSB), arbstrk = sum(arbstrk), .groups = "drop") |>  mutate(andel_SSB = round((regled_SSB/arbstrk)*100, 2))
+```
+
+```{r}
+arbled0024 |>
+   filter(år %in% as.character(2008:2024)) |> 
+  mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = andel_SSB, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Andel arbeidsledige")
+```
+
+### Sysselsettingsvekst for årene etter 2000 
+
+```{r}
+syssvekst0024 <- arbpl |> 
+  filter(år %in% c(2000:2024))  |>
+  left_join(y = sentralitet24, join_by(knr24)) |> 
+  group_by(klasse, år) |>
+  summarise(Arbeidssted = sum(Arbeidssted), .groups = "drop")
+```
+
+
+```{r}
+syssvekst0024 |>
+  mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = Arbeidssted, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("sysselsatte")
+```
+### Utvikling i kvadratmeterpris for boliger etter år 2002
+
+
+```{r}
+kvmpris0224 <- kvmBolig |>
+      left_join(y = sentralitet24, join_by(knr24)) |> 
+  group_by(klasse, år) |>
+  summarise(KvPris_Eneboliger = sum(KvPris_Eneboliger), .groups = "drop")
 
 ```
+
+
+```{r}
+kvmpris0224 |>
+   mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = KvPris_Eneboliger, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Kvm pris")
+```
+### Utviklingen i andelen av innbyggerne med universitetsutdanning
+
+```{r}
+utd8624 <- utdAndel |>
+  group_by(klasse, år) |>
+  summarise(UH_pct = sum(UH_pct), .groups = "drop")
+```
+
+```{r}
+utd8624 |> 
+  filter(år %in% as.character(1986:2024)) |>
+  mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = UH_pct, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Andel utdannede")
+```
+###  Utviklingen i netto utflytting for ulike sentralitetskategorier av kommuner, etter 2010
+
+```{r}
+flytt1024 <- flytting |>
+  left_join(y = sentralitet24, join_by(knr24)) |> 
+  group_by(klasse, år) |>
+  summarise(nettoflytting = sum(nettoflytting), .groups = "drop")
+```
+
+```{r}
+flytt1024 |>
+  filter(år %in% as.character(2010:2024)) |>
+  mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = nettoflytting, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Netto utflytting")
+```
+
+### Utviklingen i netto innpendling for ulike sentralitetskategorier av kommuner, etter 2000
+
+```{r}
+pendl0024 <- pendl |> 
+  left_join(y = sentralitet24, join_by(knr24)) |> 
+  group_by(klasse, år) |>
+  summarise(nettoPendl = sum(nettoPendl), .groups = "drop")
+```
+  
+```{r}
+pendl0024 |>
+  filter(år %in% as.character(2000:2024)) |>
+  mutate(klasse = fct(as.character(klasse))) |>
+  mutate(år = as.Date.character(år, format = "%Y")) |>
+  ggplot(
+  aes(x = år, y = nettoPendl, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
+  theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Netto innpendlig")
+```
+
 
 
 ## Data tidsserier -- Samlet innlest data fra "Oppgave" 1
