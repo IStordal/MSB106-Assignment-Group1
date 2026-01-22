@@ -43,6 +43,7 @@ library(dplyr)
 library(stringr)
 library(writexl)
 library(lmtest)
+library(plm)
 
 options(scipen = 999)
 ```
@@ -1175,6 +1176,38 @@ kor_kommune <- arlig_endring |>
 
 
 # 4. Sammenhengen mellom befolkning og sysselsetting
+
+```{r}
+regresjon <- beftot |>
+  left_join(y = arbpl, join_by(knr24, år)) |>
+  filter(år %in% as.character(2000:2024))
+```
+
+```{r}
+regresjonTest <- lm(formula = Arbeidssted ~ beftot, data = regresjon)
+
+summary(regresjonTest)
+```
+
+```{r}
+regresjonTest <- lm(formula = beftot ~ Arbeidssted, data = regresjon)
+
+summary(regresjonTest)
+```
+
+```{r}
+regresjon_fe <- plm(
+  Arbeidssted ~ beftot,
+  data = regresjon,
+  index = c("knr24", "år"),
+  model = "within",
+  effect = "twoways"
+)
+
+summary(regresjon_fe)
+
+```
+
 
 # Relevant hypoteser basert på deskriptiv statistikk
 
