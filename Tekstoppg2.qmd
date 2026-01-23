@@ -48,8 +48,7 @@ Kartet beskriver utviklingen i sysselsettingen etter år 2000. De grønne kommun
 
 På grafene er det klasse 1 og 2 som har hatt sterkest utvikling. Klasse 6 er eneste klasse som har hatt negativ utvikling.
 
-Hvis vi sammeligner grafen for sysselsatte og folketallsvekst, ser vi at utviklingen er veldig lik.
-Dette er noe vi skal komme tilbake til i en senere oppgave.
+Hvis vi sammeligner grafen for sysselsatte og folketallsvekst, ser vi at utviklingen er veldig lik. Dette er noe vi skal komme tilbake til i en senere oppgave.
 
 ### Kvmpris utvikling
 
@@ -57,13 +56,9 @@ Dette er noe vi skal komme tilbake til i en senere oppgave.
 
 ![Caption](kvmprisutv.png)
 
-Vi har kun laget kart for boliger, da vi så at leiligheter hadde mange NA verdier, på grunn av for lite omsatte leiligheter, spesielt i kommuner uten byer.
-På SSB sine sider opplyser de om at det må omsettes **xxx** før tallene vises.
-Det er mer interessant å se på grafene der vi kan se at utviklingen i kvmpris på leiligheter har har hatt en kraftig vekst, og det er ikke før i de siste årene at det finnes nok for klasse 6.
-For eneboliger ser vi også en vekst i boligpriser for alle klasser.
+Vi har kun laget kart for boliger, da vi så at leiligheter hadde mange NA verdier, på grunn av for lite omsatte leiligheter, spesielt i kommuner uten byer. På SSB sine sider opplyser de om at det må omsettes **xxx** før tallene vises. Det er mer interessant å se på grafene der vi kan se at utviklingen i kvmpris på leiligheter har har hatt en kraftig vekst, og det er ikke før i de siste årene at det finnes nok for klasse 6. For eneboliger ser vi også en vekst i boligpriser for alle klasser.
 
-På kartet for 2024 ser vi at det er høyest priser i de største byene, dette har en sammenheng med både befolkning, utdanning og flyttemønstre.
-Det er de største byene som er mest populær.
+På kartet for 2024 ser vi at det er høyest priser i de største byene, dette har en sammenheng med både befolkning, utdanning og flyttemønstre. Det er de største byene som er mest populær.
 
 ### Utdanning utvikling
 
@@ -81,16 +76,9 @@ Grafen viser utviklingen i andelen høyere utdanning fra 1986 til 2024. Vi kan t
 
 ![Caption](flyttutv.png)
 
-For flytting har vi delt kart og grafer inn i to aldersgrupper, 18-29 og 30+.
-Her ser vi klare forskjeller i flyttemønstre for de ulike aldersgruppene.
-På kartene er vises kommunene med mer innflytting enn utflytting i blå farge, for kommunene med mer utflytting enn innflytting vises det med fargen rød.
-Vi ser på kartet med ung befolkning at det er en klar trend at unge flytter fra små bygdekommuner og inn til byer, kanskje for å studere.
-Videre ser vi at når man blir litt eldre så flytter man gjerne tilbake til bygdene igjen når man skal etablere familie.
+For flytting har vi delt kart og grafer inn i to aldersgrupper, 18-29 og 30+. Her ser vi klare forskjeller i flyttemønstre for de ulike aldersgruppene. På kartene er vises kommunene med mer innflytting enn utflytting i blå farge, for kommunene med mer utflytting enn innflytting vises det med fargen rød. Vi ser på kartet med ung befolkning at det er en klar trend at unge flytter fra små bygdekommuner og inn til byer, kanskje for å studere. Videre ser vi at når man blir litt eldre så flytter man gjerne tilbake til bygdene igjen når man skal etablere familie.
 
-Grafene gjenspeiler kartene, klasse 1 har høy netto innflytting for den yngre befolkning og negativ for den eldre befolkningen.
-Vi ser også at det er en tydelig dupp i 2021 for de over 30, dette har nok en sammenheg med korona.
-Vi ser at det har vært en liten nedgang for ung befolkning det samme året, men mye mindre.
-**Hvorfor?**
+Grafene gjenspeiler kartene, klasse 1 har høy netto innflytting for den yngre befolkning og negativ for den eldre befolkningen. Vi ser også at det er en tydelig dupp i 2021 for de over 30, dette har nok en sammenheg med korona. Vi ser at det har vært en liten nedgang for ung befolkning det samme året, men mye mindre. **Hvorfor?**
 
 For de resterende klassene er det også noen svingninger, men generelt sett er det stabilt.
 
@@ -102,4 +90,4 @@ For de resterende klassene er det også noen svingninger, men generelt sett er d
 
 Kartet viser netto innpendling per 1000 arbeidsplasser i kommunene. Vi ser at det er få kommuner som har en sterk negativ netto innpedling. De få som har en sterk rødfarge ligger spredt rundt på Østlandet. I tillegg ser vi at noen av kommunene med en positiv netto innpendling ligger rundt de rød kommunene. Dette kan skyldes at de rød kommunene har en stor andel som pendler fra og inn til de mørkeblå kommunene, som igjen er med på å styrke netto innpendling i de blå kommunene. Vi kan antyde at de som bor i kommunene rundt Oslo kommune, jobber i og pendler inn til Oslo.
 
-Grafen viser utviklingen av netto innpendling etter år 2000 til 2024. Her ser vi at sentralitetsklassene 2,3,4,5 og 6 har hatt at en positiv endring fra 2000 til 2024. Sentralitetsklasse 1 derimot har hatt en negativ endring fra 2000 til 2024.
+Grafen viser utviklingen av netto innpendling etter år 2000 til 2024. Her ser vi at sentralitetsklassene 2,3,4,5 og 6 har hatt noen få svingninger, men har hatt at en positiv endring fra 2000 til 2024. Sentralitetsklasse 1 derimot har hatt en negativ endring fra 2000 til 2024. Her ser vi at sentralitetsklasse 1, Oslo, har misstet innpendlere over tid. Dette kan skyldes at i løpet av 24 år har flere og flere minre kommuner i andre sentralitetsklasser blitt mer sentrale og attraktive å pendle til.
