@@ -819,7 +819,16 @@ filter(år %in% as.character(2000:2024)) |>
   ggplot(
   aes(x = år, y = beftot/1000, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Befolkning (1000)")
+
+ggsave("folketallutv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
 ```
+
+
+
 
 ### Utviklingen i andelen av innbyggere i aldersgruppen (20-29) for årene etter 2000
 
@@ -839,7 +848,15 @@ befald0025 |>
   ggplot(
   aes(x = år, y = bef_andel_age, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Ung befolkning i %")
+
+ggsave("bef2029utv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
 ```
+
+
 ### Utviklingen i prosentvis arbeidsledighet etter 2008
 
 ```{r}
@@ -857,7 +874,14 @@ arbled0024 |>
   ggplot(
   aes(x = år, y = andel_SSB, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Andel arbeidsledige")
+
+ggsave("arbledutv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
 ```
+
 
 ### Sysselsettingsvekst for årene etter 2000 
 
@@ -877,7 +901,14 @@ syssvekst0024 |>
   ggplot(
   aes(x = år, y = Arbeidssted/1000, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Sysselsatte (1000)")
+
+ggsave("syssutv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
 ```
+
 ### Utvikling i kvadratmeterpris for boliger etter år 2002
 
 
@@ -899,7 +930,14 @@ kvmpris0224 |>
   aes(x = år, y = KvPrisW, group = klasse, color = klasse)) + 
   facet_wrap(~ boligtype) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Kvm pris")
+
+ggsave("kvmprisutv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
 ```
+
 
 ### Utviklingen i andelen av innbyggerne med universitetsutdanning
 
@@ -912,7 +950,15 @@ utdAndel |>
   ggplot(
   aes(x = år, y = UH_pct, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Andel utdannede")
+
+ggsave("utdutv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
 ```
+
+
 ###  Utviklingen i netto utflytting for ulike sentralitetskategorier av kommuner, etter 2010
 
 ```{r}
@@ -935,7 +981,15 @@ flytt1024 |>
   ggplot(
   aes(x = år, y = nettoflytting1k, group = klasse, color = klasse)) + facet_wrap(~ Alder) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Netto utflytting")
+
+ggsave("flyttutv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
+
 ```
+
 
 ### Utviklingen i netto innpendling for ulike sentralitetskategorier av kommuner, etter 2000
 
@@ -964,8 +1018,13 @@ pendl0024 |>
   ggplot(
   aes(x = år, y = nettoInnPendl1k, group = klasse, color = klasse)) + geom_line(size = 0.8) + 
   theme(legend.position = "bottom") + scale_x_date(date_breaks = "5 years", date_labels = "%Y") + ylab("Netto innpendlig")
-```
 
+ggsave("pendlutv.png",
+       width = 2560,
+       height = 1600,
+       units = "px",
+       dpi = 300)
+```
 
 
 ## Data tidsserier -- Samlet innlest data fra "Oppgave" 1

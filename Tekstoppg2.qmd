@@ -4,17 +4,95 @@ format: html
 editor: visual
 ---
 
+# Oppgave 2
 
+### Folketallsutvikling
 
+![Caption](Bilde_folketallsvekst.png)
 
+![Caption](folketallutv.png)
 
+Kartet over folketallsveksten er inndelt i rosa og grønn, der rosa er en negativ utvikling og grønn er positiv utvikling.
+Der på kartet hvor det har vært stor utvikling, er det markert med en dypere farge.
+Ved første øyekast kan vi se at det er mange rosa kommuner som betyr at de har hatt en negativ folketallsutvikling.
+Når vi ser nærmere på de kommunene med sterkest rosafarge, ser vi at de ikke ligger nærme storbyer og kan dermed beskrives som lite sentrale.
+Dette ser vi igjen i grafen, klasse 6 er eneste klasse som har negativ folketallsvekst.
 
+På den andre siden har vi de grønne kommunene.
+Vi ser kommunene med sterk grønnfarge er de største byene i Norge og kommunene rundt byene.
+Mindre byer har også grønn farge, men svakere farge.
+Dette vises igjen i grafen, der klasse 1, 2 og 3 har sterkest vekst, klasse 4 har noe vekst og 5 har hatt en svingende utvikling.
 
+### Befolkningsutvikling 20-29
 
+![Caption](Bilde_andel_befolkning.png)
 
+![Caption](bef2029utv.png)
 
+Kartet viser andel befolkning i aldersgruppen 20-29 år for kun året 24.
+Grafen viser en utvikling for aldersgruppen for årene etter 2000 fordelt i sentralitetsklassene.
+Vi kan se på kartet at de kommunene med sterkest lilla farge som Rena, Bardu, Målselv er kommuner som har en høy andel i befolkningsgruppen 20-29 år.
+Dette kan skyldes at kommunene har store militærbaser.
+Kommuner med store byer som har gode studiemuligheter har også en høy andel i ung befolkning.
 
+Svingningene i grafen skyldes av naturlige årsaker som ujevn fødetall.
+I tillegg ser vi i år 2024 at sentralitetsklasse 1 og 2 har størst andel i ung befolkning, det er det samme som vi ser på kartet.
+Det som er interessant er de kommunene med militærbaser som har høy andel ung befolkning ikke vises på grafen.
+Dette kan skyldes at det er mange kommuner i de klassene som gjør at de få kommunene med høy andel ikke skiller seg ut.
 
+### Andel arbeidsledighet
 
+![Caption](Bilde_Andel_arbeidsledighet.png)
 
+![Caption](arbledutv.png)
 
+Kartet viser andel arbeidsledighet for 2024, og grafen viser utvikling i arbeidsledighet fra 2008 til 2024.
+På kartet er det ikke like tydelig som de forrige kartene å se en trend.
+Det er likevel noen områder som skiller seg ut.
+Vi ser at Finnmark har mange kommuner med sterk rosa farge.
+Det samme ser vi på østlandet, mange kommuner med en sterkere rosa farge.
+**En svakhet med dette kartet er at det er mange klasser med kort intervall i hver klasse som gjør at det er vanskelig å skille de fra hverandre.**
+
+Når vi ser på grafen ser vi at arbeidsledigheten svinger fra år til år.
+Spesielt ser vi en økning i 2020, når Korona brøt ut og landet "stengte ned".
+Likevel gikk den raskt ned i 2021.
+
+**Finn teori om arbeidsledighet.**
+
+### Sysselsettingsvekst
+
+![Caption](Bilde_Andel_sysselsettingsvekst.png)
+
+![Caption](syssutv.png)
+
+Kartet beskriver utviklingen i sysselsettingen etter år 2000.
+De grønne kommunene har hatt vekst i sysselsettingen, mens de lilla kommunene har hatt nedgang i sysselsettingen.
+Generelt sett ser vi at det er flest grønne kommuner.
+De kommunene med sterkest grønnførge er kommunene med større byer.
+
+På grafene er det klasse 1 og 2 som har hatt sterkest utvikling.
+Klasse 6 er eneste klasse som har hatt negativ utvikling.
+
+### Kvmpris utvikling
+
+![Caption](Bilde_kvadratmeterpris_eneboliger.png)
+
+![Caption](kvmprisutv.png)
+
+### Utdanning utvikling
+
+![Caption](Bilde_universitetsutdannig.png) ![Caption](utdutv.png)
+
+### Flytting utvikling
+
+![Caption](Bilde_Utflytting_1829.png)
+
+![Caption](Bilde_utflytting_30.png)
+
+![Caption](flyttutv.png)
+
+### Pendling utvikling
+
+![Caption](Bilde_innpendling.png)
+
+![Caption](pendlutv.png)
