@@ -828,8 +828,6 @@ ggsave("folketallutv.png",
 ```
 
 
-
-
 ### Utviklingen i andelen av innbyggere i aldersgruppen (20-29) for årene etter 2000
 
 ```{r}
@@ -1271,7 +1269,116 @@ summary(regresjon_fe)
 # Relevant hypoteser basert på deskriptiv statistikk
 
 # En multippel regresjonsmodell for folketallsutvikling
+```{r}
+#| label: oppg6-regdata
+#| tbl-cap: "Antall kommuner i regresjonsutvalget (tverrsnitt, X fra 2010)"
+#| echo: true
+#| message: false
+#| warning: false
 
+library(dplyr)
+library(tidyr)
+
+# --- Innstillinger ---
+period_start <- 2000
+period_end   <- 2024
+x_year        <- 2010
+
+to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
+
+landsdel_fra_knr <- function(knr4) {
+  fylke <- substr(knr4, 1, 2)
+  dplyr::case_when(
+    fylke %in% c("03","31","32","33","34","39") ~ "øst",
+    fylke %in% c("40","42")                   ~ "sør",
+    fylke %in% c("11","15","46")              ~ "vest",
+    fylke %in% c("50")                        ~ "trøndelag",
+    fylke %in% c("18","55","56")              ~ "nord",
+    TRUE                                      ~ NA_character_
+  )
+}
+
+# --- Y: sysselsettingsvekst over hele perioden ---
+syss_growth <- master %>%
+  transmute(
+    kommune = as.character(knr24),
+    year    = as.integer(as.character(år)),
+    syss    = to_num(Arbeidssted)
+  ) %>%
+  group_by(kommune, year) %>%
+  summarise(syss = sum(syss, na.rm = TRUE), .groups = "drop") %>%
+  filter(year %in% c(period_start, period_end)) %>%
+  pivot_wider(names_from = year, values_from = syss, names_prefix = "syss_") %>%
+  mutate(
+    sysselsettingsvekst = 100 * (syss_2024 - syss_2000) / syss_2000
+  ) %>%
+  select(kommune, sysselsettingsvekst)
+
+# --- X: kun verdier i første året dere har data (2010) ---
+x_start <- master %>%
+  transmute(
+    kommune = as.character(knr24),
+    year    = as.integer(as.character(år)),
+
+    Ledighet_pct     = to_num(andel_NAV),
+    Hoy_utdanning_pct= to_num(UH_pct),
+
+    Befolkning = to_num(beftot.x),
+    Syss       = to_num(Arbeidssted),
+
+    Nettoflytting_1k = to_num(nettoflytting1k_tot),
+    Nettopendling_1k = to_num(nettoInnPendl1k),
+
+    boligtype = as.character(boligtype),
+    kvpris    = to_num(KvPris),
+
+    Sentralitet = to_num(index)
+  ) %>%
+  filter(year == x_year) %>%
+  group_by(kommune) %>%
+  summarise(
+    Ledighet_pct      = mean(Ledighet_pct, na.rm = TRUE),
+    Hoy_utdanning_pct = mean(Hoy_utdanning_pct, na.rm = TRUE),
+
+    Arbeidsplasser_1k = 1000 * sum(Syss, na.rm = TRUE) / sum(Befolkning, na.rm = TRUE),
+
+    Nettoflytting_1k  = mean(Nettoflytting_1k, na.rm = TRUE),
+    Nettopendling_1k  = mean(Nettopendling_1k, na.rm = TRUE),
+
+    Boligpris = mean(kvpris[boligtype == "03"], na.rm = TRUE),
+    Sentralitet = mean(Sentralitet, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    ln_Boligpris = log(Boligpris),
+    Landsdel = factor(landsdel_fra_knr(kommune))
+  ) %>%
+  select(kommune, Ledighet_pct, Hoy_utdanning_pct, Arbeidsplasser_1k,
+         Nettoflytting_1k, Nettopendling_1k, ln_Boligpris, Sentralitet, Landsdel)
+
+# --- Regresjonsdata (tverrsnitt) ---
+regdata <- syss_growth %>%
+  left_join(x_start, by = "kommune") %>%
+  filter(
+    !is.na(sysselsettingsvekst),
+    !is.na(Ledighet_pct),
+    !is.na(Hoy_utdanning_pct),
+    !is.na(Arbeidsplasser_1k),
+    !is.na(Nettoflytting_1k),
+    !is.na(Nettopendling_1k),
+    !is.na(ln_Boligpris),
+    !is.na(Sentralitet),
+    !is.na(Landsdel)
+  )
+
+# Antall kommuner i utvalget (vises som tabell)
+regdata %>%
+  summarise(Antall_kommuner = n()) %>%
+  knitr::kable()
+
+
+
+```
 # En multippel regresjonsmodell for sysselsettingsvekst
 
 # Konklusjon og diskusjon
