@@ -734,7 +734,6 @@ kartdata <- befendr0025  |>
   )
 ```
 
-
 ## Koble kart
 
 ```{r}
@@ -775,27 +774,20 @@ st_write(
 
 ### Prosentvis folketallsvekst for ulike kommuner etter år 2000
 
-![Caption](Bilde_folketallsvekst.png)
-### Andelen av befolkningen i aldersgruppen (20-29), for 2024
+![Caption](Bilde_folketallsvekst.png) \### Andelen av befolkningen i aldersgruppen (20-29), for 2024
 
-![Caption](Bilde_andel_befolkning.png)
-### Prosentvis arbeidsledighet for 2024
+![Caption](Bilde_andel_befolkning.png) \### Prosentvis arbeidsledighet for 2024
 
-![Caption](Bilde_Andel_arbeidsledighet.png)
-### Prosentvis sysselsettingsvekst for ulike kommuner etter år 2000
+![Caption](Bilde_Andel_arbeidsledighet.png) \### Prosentvis sysselsettingsvekst for ulike kommuner etter år 2000
 
-![Caption](Bilde_Andel_sysselsettingsvekst.png)
-### Gjennomsnittlig kvadratmeterpris for boliger i 2024
+![Caption](Bilde_Andel_sysselsettingsvekst.png) \### Gjennomsnittlig kvadratmeterpris for boliger i 2024
 
-![Caption](Bilde_kvadratmeterpris_eneboliger.png)
-### Andelen av innbyggerne med universitetsutdanning, i 2024
+![Caption](Bilde_kvadratmeterpris_eneboliger.png) \### Andelen av innbyggerne med universitetsutdanning, i 2024
 
-![Caption](Bilde_universitetsutdannig.png)
-### Prosentvis netto utflytting pr 1000 innbyggere
+![Caption](Bilde_universitetsutdannig.png) \### Prosentvis netto utflytting pr 1000 innbyggere
 
-![Caption](Bilde_Utflytting_1829.png)
-![Caption](Bilde_utflytting_30.png)
-### Prosentvis netto innpendling pr 1000 arbeidsplasser 
+![Caption](Bilde_Utflytting_1829.png) ![Caption](Bilde_utflytting_30.png) \### Prosentvis netto innpendling pr 1000 arbeidsplasse
+r
 
 ![Caption](Bilde_innpendling.png)
 
@@ -809,7 +801,6 @@ befutv0025 <- beftot |>
   group_by(klasse, år) |>
   summarise(beftot = sum(beftot), .groups = "drop")
 ```
-
 
 ```{r}
 befutv0025 |>
@@ -826,7 +817,6 @@ ggsave("folketallutv.png",
        units = "px",
        dpi = 300)
 ```
-
 
 ### Utviklingen i andelen av innbyggere i aldersgruppen (20-29) for årene etter 2000
 
@@ -854,7 +844,6 @@ ggsave("bef2029utv.png",
        dpi = 300)
 ```
 
-
 ### Utviklingen i prosentvis arbeidsledighet etter 2008
 
 ```{r}
@@ -880,8 +869,7 @@ ggsave("arbledutv.png",
        dpi = 300)
 ```
 
-
-### Sysselsettingsvekst for årene etter 2000 
+### Sysselsettingsvekst for årene etter 2000
 
 ```{r}
 syssvekst0024 <- arbpl |> 
@@ -890,7 +878,6 @@ syssvekst0024 <- arbpl |>
   group_by(klasse, år) |>
   summarise(Arbeidssted = sum(Arbeidssted), .groups = "drop")
 ```
-
 
 ```{r}
 syssvekst0024 |>
@@ -909,7 +896,6 @@ ggsave("syssutv.png",
 
 ### Utvikling i kvadratmeterpris for boliger etter år 2002
 
-
 ```{r}
 kvmpris0224 <- kvmBolig |>
       left_join(y = sentralitet24, join_by(knr24)) |> 
@@ -918,7 +904,6 @@ kvmpris0224 <- kvmBolig |>
             KvPrisW = ifelse(OmsetningerT>0, weighted.mean(KvPris, Omsetninger, na.rm = TRUE), NA), .groups = "drop")
 
 ```
-
 
 ```{r}
 kvmpris0224 |>
@@ -936,9 +921,7 @@ ggsave("kvmprisutv.png",
        dpi = 300)
 ```
 
-
 ### Utviklingen i andelen av innbyggerne med universitetsutdanning
-
 
 ```{r}
 utdAndel |> 
@@ -956,8 +939,7 @@ ggsave("utdutv.png",
        dpi = 300)
 ```
 
-
-###  Utviklingen i netto utflytting for ulike sentralitetskategorier av kommuner, etter 2010
+### Utviklingen i netto utflytting for ulike sentralitetskategorier av kommuner, etter 2010
 
 ```{r}
 flytt1024 <- flytting |>
@@ -988,7 +970,6 @@ ggsave("flyttutv.png",
 
 ```
 
-
 ### Utviklingen i netto innpendling for ulike sentralitetskategorier av kommuner, etter 2000
 
 ```{r}
@@ -1007,7 +988,7 @@ pendl0024 <- pendl |>
     .default = nettoInnPendl1k
   ))
 ```
-  
+
 ```{r}
 pendl0024 |>
   filter(år %in% as.character(2000:2024)) |>
@@ -1024,7 +1005,6 @@ ggsave("pendlutv.png",
        dpi = 300)
 ```
 
-
 ## Data tidsserier -- Samlet innlest data fra "Oppgave" 1
 
 ```{r}
@@ -1034,7 +1014,6 @@ ggsave("pendlutv.png",
 ```{r}
 Sys.time() - t
 ```
-
 
 # Tilstand og utvikling for ulike variabler
 
@@ -1078,9 +1057,7 @@ knitr::kable(
   )
 ```
 
-
 Prosentvis arbeidsledighet og brutto/netto utpendling pr 1000 innbyggere
-
 
 ```{r}
 kor_år(master, "andel_SSB.x", "utPendl1k")|>
@@ -1088,7 +1065,6 @@ knitr::kable(
     caption = "Arbeidsledighet og brutto utpendling"
   )
 ```
-
 
 ```{r}
 kor_år(master, "andel_SSB.x", "nettoInnPendl1k")|>
@@ -1118,7 +1094,6 @@ knitr::kable(
   )
 ```
 
-
 Gjennomsnittlig kvadratmeterpris for bolig og innpendling pr 1000 innbyggere
 
 ```{r}
@@ -1127,7 +1102,6 @@ knitr::kable(
     caption = "Gjennomsnittlig KVM pris og innpendling"
   )
 ```
-
 
 Gjennomsnittlig kvadratmeterpris for bolig og utpendling pr 1000 innbyggere
 
@@ -1138,10 +1112,7 @@ knitr::kable(
   )
 ```
 
-
-
- Gjennomsnittlig kvadratmeterpris for bolig og utflytting pr 1000 innbyggere
-
+Gjennomsnittlig kvadratmeterpris for bolig og utflytting pr 1000 innbyggere
 
 ```{r}
 kor_år(master, "KvPris_Blokkleiligheter", "utflytting1k_tot")|>
@@ -1150,8 +1121,7 @@ knitr::kable(
   )
 ```
 
-
- Gjennomsnittlig kvadratmeterpris for bolig og innflytting pr 1000 innbyggere
+Gjennomsnittlig kvadratmeterpris for bolig og innflytting pr 1000 innbyggere
 
 ```{r}
 kor_år(master, "KvPris_Blokkleiligheter", "innflytting1k_tot")|>
@@ -1160,10 +1130,7 @@ knitr::kable(
   )
 ```
 
-
-
-
- Netto utflytting og andelen av innbyggerne som er i aldersgruppen (20-29)
+Netto utflytting og andelen av innbyggerne som er i aldersgruppen (20-29)
 
 ```{r}
 kor_år(master, "nettoflytting1k_tot", "befAndel_F20-29")|>
@@ -1172,28 +1139,20 @@ knitr::kable(
   )
 ```
 
+Netto utflytting og netto utpendling pr 1000 innbyggere
 
-
- Netto utflytting og netto utpendling pr 1000 innbyggere
- 
 ```{r}
 kor_år(master, "nettoflytting1k_tot", "nettoInnPendl1k")|>
 knitr::kable(
     caption = "Netto utflytting og netto utpendling"
   )
 ```
- 
 
-
-
- Netto utpendling og gjennomsnittlig kvadratmeterpris på boliger i tilgrensende kommuner
- 
- 
-
+Netto utpendling og gjennomsnittlig kvadratmeterpris på boliger i tilgrensende kommuner
 
 # Paneldata analyse oppgave 3
 
-For å undersøke sammenhenger målt i endring fra år til år, lages et nytt datasett hvor delta endring beregnes for aktuelle variabler. 
+For å undersøke sammenhenger målt i endring fra år til år, lages et nytt datasett hvor delta endring beregnes for aktuelle variabler.
 
 ```{r}
 arlig_endring <- master |>
@@ -1214,8 +1173,7 @@ arlig_endring <- master |>
   ungroup()
 ```
 
-
-Lager en kode som beregner koefisienten for alle kommuner for 
+Lager en kode som beregner koefisienten for alle kommuner for
 
 ```{r}
 kor_kommune <- arlig_endring |>
@@ -1229,8 +1187,6 @@ kor_kommune <- arlig_endring |>
     .groups = "drop"
   )
 ```
-
-
 
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
@@ -1265,10 +1221,10 @@ summary(regresjon_fe)
 
 ```
 
-
 # Relevant hypoteser basert på deskriptiv statistikk
 
 # En multippel regresjonsmodell for folketallsutvikling
+
 ```{r}
 #| label: oppg6-regdata
 #| tbl-cap: "Antall kommuner i regresjonsutvalget (tverrsnitt, X fra 2010)"
@@ -1279,7 +1235,7 @@ summary(regresjon_fe)
 library(dplyr)
 library(tidyr)
 
-# --- Innstillinger ---
+# Definisjoner for ulike år, deling på øst, sør, vest, nord og trøndelag.
 period_start <- 2000
 period_end   <- 2024
 x_year        <- 2010
@@ -1292,13 +1248,13 @@ landsdel_fra_knr <- function(knr4) {
     fylke %in% c("03","31","32","33","34","39") ~ "øst",
     fylke %in% c("40","42")                   ~ "sør",
     fylke %in% c("11","15","46")              ~ "vest",
-    fylke %in% c("50")                        ~ "trøndelag",
     fylke %in% c("18","55","56")              ~ "nord",
+    fylke %in% c("50")                        ~ "trøndelag",
     TRUE                                      ~ NA_character_
   )
 }
 
-# --- Y: sysselsettingsvekst over hele perioden ---
+#Y: sysselsettingsvekst over hele perioden
 syss_growth <- master %>%
   transmute(
     kommune = as.character(knr24),
@@ -1314,7 +1270,7 @@ syss_growth <- master %>%
   ) %>%
   select(kommune, sysselsettingsvekst)
 
-# --- X: kun verdier i første året dere har data (2010) ---
+#X: kun verdier i første året dere har data (2010)
 x_start <- master %>%
   transmute(
     kommune = as.character(knr24),
@@ -1356,7 +1312,7 @@ x_start <- master %>%
   select(kommune, Ledighet_pct, Hoy_utdanning_pct, Arbeidsplasser_1k,
          Nettoflytting_1k, Nettopendling_1k, ln_Boligpris, Sentralitet, Landsdel)
 
-# --- Regresjonsdata (tverrsnitt) ---
+#Regresjonsdata (tverrsnitt)
 regdata <- syss_growth %>%
   left_join(x_start, by = "kommune") %>%
   filter(
@@ -1375,10 +1331,8 @@ regdata <- syss_growth %>%
 regdata %>%
   summarise(Antall_kommuner = n()) %>%
   knitr::kable()
-
-
-
 ```
+
 # En multippel regresjonsmodell for sysselsettingsvekst
 
 # Konklusjon og diskusjon
@@ -1393,4 +1347,3 @@ write_xlsx(
   path = "master.xlsx"
 )
 ```
-
