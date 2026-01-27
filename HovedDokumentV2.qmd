@@ -258,6 +258,8 @@ arbledSSB24 <- arbledSSB |>
   select(-c(år, arbstrk, regled_SSB))
 ```
 
+
+
 ### NAV
 
 ```{r}
@@ -360,8 +362,9 @@ kvmBolig <- pxwebData12(
     Region = list("*"),
     Boligtype = c("01", "03"),
     Tid = as.character(c(2002:2024)),
-    ContentsCode = c("KvPris", "Omsetninger"))|> 
-  select(knr = Region, år, boligtype, KvPris, Omsetninger)
+    ContentsCode = "KvPris"
+) |> 
+  select(knr = Region, år, boligtype, KvPris)
 ```
 
 ```{r}
@@ -371,14 +374,13 @@ kvmBolig <- kvmBolig |>
     join_by(knr)
   ) |> 
   group_by(knr24, år, boligtype) |> 
-  summarise(KvPris = round(mean(KvPris, na.rm = TRUE), 0), 
-            Omsetninger = sum(Omsetninger, na.rm = TRUE),
+  summarise(KvPris = round(mean(KvPris, na.rm = TRUE), 0),
             .groups = "drop") |> 
-  # pivot_wider(
-  #   names_from = boligtype,
-  #   names_prefix = "KvPris_",
-  #   values_from = KvPris
-  # ) |>
+  pivot_wider(
+    names_from = boligtype,
+    names_prefix = "KvPris_",
+    values_from = KvPris
+  ) |> 
   filter(knr24 != "9999",
          !is.na(knr24))
 ```
