@@ -357,6 +357,37 @@ syssendr0024 <- arbpl |>
 
 ```{r}
 #| warning: false
+AMDBolig <- pxwebData12(
+    urlToData = "https://data.ssb.no/api/v0/no/table/06035/",
+    Region = list("*"),
+    Boligtype = c("01", "03"),
+    Tid = as.character(c(2002:2024)),
+    ContentsCode = c("KvPris", "Omsetninger"))|> 
+  select(knr = Region, år, boligtype, KvPris, Omsetninger)
+```
+
+```{r}
+AMDBolig <- AMDBolig |> 
+  left_join(
+    y = newknr,
+    join_by(knr)
+  ) |> 
+  group_by(knr24, år, boligtype) |> 
+  summarise(KvPris = round(mean(KvPris, na.rm = TRUE), 0), 
+            Omsetninger = sum(Omsetninger, na.rm = TRUE),
+            .groups = "drop") |> 
+  # pivot_wider(
+  #   names_from = boligtype,
+  #   names_prefix = "KvPris_",
+  #   values_from = KvPris
+  # ) |>
+  filter(knr24 != "9999",
+         !is.na(knr24))
+```
+
+
+```{r}
+#| warning: false
 kvmBolig <- pxwebData12(
     urlToData = "https://data.ssb.no/api/v0/no/table/06035/",
     Region = list("*"),
@@ -899,7 +930,7 @@ ggsave("syssutv.png",
 ### Utvikling i kvadratmeterpris for boliger etter år 2002
 
 ```{r}
-kvmpris0224 <- kvmBolig |>
+kvmpris0224 <- AMDBolig |>
       left_join(y = sentralitet24, join_by(knr24)) |> 
   group_by(klasse, år, boligtype) |>
   summarise(OmsetningerT = sum(Omsetninger, na.rm = TRUE),
