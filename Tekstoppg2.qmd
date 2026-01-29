@@ -12,16 +12,9 @@ editor: visual
 
 ![Caption](folketallutv.png)
 
-Kartet over folketallsveksten er inndelt i rosa og grønn, der rosa er en negativ utvikling og grønn er positiv utvikling.
-Der på kartet hvor det har vært stor utvikling, er det markert med en dypere farge.
-Ved første øyekast kan vi se at det er mange rosa kommuner som betyr at de har hatt en negativ folketallsutvikling.
-Når vi ser nærmere på de kommunene med sterkest rosafarge, ser vi at de ikke ligger nærme storbyer og kan dermed beskrives som lite sentrale.
-Dette ser vi igjen i grafen, klasse 6 er eneste klasse som har negativ folketallsvekst.
+Kartet viser prosentvis folketallsvekst i norske kommuner etter år 2000. Fargene illustrerer utviklingen, der grønne nyanser representerer positiv vekst og rosa nyanser viser negativ utvikling. Mange kommuner har hatt nedgang i folketallet, særlig de som ligger langt fra større byer og derfor regnes som mindre sentrale På grafen har vi delt kommunene inn i sentralitetsklassene fra 1 til 6, der klasse 1 er mest sentral og klasse 6 minst.
 
-På den andre siden har vi de grønne kommunene.
-Vi ser kommunene med sterk grønnfarge er de største byene i Norge og kommunene rundt byene.
-Mindre byer har også grønn farge, men svakere farge.
-Dette vises igjen i grafen, der klasse 1, 2 og 3 har sterkest vekst, klasse 4 har noe vekst og 5 har hatt en svingende utvikling.
+På den andre siden ser vi at kommunene med sterk grønnfarge er de største byene i Norge og områdene rundt dem. Mindre byer har også grønn farge, men i svakere nyanser. Dette gjenspeiles i grafen, der klasse 1, 2 og 3 har hatt den sterkeste veksten, klasse 4 har hatt noe vekst, mens klasse 5 har hatt en mer svingende utvikling.
 
 ### Befolkningsutvikling 20-29
 
@@ -29,16 +22,9 @@ Dette vises igjen i grafen, der klasse 1, 2 og 3 har sterkest vekst, klasse 4 ha
 
 ![Caption](bef2029utv.png)
 
-Kartet viser andel befolkning i aldersgruppen 20-29 år for kun året 24.
-Grafen viser en utvikling for aldersgruppen for årene etter 2000 fordelt i sentralitetsklassene.
-Vi kan se på kartet at de kommunene med sterkest lilla farge som Rena, Bardu, Målselv er kommuner som har en høy andel i befolkningsgruppen 20-29 år.
-Dette kan skyldes at kommunene har store militærbaser.
-Kommuner med store byer som har gode studiemuligheter har også en høy andel i ung befolkning.
+Kartet viser andelen av befolkningen i aldersgruppen 20-29 år i norske kommuner for året 2024. De mørkeste lilla nyansene markerer kommuner med høyest andel unge voksne, som for eksempel Rena, Bardu og Målselv. Dette kan henge sammen med tilstedeværelsen av store militærbaser i disse områdene. Også kommuner med store byer og gode studiemuligheter har en høy andel unge, noe som understreker betydningen av utdanningstilbud og arbeidsmuligheter.
 
-Svingningene i grafen skyldes av naturlige årsaker som ujevn fødetall.
-I tillegg ser vi i år 2024 at sentralitetsklasse 1 og 2 har størst andel i ung befolkning, det er det samme som vi ser på kartet.
-Det som er interessant er de kommunene med militærbaser som har høy andel ung befolkning ikke vises på grafen.
-Dette kan skyldes at det er mange kommuner i de klassene som gjør at de få kommunene med høy andel ikke skiller seg ut.
+Grafen viser utviklingen i andelen unge fra år 2000 til 2024, fordelt på sentralitetsklassene. Vi ser naturlige svingninger i kurvene, som kan skyldes variasjoner i fødselstall. I 2024 har klasse 1 og 2 den høyesre andelen unge, noe som samsvarer med det vi ser på kartet. Det som er interresant, er at kommuner med militærbaser, til tross for sin høye andel unge, ikke skiller seg ut på grafen. Dette kan skyldes at disse kommunene inngår i klasser med mange andre kommuner, slik at det ikke får like stor visuell betydning i grafen.
 
 ### Andel arbeidsledighet
 
@@ -46,18 +32,9 @@ Dette kan skyldes at det er mange kommuner i de klassene som gjør at de få kom
 
 ![Caption](arbledutv.png)
 
-Kartet viser andel arbeidsledighet for 2024, og grafen viser utvikling i arbeidsledighet fra 2008 til 2024.
-På kartet er det ikke like tydelig som de forrige kartene å se en trend.
-Det er likevel noen områder som skiller seg ut.
-Vi ser at Finnmark har mange kommuner med sterk rosa farge.
-Det samme ser vi på østlandet, mange kommuner med en sterkere rosa farge.
-**En svakhet med dette kartet er at det er mange klasser med kort intervall i hver klasse som gjør at det er vanskelig å skille de fra hverandre.**
+Kartet viser andel arbeidsledighet i norske kommuner for året 2024, mens grafen illustrerer utviklingen i arbeidsledighet fra 2008 til 2024 fordelt på sentralitetsklassene. Sammenlignet med tidligere kart er det vanskeligere å se tydelige mønstre her, men enkelte områder skiller seg ut. I Finnmark ser vi flere kommuner med sterk rosa farge, som indikerer høy arbeidsledighet. Det samme gjelder deler av Østlandet. En svakhet ved kartet er at det inneholder mange klasser med korte intervaller, noe som gjør det utfordrende å skille fargene fra hverandre og dermed tolke dataene visuelt.
 
-Når vi ser på grafen ser vi at arbeidsledigheten svinger fra år til år.
-Spesielt ser vi en økning i 2020, når Korona brøt ut og landet "stengte ned".
-Likevel gikk den raskt ned i 2021.
-
-**Finn teori om arbeidsledighet.**
+Grafen viser at arbeidsledigheten har variert fra år til år, med et tydelig hopp i 2020 da koronapandemien førte til nedstengning av samfunnet. Allerede i 2021 ser vi at arbeidsledigheten sank igjen, noe som kan tyde på en relativ rask økonomisk gjenoppretting.
 
 ### Sysselsettingsvekst
 
@@ -65,16 +42,11 @@ Likevel gikk den raskt ned i 2021.
 
 ![Caption](syssutv.png)
 
-Kartet beskriver utviklingen i sysselsettingen etter år 2000.
-De grønne kommunene har hatt vekst i sysselsettingen, mens de lilla kommunene har hatt nedgang i sysselsettingen.
-Generelt sett ser vi at det er flest grønne kommuner.
-De kommunene med sterkest grønnførge er kommunene med større byer.
+Kartet viser utviklingen i sysselsettingen i norske kommuner etter år 2000. Kommuner med grønn farge har hatt vekst i sysselsettingen, mens de lilla kommunene har opplevd nedgang. Generelt ser vi at det er flest grønne kommuner, og de med sterkest grønnfarge er typisk kommuner med større byer og mer sentral beliggenhet.
 
-På grafene er det klasse 1 og 2 som har hatt sterkest utvikling.
-Klasse 6 er eneste klasse som har hatt negativ utvikling.
+Grafen viser utviklingen sysselsatte fra 200o til 2024. Her ser vi at klasse 1 og 2 har hatt den sterkeste veksten, mens klasse 6 er den eneste med negativ utvikling. Dette samsvarer med det vi ser på kartet, og understreker hvordan sentralitet henger sammen med arbeidsmarkedet.
 
-Hvis vi sammeligner grafen for sysselsatte og folketallsvekst, ser vi at utviklingen er veldig lik.
-Dette er noe vi skal komme tilbake til i en senere oppgave.
+Når vi sammenligner grafen for sysselsetting med grafen for folketallsvekst, ser vi at utviklingen er svært lik. Dette kan tyde på at befolkningsvekst og sysselsettingsvekst ofte går hånd i hånd. Dette er noe vi skal se nærmere på senere.
 
 ### Kvmpris utvikling
 
@@ -82,29 +54,17 @@ Dette er noe vi skal komme tilbake til i en senere oppgave.
 
 ![Caption](kvmprisutv.png)
 
-Vi har kun laget kart for boliger, da vi så at leiligheter hadde mange NA verdier, på grunn av for lite omsatte leiligheter, spesielt i kommuner uten byer.
-På SSB sine sider opplyser de om at det må omsettes **xxx** før tallene vises.
-Det er mer interessant å se på grafene der vi kan se at utviklingen i kvmpris på leiligheter har har hatt en kraftig vekst, og det er ikke før i de siste årene at det finnes nok for klasse 6.
-For eneboliger ser vi også en vekst i boligpriser for alle klasser.
+Vi har valgt å lage kart kun for eneboliger, siden leiligheter hadde mange manglende verdier, særlig i kommuner uten byer. Dette skyldes lavt antall omsatte leiligheter, og ifølge SSB må et visst antall transaksjoner gjennomføres før tallene vises. Derfor gir grafene et bedre bilde av utviklingen, spesielt for leiligheter, der vi ser en kraftig vekst i kvadratmeterpris de siste årene. Det er først nylig at det finnes nok data til å vise utviklingen for klasse 6. For eneboliger ser vi også en tydelig prisvekst i alle klasser.
 
-På kartet for 2024 ser vi at det er høyest priser i de største byene, dette har en sammenheng med både befolkning, utdanning og flyttemønstre.
-Det er de største byene som er mest populær.
+Kartet for 2024 viser at de høyeste boligprisene finnes i de største byene. Dette henger sammen med faktorer som befolkningstetthet, utdanningsnivå og flyttemønstre. De største byene fremstår som mest attraktive, noe som gjenspeiles i både prisnivå og utvikling over tid.
 
 ### Utdanning utvikling
 
 ![Caption](Bilde_universitetsutdannig.png) ![Caption](utdutv.png)
 
-Kartet viser andel innbyggere i kommuner med høyere utdanning i 2024.
-Vi kan se at de kommunene med sterkest rødfarge, er de kommunene med størst andel innbyggere med høyere utdanning.
-I tillegg så vi tidligere at de samme kommunene har høyere andel befolkning i aldersgruppen 20-29.
-Disse kommunene har også de største studentbyene som er i Norge, som Oslo, Bergen og Trondheim.
-Vi kan også se at kommunene som ligger rundt de kommunene som har høyskoler og universiteter har litt mindre i andel, men har mer enn de kommunene som ligger lenger vekk.
-Dette skyldes nok at studenter i kommuner utenfor studentkommunen, pendler inn og løfter opp andelen i sin kommune.
+Kartet viser andelen innbyggere med høyere utdanning i norske kommuner i 2024. Kommunene med mørkest rødfarge har den største andelen med høy utdannede. Tidligere har vi sett at disse kommunene også har en høy andel unge i aldersgruppen 20-29 år. Dette gjelder særlig de største studentbyene i Norge, som Oslo, Bergen og Trondheim. Kommunene som ligger rundt disse byene har noe lavere andel, men fortsatt høyere enn kommuner som ligger lenger unna. Dette kan skyldes at stundenter som bor i nabokommuner pendler inn til studiebyene, og dermed bidrar til å løfte utdanningsnivået også i sin egen kommune.
 
-Grafen viser utviklingen i andelen høyere utdanning fra 1986 til 2024.
-Vi kan tydleig se at høyere utdanning har hatt en stor utvikling i løpet av disse årene.
-Alle sentralitetsklassene har hatt en positiv utvikling.
-Dette kan skyldes at det har vært et større fokus på høyere utdanning og samfunnet krever mer.
+Grafen viser utviklingen i andelen med høyere utdanning fra 1986 til 2024. Vi ser en tydelig og jevn vekst i alle sentralitetsklasser, noe som kan forklares med økt fokus på utdanning og et samfunn som stiller stadig høyere kompetansekrav.
 
 ### Flytting utvikling
 
@@ -114,18 +74,11 @@ Dette kan skyldes at det har vært et større fokus på høyere utdanning og sam
 
 ![Caption](flyttutv.png)
 
-For flytting har vi delt kart og grafer inn i to aldersgrupper, 18-29 og 30+.
-Her ser vi klare forskjeller i flyttemønstre for de ulike aldersgruppene.
-På kartene er vises kommunene med mer innflytting enn utflytting i blå farge, for kommunene med mer utflytting enn innflytting vises det med fargen rød.
-Vi ser på kartet med ung befolkning at det er en klar trend at unge flytter fra små bygdekommuner og inn til byer, kanskje for å studere.
-Videre ser vi at når man blir litt eldre så flytter man gjerne tilbake til bygdene igjen når man skal etablere familie.
+For flytting har vi delt kart og grafer inn i to aldersgrupper, 18-29 og 30+. Her ser vi tydelig forskjeller i flyttemønstre mellom de to gruppene. På kartene er kommuner med netto innflytting markert i blått, mens kommuner med netto utflytting vises i rødt. Kartet for den yngre befolkningen viser en klar trend der unge flytter fra små bygdekommuner til byene, sannsynligvis for å studere eller jobbe. Når man blir eldre, ser vi at mange flytter tilbake til bygdene for å etablere familie.
 
-Grafene gjenspeiler kartene, klasse 1 har høy netto innflytting for den yngre befolkning og negativ for den eldre befolkningen.
-Vi ser også at det er en tydelig dupp i 2021 for de over 30, dette har nok en sammenheg med korona.
-Vi ser at det har vært en liten nedgang for ung befolkning det samme året, men mye mindre.
-**Hvorfor?**
+Grafene gjenspeiler dette mønsteret, klasse 1 har høy netto innflytting blant unge, men nagtiv nettoflytting blant dem over 30 år. I 2021 ser vi en tydelig dupp i flyttingen for den eldre aldersgruppen. Dette kan sannsynligvis henge sammen med koronapandemien. Det er også en liten nedgang blant de unge samme år, men den er langt mindre. Hvorfor skjer dette?
 
-For de resterende klassene er det også noen svingninger, men generelt sett er det stabilt.
+For de øvrige klassene ser vi noen svingninger, men generelt er utviklingen stabil. Dette understreker hvordan alder og livsfase påvirker hvor folk velger å bo.
 
 ### Pendling utvikling
 
@@ -133,15 +86,6 @@ For de resterende klassene er det også noen svingninger, men generelt sett er d
 
 ![Caption](pendlutv.png)
 
-Kartet viser netto innpendling per 1000 arbeidsplasser i kommunene.
-Vi ser at det er få kommuner som har en sterk negativ netto innpedling.
-De få som har en sterk rødfarge ligger spredt rundt på Østlandet.
-I tillegg ser vi at noen av kommunene med en positiv netto innpendling ligger rundt de rød kommunene.
-Dette kan skyldes at de rød kommunene har en stor andel som pendler fra og inn til de mørkeblå kommunene, som igjen er med på å styrke netto innpendling i de blå kommunene.
-Vi kan antyde at de som bor i kommunene rundt Oslo kommune, jobber i og pendler inn til Oslo.
+Kartet viser netto innpendling per 1000 arbeidsplasser i kommunene. Vi ser at det er få kommuner med sterk negativ netto innpedling, og disse er spredt rundt på Østlandet. Samtidig ser vi at flere av kommunene med en positiv netto innpendling ligger i nærheten av de rød kommunene. Dette kan tyde på at mange pendler fra de rød kommunene og inn til de mørkeblå kommunene, som da bidrar til høy netto innpendling i de blå kommunene. Det kan være sannsynlig at mange som bor i kommunene rundt Oslo kommune, jobber i og pendler inn til Oslo.
 
-Grafen viser utviklingen av netto innpendling etter år 2000 til 2024.
-Her ser vi at sentralitetsklassene 2,3,4,5 og 6 har hatt noen få svingninger, men har hatt at en positiv endring fra 2000 til 2024.
-Sentralitetsklasse 1 derimot har hatt en negativ endring fra 2000 til 2024.
-Her ser vi at sentralitetsklasse 1, Oslo, har misstet innpendlere over tid.
-Dette kan skyldes at i løpet av 24 år har flere og flere minre kommuner i andre sentralitetsklasser blitt mer sentrale og attraktive å pendle til.
+Grafen viser utviklingen i netto innpendling fra år 2000 til 2024. Her ser vi at sentralitetsklassene 2 til 6 har hatt noen svingninger, men viser en positiv utvikling over tid. Klasse 1, som representerer Oslo, har derimot hatt en negativ utvikling i netto innpendling. Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attraktive og sentrale som arbeidssteder, noe som har redusert innpendlingen til Oslo over tid.
