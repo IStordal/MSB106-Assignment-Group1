@@ -140,3 +140,15 @@ Grafen viser utviklingen i netto innpendling fra år 2000 til 2024.
 Her ser vi at sentralitetsklassene 2 til 6 har hatt noen svingninger, men viser en positiv utvikling over tid.
 Klasse 1, som representerer Oslo, har derimot hatt en negativ utvikling i netto innpendling.
 Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attraktive og sentrale som arbeidssteder, noe som har redusert innpendlingen til Oslo over tid.
+
+# Oppgave 4
+
+Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselsetting for norske kommuner.
+Der vi byttet på befolkning og sysselsetting som avhengig variabel.
+I begge regresjonene er det en svært høy justert r-kvadrert.
+Det vil si at man ikke kan tolke resultatene kausalt.
+Man kan ikke bestemme hva som begrunnes av hva.
+
+Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe.
+Da ser vi at justert r-kvadrat er litt lavere, men fortsatt veldig høy.
+Det betyr også at vi ikke kan tolke resultatene kausalt.
