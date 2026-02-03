@@ -1216,7 +1216,7 @@ arlig_endring <- master |>
     d_innpendl1k = nettoInnPendl1k - lag(nettoInnPendl1k),             # Innpendling (absolutt endring)
     
     # Prosentvise årlige endringer
-    pct_syssel = 100 * (syssendr0024 - lag(syssendr0024)) / lag(syssendr0024)  # Prosentvis endring i sysselsetting
+    pct_syssel = 100 * (syss - lag(syss)) / lag(syss)  # Prosentvis endring i sysselsetting
   ) |>
   ungroup()
 ```
