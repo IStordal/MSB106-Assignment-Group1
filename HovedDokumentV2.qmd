@@ -335,6 +335,20 @@ arbpl <- arbpl |>
   filter(knr24 != "9999")
 ```
 
+```{r}
+sas <- left_join(
+  arbpl,
+  beftot,
+  by = c("knr24", "år")
+)
+```
+
+```{r}
+sas <- sas %>%
+  mutate(syss = Arbeidssted / beftot)
+```
+
+
 ### Prosentvis sysselsettingsvekst for ulike kommuner etter år 2000
 
 ```{r}
@@ -723,7 +737,8 @@ panel_list <- list(
   kvmBolig,
   utdanning,
   flytting_wide,
-  pendl_rate
+  pendl_rate,
+  sas
 )
 
 master <- reduce(panel_list, left_join, by = c("knr24","år")) |>
