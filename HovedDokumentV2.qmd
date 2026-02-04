@@ -1353,13 +1353,39 @@ kor_kommune <- arlig_endring |>
   )
 ```
 
+## Korelasjoner paneldata oppsumert
+
+#Korelasjon mellom befolknningsutvikling og sysselsetting
 
 ```{r}
 summary(kor_kommune$kor_bef_syssel)
 ```
 
+#Korelasjon mellom arbeidsledighet og sysselsetting
+
+```{r}
+summary(kor_kommune$kor_ledighet_syssel)
+```
 
 
+#Korelasjon mellom boligpriser og årlig innflytting
+
+```{r}
+summary(kor_kommune$kor_bolig_flytt)
+```
+
+# Korelasjon mellom boligpriser og sysselsetting
+
+```{r}
+summary(kor_kommune$kor_syssel_bolig)
+```
+
+# Korelasjon mellom pendling og sysselsetting
+
+
+```{r}
+summary(kor_kommune$kor_pendl_syssel)
+```
 
 
 # 4. Sammenhengen mellom befolkning og sysselsetting
