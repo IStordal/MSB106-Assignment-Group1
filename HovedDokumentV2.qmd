@@ -1536,6 +1536,58 @@ Dette betyr at om lag 74 prosent av variasjonen i folketallsvekst mellom kommune
 
 Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er de sentrale faktorene for folketallsutviklingen i norske kommuner.
 
+### Paneldata
+
+```{r}
+library(dplyr)
+library(plm)
+
+to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
+
+panel_df <- master %>%
+  transmute(
+    knr24 = as.character(knr24),
+    år    = as.integer(as.character(år)),
+
+    # Folketall (bruk riktig kolonne hos dere)
+    beftot = to_num(beftot.x),
+
+    # Forklaringsvariabler (årlig nivå)
+    Ledighet_pct      = to_num(andel_NAV),
+    Hoy_utdanning_pct = to_num(UH_pct),
+
+    # Arbeidsplasser per 1000 innbyggere (årsnivå)
+    Befolkning = to_num(beftot.x),
+    Syss       = to_num(Arbeidssted.x),
+
+    Nettoflytting_1k  = to_num(nettoflytting1k_tot),
+    Nettopendling_1k  = to_num(nettoInnPendl1k),
+
+    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1))
+
+    # NB: ikke ta med Sentralitet / Landsdel her (forklares under)
+  ) %>%
+  arrange(knr24, år) %>%
+  group_by(knr24) %>%
+  mutate(
+    # Årlig vekst i folketall (log-differanse)
+    d_ln_bef = log(beftot) - lag(log(beftot)),
+
+    # Arbeidsplasser per 1000 innbyggere (årlig)
+    Arbeidsplasser_1k = 1000 * Syss / Befolkning
+  ) %>%
+  ungroup() %>%
+  filter(
+    is.finite(d_ln_bef),
+    is.finite(Ledighet_pct),
+    is.finite(Hoy_utdanning_pct),
+    is.finite(Arbeidsplasser_1k),
+    is.finite(Nettoflytting_1k),
+    is.finite(Nettopendling_1k),
+    is.finite(ln_Boligpris)
+  )
+```
+
 # En multippel regresjonsmodell for sysselsettingsvekst (Oppgave 7)
 
 # Konklusjon og diskusjon (oppgave 8)
