@@ -1277,7 +1277,7 @@ summary(regresjon_fe)
 
 ```
 
-# Relevant hypoteser basert på deskriptiv statistikk
+# Relevant hypoteser basert på deskriptiv statistikk (oppgave 6)
 
 # En multippel regresjonsmodell for folketallsutvikling
 
