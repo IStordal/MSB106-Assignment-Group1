@@ -1055,10 +1055,6 @@ ggsave("pendlutv.png",
 
 ```
 
-```{r}
-Sys.time() - t
-```
-
 # Tilstand og utvikling for ulike variabler
 
 # Korrelasjonsberegninger
@@ -1302,7 +1298,7 @@ landsdel_fra_knr <- function(knr4) {
   )
 }
 
-# Y-variabel: folketallsvekst over hele perioden (i prosent) ---
+# Y-variabel: folketallsvekst over hele perioden (i prosent)
 folke_growth <- master %>%
   transmute(
     kommune = as.character(knr24),
@@ -1314,8 +1310,7 @@ folke_growth <- master %>%
   filter(year %in% c(period_start, period_end)) %>%
   pivot_wider(names_from = year, values_from = beft, names_prefix = "bef_") %>%
   mutate(
-    folkevekst_pct = 100 * ( .data[[paste0("bef_", period_end)]] - .data[[paste0("bef_", period_start)]] ) /
-      .data[[paste0("bef_", period_start)]]
+    folkevekst_pct = 100 * ( .data[[paste0("bef_", period_end)]] - .data[[paste0("bef_", period_start)]] ) / .data[[paste0("bef_", period_start)]]
   ) %>%
   filter(is.finite(folkevekst_pct)) %>%
   select(kommune, folkevekst_pct)
@@ -1446,10 +1441,12 @@ x_mean <- master %>%
     Befolkning = to_num(beftot.x),
     Syss       = to_num(Arbeidssted.x),
 
-    Nettoflytting_1k = to_num(nettoflytting1k_tot),
-    Nettopendling_1k = to_num(nettoInnPendl1k),
+    Nettoflytting_1k  = to_num(nettoflytting1k_tot),
+    Nettopendling_1k  = to_num(nettoInnPendl1k),
 
-    Boligpris   = to_num(KvPris_Eneboliger),
+    # Boligpris: lag log per observasjon (kommune-år) først
+    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1)),
+
     Sentralitet = to_num(index)
   ) %>%
   filter(year >= period_start & year <= period_end) %>%
@@ -1463,12 +1460,13 @@ x_mean <- master %>%
     Nettoflytting_1k  = mean(Nettoflytting_1k, na.rm = TRUE),
     Nettopendling_1k  = mean(Nettopendling_1k, na.rm = TRUE),
 
-    Boligpris   = mean(Boligpris, na.rm = TRUE),
+    # Gjennomsnitt av log boligpris over perioden (anbefalt)
+    ln_Boligpris = mean(ln_Boligpris, na.rm = TRUE),
+
     Sentralitet = mean(Sentralitet, na.rm = TRUE),
     .groups = "drop"
   ) %>%
   mutate(
-    ln_Boligpris = log(pmax(Boligpris, 1)),
     Landsdel = factor(landsdel_fra_knr(kommune))
   ) %>%
   filter(
@@ -1501,12 +1499,10 @@ regdata_mean <- folke_growth %>%
     !is.na(Landsdel)
   )
 
-# Antall kommuner i regresjonsutvalget (gjennomsnitt)
 regdata_mean %>%
   summarise(Antall_kommuner = n()) %>%
   knitr::kable()
 
-# Regresjonsmodell (gjennomsnitt)
 mod_oppg6_mean <- lm(
   folkevekst_pct ~ Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
     Nettoflytting_1k + Nettopendling_1k + ln_Boligpris + Sentralitet + Landsdel,
@@ -1514,6 +1510,7 @@ mod_oppg6_mean <- lm(
 )
 
 summary(mod_oppg6_mean)
+
 ```
 
 Resultatene fra modellen der forklaringsvariablene er representert ved gjennomsnittsverdier for perioden 2000–2024 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
@@ -1553,4 +1550,8 @@ write_xlsx(
   master,
   path = "master.xlsx"
 )
+```
+
+```{r}
+Sys.time() - t
 ```
