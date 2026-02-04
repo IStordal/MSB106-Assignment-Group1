@@ -1513,29 +1513,28 @@ summary(mod_oppg6_mean)
 
 ```
 
-Resultatene fra modellen der forklaringsvariablene er representert ved gjennomsnittsverdier for perioden 2000–2024 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
-Kommuner som i gjennomsnitt har vært mer sentrale i perioden har hatt høyere folketallsvekst.
-Effekten er fortsatt relativt liten per enhet, men tydelig (én enhets høyere sentralitet er assosiert med rundt 0,09 prosentpoeng høyere folketallsvekst, alt annet likt).
+Resultatene fra modellen der forklaringsvariablene er representert ved gjennomsnittsverdier for perioden 2000-2024 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
+Kommuner som i gjennomsnitt er mer sentrale har hatt høyere folketallsvekst.
+Effekten er liten per enhet, men tydelig: én enhets høyere sentralitet er assosiert med rundt 0,09 prosentpoeng høyere folketallsvekst, når andre forhold holdes konstante.
 
-Boligprisene har også i denne modellen en sterk positiv sammenheng med befolkningsutviklingen.
-En økning i logaritmen til boligprisen er assosiert med rundt 19 prosentpoeng høyere folketallsvekst, noe som indikerer at boligpriser henger sammen med strukturelle forhold som påvirker bosettingsmønstren
+Boligprisene har også en klar positiv sammenheng med befolkningsutviklingen.
+En økning i logaritmen til boligprisen er assosiert med rundt 18,3 prosentpoeng høyere folketallsvekst, noe som indikerer at boligpriser reflekterer underliggende forhold som gjør kommuner mer attraktive som bosted.
 
 Antall arbeidsplasser per 1000 innbyggere har en positiv og statistisk signifikant sammenheng med folketallsvekst.
-En økning på 10 arbeidsplasser per 1000 innbyggere er forbundet med om lag 0,8 prosentpoeng høyere folketallsvekst.
-Tilsvarende har netto innflytting også i denne modellen en tydelig positiv effekt: én ekstra person i netto innflytting per 1000 innbyggere er assosiert med rundt 0,55 prosentpoeng høyere folketallsvekst.
+En økning på 10 arbeidsplasser per 1000 innbyggere er forbundet med om lag 0,78 prosentpoeng høyere folketallsvekst.
+Nettoflytting har også en tydelig positiv effekt: én ekstra person i netto innflytting per 1000 innbyggere er assosiert med rundt 0,56 prosentpoeng høyere folketallsvekst.
 
-Netto utpendling har en negativ og statistisk signifikant sammenheng med folketallsutviklingen.
+Netto pendling har en negativ og statistisk signifikant sammenheng med folketallsutviklingen.
 En økning i netto utpendling på 10 personer per 1000 arbeidsplasser er knyttet til om lag 0,25 prosentpoeng lavere folketallsvekst.
-Arbeidsledighet har også en negativ sammenheng med folketallsvekst, men effekten er ikke statistisk signifikant i denne modellspesifikasjonen.
+Arbeidsledighet har en negativ koeffisient, men effekten er ikke statistisk signifikant i denne modellen.
+Andelen med høyere utdanning har en negativ og signifikant sammenheng (om lag -0,59 prosentpoeng per ekstra prosentpoeng), noe som kan tyde på at når sentralitet, boligpriser og arbeidsmarked kontrolleres for, fanger utdanningsvariabelen opp andre strukturelle forskjeller mellom kommuner.
 
-Dummyvariablene for landsdel er ikke statistisk signifikante.
-Dette indikerer at når det kontrolleres for sentralitet, boligpriser, arbeidsmarked, flytting og pendling, har landsdel i seg selv liten `egen/selvstendig` betydning for folketallsutviklingen.
+Dummyvariablene for landsdel er i hovedsak ikke statistisk signifikante, som indikerer at når det kontrolleres for sentralitet, boligpriser, arbeidsmarked, flytting og pendling, har landsdel i seg selv liten selvstendig betydning for folketallsutviklingen (landsdel øst er svakt/marginalt signifikant på 10 % -nivå).
 
 Modellen har høy forklaringsgrad, med en justert R² på rundt 0,74.
-Dette innebærer at om lag 75 prosent av variasjonen i folketallsvekst mellom kommunene kan forklares av variablene i modellen.
-Sammenlignet med startår-modellen er forklaringsgraden noe høyere, noe som tyder på at gjennomsnittsverdier over tid fanger opp mer av de langsiktige strukturelle forskjellene mellom kommunene.
+Dette betyr at om lag 74 prosent av variasjonen i folketallsvekst mellom kommunene kan forklares av variablene som er inkludert i modellen.
 
-Sammenlignet med modellen basert på startårverdier (år 2010) gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er sentrale faktorer for folketallsutviklingen i norske kommuner.
+Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er de sentrale faktorene for folketallsutviklingen i norske kommuner.
 
 # En multippel regresjonsmodell for sysselsettingsvekst (Oppgave 7)
 
