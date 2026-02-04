@@ -1538,6 +1538,95 @@ Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen n
 
 # En multippel regresjonsmodell for sysselsettingsvekst (Oppgave 7)
 
+```{r}
+syss_growth <- master %>%
+  transmute(
+    kommune = as.character(knr24),
+    year    = as.integer(as.character(år)),
+    syss    = to_num(Arbeidssted.x)
+  ) %>%
+  group_by(kommune, year) %>%
+  summarise(syss = sum(syss, na.rm = TRUE), .groups = "drop") %>%
+  filter(year %in% c(period_start, period_end)) %>%
+  pivot_wider(names_from = year, values_from = syss, names_prefix = "syss_") %>%
+  mutate(
+    syssvekst_pct = 100 * (
+      .data[[paste0("syss_", period_end)]] - .data[[paste0("syss_", period_start)]]
+    ) / .data[[paste0("syss_", period_start)]]
+  ) %>%
+  filter(is.finite(syssvekst_pct)) %>%
+  select(kommune, syssvekst_pct)
+
+```
+
+```{r}
+regdata_syss_2010 <- syss_growth %>%
+  left_join(x_start, by = "kommune") %>%
+  left_join(folke_growth, by = "kommune") %>%
+  filter(
+    is.finite(syssvekst_pct),
+    is.finite(folkevekst_pct),
+    is.finite(Ledighet_pct),
+    is.finite(Hoy_utdanning_pct),
+    is.finite(Arbeidsplasser_1k),
+    is.finite(Nettoflytting_1k),
+    is.finite(Nettopendling_1k),
+    is.finite(ln_Boligpris),
+    is.finite(Sentralitet),
+    !is.na(Landsdel)
+  )
+
+regdata_syss_2010 %>%
+  summarise(Antall_kommuner = n()) %>%
+  knitr::kable()
+
+mod_oppg7_2010 <- lm(
+  syssvekst_pct ~ folkevekst_pct +
+    Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k +
+    ln_Boligpris + Sentralitet + Landsdel,
+  data = regdata_syss_2010
+)
+
+summary(mod_oppg7_2010)
+
+```
+
+```{r}
+regdata_syss_mean <- syss_growth %>%
+  left_join(x_mean, by = "kommune") %>%
+  left_join(folke_growth, by = "kommune") %>%
+  filter(
+    is.finite(syssvekst_pct),
+    is.finite(folkevekst_pct),
+    is.finite(Ledighet_pct),
+    is.finite(Hoy_utdanning_pct),
+    is.finite(Arbeidsplasser_1k),
+    is.finite(Nettoflytting_1k),
+    is.finite(Nettopendling_1k),
+    is.finite(ln_Boligpris),
+    is.finite(Sentralitet),
+    !is.na(Landsdel)
+  )
+
+regdata_syss_mean %>%
+  summarise(Antall_kommuner = n()) %>%
+  knitr::kable()
+
+mod_oppg7_mean <- lm(
+  syssvekst_pct ~ folkevekst_pct +
+    Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k +
+    ln_Boligpris + Sentralitet + Landsdel,
+  data = regdata_syss_mean
+)
+
+summary(mod_oppg7_mean)
+
+```
+
+
+
 # Konklusjon og diskusjon (oppgave 8)
 
 # Vedlegg
