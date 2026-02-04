@@ -1078,17 +1078,126 @@ kor_år <- function(data, x, y) {
 }
 ```
 
-Prosentvis arbeidsledighet og brutto/netto utflytting pr 1000 innbyggere
+Folketall og andelen av innbyggerne som er i aldersgruppen (20-29)
 
 ```{r}
 
+kor_år(master, "beftot.x", "befAndel_F20-29")|>
+knitr::kable(
+    caption = "Folketall og andel innbyggere i alder 20-29"
+  )
+```
 
+Sentralitetsindeks og andelen av innbyggerne som er i aldersgruppen (20-29)
+
+```{r}
+
+kor_år(master, "index", "befAndel_F20-29")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og andel innbyggere i alder 20-29"
+  )
+```
+
+Sentralitetsindeks og prosentvis arbeidsledighet
+
+```{r}
+
+kor_år(master, "index", "andel_SSB.x")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og ptosentvis arbeidsledighet"
+  )
+```
+
+Sentralitetsindeks og gjennomsnittlig kvadratmeterpris for bolig
+
+```{r}
+
+kor_år(master, "index", "KvPris_Blokkleiligheter")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og gjennomsnittlig kvadratmeterpris"
+  )
+```
+
+Sentralitetsindeks og andelen av innbyggerne med høyere utdanning
+
+```{r}
+
+kor_år(master, "index", "UH_pct")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og andelen av innbyggerne med høyere utdanning"
+  )
+```
+
+Sentralitetsindeks og utflytting pr 1000 innbyggere
+
+```{r}
+
+kor_år(master, "index", "utflytting1k_tot")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og utflytting pr 1000 innbyggere"
+  )
+```
+
+Sentralitetsindeks og innpendling pr 1000 innbyggere
+
+```{r}
+
+kor_år(master, "index", "innPendl1k")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og innpendling pr 1000 innbyggere "
+  )
+```
+
+Sentralitetsindeks og utpendling pr 1000 innbyggere
+
+```{r}
+
+kor_år(master, "index", "utPendl1k")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og utpendling pr 1000 innbyggere "
+  )
+```
+
+Prosentvis arbeidsledighet og andelen av innbyggerne som er i aldersgruppen (20-29)
+
+```{r}
+
+kor_år(master, "andel_SSB.x", "befAndel_F20-29")|>
+knitr::kable(
+    caption = "Arbeidsledighet og andelen av innbyggerne som er i aldersgruppen (20-29) "
+  )
+```
+
+Prosentvis arbeidsledighet og gjennomsnittlig kvadratmeterpris for bolig
+
+```{r}
+
+kor_år(master, "andel_SSB.x", "KvPris_Blokkleiligheter")|>
+knitr::kable(
+    caption = "Arbeidsledighet og gjennomsnittlig kvadratmeterpris) "
+  )
+```
+
+Prosentvis arbeidsledighet og andelen av innbyggerne med høyere utdanning
+
+```{r}
+
+kor_år(master, "andel_SSB.x", "UH_pct")|>
+knitr::kable(
+    caption = "Arbeidsledighet og andelen av innbyggerne med høyere utdanning) "
+  )
+```
+
+Prosentvis arbeidsledighet og brutto/netto utflytting pr 1000 innbyggere
+
+```{r}
 kor_år(master, "andel_SSB.x", "utflytting1k_tot")|>
 knitr::kable(
     caption = "Arbeidsledighet og brutto utflytting"
   )
 
 ```
+
 
 ```{r}
 kor_år(master, "andel_SSB.x", "nettoflytting1k_tot")|>
