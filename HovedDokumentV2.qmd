@@ -1540,9 +1540,9 @@ Sammenlignet med startår-modellen er forklaringsgraden noe høyere, noe som tyd
 
 Sammenlignet med modellen basert på startårverdier (år 2010) gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er sentrale faktorer for folketallsutviklingen i norske kommuner.
 
-# En multippel regresjonsmodell for sysselsettingsvekst
+# En multippel regresjonsmodell for sysselsettingsvekst (Oppgave 7)
 
-# Konklusjon og diskusjon
+# Konklusjon og diskusjon (oppgave 8)
 
 # Vedlegg
 
