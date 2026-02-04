@@ -1536,12 +1536,9 @@ Dette betyr at om lag 74 prosent av variasjonen i folketallsvekst mellom kommune
 
 Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er de sentrale faktorene for folketallsutviklingen i norske kommuner.
 
-### Paneldata
+### Paneldatasett + årlig vekst (log-differanse)
 
 ```{r}
-library(dplyr)
-library(plm)
-
 to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
 
 panel_df <- master %>%
@@ -1677,7 +1674,61 @@ summary(mod_oppg7_mean)
 
 ```
 
+### Panel Data
 
+```{r}
+to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
+
+panel_df7 <- master %>%
+  transmute(
+    knr24 = as.character(knr24),
+    år    = as.integer(as.character(år)),
+
+    # Folketall og sysselsetting (nivå)
+    beftot = to_num(beftot.x),
+    syss   = to_num(Arbeidssted.x),
+
+    # Forklaringsvariabler (årlig nivå)
+    Ledighet_pct      = to_num(andel_NAV),
+    Hoy_utdanning_pct = to_num(UH_pct),
+
+    Nettoflytting_1k  = to_num(nettoflytting1k_tot),
+    Nettopendling_1k  = to_num(nettoInnPendl1k),
+
+    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1))
+  ) %>%
+  arrange(knr24, år) %>%
+  group_by(knr24) %>%
+  mutate(
+    # Årlig befolkningsvekst (log-differanse) -> X i oppg. 7
+    d_ln_bef = log(beftot) - lag(log(beftot)),
+
+    # Årlig sysselsettingsvekst (log-differanse) -> Y i oppg. 7
+    d_ln_syss = log(pmax(syss, 1)) - lag(log(pmax(syss, 1)))
+  ) %>%
+  ungroup() %>%
+  filter(
+    is.finite(d_ln_syss),
+    is.finite(d_ln_bef),
+    is.finite(Ledighet_pct),
+    is.finite(Hoy_utdanning_pct),
+    is.finite(Nettoflytting_1k),
+    is.finite(Nettopendling_1k),
+    is.finite(ln_Boligpris)
+  )
+
+# Two-way fixed effects: kommune + år
+panel_fe7 <- plm(
+  d_ln_syss ~ d_ln_bef + Ledighet_pct + Hoy_utdanning_pct +
+    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris,
+  data = panel_df7,
+  index = c("knr24", "år"),
+  model = "within",
+  effect = "twoways"
+)
+
+summary(panel_fe7)
+```
 
 # Konklusjon og diskusjon (oppgave 8)
 
