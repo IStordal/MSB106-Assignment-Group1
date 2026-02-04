@@ -1334,6 +1334,10 @@ arlig_endring <- master |>
   select(knr24, år, d_bef, pct_syssel, d_andel_ledighet, d_boligpris, d_nettoflytt1k, d_innpendl1k)
 ```
 
+
+
+
+
 Lager en kode som beregner koefisienten for alle kommuner for
 
 ```{r}
@@ -1348,6 +1352,15 @@ kor_kommune <- arlig_endring |>
     .groups = "drop"
   )
 ```
+
+
+```{r}
+summary(kor_kommune$kor_bef_syssel)
+```
+
+
+
+
 
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
