@@ -1426,6 +1426,145 @@ Samtidig innebærer dette at rundt 30 prosent av variasjonen ikke forklares av m
 Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for eksempel lokale politiske beslutninger, naturgitte forhold eller andre tilfeldige og historiske faktorer.
 Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
 
+```{r}
+library(dplyr)
+library(fixest)
+library(broom)
+library(modelsummary)
+library(knitr)
+
+# -------------------------------
+# 0) Hjelpefunksjon (dere har den)
+# -------------------------------
+to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
+
+# -------------------------------
+# 1) Bygg PANELDATA (år-kommune)
+#    Robust mot 'år' med å: vi renamer til 'year'
+# -------------------------------
+panel_tidy <- master %>%
+  transmute(
+    kommune = as.character(knr24),
+    year    = as.integer(as.character(år)),
+
+    beftot = to_num(beftot.x),
+
+    Ledighet_pct      = to_num(andel_NAV),
+    Hoy_utdanning_pct = to_num(UH_pct),
+
+    Befolkning = to_num(beftot.x),
+    Syss       = to_num(Arbeidssted.x),
+
+    Nettoflytting_1k  = to_num(nettoflytting1k_tot),
+    Nettopendling_1k  = to_num(nettoInnPendl1k),
+
+    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1))
+  ) %>%
+  arrange(kommune, year) %>%
+  group_by(kommune) %>%
+  mutate(
+    d_ln_bef = log(beftot) - lag(log(beftot)),
+    Arbeidsplasser_1k = 1000 * Syss / Befolkning
+  ) %>%
+  ungroup() %>%
+  # hold bare observasjoner som kan brukes i modellen
+  filter(
+    is.finite(d_ln_bef),
+    is.finite(Ledighet_pct),
+    is.finite(Hoy_utdanning_pct),
+    is.finite(Arbeidsplasser_1k),
+    is.finite(Nettoflytting_1k),
+    is.finite(Nettopendling_1k),
+    is.finite(ln_Boligpris)
+  ) %>%
+  mutate(
+    kommune = factor(kommune),
+    year    = as.integer(year),
+    folkevekst_pct_aar = 100 * d_ln_bef
+  )
+
+# Rask sjekk (ikke nødvendig, men greit å ha)
+panel_tidy %>%
+  summarise(
+    N = n(),
+    Ant_kommuner = n_distinct(kommune),
+    Ant_år = n_distinct(year)
+  ) %>%
+  kable()
+
+
+# -------------------------------
+# 2) PANELMODELL (TWFE): kommune + år
+#    Sentralitet/Landsdel utelates (fanges av kommune-FE)
+# -------------------------------
+mod_panel_twfe <- feols(
+  d_ln_bef ~ Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris
+  | kommune + year,
+  data = panel_tidy,
+  cluster = ~kommune
+)
+
+# Tidy tabell
+tidy(mod_panel_twfe, conf.int = TRUE) %>%
+  select(term, estimate, std.error, conf.low, conf.high, p.value) %>%
+  kable(digits = 4)
+
+
+# -------------------------------
+# 3) PANELMODELL (TWFE) med laggede X (valgfri, men ofte penere)
+# -------------------------------
+panel_tidy_l1 <- panel_tidy %>%
+  arrange(kommune, year) %>%
+  group_by(kommune) %>%
+  mutate(
+    Ledighet_pct_l1      = lag(Ledighet_pct),
+    Hoy_utdanning_pct_l1 = lag(Hoy_utdanning_pct),
+    Arbeidsplasser_1k_l1 = lag(Arbeidsplasser_1k),
+    Nettoflytting_1k_l1  = lag(Nettoflytting_1k),
+    Nettopendling_1k_l1  = lag(Nettopendling_1k),
+    ln_Boligpris_l1      = lag(ln_Boligpris)
+  ) %>%
+  ungroup() %>%
+  filter(
+    is.finite(Ledighet_pct_l1),
+    is.finite(Hoy_utdanning_pct_l1),
+    is.finite(Arbeidsplasser_1k_l1),
+    is.finite(Nettoflytting_1k_l1),
+    is.finite(Nettopendling_1k_l1),
+    is.finite(ln_Boligpris_l1)
+  )
+
+mod_panel_twfe_l1 <- feols(
+  d_ln_bef ~ Ledighet_pct_l1 + Hoy_utdanning_pct_l1 + Arbeidsplasser_1k_l1 +
+    Nettoflytting_1k_l1 + Nettopendling_1k_l1 + ln_Boligpris_l1
+  | kommune + year,
+  data = panel_tidy_l1,
+  cluster = ~kommune
+)
+
+tidy(mod_panel_twfe_l1, conf.int = TRUE) %>%
+  select(term, estimate, std.error, conf.low, conf.high, p.value) %>%
+  kable(digits = 4)
+
+
+# -------------------------------
+# 4) SAMMENLIGNING (tverrsnitt mean vs panel TWFE)
+#    Forutsetter at mod_oppg6_mean finnes fra før
+# -------------------------------
+modelsummary(
+  list(
+    "Tverrsnitt (mean)" = mod_oppg6_mean,
+    "Panel TWFE"        = mod_panel_twfe,
+    "Panel TWFE (lag1)" = mod_panel_twfe_l1
+  ),
+  stars = TRUE,
+  statistic = "({std.error})",
+  fmt = 3
+)
+
+```
+
 ### Bare for 2000 - 2024
 
 ```{r}
@@ -1672,62 +1811,6 @@ mod_oppg7_mean <- lm(
 
 summary(mod_oppg7_mean)
 
-```
-
-### Panel Data
-
-```{r}
-to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
-
-panel_df7 <- master %>%
-  transmute(
-    knr24 = as.character(knr24),
-    år    = as.integer(as.character(år)),
-
-    # Folketall og sysselsetting (nivå)
-    beftot = to_num(beftot.x),
-    syss   = to_num(Arbeidssted.x),
-
-    # Forklaringsvariabler (årlig nivå)
-    Ledighet_pct      = to_num(andel_NAV),
-    Hoy_utdanning_pct = to_num(UH_pct),
-
-    Nettoflytting_1k  = to_num(nettoflytting1k_tot),
-    Nettopendling_1k  = to_num(nettoInnPendl1k),
-
-    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1))
-  ) %>%
-  arrange(knr24, år) %>%
-  group_by(knr24) %>%
-  mutate(
-    # Årlig befolkningsvekst (log-differanse) -> X i oppg. 7
-    d_ln_bef = log(beftot) - lag(log(beftot)),
-
-    # Årlig sysselsettingsvekst (log-differanse) -> Y i oppg. 7
-    d_ln_syss = log(pmax(syss, 1)) - lag(log(pmax(syss, 1)))
-  ) %>%
-  ungroup() %>%
-  filter(
-    is.finite(d_ln_syss),
-    is.finite(d_ln_bef),
-    is.finite(Ledighet_pct),
-    is.finite(Hoy_utdanning_pct),
-    is.finite(Nettoflytting_1k),
-    is.finite(Nettopendling_1k),
-    is.finite(ln_Boligpris)
-  )
-
-# Two-way fixed effects: kommune + år
-panel_fe7 <- plm(
-  d_ln_syss ~ d_ln_bef + Ledighet_pct + Hoy_utdanning_pct +
-    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris,
-  data = panel_df7,
-  index = c("knr24", "år"),
-  model = "within",
-  effect = "twoways"
-)
-
-summary(panel_fe7)
 ```
 
 # Konklusjon og diskusjon (oppgave 8)
