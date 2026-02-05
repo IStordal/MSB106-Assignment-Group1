@@ -1078,17 +1078,126 @@ kor_år <- function(data, x, y) {
 }
 ```
 
-Prosentvis arbeidsledighet og brutto/netto utflytting pr 1000 innbyggere
+Folketall og andelen av innbyggerne som er i aldersgruppen (20-29)
 
 ```{r}
 
+kor_år(master, "beftot.x", "befAndel_F20-29")|>
+knitr::kable(
+    caption = "Folketall og andel innbyggere i alder 20-29"
+  )
+```
 
+Sentralitetsindeks og andelen av innbyggerne som er i aldersgruppen (20-29)
+
+```{r}
+
+kor_år(master, "index", "befAndel_F20-29")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og andel innbyggere i alder 20-29"
+  )
+```
+
+Sentralitetsindeks og prosentvis arbeidsledighet
+
+```{r}
+
+kor_år(master, "index", "andel_SSB.x")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og ptosentvis arbeidsledighet"
+  )
+```
+
+Sentralitetsindeks og gjennomsnittlig kvadratmeterpris for bolig
+
+```{r}
+
+kor_år(master, "index", "KvPris_Blokkleiligheter")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og gjennomsnittlig kvadratmeterpris"
+  )
+```
+
+Sentralitetsindeks og andelen av innbyggerne med høyere utdanning
+
+```{r}
+
+kor_år(master, "index", "UH_pct")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og andelen av innbyggerne med høyere utdanning"
+  )
+```
+
+Sentralitetsindeks og utflytting pr 1000 innbyggere
+
+```{r}
+
+kor_år(master, "index", "utflytting1k_tot")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og utflytting pr 1000 innbyggere"
+  )
+```
+
+Sentralitetsindeks og innpendling pr 1000 innbyggere
+
+```{r}
+
+kor_år(master, "index", "innPendl1k")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og innpendling pr 1000 innbyggere "
+  )
+```
+
+Sentralitetsindeks og utpendling pr 1000 innbyggere
+
+```{r}
+
+kor_år(master, "index", "utPendl1k")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og utpendling pr 1000 innbyggere "
+  )
+```
+
+Prosentvis arbeidsledighet og andelen av innbyggerne som er i aldersgruppen (20-29)
+
+```{r}
+
+kor_år(master, "andel_SSB.x", "befAndel_F20-29")|>
+knitr::kable(
+    caption = "Arbeidsledighet og andelen av innbyggerne som er i aldersgruppen (20-29) "
+  )
+```
+
+Prosentvis arbeidsledighet og gjennomsnittlig kvadratmeterpris for bolig
+
+```{r}
+
+kor_år(master, "andel_SSB.x", "KvPris_Blokkleiligheter")|>
+knitr::kable(
+    caption = "Arbeidsledighet og gjennomsnittlig kvadratmeterpris) "
+  )
+```
+
+Prosentvis arbeidsledighet og andelen av innbyggerne med høyere utdanning
+
+```{r}
+
+kor_år(master, "andel_SSB.x", "UH_pct")|>
+knitr::kable(
+    caption = "Arbeidsledighet og andelen av innbyggerne med høyere utdanning) "
+  )
+```
+
+Prosentvis arbeidsledighet og brutto/netto utflytting pr 1000 innbyggere
+
+```{r}
 kor_år(master, "andel_SSB.x", "utflytting1k_tot")|>
 knitr::kable(
     caption = "Arbeidsledighet og brutto utflytting"
   )
 
 ```
+
 
 ```{r}
 kor_år(master, "andel_SSB.x", "nettoflytting1k_tot")|>
@@ -1225,6 +1334,10 @@ arlig_endring <- master |>
   select(knr24, år, d_bef, pct_syssel, d_andel_ledighet, d_boligpris, d_nettoflytt1k, d_innpendl1k)
 ```
 
+
+
+
+
 Lager en kode som beregner koefisienten for alle kommuner for
 
 ```{r}
@@ -1239,6 +1352,87 @@ kor_kommune <- arlig_endring |>
     .groups = "drop"
   )
 ```
+
+## Korelasjoner paneldata oppsumert
+
+#Korelasjon mellom befolknningsutvikling og sysselsetting
+
+```{r}
+summary(kor_kommune$kor_bef_syssel)
+```
+
+#Korelasjon mellom arbeidsledighet og sysselsetting
+
+```{r}
+summary(kor_kommune$kor_ledighet_syssel)
+```
+
+
+#Korelasjon mellom boligpriser og årlig innflytting
+
+```{r}
+summary(kor_kommune$kor_bolig_flytt)
+```
+
+# Korelasjon mellom boligpriser og sysselsetting
+
+```{r}
+summary(kor_kommune$kor_syssel_bolig)
+```
+
+# Korelasjon mellom pendling og sysselsetting
+
+
+```{r}
+summary(kor_kommune$kor_pendl_syssel)
+```
+
+
+# Laggede endringer
+
+```{r}
+arlig_endring_lag <- arlig_endring |>
+  arrange(knr24, år) |>
+  group_by(knr24) |>
+  mutate(
+    pct_syssel_lag1 = lag(pct_syssel, 1),
+    d_boligpris_lag1 = lag(d_boligpris, 1),
+    d_andel_ledighet_lag1 = lag(d_andel_ledighet, 1)
+  ) |>
+  ungroup()
+```
+
+
+```{r}
+kor_kommune_lag <- arlig_endring_lag |>
+  group_by(knr24) |>
+  summarise(
+    kor_bef_syssel_lag1 =
+      if (sum(complete.cases(d_bef, pct_syssel_lag1)) >= 2)
+        cor(d_bef, pct_syssel_lag1, use = "complete.obs")
+      else NA_real_,
+
+    kor_bolig_flytt_lag1 =
+      if (sum(complete.cases(d_nettoflytt1k, d_boligpris_lag1)) >= 2)
+        cor(d_nettoflytt1k, d_boligpris_lag1, use = "complete.obs")
+      else NA_real_,
+
+    kor_ledig_syssel_lag1 =
+      if (sum(complete.cases(pct_syssel, d_andel_ledighet_lag1)) >= 2)
+        cor(pct_syssel, d_andel_ledighet_lag1, use = "complete.obs")
+      else NA_real_,
+    
+    .groups = "drop"
+  )
+```
+
+```{r}
+summary(kor_kommune$kor_bef_syssel)
+
+summary(kor_kommune_lag$kor_bef_syssel_lag1)
+
+```
+
 
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
