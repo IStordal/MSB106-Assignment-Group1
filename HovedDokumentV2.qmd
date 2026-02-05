@@ -1081,12 +1081,12 @@ kor_år <- function(data, x, y) {
 Folketall og andelen av innbyggerne som er i aldersgruppen (20-29)
 
 ```{r}
-
 kor_år(master, "beftot.x", "befAndel_F20-29")|>
 knitr::kable(
     caption = "Folketall og andel innbyggere i alder 20-29"
   )
 ```
+
 
 Sentralitetsindeks og andelen av innbyggerne som er i aldersgruppen (20-29)
 
@@ -1101,7 +1101,6 @@ knitr::kable(
 Sentralitetsindeks og prosentvis arbeidsledighet
 
 ```{r}
-
 kor_år(master, "index", "andel_SSB.x")|>
 knitr::kable(
     caption = "Sentralitetsindeks og ptosentvis arbeidsledighet"
@@ -1131,7 +1130,6 @@ knitr::kable(
 Sentralitetsindeks og utflytting pr 1000 innbyggere
 
 ```{r}
-
 kor_år(master, "index", "utflytting1k_tot")|>
 knitr::kable(
     caption = "Sentralitetsindeks og utflytting pr 1000 innbyggere"
@@ -1335,9 +1333,6 @@ arlig_endring <- master |>
 ```
 
 
-
-
-
 Lager en kode som beregner koefisienten for alle kommuner for
 
 ```{r}
@@ -1466,6 +1461,9 @@ regresjon_fe <- plm(
 summary(regresjon_fe)
 
 ```
+Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselsetting for norske kommuner. Der vi byttet på befolkning og sysselsetting som avhengig variabel. I begge regresjonene er det en svært høy justert r-kvadrert. Det vil si at man ikke kan tolke resultatene kausalt. Man kan ikke bestemme hva som begrunnes av hva.
+
+Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe. Da ser vi at justert r-kvadrat er litt lavere, men fortsatt veldig høy. Det betyr også at vi ikke kan tolke resultatene kausalt.
 
 # Relevant hypoteser basert på deskriptiv statistikk (oppgave 6)
 
@@ -1479,7 +1477,9 @@ period_end   <- 2024
 x_year       <- 2010
 
 to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
+```
 
+```{r}
 landsdel_fra_knr <- function(knr4) {
   fylke <- substr(knr4, 1, 2)
   dplyr::case_when(
@@ -1491,7 +1491,9 @@ landsdel_fra_knr <- function(knr4) {
     TRUE                                      ~ NA_character_
   )
 }
+```
 
+```{r}
 # Y-variabel: folketallsvekst over hele perioden (i prosent)
 folke_growth <- master %>%
   transmute(
@@ -1508,7 +1510,9 @@ folke_growth <- master %>%
   ) %>%
   filter(is.finite(folkevekst_pct)) %>%
   select(kommune, folkevekst_pct)
+```
 
+```{r}
 # X-variabel: verdier i startåret (2010) ---
 x_start <- master %>%
   transmute(
@@ -1562,7 +1566,9 @@ x_start <- master %>%
     kommune, Ledighet_pct, Hoy_utdanning_pct, Arbeidsplasser_1k,
     Nettoflytting_1k, Nettopendling_1k, ln_Boligpris, Sentralitet, Landsdel
   )
+```
 
+```{r}
 #Regresjonsdata (tverrsnitt)
 regdata <- folke_growth %>%
   left_join(x_start, by = "kommune") %>%
@@ -1621,12 +1627,6 @@ Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for ekse
 Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
 
 ```{r}
-library(dplyr)
-library(fixest)
-library(broom)
-library(modelsummary)
-library(knitr)
-
 # -------------------------------
 # 0) Hjelpefunksjon (dere har den)
 # -------------------------------
@@ -1756,7 +1756,6 @@ modelsummary(
   statistic = "({std.error})",
   fmt = 3
 )
-
 ```
 
 ### Bare for 2000 - 2024
