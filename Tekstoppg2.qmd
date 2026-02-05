@@ -142,3 +142,10 @@ Klasse 1, som representerer Oslo, har derimot hatt en negativ utvikling i netto 
 Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attraktive og sentrale som arbeidssteder, noe som har redusert innpendlingen til Oslo over tid.
 
 # Oppgave 3
+
+# Korelasjon mellom gitte variabler
+
+I første omgang er det lagt med resultat av korelasjonsberegningene mellom en rekke variabler.
+Her er
+
+![](images/clipboard-3708177039.png)
