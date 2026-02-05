@@ -146,6 +146,12 @@ Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attrakt
 # Korelasjon mellom gitte variabler
 
 I første omgang er det lagt med resultat av korelasjonsberegningene mellom en rekke variabler.
-Her er
+Det er blitt målt korelasjon for alle kommuner i årene 2014 og 2024.
+Korelasjon verdien er en indikator på hvor mye samvariasjon det er mellom de to gitte variablene.
+Skalen for korelasjon går fra -1 til 1.
+Jo nærmere 1 er positivt tall er jo større tyder på det på en positiv samvariasjon, og vice versa.
+
+Samlet sett gir resultatene en deskreptiv generel oversikt over sammenhengen mellom de aktuelle variablene.
+Dette gir et nyttig innblikk før vi videre skal se på paneldata.
 
 ![](images/clipboard-3708177039.png)
