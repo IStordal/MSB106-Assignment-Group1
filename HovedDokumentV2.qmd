@@ -1353,12 +1353,14 @@ kor_kommune <- arlig_endring |>
 #Korelasjon mellom befolknningsutvikling og sysselsetting
 
 ```{r}
+cat("Korelasjon mellom befolkningsutvikling og sysselsetting\n")
 summary(kor_kommune$kor_bef_syssel)
 ```
 
 #Korelasjon mellom arbeidsledighet og sysselsetting
 
 ```{r}
+cat("Korelasjon mellom arbeidsledighet og sysselsetting\n")
 summary(kor_kommune$kor_ledighet_syssel)
 ```
 
@@ -1366,12 +1368,14 @@ summary(kor_kommune$kor_ledighet_syssel)
 #Korelasjon mellom boligpriser og årlig innflytting
 
 ```{r}
+cat("Korelasjon mellom boligpriser og årlig innflytting\n")
 summary(kor_kommune$kor_bolig_flytt)
 ```
 
 # Korelasjon mellom boligpriser og sysselsetting
 
 ```{r}
+cat("Korelasjon mellom boligpriser og sysselsetting\n")
 summary(kor_kommune$kor_syssel_bolig)
 ```
 
@@ -1379,6 +1383,7 @@ summary(kor_kommune$kor_syssel_bolig)
 
 
 ```{r}
+cat("Korelasjon mellom pendling og sysselsetting\n")
 summary(kor_kommune$kor_pendl_syssel)
 ```
 

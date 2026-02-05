@@ -143,15 +143,39 @@ Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attrakt
 
 # Oppgave 3
 
-# Korelasjon mellom gitte variabler
+## Korelasjon mellom gitte variabler
 
 I første omgang er det lagt med resultat av korelasjonsberegningene mellom en rekke variabler.
 Det er blitt målt korelasjon for alle kommuner i årene 2014 og 2024.
-Korelasjon verdien er en indikator på hvor mye samvariasjon det er mellom de to gitte variablene.
+Korelasjonsverdien er en indikator på hvor mye samvariasjon det er mellom to gitte variabler.
 Skalen for korelasjon går fra -1 til 1.
-Jo nærmere 1 er positivt tall er jo større tyder på det på en positiv samvariasjon, og vice versa.
+Jo nærmere 1 et positivt tall er, jo større tyder på det på en positiv samvariasjon, og vice versa med negative tall.
 
 Samlet sett gir resultatene en deskreptiv generel oversikt over sammenhengen mellom de aktuelle variablene.
 Dette gir et nyttig innblikk før vi videre skal se på paneldata.
 
 ![](images/clipboard-3708177039.png)
+
+## Paneldata
+
+I paneldata analysen beregner vi korelasjoner utifra de årlige endringere i de enkelte kommunene.
+Da brukes et datasett som ser ut slik som tabellen under.
+Her er delta for de aktuelle variablene beregnet.
+
+![](images/clipboard-982896316.png)
+
+Først har vi beregnet Spearman korrelasjonskoefisienter utifra dette datasettet.
+Ettersom det er veldig mange kommuner er det vanskelig å illustrere hver enkelt kommune sine samvariasjoner.
+Derfor illustreres et "summary" av hver av de enkelt variabel kombinasjon.
+
+![](images/clipboard-4183825931.png)
+
+Trege virkninger er når variabler som er KO relaterte ikke nødvendigvis påvirker hverandre med umiddelbar virkning.
+Selv om det kan måles en sammenheng mellom utviklingen i boligpriser og utflyttingen i en kommune, er det ikke nødvendigvis slik at mot reaksjonen forekommer samme år.
+ For å fange opp disse effektene, er et triks som kan brukes «laggede variabler».
+Da tester man ikke for korrelasjoner mellom to variabler observert i samme år, men tester en variabel opp mot observasjoner fra en tidligere periode. 
+Da kan man for eksempel teste hypoteser som at en endring i boligpriser vil påvirke netto innflytting det påkommende året.
+
+Dette er et viktig aspekt for å unngå at faktiske sammenhenger blir oversett fordi effekten ikke spiller inn med en gang.
+
+I denne oppgaven for å teste denne effekten lager vi et nytt datasett hvor en av variablene brukes fra året før, for å se forskjellen fra den opprinnelige panel analysen.
