@@ -1510,6 +1510,91 @@ kor_ledighet_syssel_lag <- arlig_endring_lag |>
 summary(kor_ledighet_syssel_lag)
 ```
 
+# Scatterplots og visulaiering
+
+## Syssesetting ↔ endring i folketall
+```{r}
+ggplot(arlig_endring,
+       aes(x = d_bef, y = pct_syssel)) +
+  geom_point(alpha = 0.25, size = 1) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Årlig endring i folketall og sysselsetting",
+    x = "Endring i folketall",
+    y = "Sysselsetting (%)"
+  ) +
+  theme_minimal() +
+  coord_cartesian(xlim = c(-2000, 5000), ylim = c(-20, 25))
+
+```
+Spredningdiagrammet viser en svak negativ sammenheng mellom årlig endring i folketall og sysselsetting. Dette indikerer at kommuner med befolkningsvekst ikke nødvendigvis opplever tilsvarende vekst i lokale arbeidsplasser, noe som kan reflektere økt pendling eller konsentrasjon av arbeidsplasser i større regionale sentre. Samtidig er spredningen stor, noe som tyder på at andre faktorer enn befolkningsendring spiller en viktig rolle for sysselsettingsutviklingen.
+
+## Sentralitetsindeks ↔ boligpris
+
+```{r}
+master %>%
+  filter(år %in% c(2014, 2024)) %>%
+  ggplot(aes(x = index, y = KvPris_Blokkleiligheter, color = factor(år))) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(se = FALSE) +
+  labs(
+    title = "Sentralitetsindeks og boligpris",
+    x = "Sentralitetsindeks",
+    y = "Kvadratmeter pris bolig",
+    color = "År"
+  ) +
+  theme_minimal() +
+  coord_cartesian(xlim = c(500, 1000))
+```
+Spredningdiagrammet viser en tydelig positiv sammenheng mellom sentralitetsindeks og boligpris, men relasjonen fremstår ikke lineær. Boligprisene øker relativt moderat ved lave nivåer av sentralitet, men sterkere i de mest sentrale kommunene. Dette tilsier at Spearman-korrelasjonen kan gi et mer robust mål på sammenhengen enn Pearson, ettersom Spearman ikke forutsetter lineæritet.
+
+
+## Sentralitetsindeks ↔ innpendling
+
+```{r}
+master %>%
+  filter(år %in% c(2014, 2024)) %>%
+  ggplot(aes(x = index, y = innPendl1k, color = factor(år))) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(se = FALSE) +
+  labs(
+    title = "Sentralitetsindeks og innpendling per 1000 innbyggere",
+    x = "Sentralitetsindeks",
+    y = "Innpendling per 1000 innbyggere",
+    color = "År"
+  ) +
+  theme_minimal()
+```
+Spredningdiagrammet viser at sammenhengen mellom sentralitetsindeks og innpendling er monotont økende, men ikke fullt ut lineær. Innpendlingen øker relativt svakt ved lave nivåer av sentralitet, men mer markant i de mest sentrale kommunene. Dette innebærer at Pearson-korrelasjonen, som forutsetter lineæritet, kan undervurdere styrken i sammenhengen, mens Spearman-korrelasjonen er bedre egnet til å fange den monotone strukturen i dataene.
+Selv om sammenhengen er tydelig, viser spredningen i punktene at sentralitet alene ikke forklarer variasjonen i innpendling, og andre faktorer som næringsstruktur og transporttilgang spiller også en rolle.
+
+## Arbeidsledighet ↔ utflytting
+
+```{r}
+master %>%
+  filter(år %in% c(2014, 2024)) %>%
+  ggplot(aes(x = andel_SSB.x, y = utflytting1k_tot, color = factor(år))) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(se = FALSE) +
+  labs(
+    title = "Arbeidsledighet og utflytting",
+    x = "Arbeidsledighet",
+    y = "Utflytting",
+    color = "År"
+  ) +
+  theme_minimal() 
+```
+Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene. Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster. Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
+
+
+
+
+
+
+
+
+
+
 
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
