@@ -1434,6 +1434,88 @@ summary(kor_kommune_lag$kor_bef_syssel_lag1)
 ```
 
 
+# Spearsman vs Pearson
+
+```{r}
+kor_kommune_spearman <- arlig_endring |>
+  group_by(knr24) |>
+  summarise(
+    
+    # 1. Årlig endring i folketall og sysselsetting
+    kor_bef_syssel =
+      if (sum(complete.cases(d_bef, pct_syssel)) >= 2)
+        cor(d_bef, pct_syssel, use = "complete.obs", method = "spearman")
+      else NA_real_,
+    
+    # 2. Årlig endring i arbeidsledighet og sysselsetting
+    kor_ledighet_syssel =
+      if (sum(complete.cases(d_andel_ledighet, pct_syssel)) >= 2)
+        cor(d_andel_ledighet, pct_syssel, use = "complete.obs", method = "spearman")
+      else NA_real_,
+    
+    # 3. Årlig endring i boligpriser og netto flytting
+    kor_bolig_flytt =
+      if (sum(complete.cases(d_boligpris, d_nettoflytt1k)) >= 2)
+        cor(d_boligpris, d_nettoflytt1k, use = "complete.obs", method = "spearman")
+      else NA_real_,
+    
+    # 4. Årlig prosentvis endring i sysselsetting og boligpriser
+    kor_syssel_bolig =
+      if (sum(complete.cases(pct_syssel, d_boligpris)) >= 2)
+        cor(pct_syssel, d_boligpris, use = "complete.obs", method = "spearman")
+      else NA_real_,
+    
+    # 5. Årlig endring i innpendling og sysselsetting
+    kor_pendl_syssel =
+      if (sum(complete.cases(d_innpendl1k, pct_syssel)) >= 2)
+        cor(d_innpendl1k, pct_syssel, use = "complete.obs", method = "spearman")
+      else NA_real_,
+    
+    .groups = "drop"
+  )
+```
+
+```{r}
+summary(kor_kommune$kor_bef_syssel)
+summary(kor_kommune_spearman$kor_bef_syssel)
+```
+
+```{r}
+kor_bef_syssel <- arlig_endring_lag |>
+  group_by(knr24) |>
+  summarise(
+    pearson = if (sum(complete.cases(d_bef, pct_syssel)) >= 2)
+      cor(d_bef, pct_syssel, use = "complete.obs") else NA_real_,
+    spearman = if (sum(complete.cases(d_bef, pct_syssel)) >= 2)
+      cor(d_bef, pct_syssel, method = "spearman", use = "complete.obs") else NA_real_,
+    .groups = "drop"
+  )
+```
+
+
+```{r}
+summary(kor_bef_syssel)
+```
+
+
+```{r}
+kor_ledighet_syssel_lag <- arlig_endring_lag |>
+  group_by(knr24) |>
+  summarise(
+    pearson = if (sum(complete.cases(d_andel_ledighet, pct_syssel_lag1)) >= 2)
+      cor(d_andel_ledighet, pct_syssel_lag1, use = "complete.obs") else NA_real_,
+    spearman = if (sum(complete.cases(d_andel_ledighet, pct_syssel_lag1)) >= 2)
+      cor(d_andel_ledighet, pct_syssel_lag1, method = "spearman", use = "complete.obs") else NA_real_,
+    .groups = "drop"
+  )
+```
+
+
+```{r}
+summary(kor_ledighet_syssel_lag)
+```
+
+
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
 ```{r}
