@@ -170,6 +170,8 @@ Derfor illustreres et "summary" av hver av de enkelt variabel kombinasjon.
 
 ![](images/clipboard-4183825931.png)
 
+### Trege virkninger 
+
 Trege virkninger er når variabler som er KO relaterte ikke nødvendigvis påvirker hverandre med umiddelbar virkning.
 Selv om det kan måles en sammenheng mellom utviklingen i boligpriser og utflyttingen i en kommune, er det ikke nødvendigvis slik at mot reaksjonen forekommer samme år.
  For å fange opp disse effektene, er et triks som kan brukes «laggede variabler».
@@ -179,3 +181,37 @@ Da kan man for eksempel teste hypoteser som at en endring i boligpriser vil påv
 Dette er et viktig aspekt for å unngå at faktiske sammenhenger blir oversett fordi effekten ikke spiller inn med en gang.
 
 I denne oppgaven for å teste denne effekten lager vi et nytt datasett hvor en av variablene brukes fra året før, for å se forskjellen fra den opprinnelige panel analysen.
+
+Pearson-korrelasjonen måler lineær samvariasjon mellom to kontinuerlige variabler, og er følsom for ekstreme verdier.
+Spearman-korrelasjonen er basert på rangering av observasjoner, og fanger opp monotone sammenhenger, også når forholdet ikke er lineært.
+Forskjeller mellom disse to kan indikere ikke-lineære relasjoner eller betydningen av uteliggere i dataene.
+
+Pearson koeffisient måler for liner samvariasjon mellom to kontinuerlige variabler, mens Spearman baserer seg på en rangering av observasjoner.
+De har hver sin styrke, hvor Pearson er svært følsom for ekstreme verdier, mens Spearman heller fanger opp monotone sammenhenger, også ved ikke livnære sammenhenger.
+
+## Spredningsdiagrammer 
+
+![](images/clipboard-492759142.png)
+
+Spredningdiagrammet viser en svak negativ sammenheng mellom årlig endring i folketall og sysselsetting.
+Dette indikerer at kommuner med befolkningsvekst ikke nødvendigvis opplever tilsvarende vekst i lokale arbeidsplasser, noe som kan reflektere økt pendling eller konsentrasjon av arbeidsplasser i større regionale sentre.
+Samtidig er spredningen stor, noe som tyder på at andre faktorer enn befolkningsendring spiller en viktig rolle for sysselsettingsutviklingen.
+
+![](images/clipboard-847073424.png)
+
+Spredningdiagrammet viser en tydelig positiv sammenheng mellom sentralitetsindeks og boligpris, men relasjonen fremstår ikke lineær.
+Boligprisene øker relativt moderat ved lave nivåer av sentralitet, men sterkere i de mest sentrale kommunene.
+Dette tilsier at Spearman-korrelasjonen kan gi et mer robust mål på sammenhengen enn Pearson, ettersom Spearman ikke forutsetter lineæritet.
+
+![](images/clipboard-4170222301.png)
+
+Spredningdiagrammet viser at sammenhengen mellom sentralitetsindeks og innpendling er monotont økende, men ikke fullt ut lineær.
+Innpendlingen øker relativt svakt ved lave nivåer av sentralitet, men mer markant i de mest sentrale kommunene.
+Dette innebærer at Pearson-korrelasjonen, som forutsetter lineæritet, kan undervurdere styrken i sammenhengen, mens Spearman-korrelasjonen er bedre egnet til å fange den monotone strukturen i dataene.
+Selv om sammenhengen er tydelig, viser spredningen i punktene at sentralitet alene ikke forklarer variasjonen i innpendling, og andre faktorer som næringsstruktur og transporttilgang spiller også en rolle.
+
+![](images/clipboard-425484476.png)
+
+Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene.
+Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster.
+Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
