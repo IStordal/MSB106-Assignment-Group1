@@ -1,6 +1,6 @@
 ---
 title: "Tekst til oppgaven"
-format: html
+format: pdf
 editor: visual
 ---
 
