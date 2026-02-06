@@ -1682,6 +1682,10 @@ Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselset
 
 Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe. Da ser vi at justert r-kvadrat er litt lavere, men fortsatt veldig høy. Det betyr også at vi ikke kan tolke resultatene kausalt.
 
+Tidligere så vi på kurver for befolkningsutvikling og sysselsetting, der så vi at kurvene hadde en lik utvikling, noe som tyder på at de henger sammen. Det ser vi igjen her at forklaringsgraden er veldig høy. Men det forklarer ikke om sysselsetningen øker hvis befolkningen øker, eller omvendt. Man kan derfor ikke tolke det kausalt.
+
+Korrelasjonen...
+
 # Relevant hypoteser basert på deskriptiv statistikk (oppgave 6)
 
 # En multippel regresjonsmodell for folketallsutvikling
