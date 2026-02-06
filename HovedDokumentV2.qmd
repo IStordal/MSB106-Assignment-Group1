@@ -1391,45 +1391,90 @@ summary(kor_kommune$kor_pendl_syssel)
 # Laggede endringer
 
 ```{r}
-arlig_endring_lag <- arlig_endring |>
-  arrange(knr24, år) |>
-  group_by(knr24) |>
-  mutate(
-    d_boligpris_lag1 = lag(d_boligpris, 1),
-    pct_syssel_lag1  = lag(pct_syssel, 1),
-    d_nettoflytt1k_lag1 = lag(d_nettoflytt1k, 1)
-  ) |>
-  ungroup()
+arlig_endring_lag1 <- arlig_endring |>
+  mutate(år = år + 1)
 ```
 
 
 ```{r}
-kor_kommune_lag <- arlig_endring_lag |>
+arlig_endring_med_lag <- arlig_endring |>
+  left_join(
+    arlig_endring_lag1,
+    by = c("knr24", "år"),
+    suffix = c("", "_lag1")
+  )
+```
+
+
+```{r}
+kor_kommune_lag <- arlig_endring_med_lag |>
   group_by(knr24) |>
   summarise(
-    kor_bef_syssel_lag1 =
-      if (sum(complete.cases(d_bef, pct_syssel_lag1)) >= 2)
-        cor(d_bef, pct_syssel_lag1, use = "complete.obs")
+
+    # 1. Befolkningsendring (t-1) og sysselsetting (t)
+    kor_bef_syssel_lag =
+      if (sum(complete.cases(d_bef_lag1, pct_syssel)) >= 2)
+        cor(d_bef_lag1, pct_syssel, use = "complete.obs")
       else NA_real_,
 
-    kor_bolig_flytt_lag1 =
-      if (sum(complete.cases(d_nettoflytt1k, d_boligpris_lag1)) >= 2)
-        cor(d_nettoflytt1k, d_boligpris_lag1, use = "complete.obs")
+    # 2. Arbeidsledighet (t-1) og sysselsetting (t)
+    kor_ledighet_syssel_lag =
+      if (sum(complete.cases(d_andel_ledighet_lag1, pct_syssel)) >= 2)
+        cor(d_andel_ledighet_lag1, pct_syssel, use = "complete.obs")
       else NA_real_,
 
-    kor_ledig_syssel_lag1 =
-      if (sum(complete.cases(pct_syssel, d_andel_ledighet_lag1)) >= 2)
-        cor(pct_syssel, d_andel_ledighet_lag1, use = "complete.obs")
+    # 3. Boligpriser (t-1) og netto innflytting (t)
+    kor_bolig_flytt_lag =
+      if (sum(complete.cases(d_boligpris_lag1, d_nettoflytt1k)) >= 2)
+        cor(d_boligpris_lag1, d_nettoflytt1k, use = "complete.obs")
       else NA_real_,
-    
+
+    # 4. Sysselsetting (t-1) og boligpriser (t)
+    kor_syssel_bolig_lag =
+      if (sum(complete.cases(pct_syssel_lag1, d_boligpris)) >= 2)
+        cor(pct_syssel_lag1, d_boligpris, use = "complete.obs")
+      else NA_real_,
+
+    # 5. Innpendling (t-1) og sysselsetting (t)
+    kor_pendl_syssel_lag =
+      if (sum(complete.cases(d_innpendl1k_lag1, pct_syssel)) >= 2)
+        cor(d_innpendl1k_lag1, pct_syssel, use = "complete.obs")
+      else NA_real_,
+
     .groups = "drop"
   )
 ```
 
-```{r}
-summary(kor_kommune$kor_bef_syssel)
 
-summary(kor_kommune_lag$kor_bef_syssel_lag1)
+```{r}
+kor_sammenligning <- kor_kommune |>
+  left_join(kor_kommune_lag, by = "knr24")
+```
+
+```{r}
+
+cat("Befolkning og sysselsetting\n")
+summary(kor_sammenligning$kor_bef_syssel)
+cat("Befolkning og sysselsetting med lag\n")
+summary(kor_sammenligning$kor_bef_syssel_lag)
+```
+
+```{r}
+cat("Befolkning og flytting\n")
+summary(kor_sammenligning$kor_bolig_flytt)
+cat("Befolkning og flytting med lag\n")
+summary(kor_sammenligning$kor_bolig_flytt_lag)
+```
+
+
+
+
+
+```{r}
+arlig_endring_lag |>
+  filter(knr24 == 0301) |>
+  select(år, d_boligpris, d_boligpris_lag1) |>
+  head(6)
 
 ```
 

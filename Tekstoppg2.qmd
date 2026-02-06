@@ -179,9 +179,12 @@ Dette er et viktig aspekt for å unngå at faktiske sammenhenger blir oversett f
 
 I denne oppgaven for å teste denne effekten lager vi et nytt datasett hvor en av variablene brukes fra året før, for å se forskjellen fra den opprinnelige panel analysen.
 
+![](images/clipboard-3963928232.png)
+
+![](images/clipboard-2432818359.png)
+
 Pearson-korrelasjonen måler lineær samvariasjon mellom to kontinuerlige variabler, og er følsom for ekstreme verdier.
 Spearman-korrelasjonen er basert på rangering av observasjoner, og fanger opp monotone sammenhenger, også når forholdet ikke er lineært.
-Forskjeller mellom disse to kan indikere ikke-lineære relasjoner eller betydningen av uteliggere i dataene.
 
 Pearson koeffisient måler for liner samvariasjon mellom to kontinuerlige variabler, mens Spearman baserer seg på en rangering av observasjoner.
 De har hver sin styrke, hvor Pearson er svært følsom for ekstreme verdier, mens Spearman heller fanger opp monotone sammenhenger, også ved ikke livnære sammenhenger.
