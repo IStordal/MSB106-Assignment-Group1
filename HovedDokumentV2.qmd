@@ -1395,9 +1395,9 @@ arlig_endring_lag <- arlig_endring |>
   arrange(knr24, år) |>
   group_by(knr24) |>
   mutate(
-    pct_syssel_lag1 = lag(pct_syssel, 1),
     d_boligpris_lag1 = lag(d_boligpris, 1),
-    d_andel_ledighet_lag1 = lag(d_andel_ledighet, 1)
+    pct_syssel_lag1  = lag(pct_syssel, 1),
+    d_nettoflytt1k_lag1 = lag(d_nettoflytt1k, 1)
   ) |>
   ungroup()
 ```
