@@ -4,6 +4,19 @@ format: pdf
 editor: visual
 ---
 
+# Litteratur
+
+"Kilde" har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.
+De undersøker hvordan norske kommuner utvikler seg over tid.
+Videre undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.
+Artikkelen beskriver også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
+Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene.
+Undersøkelsen viser at sentralisering hovedsakelig skjer *innenfor* arbeidsmarkedsregioner, ikke mellom dem.
+Kommuner med sterk sysselsettingsvekst, lave ledighetstall og høye boligpriser har hatt klart best befolkningsutvikling, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang.
+Det finnes få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land.
+Sentralisering har vært særlig sterk i perioder med økonomisk oppgang, mens utviklingen var mer dempet i 70‑ og 80‑tallets svakere konjunkturer.
+Undersøkelsen peker også på at migrasjon, utdanningsnivå, demografi og boligmarked spiller viktige roller i å forme regionale forskjeller.
+
 # Oppgave 2
 
 ### Folketallsutvikling
@@ -167,7 +180,7 @@ Derfor illustreres et "summary" av hver av de enkelt variabelkombinasjonene
 
 ![](images/clipboard-4183825931.png)
 
-### Trege virkninger 
+### Trege virkninger
 
 Trege virkninger er når en variabels endring ikke nødvendigvis utløser en endring i en annen variabel umiddelbart.
 Selv om det kan observeres en sammenheng mellom utviklingen i boligpriser og utflytting i en kommune, er det ikke gitt at effekten viser seg i samme år.
@@ -189,7 +202,7 @@ Spearman-korrelasjonen er basert på rangering av observasjoner, og fanger opp m
 Pearson koeffisient måler for liner samvariasjon mellom to kontinuerlige variabler, mens Spearman baserer seg på en rangering av observasjoner.
 De har hver sin styrke, hvor Pearson er svært følsom for ekstreme verdier, mens Spearman heller fanger opp monotone sammenhenger, også ved ikke livnære sammenhenger.
 
-## Spredningsdiagrammer 
+## Spredningsdiagrammer
 
 ![](images/clipboard-492759142.png)
 
