@@ -4,6 +4,19 @@ format: pdf
 editor: visual
 ---
 
+# Litteratur
+
+"Kilde" har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.
+De undersøker hvordan norske kommuner utvikler seg over tid.
+Videre undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.
+Artikkelen beskriver også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
+Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene.
+Undersøkelsen viser at sentralisering hovedsakelig skjer *innenfor* arbeidsmarkedsregioner, ikke mellom dem.
+Kommuner med sterk sysselsettingsvekst, lave ledighetstall og høye boligpriser har hatt klart best befolkningsutvikling, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang.
+Det finnes få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land.
+Sentralisering har vært særlig sterk i perioder med økonomisk oppgang, mens utviklingen var mer dempet i 70‑ og 80‑tallets svakere konjunkturer.
+Undersøkelsen peker også på at migrasjon, utdanningsnivå, demografi og boligmarked spiller viktige roller i å forme regionale forskjeller.
+
 # Oppgave 2
 
 ### Folketallsutvikling
