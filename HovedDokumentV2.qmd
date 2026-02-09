@@ -149,6 +149,15 @@ bef_andel24 <- befald |>
   select(-c(år, Alder, befage, beftot))
 ```
 
+Vi har hentet du folketall over kommunene i Norge gjennom Statistisk sentralbyrå (SSB) sine åpne API-tjenester gjennom PxWeb. Dette gjør det mulig å laste ned oppdaterte og detaljerte tall direkte ned i RStudio, og sikrer en reproduserbar arbeidsflyt. Vi hentet først ut totalbefolkningen for alle kommuner fra 1986 til 2025, som danner grunnlaget for å beregne folketallsutvikling og prosentvis vekst etter år 2000. Fra samme tabell hentet vi også demografiske data fordelt på tiårige aldersgrupper, som gjør det mulig å analysere befolkningssammensetningen og beregne andelen innbyggere i aldersgruppen 20-29 år i 2024. 
+
+Videre renset vi kommunekoder og fjernet tekniske aggregeringer slik at datasett fra ulike år og tabeller kunne kobles sammen. Totalbefolkningen ble koblet med aldersdata for å beregne andeler, og befolkningstall for 2000-2025 ble brukt til å beregne prosentvis vekst. Disse prosessene ble gjennomført for å kunne lage kart- og kurveframstillinger, samt for å legge grunnlaget for korrelasjons- og regresjonsanalysene. Samlet gir dette et helhetlig og sammenlignbart datagrunnlag som gjør det mulig å studere regionale forskjeller og utviklingstrekk på tvers av norske kommuner. 
+
+
+
+
+
+
 ## Sentralitetsindeksen for norske kommuner
 
 ```{r}
