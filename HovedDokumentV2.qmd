@@ -1645,16 +1645,6 @@ master %>%
 ```
 Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene. Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster. Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
 
-
-
-
-
-
-
-
-
-
-
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
 ```{r}
@@ -1743,7 +1733,7 @@ folke_growth <- master %>%
 ```
 
 ```{r}
-# X-variabel: verdier i startåret (2010) ---
+# X-variabel: verdier i startåret (2010)
 x_start <- master %>%
   transmute(
     kommune = as.character(knr24),
@@ -1857,88 +1847,61 @@ Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for ekse
 Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
 
 ```{r}
-# -------------------------------
-# 0) Hjelpefunksjon (dere har den)
-# -------------------------------
-to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
-
-# -------------------------------
-# 1) Bygg PANELDATA (år-kommune)
-#    Robust mot 'år' med å: vi renamer til 'year'
-# -------------------------------
-panel_tidy <- master %>%
-  transmute(
-    kommune = as.character(knr24),
-    year    = as.integer(as.character(år)),
-
-    beftot = to_num(beftot.x),
-
-    Ledighet_pct      = to_num(andel_NAV),
-    Hoy_utdanning_pct = to_num(UH_pct),
-
-    Befolkning = to_num(beftot.x),
-    Syss       = to_num(Arbeidssted.x),
-
-    Nettoflytting_1k  = to_num(nettoflytting1k_tot),
-    Nettopendling_1k  = to_num(nettoInnPendl1k),
-
-    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1))
-  ) %>%
-  arrange(kommune, year) %>%
-  group_by(kommune) %>%
-  mutate(
-    d_ln_bef = log(beftot) - lag(log(beftot)),
-    Arbeidsplasser_1k = 1000 * Syss / Befolkning
-  ) %>%
-  ungroup() %>%
-  # hold bare observasjoner som kan brukes i modellen
-  filter(
-    is.finite(d_ln_bef),
-    is.finite(Ledighet_pct),
-    is.finite(Hoy_utdanning_pct),
-    is.finite(Arbeidsplasser_1k),
-    is.finite(Nettoflytting_1k),
-    is.finite(Nettopendling_1k),
-    is.finite(ln_Boligpris)
-  ) %>%
-  mutate(
-    kommune = factor(kommune),
-    year    = as.integer(year),
-    folkevekst_pct_aar = 100 * d_ln_bef
-  )
-
-# Rask sjekk (ikke nødvendig, men greit å ha)
+#ar ikke fått gjort siste avsnitt i oppgave 6
+#(valgfritt) sjekk at y faktisk varierer
 panel_tidy %>%
   summarise(
     N = n(),
     Ant_kommuner = n_distinct(kommune),
-    Ant_år = n_distinct(year)
+    Ant_år = n_distinct(year),
+    sd_y = sd(folkevekst_pct_aar, na.rm = TRUE),
+    min_y = min(folkevekst_pct_aar, na.rm = TRUE),
+    max_y = max(folkevekst_pct_aar, na.rm = TRUE)
   ) %>%
-  kable()
+  knitr::kable()
 
+# bygg pdata.frame
+panel_reg <- panel_tidy %>%
+  transmute(
+    kommune, year,
+    folkevekst_pct_aar,
+    Ledighet_pct, Hoy_utdanning_pct, Arbeidsplasser_1k,
+    Nettoflytting_1k, Nettopendling_1k, ln_Boligpris
+  )
 
-# -------------------------------
-# 2) PANELMODELL (TWFE): kommune + år
-#    Sentralitet/Landsdel utelates (fanges av kommune-FE)
-# -------------------------------
-mod_panel_twfe <- feols(
-  d_ln_bef ~ Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
-    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris
-  | kommune + year,
-  data = panel_tidy,
-  cluster = ~kommune
+panel_reg <- pdata.frame(panel_reg, index = c("kommune", "year"))
+
+# TWFE (kommune + år)
+mod_panel_twfe <- plm(
+  folkevekst_pct_aar ~ Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris,
+  data = panel_reg,
+  model = "within",
+  effect = "twoways"
 )
 
-# Tidy tabell
-tidy(mod_panel_twfe, conf.int = TRUE) %>%
-  select(term, estimate, std.error, conf.low, conf.high, p.value) %>%
-  kable(digits = 4)
+# cluster-robuste SE (kommune)
+vc_twfe <- vcovHC(mod_panel_twfe, method = "arellano", type = "HC1", cluster = "group")
 
+# "summary"-aktig output (robust)
+twfe_ct <- lmtest::coeftest(mod_panel_twfe, vcov. = vc_twfe)
+twfe_ct
 
-# -------------------------------
-# 3) PANELMODELL (TWFE) med laggede X (valgfri, men ofte penere)
-# -------------------------------
-panel_tidy_l1 <- panel_tidy %>%
+# ryddig tabell (kable)
+twfe_tab <- data.frame(
+  term = rownames(twfe_ct),
+  estimate = twfe_ct[, 1],
+  std.error = twfe_ct[, 2],
+  statistic = twfe_ct[, 3],
+  p.value = twfe_ct[, 4],
+  row.names = NULL
+)
+
+twfe_tab %>%
+  knitr::kable(digits = 3, caption = "Panel TWFE (plm) – cluster SE (kommune)")
+
+#modell (t-1 forklaringsvariabler)
+panel_reg_l1 <- panel_tidy %>%
   arrange(kommune, year) %>%
   group_by(kommune) %>%
   mutate(
@@ -1951,41 +1914,60 @@ panel_tidy_l1 <- panel_tidy %>%
   ) %>%
   ungroup() %>%
   filter(
+    is.finite(folkevekst_pct_aar),
     is.finite(Ledighet_pct_l1),
     is.finite(Hoy_utdanning_pct_l1),
     is.finite(Arbeidsplasser_1k_l1),
     is.finite(Nettoflytting_1k_l1),
     is.finite(Nettopendling_1k_l1),
     is.finite(ln_Boligpris_l1)
+  ) %>%
+  transmute(
+    kommune, year,
+    folkevekst_pct_aar,
+    Ledighet_pct_l1, Hoy_utdanning_pct_l1, Arbeidsplasser_1k_l1,
+    Nettoflytting_1k_l1, Nettopendling_1k_l1, ln_Boligpris_l1
   )
 
-mod_panel_twfe_l1 <- feols(
-  d_ln_bef ~ Ledighet_pct_l1 + Hoy_utdanning_pct_l1 + Arbeidsplasser_1k_l1 +
-    Nettoflytting_1k_l1 + Nettopendling_1k_l1 + ln_Boligpris_l1
-  | kommune + year,
-  data = panel_tidy_l1,
-  cluster = ~kommune
+panel_reg_l1 <- pdata.frame(panel_reg_l1, index = c("kommune", "year"))
+
+mod_panel_twfe_l1 <- plm(
+  folkevekst_pct_aar ~ Ledighet_pct_l1 + Hoy_utdanning_pct_l1 + Arbeidsplasser_1k_l1 +
+    Nettoflytting_1k_l1 + Nettopendling_1k_l1 + ln_Boligpris_l1,
+  data = panel_reg_l1,
+  model = "within",
+  effect = "twoways"
 )
 
-tidy(mod_panel_twfe_l1, conf.int = TRUE) %>%
-  select(term, estimate, std.error, conf.low, conf.high, p.value) %>%
-  kable(digits = 4)
+vc_twfe_l1 <- vcovHC(mod_panel_twfe_l1, method = "arellano", type = "HC1", cluster = "group")
 
+twfe_l1_ct <- lmtest::coeftest(mod_panel_twfe_l1, vcov. = vc_twfe_l1)
+twfe_l1_ct
 
-# -------------------------------
-# 4) SAMMENLIGNING (tverrsnitt mean vs panel TWFE)
-#    Forutsetter at mod_oppg6_mean finnes fra før
-# -------------------------------
-modelsummary(
-  list(
-    "Tverrsnitt (mean)" = mod_oppg6_mean,
-    "Panel TWFE"        = mod_panel_twfe,
-    "Panel TWFE (lag1)" = mod_panel_twfe_l1
-  ),
-  stars = TRUE,
-  statistic = "({std.error})",
-  fmt = 3
+twfe_l1_tab <- data.frame(
+  term = rownames(twfe_l1_ct),
+  estimate = twfe_l1_ct[, 1],
+  std.error = twfe_l1_ct[, 2],
+  statistic = twfe_l1_ct[, 3],
+  p.value = twfe_l1_ct[, 4],
+  row.names = NULL
 )
+
+twfe_l1_tab %>%
+  knitr::kable(digits = 3, caption = "Panel TWFE lag1 (plm) – cluster SE (kommune)")
+
+# SAMMENLIGNING (robust, uten modelsummary)
+# (Hvis du vil ha alt i én "modelsummary"-tabell: bruk fixest i stedet.
+# Med plm lager vi derfor en enkel sammenligning ved å vise tre tabeller.)
+
+# 1) lm (tverrsnitt) – vanlig summary (eller lag egen broom-tabell)
+summary(mod_oppg6_mean)
+
+broom::tidy(mod_oppg6_mean) %>%
+  knitr::kable(digits = 3, caption = "Tverrsnitt (mean) – lm")
+
+# 2) Panel TWFE-tabellen er 'twfe_tab' (over)
+# 3) Panel TWFE lag1-tabellen er 'twfe_l1_tab' (over)
 ```
 
 ### Bare for 2000 - 2024
@@ -2072,7 +2054,6 @@ mod_oppg6_mean <- lm(
 )
 
 summary(mod_oppg6_mean)
-
 ```
 
 Resultatene fra modellen der forklaringsvariablene er representert ved gjennomsnittsverdier for perioden 2000-2024 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
@@ -2233,7 +2214,6 @@ mod_oppg7_mean <- lm(
 )
 
 summary(mod_oppg7_mean)
-
 ```
 
 # Konklusjon og diskusjon (oppgave 8)
