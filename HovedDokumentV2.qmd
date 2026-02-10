@@ -1847,7 +1847,7 @@ Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for ekse
 Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
 
 ```{r}
-#ar ikke fått gjort siste avsnitt i oppgave 6
+#Har ikke fått gjort siste avsnitt i oppgave 6
 #(valgfritt) sjekk at y faktisk varierer
 panel_tidy %>%
   summarise(
