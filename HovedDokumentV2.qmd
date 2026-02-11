@@ -2174,6 +2174,50 @@ mod_oppg7_mean <- lm(
 summary(mod_oppg7_mean)
 ```
 
+```{r}
+# 1) Sysselsetting i startår og sluttår + vekst (%)
+df_7_syss <- df_6 %>%
+  inner_join(df_6_period, by = "knr24") %>%
+  group_by(knr24, start_år, end_år) %>%
+  summarise(
+    syss_start = first(Syss[år == start_år]),
+    syss_end   = first(Syss[år == end_år]),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    syssvekst_pct = 100 * (syss_end - syss_start) / syss_start
+  ) %>%
+  filter(is.finite(syssvekst_pct))
+
+# 2) Bygg "df_7_csB": X-gjennomsnitt + folketallsvekst + syssvekst
+df_7_csB <- df_6_csB %>%  # har: knr24, start_år, end_år, X-mean, folketallsvekst
+  inner_join(df_7_syss %>% select(knr24, start_år, end_år, syssvekst_pct),
+             by = c("knr24","start_år","end_år")) %>%
+  filter(is.finite(syssvekst_pct), is.finite(folketallsvekst)) %>%
+  filter(complete.cases(across(all_of(c("syssvekst_pct","folketallsvekst", x_cols)))))
+
+# (valgfritt) Antall kommuner
+df_7_csB %>%
+  summarise(Antall_kommuner = n()) %>%
+  print()
+
+# 3) Oppg 7-modell (periodegjennomsnitt): sysselsettingsvekst forklart av folketallsvekst + X
+m_7B <- lm(
+  syssvekst_pct ~ folketallsvekst +
+    Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris,
+  data = df_7_csB
+)
+
+# 4) Robuste standardfeil + tabell
+vcov_7B <- vcovHC(m_7B, type = "HC1")
+tab_7B  <- coeftest(m_7B, vcov = vcov_7B)
+
+summary(m_7B)
+tab_7B
+
+```
+
 # Konklusjon og diskusjon (oppgave 8)
 
 # Vedlegg
