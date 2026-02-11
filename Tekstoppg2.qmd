@@ -5,6 +5,16 @@ editor: visual
 bibliography: references.bib
 ---
 
+# Datainnsamling
+
+For å finne utdanningsnivå har vi brukt tabellen 09429.
+Denne tabellen har ikke et datasett for nye kommuner per 2024.
+Vi måtte derfor hente ut alle kommunene og så sortere etter de nye kommunenavnene ved å bruke "newknr".
+Videre hentet vi ut data for begge kjønn og hentet ut bare høyere utdanning da vi så at det er det oppgaven krever.
+Dataene var delt inn i "Universitets- og høgskolenivå, kort" og "Universitets- og høgskolenivå, lang", disse har vi slått sammen.
+Vi har også filtrert vekk data for hele landet samlet.
+For å regne ut andelen har vi brukt de nye kommunenummerene og total befolkning.
+
 # Litteratur
 
 "Kilde" har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.
@@ -34,7 +44,7 @@ Kartet viser prosentvis folketallsvekst i norske kommuner etter år 2000.
 Fargene illustrerer utviklingen, der grønne nyanser representerer positiv vekst og rosa nyanser viser negativ utvikling.
 Mange kommuner har hatt nedgang i folketallet, særlig de som ligger langt fra større byer og derfor regnes som mindre sentrale.
 
-Grafene har vi delt kommunene inn i sentralitetsklassene fra 1 til 6, der klasse 1 er mest sentral og klasse 6 minst.
+Grafene er delt inn i sentralitetsklassene fra 1 til 6, der klasse 1 er mest sentral og klasse 6 minst.
 På den andre siden ser vi at kommunene med sterk grønnfarge er de største byene i Norge og områdene rundt dem.
 Mindre byer har også grønn farge, men i svakere nyanser.
 Dette gjenspeiles i grafen, der klasse 1, 2 og 3 har hatt den sterkeste veksten, klasse 4 har hatt noe vekst, mens klasse 5 har hatt en mer svingende utvikling.
@@ -104,6 +114,8 @@ For eneboliger ser vi også en tydelig prisvekst i alle klasser.
 Kartet for 2024 viser at de høyeste boligprisene finnes i de største byene.
 Dette henger sammen med faktorer som befolkningstetthet, utdanningsnivå og flyttemønstre.
 De største byene fremstår som mest attraktive, noe som gjenspeiles i både prisnivå og utvikling over tid.
+Vi ser også at det kommuner nærliggende byer har også høyt prisnivå, det kan skyldes at prisene presses så høyt at man velger å flytte lengre vekk fra sentrum, da vil prisene der også presses opp.
+Når vi ser på intervallene for kvmpriser på kartet så ser vi også at prisforskjellene er veldig store fra bygd til by.
 
 ### Utdanning utvikling
 
@@ -112,9 +124,9 @@ De største byene fremstår som mest attraktive, noe som gjenspeiles i både pri
 Kartet viser andelen innbyggere med høyere utdanning i norske kommuner i 2024.
 Kommunene med mørkest rødfarge har den største andelen med høy utdannede.
 Tidligere har vi sett at disse kommunene også har en høy andel unge i aldersgruppen 20-29 år.
-Dette gjelder særlig de største studentbyene i Norge, som Oslo, Bergen og Trondheim.
+Dette gjelder særlig de største studiebyene i Norge, som Oslo, Bergen og Trondheim.
 Kommunene som ligger rundt disse byene har noe lavere andel, men fortsatt høyere enn kommuner som ligger lenger unna.
-Dette kan skyldes at stundenter som bor i nabokommuner pendler inn til studiebyene, og dermed bidrar til å løfte utdanningsnivået også i sin egen kommune.
+Dette kan skyldes at personer som bor i nabokommuner har tatt høyere utdanning i nærliggende kommune, og dermed bidrar til å løfte utdanningsnivået også i sin egen kommune.
 
 Grafen viser utviklingen i andelen med høyere utdanning fra 1986 til 2024.
 Vi ser en tydelig og jevn vekst i alle sentralitetsklasser, noe som kan forklares med økt fokus på utdanning og et samfunn som stiller stadig høyere kompetansekrav.
