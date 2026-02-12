@@ -6,16 +6,7 @@ editor: visual
 
 # Litteratur
 
-"Kilde" har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.
-De undersøker hvordan norske kommuner utvikler seg over tid.
-Videre undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.
-Artikkelen beskriver også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
-Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene.
-Undersøkelsen viser at sentralisering hovedsakelig skjer *innenfor* arbeidsmarkedsregioner, ikke mellom dem.
-Kommuner med sterk sysselsettingsvekst, lave ledighetstall og høye boligpriser har hatt klart best befolkningsutvikling, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang.
-Det finnes få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land.
-Sentralisering har vært særlig sterk i perioder med økonomisk oppgang, mens utviklingen var mer dempet i 70‑ og 80‑tallets svakere konjunkturer.
-Undersøkelsen peker også på at migrasjon, utdanningsnivå, demografi og boligmarked spiller viktige roller i å forme regionale forskjeller.
+"Kilde" har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017. De undersøker hvordan norske kommuner utvikler seg over tid. Videre undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering. Artikkelen beskriver også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller. Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene. Undersøkelsen viser at sentralisering hovedsakelig skjer *innenfor* arbeidsmarkedsregioner, ikke mellom dem. Kommuner med sterk sysselsettingsvekst, lave ledighetstall og høye boligpriser har hatt klart best befolkningsutvikling, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang. Det finnes få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land. Sentralisering har vært særlig sterk i perioder med økonomisk oppgang, mens utviklingen var mer dempet i 70‑ og 80‑tallets svakere konjunkturer. Undersøkelsen peker også på at migrasjon, utdanningsnivå, demografi og boligmarked spiller viktige roller i å forme regionale forskjeller.
 
 # Oppgave 2
 
@@ -71,6 +62,8 @@ Vi har valgt å lage kart kun for eneboliger, siden leiligheter hadde mange mang
 
 Kartet for 2024 viser at de høyeste boligprisene finnes i de største byene. Dette henger sammen med faktorer som befolkningstetthet, utdanningsnivå og flyttemønstre. De største byene fremstår som mest attraktive, noe som gjenspeiles i både prisnivå og utvikling over tid.
 
+Mønsteret i kartet for kvadratmeterpris kan tolkes i lys av budrenteteorien (Alonso-modellen), som tilsier at husholdninger er villige til å betale høyere boligpriser for å bo nær sentrale arbeidsplasser og tilbud. Dette bidrar til høyere boligpriser i de største byene og mest sentrale kommunene. De observerte prisforskjellene reflekterer dermed både forskjeller i tilgjengelighet til arbeidsmarkedet og attraktiviteten ved sentrale beliggenheter.
+
 ### Utdanning utvikling
 
 ![Caption](Bilde_universitetsutdannig.png) ![Caption](utdutv.png)
@@ -102,6 +95,8 @@ For de øvrige klassene ser vi noen svingninger, men generelt er utviklingen sta
 Kartet viser netto innpendling per 1000 arbeidsplasser i kommunene. Vi ser at det er få kommuner med sterk negativ netto innpedling, og disse er spredt rundt på Østlandet. Samtidig ser vi at flere av kommunene med en positiv netto innpendling ligger i nærheten av de rød kommunene. Dette kan tyde på at mange pendler fra de rød kommunene og inn til de mørkeblå kommunene, som da bidrar til høy netto innpendling i de blå kommunene. Det kan være sannsynlig at mange som bor i kommunene rundt Oslo kommune, jobber i og pendler inn til Oslo.
 
 Grafen viser utviklingen i netto innpendling fra år 2000 til 2024. Her ser vi at sentralitetsklassene 2 til 6 har hatt noen svingninger, men viser en positiv utvikling over tid. Klasse 1, som representerer Oslo, har derimot hatt en negativ utvikling i netto innpendling. Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attraktive og sentrale som arbeidssteder, noe som har redusert innpendlingen til Oslo over tid.
+
+Budrenteteorien kan også bidra til å forklare pendlemønstrene vi observerer. Når boligprisene er høye i sentrale kommuner, vil mange hudholdninger velge å bosette seg i omlandskommuner med lavere boligkostnader, samtidig som de beholder arbeidsplassen i sentrum. Dette gir høy netto innpendling til de mest sentrale kommunene, og netto utpendling fra omkringliggende kommuner. Pendlingen kan dermed ses som et resultat av vurdering mellom boligkostnader og reiseavstand til arbeid.
 
 # Oppgave 3
 
@@ -162,3 +157,11 @@ Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar system
 Samtidig løftes betydningen av mobilitet fram son en nøkkel til å forstå regionale sammenhenger. Flytting og pendling binder kommuner sammen i større funksjonelle regioner, og endringer i ett område kan få konsekvenser for både nabokommuner og større arbeidsmarkedsregioner. Rapporten viser også at utdanningsnivået stiger i hele landet, men at veksten er sterkest i de mest sentrale kommunene, noe som igjen påvirker både arbeidsmarkedet, inntektsnivå og boligpriser.
 
 Gjennom sin brede tilnærming gir *Regionale utviklingstrekk 2025* et helhetlig bilde av de strukturelle kreftene som driver regional utvikling i Norge. Rapporten fungerer som et viktig kunnskapsgrunnlag for analyser som undersøker systematiske variasjoner mellom kommuner. Den gir samtidig et tydelig rammeverk for å forstå hvordan sentralitet, demografi, arbeidsmarked og mobilitet utvikler seg og påvirker hverandre over tid.
+
+Artikkelen *Sentralisering og regional utvikling i Norge* gir en bred framstilling av hvordan befolkning, arbeidsplasser og økonomisk aktivitet gradvis har konsentrert seg i byer og tettsteder. Utviklingen beskrives som en langsiktig prosess der urbanisering, arbeidsinnvandring og høyt aktivitetsnivå både privat og offentlig sektor har bidratt til sterk vekst i mange byregioner. Samtidig viser artikkelen at Norge skiller seg fra mer urbaniserte europeiske land gjennom en småskala bystrukturer som likevel har lagt grunnlag for høy verdiskaping og produktivitet i store deler av landet. Det pekes også på betydelige nyanser i utviklingen, der enkelte mindre byregioner og distriktsområder har hatt positiv vekst, mens andre har opplevd stagnasjon eller tilbakegang.
+
+Artikkelen løfter fram hvordan næringsstruktur, innovasjonsevne og regional arbeidsdeling påvirker verdiskaping og sysselsetting. Den viser også hvordan sentrale og perifere områder er tett knyttet sammen gjennom kunnskapsutveksling, verdikjeder og pendling. Samlet gir artikkelen et heletlig bilde av de strukturelle kreftene bak regional utvikling i Norge. Den tydeliggjør samtidig hvordan sentralisering og regionale forskjeller formes av økonomiske, demografiske og institusjonelle forhold.
+
+*Vareide (2024)* har skrevet en fagfellevurdert bok om regional utvikling i Norge og hvordan ulike steder kan påvirke sin egen vekst. Boka undersøker hvorfor noen kommuner og regioner vokser, mens andre opplever stagnasjon eller befolkningsnedgang. Et sentralt bidrag i arbeidet er utviklingen av den såkalte *attraktivitetsmodellen*, som forklarer vekst gjennom samspillet mellom arbeidsplassutvikling, flyttemønstre og steders attraktivitet. Vareide skiller mellom strukturelle forhold som steder i liten grad kan påvirke (som sentralitet og næringskultur), og lokale faktorer som kan påvirkes gjennom politikk og utviklingsarbeid.
+
+Videre vider analysene at sentralisering i Norge i stor grad drives av flyttemønstre der mennesker foretrekker å bosette seg mer sentralt, og at dette igjen skaper indirekte vekst i arbeidsplasser i sentrale område. Boka finner at økonomisk vekst i stor grad følger av befolkningsutvikling, heller enn omvendt, og at bostedspreferanser spiller en viktig rolle i regionale forskjeller. Vareide peker også på at faktorer som demografi, boligmarked, tilgjengelighet til arbeidsplasser og sentralitet har stor betydning for utviklingen, mens enkelte vanlige forklaringer som utdanningsnivå og innovasjonsgrad i næringslivet har svakere sammenheng med regional vekst enn ofte antatt.
