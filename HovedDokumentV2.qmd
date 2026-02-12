@@ -44,6 +44,7 @@ library(stringr)
 library(writexl)
 library(lmtest)
 library(plm)
+library(sandwich)
 
 options(scipen = 999)
 ```
@@ -1484,7 +1485,6 @@ arlig_endring_lag |>
   filter(knr24 == 0301) |>
   select(år, d_boligpris, d_boligpris_lag1) |>
   head(6)
-
 ```
 
 
@@ -1645,16 +1645,6 @@ master %>%
 ```
 Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene. Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster. Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
 
-
-
-
-
-
-
-
-
-
-
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
 ```{r}
@@ -1743,7 +1733,7 @@ folke_growth <- master %>%
 ```
 
 ```{r}
-# X-variabel: verdier i startåret (2010) ---
+# X-variabel: verdier i startåret (2010)
 x_start <- master %>%
   transmute(
     kommune = as.character(knr24),
@@ -1856,138 +1846,6 @@ Samtidig innebærer dette at rundt 30 prosent av variasjonen ikke forklares av m
 Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for eksempel lokale politiske beslutninger, naturgitte forhold eller andre tilfeldige og historiske faktorer.
 Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
 
-```{r}
-# -------------------------------
-# 0) Hjelpefunksjon (dere har den)
-# -------------------------------
-to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
-
-# -------------------------------
-# 1) Bygg PANELDATA (år-kommune)
-#    Robust mot 'år' med å: vi renamer til 'year'
-# -------------------------------
-panel_tidy <- master %>%
-  transmute(
-    kommune = as.character(knr24),
-    year    = as.integer(as.character(år)),
-
-    beftot = to_num(beftot.x),
-
-    Ledighet_pct      = to_num(andel_NAV),
-    Hoy_utdanning_pct = to_num(UH_pct),
-
-    Befolkning = to_num(beftot.x),
-    Syss       = to_num(Arbeidssted.x),
-
-    Nettoflytting_1k  = to_num(nettoflytting1k_tot),
-    Nettopendling_1k  = to_num(nettoInnPendl1k),
-
-    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1))
-  ) %>%
-  arrange(kommune, year) %>%
-  group_by(kommune) %>%
-  mutate(
-    d_ln_bef = log(beftot) - lag(log(beftot)),
-    Arbeidsplasser_1k = 1000 * Syss / Befolkning
-  ) %>%
-  ungroup() %>%
-  # hold bare observasjoner som kan brukes i modellen
-  filter(
-    is.finite(d_ln_bef),
-    is.finite(Ledighet_pct),
-    is.finite(Hoy_utdanning_pct),
-    is.finite(Arbeidsplasser_1k),
-    is.finite(Nettoflytting_1k),
-    is.finite(Nettopendling_1k),
-    is.finite(ln_Boligpris)
-  ) %>%
-  mutate(
-    kommune = factor(kommune),
-    year    = as.integer(year),
-    folkevekst_pct_aar = 100 * d_ln_bef
-  )
-
-# Rask sjekk (ikke nødvendig, men greit å ha)
-panel_tidy %>%
-  summarise(
-    N = n(),
-    Ant_kommuner = n_distinct(kommune),
-    Ant_år = n_distinct(year)
-  ) %>%
-  kable()
-
-
-# -------------------------------
-# 2) PANELMODELL (TWFE): kommune + år
-#    Sentralitet/Landsdel utelates (fanges av kommune-FE)
-# -------------------------------
-mod_panel_twfe <- feols(
-  d_ln_bef ~ Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
-    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris
-  | kommune + year,
-  data = panel_tidy,
-  cluster = ~kommune
-)
-
-# Tidy tabell
-tidy(mod_panel_twfe, conf.int = TRUE) %>%
-  select(term, estimate, std.error, conf.low, conf.high, p.value) %>%
-  kable(digits = 4)
-
-
-# -------------------------------
-# 3) PANELMODELL (TWFE) med laggede X (valgfri, men ofte penere)
-# -------------------------------
-panel_tidy_l1 <- panel_tidy %>%
-  arrange(kommune, year) %>%
-  group_by(kommune) %>%
-  mutate(
-    Ledighet_pct_l1      = lag(Ledighet_pct),
-    Hoy_utdanning_pct_l1 = lag(Hoy_utdanning_pct),
-    Arbeidsplasser_1k_l1 = lag(Arbeidsplasser_1k),
-    Nettoflytting_1k_l1  = lag(Nettoflytting_1k),
-    Nettopendling_1k_l1  = lag(Nettopendling_1k),
-    ln_Boligpris_l1      = lag(ln_Boligpris)
-  ) %>%
-  ungroup() %>%
-  filter(
-    is.finite(Ledighet_pct_l1),
-    is.finite(Hoy_utdanning_pct_l1),
-    is.finite(Arbeidsplasser_1k_l1),
-    is.finite(Nettoflytting_1k_l1),
-    is.finite(Nettopendling_1k_l1),
-    is.finite(ln_Boligpris_l1)
-  )
-
-mod_panel_twfe_l1 <- feols(
-  d_ln_bef ~ Ledighet_pct_l1 + Hoy_utdanning_pct_l1 + Arbeidsplasser_1k_l1 +
-    Nettoflytting_1k_l1 + Nettopendling_1k_l1 + ln_Boligpris_l1
-  | kommune + year,
-  data = panel_tidy_l1,
-  cluster = ~kommune
-)
-
-tidy(mod_panel_twfe_l1, conf.int = TRUE) %>%
-  select(term, estimate, std.error, conf.low, conf.high, p.value) %>%
-  kable(digits = 4)
-
-
-# -------------------------------
-# 4) SAMMENLIGNING (tverrsnitt mean vs panel TWFE)
-#    Forutsetter at mod_oppg6_mean finnes fra før
-# -------------------------------
-modelsummary(
-  list(
-    "Tverrsnitt (mean)" = mod_oppg6_mean,
-    "Panel TWFE"        = mod_panel_twfe,
-    "Panel TWFE (lag1)" = mod_panel_twfe_l1
-  ),
-  stars = TRUE,
-  statistic = "({std.error})",
-  fmt = 3
-)
-```
-
 ### Bare for 2000 - 2024
 
 ```{r}
@@ -2072,7 +1930,6 @@ mod_oppg6_mean <- lm(
 )
 
 summary(mod_oppg6_mean)
-
 ```
 
 Resultatene fra modellen der forklaringsvariablene er representert ved gjennomsnittsverdier for perioden 2000-2024 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
@@ -2103,41 +1960,32 @@ Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen n
 ```{r}
 to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
 
-panel_df <- master %>%
+# Bygg et "df_6"-datasett (kommune-år) fra master
+df_6 <- master %>%
   transmute(
     knr24 = as.character(knr24),
     år    = as.integer(as.character(år)),
 
-    # Folketall (bruk riktig kolonne hos dere)
-    beftot = to_num(beftot.x),
+    # Folketall (BYTT om nødvendig til beftot.y)
+    beft = to_num(beftot),
 
-    # Forklaringsvariabler (årlig nivå)
+    # X-variabler (som dere bruker)
     Ledighet_pct      = to_num(andel_NAV),
     Hoy_utdanning_pct = to_num(UH_pct),
 
-    # Arbeidsplasser per 1000 innbyggere (årsnivå)
-    Befolkning = to_num(beftot.x),
-    Syss       = to_num(Arbeidssted.x),
+    Syss = to_num(Arbeidssted.x),
 
     Nettoflytting_1k  = to_num(nettoflytting1k_tot),
     Nettopendling_1k  = to_num(nettoInnPendl1k),
 
-    ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1))
-
-    # NB: ikke ta med Sentralitet / Landsdel her (forklares under)
+    Boligpris    = to_num(KvPris_Eneboliger),
+    ln_Boligpris = log(pmax(Boligpris, 1))
   ) %>%
-  arrange(knr24, år) %>%
-  group_by(knr24) %>%
   mutate(
-    # Årlig vekst i folketall (log-differanse)
-    d_ln_bef = log(beftot) - lag(log(beftot)),
-
-    # Arbeidsplasser per 1000 innbyggere (årlig)
-    Arbeidsplasser_1k = 1000 * Syss / Befolkning
+    Arbeidsplasser_1k = 1000 * Syss / beft
   ) %>%
-  ungroup() %>%
   filter(
-    is.finite(d_ln_bef),
+    is.finite(beft),
     is.finite(Ledighet_pct),
     is.finite(Hoy_utdanning_pct),
     is.finite(Arbeidsplasser_1k),
@@ -2146,6 +1994,97 @@ panel_df <- master %>%
     is.finite(ln_Boligpris)
   )
 ```
+
+```{r}
+# Hvilke X-er vi skal ta periodegjennomsnitt av
+x_cols <- c("Ledighet_pct","Hoy_utdanning_pct","Arbeidsplasser_1k",
+            "Nettoflytting_1k","Nettopendling_1k","ln_Boligpris")
+
+
+# Finn start- og sluttår per kommune
+df_6_period <- df_6 %>%
+  group_by(knr24) %>%
+  summarise(
+    start_år = min(år, na.rm = TRUE),
+    end_år   = max(år, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+
+# Folketall i startår og sluttår
+df_6_start <- df_6 %>%
+  inner_join(df_6_period, by = "knr24") %>%
+  filter(år == start_år) %>%
+  transmute(knr24, start_år, folketall_start = beft)
+
+df_6_end <- df_6 %>%
+  inner_join(df_6_period, by = "knr24") %>%
+  filter(år == end_år) %>%
+  transmute(knr24, end_år, folketall_end = beft)
+
+# Periodegjennomsnitt av X per kommune (over hele perioden)
+df_6_X_mean <- df_6 %>%
+  inner_join(df_6_period, by = "knr24") %>%
+  filter(år >= start_år, år <= end_år) %>%
+  group_by(knr24, start_år, end_år) %>%
+  summarise(
+    across(all_of(x_cols), ~ mean(.x, na.rm = TRUE)),
+    .groups = "drop"
+  )
+
+#Lag tverrsnittsdatasett + folketallsvekst over perioden
+df_6_csB <- df_6_X_mean %>%
+  inner_join(df_6_start, by = c("knr24","start_år")) %>%
+  inner_join(df_6_end,   by = c("knr24","end_år")) %>%
+  mutate(
+    folketallsvekst = 100 * (folketall_end - folketall_start) / folketall_start
+  ) %>%
+  filter(is.finite(folketallsvekst)) %>%
+  filter(complete.cases(across(all_of(c("folketallsvekst", x_cols)))))
+```
+
+```{r}
+# Modell B: periode-gjennomsnitt-modell (OLS)
+m_6B <- lm(
+  folketallsvekst ~ Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris,
+  data = df_6_csB
+)
+```
+
+```{r}
+# Robuste standardfeil (HC1)
+B_vcov <- vcovHC(m_6B, type = "HC1")
+
+tab_B <- coeftest(m_6B, vcov = B_vcov)
+```
+
+```{r}
+summary(m_6B)
+```
+
+
+### Sammenligning av de tre regresjonene
+```{r}
+# Robuste vcov (tilpass cluster-variabelnavn!)
+cs_vcov   <- vcovCL(mod_oppg6,      cluster = ~ kommune)  # hvis mod_oppg6 bruker "kommune"
+B_vcov    <- vcovHC(m_6B,           type = "HC1")
+mean_vcov <- vcovHC(mod_oppg6_mean, type = "HC1")
+
+modelsummary(
+  list(
+    "Tverrsnitt (X=2010)"              = mod_oppg6,
+    "Tverrsnitt (X=snitt 2000-2024)"   = mod_oppg6_mean,
+    "Periode-gjennomsnitt (Modell B)"  = m_6B
+  ),
+  vcov = list(cs_vcov, B_vcov, mean_vcov),
+  statistic = "({std.error})",
+  stars = TRUE,
+  gof_omit = ".*"   # behold som du hadde (skjuler GOF)
+)
+```
+
+
 
 # En multippel regresjonsmodell for sysselsettingsvekst (Oppgave 7)
 
@@ -2233,6 +2172,49 @@ mod_oppg7_mean <- lm(
 )
 
 summary(mod_oppg7_mean)
+```
+
+```{r}
+# 1) Sysselsetting i startår og sluttår + vekst (%)
+df_7_syss <- df_6 %>%
+  inner_join(df_6_period, by = "knr24") %>%
+  group_by(knr24, start_år, end_år) %>%
+  summarise(
+    syss_start = first(Syss[år == start_år]),
+    syss_end   = first(Syss[år == end_år]),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    syssvekst_pct = 100 * (syss_end - syss_start) / syss_start
+  ) %>%
+  filter(is.finite(syssvekst_pct))
+
+# 2) Bygg "df_7_csB": X-gjennomsnitt + folketallsvekst + syssvekst
+df_7_csB <- df_6_csB %>%  # har: knr24, start_år, end_år, X-mean, folketallsvekst
+  inner_join(df_7_syss %>% select(knr24, start_år, end_år, syssvekst_pct),
+             by = c("knr24","start_år","end_år")) %>%
+  filter(is.finite(syssvekst_pct), is.finite(folketallsvekst)) %>%
+  filter(complete.cases(across(all_of(c("syssvekst_pct","folketallsvekst", x_cols)))))
+
+# (valgfritt) Antall kommuner
+df_7_csB %>%
+  summarise(Antall_kommuner = n()) %>%
+  print()
+
+# 3) Oppg 7-modell (periodegjennomsnitt): sysselsettingsvekst forklart av folketallsvekst + X
+m_7B <- lm(
+  syssvekst_pct ~ folketallsvekst +
+    Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris,
+  data = df_7_csB
+)
+
+# 4) Robuste standardfeil + tabell
+vcov_7B <- vcovHC(m_7B, type = "HC1")
+tab_7B  <- coeftest(m_7B, vcov = vcov_7B)
+
+summary(m_7B)
+tab_7B
 
 ```
 

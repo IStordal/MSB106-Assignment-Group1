@@ -2,11 +2,39 @@
 title: "Tekst til oppgaven"
 format: pdf
 editor: visual
+bibliography: references.bib
 ---
+
+# Datainnsamling
+
+For å finne utdanningsnivå har vi brukt tabellen 09429.
+Denne tabellen har ikke et datasett for nye kommuner per 2024.
+Vi måtte derfor hente ut alle kommunene og så sortere etter de nye kommunenavnene ved å bruke "newknr".
+Videre hentet vi ut data for begge kjønn og hentet ut bare høyere utdanning da vi så at det er det oppgaven krever.
+Dataene var delt inn i "Universitets- og høgskolenivå, kort" og "Universitets- og høgskolenivå, lang", disse har vi slått sammen.
+Vi har også filtrert vekk data for hele landet samlet.
+For å regne ut andelen har vi brukt de nye kommunenummerene og total befolkning.
 
 # Litteratur
 
+<<<<<<< HEAD
 "Kilde" har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017. De undersøker hvordan norske kommuner utvikler seg over tid. Videre undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering. Artikkelen beskriver også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller. Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene. Undersøkelsen viser at sentralisering hovedsakelig skjer *innenfor* arbeidsmarkedsregioner, ikke mellom dem. Kommuner med sterk sysselsettingsvekst, lave ledighetstall og høye boligpriser har hatt klart best befolkningsutvikling, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang. Det finnes få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land. Sentralisering har vært særlig sterk i perioder med økonomisk oppgang, mens utviklingen var mer dempet i 70‑ og 80‑tallets svakere konjunkturer. Undersøkelsen peker også på at migrasjon, utdanningsnivå, demografi og boligmarked spiller viktige roller i å forme regionale forskjeller.
+=======
+"Kilde" har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.
+De undersøker hvordan norske kommuner utvikler seg over tid.
+Videre undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.
+Artikkelen beskriver også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
+
+Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene.
+Dette er det samme som @thorsnæs2025 skriver om befolkningsutvikling.
+Undersøkelsen til ....
+viser at sentralisering hovedsakelig skjer *innenfor* arbeidsmarkedsregioner, ikke mellom dem.
+Kommuner med sterk sysselsettingsvekst, lave ledighetstall og høye boligpriser har hatt klart best befolkningsutvikling, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang.
+
+Det finnes få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land.
+Sentralisering har vært særlig sterk i perioder med økonomisk oppgang, mens utviklingen var mer dempet i 70‑ og 80‑tallets svakere konjunkturer.
+Undersøkelsen peker også på at migrasjon, utdanningsnivå, demografi og boligmarked spiller viktige roller i å forme regionale forskjeller.
+>>>>>>> c02f94e62f49587c5abdc1b9b98e22dfdada367c
 
 # Oppgave 2
 
@@ -16,9 +44,14 @@ editor: visual
 
 ![Caption](folketallutv.png)
 
-Kartet viser prosentvis folketallsvekst i norske kommuner etter år 2000. Fargene illustrerer utviklingen, der grønne nyanser representerer positiv vekst og rosa nyanser viser negativ utvikling. Mange kommuner har hatt nedgang i folketallet, særlig de som ligger langt fra større byer og derfor regnes som mindre sentrale.
+Kartet viser prosentvis folketallsvekst i norske kommuner etter år 2000.
+Fargene illustrerer utviklingen, der grønne nyanser representerer positiv vekst og rosa nyanser viser negativ utvikling.
+Mange kommuner har hatt nedgang i folketallet, særlig de som ligger langt fra større byer og derfor regnes som mindre sentrale.
 
-Grafene har vi delt kommunene inn i sentralitetsklassene fra 1 til 6, der klasse 1 er mest sentral og klasse 6 minst. På den andre siden ser vi at kommunene med sterk grønnfarge er de største byene i Norge og områdene rundt dem. Mindre byer har også grønn farge, men i svakere nyanser. Dette gjenspeiles i grafen, der klasse 1, 2 og 3 har hatt den sterkeste veksten, klasse 4 har hatt noe vekst, mens klasse 5 har hatt en mer svingende utvikling.
+Grafene er delt inn i sentralitetsklassene fra 1 til 6, der klasse 1 er mest sentral og klasse 6 minst.
+På den andre siden ser vi at kommunene med sterk grønnfarge er de største byene i Norge og områdene rundt dem.
+Mindre byer har også grønn farge, men i svakere nyanser.
+Dette gjenspeiles i grafen, der klasse 1, 2 og 3 har hatt den sterkeste veksten, klasse 4 har hatt noe vekst, mens klasse 5 har hatt en mer svingende utvikling.
 
 ### Befolkningsutvikling 20-29
 
@@ -26,9 +59,16 @@ Grafene har vi delt kommunene inn i sentralitetsklassene fra 1 til 6, der klasse
 
 ![Caption](bef2029utv.png)
 
-Kartet viser andelen av befolkningen i aldersgruppen 20-29 år i norske kommuner for året 2024. De mørkeste lilla nyansene markerer kommuner med høyest andel unge voksne, som for eksempel Rena, Bardu og Målselv. Dette kan henge sammen med tilstedeværelsen av store militærbaser i disse områdene. Også kommuner med store byer og gode studiemuligheter har en høy andel unge, noe som understreker betydningen av utdanningstilbud og arbeidsmuligheter.
+Kartet viser andelen av befolkningen i aldersgruppen 20-29 år i norske kommuner for året 2024.
+De mørkeste lilla nyansene markerer kommuner med høyest andel unge voksne, som for eksempel Rena, Bardu og Målselv.
+Dette kan henge sammen med tilstedeværelsen av store militærbaser i disse områdene.
+Også kommuner med store byer og gode studiemuligheter har en høy andel unge, noe som understreker betydningen av utdanningstilbud og arbeidsmuligheter.
 
-Grafen viser utviklingen i andelen unge fra år 2000 til 2024, fordelt på sentralitetsklassene. Vi ser naturlige svingninger i kurvene, som kan skyldes variasjoner i fødselstall. I 2024 har klasse 1 og 2 den høyesre andelen unge, noe som samsvarer med det vi ser på kartet. Det som er interresant, er at kommuner med militærbaser, til tross for sin høye andel unge, ikke skiller seg ut på grafen. Dette kan skyldes at disse kommunene inngår i klasser med mange andre kommuner, slik at det ikke får like stor visuell betydning i grafen.
+Grafen viser utviklingen i andelen unge fra år 2000 til 2024, fordelt på sentralitetsklassene.
+Vi ser naturlige svingninger i kurvene, som kan skyldes variasjoner i fødselstall.
+I 2024 har klasse 1 og 2 den høyesre andelen unge, noe som samsvarer med det vi ser på kartet.
+Det som er interresant, er at kommuner med militærbaser, til tross for sin høye andel unge, ikke skiller seg ut på grafen.
+Dette kan skyldes at disse kommunene inngår i klasser med mange andre kommuner, slik at det ikke får like stor visuell betydning i grafen.
 
 ### Andel arbeidsledighet
 
@@ -36,9 +76,14 @@ Grafen viser utviklingen i andelen unge fra år 2000 til 2024, fordelt på sentr
 
 ![Caption](arbledutv.png)
 
-Kartet viser andel arbeidsledighet i norske kommuner for året 2024, mens grafen illustrerer utviklingen i arbeidsledighet fra 2008 til 2024 fordelt på sentralitetsklassene. Sammenlignet med tidligere kart er det vanskeligere å se tydelige mønstre her, men enkelte områder skiller seg ut. I Finnmark ser vi flere kommuner med sterk rosa farge, som indikerer høy arbeidsledighet. Det samme gjelder deler av Østlandet. En svakhet ved kartet er at det inneholder mange klasser med korte intervaller, noe som gjør det utfordrende å skille fargene fra hverandre og dermed tolke dataene visuelt.
+Kartet viser andel arbeidsledighet i norske kommuner for året 2024, mens grafen illustrerer utviklingen i arbeidsledighet fra 2008 til 2024 fordelt på sentralitetsklassene.
+Sammenlignet med tidligere kart er det vanskeligere å se tydelige mønstre her, men enkelte områder skiller seg ut.
+I Finnmark ser vi flere kommuner med sterk rosa farge, som indikerer høy arbeidsledighet.
+Det samme gjelder deler av Østlandet.
+En svakhet ved kartet er at det inneholder mange klasser med korte intervaller, noe som gjør det utfordrende å skille fargene fra hverandre og dermed tolke dataene visuelt.
 
-Grafen viser at arbeidsledigheten har variert fra år til år, med et tydelig hopp i 2020 da koronapandemien førte til nedstengning av samfunnet. Allerede i 2021 ser vi at arbeidsledigheten sank igjen, noe som kan tyde på en relativ rask økonomisk gjenoppretting.
+Grafen viser at arbeidsledigheten har variert fra år til år, med et tydelig hopp i 2020 da koronapandemien førte til nedstengning av samfunnet.
+Allerede i 2021 ser vi at arbeidsledigheten sank igjen, noe som kan tyde på en relativ rask økonomisk gjenoppretting.
 
 ### Sysselsettingsvekst
 
@@ -46,11 +91,17 @@ Grafen viser at arbeidsledigheten har variert fra år til år, med et tydelig ho
 
 ![Caption](syssutv.png)
 
-Kartet viser utviklingen i sysselsettingen i norske kommuner etter år 2000. Kommuner med grønn farge har hatt vekst i sysselsettingen, mens de lilla kommunene har opplevd nedgang. Generelt ser vi at det er flest grønne kommuner, og de med sterkest grønnfarge er typisk kommuner med større byer og mer sentral beliggenhet.
+Kartet viser utviklingen i sysselsettingen i norske kommuner etter år 2000.
+Kommuner med grønn farge har hatt vekst i sysselsettingen, mens de lilla kommunene har opplevd nedgang.
+Generelt ser vi at det er flest grønne kommuner, og de med sterkest grønnfarge er typisk kommuner med større byer og mer sentral beliggenhet.
 
-Grafen viser utviklingen sysselsatte fra 200o til 2024. Her ser vi at klasse 1 og 2 har hatt den sterkeste veksten, mens klasse 6 er den eneste med negativ utvikling. Dette samsvarer med det vi ser på kartet, og understreker hvordan sentralitet henger sammen med arbeidsmarkedet.
+Grafen viser utviklingen sysselsatte fra 200o til 2024.
+Her ser vi at klasse 1 og 2 har hatt den sterkeste veksten, mens klasse 6 er den eneste med negativ utvikling.
+Dette samsvarer med det vi ser på kartet, og understreker hvordan sentralitet henger sammen med arbeidsmarkedet.
 
-Når vi sammenligner grafen for sysselsetting med grafen for folketallsvekst, ser vi at utviklingen er svært lik. Dette kan tyde på at befolkningsvekst og sysselsettingsvekst ofte går hånd i hånd. Dette er noe vi skal se nærmere på senere.
+Når vi sammenligner grafen for sysselsetting med grafen for folketallsvekst, ser vi at utviklingen er svært lik.
+Dette kan tyde på at befolkningsvekst og sysselsettingsvekst ofte går hånd i hånd.
+Dette er noe vi skal se nærmere på senere.
 
 ### Kvmpris utvikling
 
@@ -58,9 +109,17 @@ Når vi sammenligner grafen for sysselsetting med grafen for folketallsvekst, se
 
 ![Caption](kvmprisutv.png)
 
-Vi har valgt å lage kart kun for eneboliger, siden leiligheter hadde mange manglende verdier, særlig i kommuner uten byer. Dette skyldes lavt antall omsatte leiligheter, og ifølge SSB må et visst antall transaksjoner gjennomføres før tallene vises. Derfor gir grafene et bedre bilde av utviklingen, spesielt for leiligheter, der vi ser en kraftig vekst i kvadratmeterpris de siste årene. Det er først nylig at det finnes nok data til å vise utviklingen for klasse 6. For eneboliger ser vi også en tydelig prisvekst i alle klasser.
+Vi har valgt å lage kart kun for eneboliger, siden leiligheter hadde mange manglende verdier, særlig i kommuner uten byer.
+Dette skyldes lavt antall omsatte leiligheter, og ifølge SSB må et visst antall transaksjoner gjennomføres før tallene vises.
+Derfor gir grafene et bedre bilde av utviklingen, spesielt for leiligheter, der vi ser en kraftig vekst i kvadratmeterpris de siste årene.
+Det er først nylig at det finnes nok data til å vise utviklingen for klasse 6.
+For eneboliger ser vi også en tydelig prisvekst i alle klasser.
 
-Kartet for 2024 viser at de høyeste boligprisene finnes i de største byene. Dette henger sammen med faktorer som befolkningstetthet, utdanningsnivå og flyttemønstre. De største byene fremstår som mest attraktive, noe som gjenspeiles i både prisnivå og utvikling over tid.
+Kartet for 2024 viser at de høyeste boligprisene finnes i de største byene.
+Dette henger sammen med faktorer som befolkningstetthet, utdanningsnivå og flyttemønstre.
+De største byene fremstår som mest attraktive, noe som gjenspeiles i både prisnivå og utvikling over tid.
+Vi ser også at det kommuner nærliggende byer har også høyt prisnivå, det kan skyldes at prisene presses så høyt at man velger å flytte lengre vekk fra sentrum, da vil prisene der også presses opp.
+Når vi ser på intervallene for kvmpriser på kartet så ser vi også at prisforskjellene er veldig store fra bygd til by.
 
 Mønsteret i kartet for kvadratmeterpris kan tolkes i lys av budrenteteorien (Alonso-modellen), som tilsier at husholdninger er villige til å betale høyere boligpriser for å bo nær sentrale arbeidsplasser og tilbud. Dette bidrar til høyere boligpriser i de største byene og mest sentrale kommunene. De observerte prisforskjellene reflekterer dermed både forskjeller i tilgjengelighet til arbeidsmarkedet og attraktiviteten ved sentrale beliggenheter.
 
@@ -68,9 +127,15 @@ Mønsteret i kartet for kvadratmeterpris kan tolkes i lys av budrenteteorien (Al
 
 ![Caption](Bilde_universitetsutdannig.png) ![Caption](utdutv.png)
 
-Kartet viser andelen innbyggere med høyere utdanning i norske kommuner i 2024. Kommunene med mørkest rødfarge har den største andelen med høy utdannede. Tidligere har vi sett at disse kommunene også har en høy andel unge i aldersgruppen 20-29 år. Dette gjelder særlig de største studentbyene i Norge, som Oslo, Bergen og Trondheim. Kommunene som ligger rundt disse byene har noe lavere andel, men fortsatt høyere enn kommuner som ligger lenger unna. Dette kan skyldes at stundenter som bor i nabokommuner pendler inn til studiebyene, og dermed bidrar til å løfte utdanningsnivået også i sin egen kommune.
+Kartet viser andelen innbyggere med høyere utdanning i norske kommuner i 2024.
+Kommunene med mørkest rødfarge har den største andelen med høy utdannede.
+Tidligere har vi sett at disse kommunene også har en høy andel unge i aldersgruppen 20-29 år.
+Dette gjelder særlig de største studiebyene i Norge, som Oslo, Bergen og Trondheim.
+Kommunene som ligger rundt disse byene har noe lavere andel, men fortsatt høyere enn kommuner som ligger lenger unna.
+Dette kan skyldes at personer som bor i nabokommuner har tatt høyere utdanning i nærliggende kommune, og dermed bidrar til å løfte utdanningsnivået også i sin egen kommune.
 
-Grafen viser utviklingen i andelen med høyere utdanning fra 1986 til 2024. Vi ser en tydelig og jevn vekst i alle sentralitetsklasser, noe som kan forklares med økt fokus på utdanning og et samfunn som stiller stadig høyere kompetansekrav.
+Grafen viser utviklingen i andelen med høyere utdanning fra 1986 til 2024.
+Vi ser en tydelig og jevn vekst i alle sentralitetsklasser, noe som kan forklares med økt fokus på utdanning og et samfunn som stiller stadig høyere kompetansekrav.
 
 ### Flytting utvikling
 
@@ -80,11 +145,20 @@ Grafen viser utviklingen i andelen med høyere utdanning fra 1986 til 2024. Vi s
 
 ![Caption](flyttutv.png)
 
-For flytting har vi delt kart og grafer inn i to aldersgrupper, 18-29 og 30+. Her ser vi tydelig forskjeller i flyttemønstre mellom de to gruppene. På kartene er kommuner med netto innflytting markert i blått, mens kommuner med netto utflytting vises i rødt. Kartet for den yngre befolkningen viser en klar trend der unge flytter fra små bygdekommuner til byene, sannsynligvis for å studere eller jobbe. Når man blir eldre, ser vi at mange flytter tilbake til bygdene for å etablere familie.
+For flytting har vi delt kart og grafer inn i to aldersgrupper, 18-29 og 30+.
+Her ser vi tydelig forskjeller i flyttemønstre mellom de to gruppene.
+På kartene er kommuner med netto innflytting markert i blått, mens kommuner med netto utflytting vises i rødt.
+Kartet for den yngre befolkningen viser en klar trend der unge flytter fra små bygdekommuner til byene, sannsynligvis for å studere eller jobbe.
+Når man blir eldre, ser vi at mange flytter tilbake til bygdene for å etablere familie.
 
-Grafene gjenspeiler dette mønsteret, klasse 1 har høy netto innflytting blant unge, men nagtiv nettoflytting blant dem over 30 år. I 2021 ser vi en tydelig dupp i flyttingen for den eldre aldersgruppen. Dette kan sannsynligvis henge sammen med koronapandemien. Det er også en liten nedgang blant de unge samme år, men den er langt mindre. Hvorfor skjer dette?
+Grafene gjenspeiler dette mønsteret, klasse 1 har høy netto innflytting blant unge, men nagtiv nettoflytting blant dem over 30 år.
+I 2021 ser vi en tydelig dupp i flyttingen for den eldre aldersgruppen.
+Dette kan sannsynligvis henge sammen med koronapandemien.
+Det er også en liten nedgang blant de unge samme år, men den er langt mindre.
+Hvorfor skjer dette?
 
-For de øvrige klassene ser vi noen svingninger, men generelt er utviklingen stabil. Dette understreker hvordan alder og livsfase påvirker hvor folk velger å bo.
+For de øvrige klassene ser vi noen svingninger, men generelt er utviklingen stabil.
+Dette understreker hvordan alder og livsfase påvirker hvor folk velger å bo.
 
 ### Pendling utvikling
 
@@ -92,9 +166,16 @@ For de øvrige klassene ser vi noen svingninger, men generelt er utviklingen sta
 
 ![Caption](pendlutv.png)
 
-Kartet viser netto innpendling per 1000 arbeidsplasser i kommunene. Vi ser at det er få kommuner med sterk negativ netto innpedling, og disse er spredt rundt på Østlandet. Samtidig ser vi at flere av kommunene med en positiv netto innpendling ligger i nærheten av de rød kommunene. Dette kan tyde på at mange pendler fra de rød kommunene og inn til de mørkeblå kommunene, som da bidrar til høy netto innpendling i de blå kommunene. Det kan være sannsynlig at mange som bor i kommunene rundt Oslo kommune, jobber i og pendler inn til Oslo.
+Kartet viser netto innpendling per 1000 arbeidsplasser i kommunene.
+Vi ser at det er få kommuner med sterk negativ netto innpedling, og disse er spredt rundt på Østlandet.
+Samtidig ser vi at flere av kommunene med en positiv netto innpendling ligger i nærheten av de rød kommunene.
+Dette kan tyde på at mange pendler fra de rød kommunene og inn til de mørkeblå kommunene, som da bidrar til høy netto innpendling i de blå kommunene.
+Det kan være sannsynlig at mange som bor i kommunene rundt Oslo kommune, jobber i og pendler inn til Oslo.
 
-Grafen viser utviklingen i netto innpendling fra år 2000 til 2024. Her ser vi at sentralitetsklassene 2 til 6 har hatt noen svingninger, men viser en positiv utvikling over tid. Klasse 1, som representerer Oslo, har derimot hatt en negativ utvikling i netto innpendling. Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attraktive og sentrale som arbeidssteder, noe som har redusert innpendlingen til Oslo over tid.
+Grafen viser utviklingen i netto innpendling fra år 2000 til 2024.
+Her ser vi at sentralitetsklassene 2 til 6 har hatt noen svingninger, men viser en positiv utvikling over tid.
+Klasse 1, som representerer Oslo, har derimot hatt en negativ utvikling i netto innpendling.
+Dette kan skyldes at flere mindre kommuner i andre klasser har blitt mer attraktive og sentrale som arbeidssteder, noe som har redusert innpendlingen til Oslo over tid.
 
 Budrenteteorien kan også bidra til å forklare pendlemønstrene vi observerer. Når boligprisene er høye i sentrale kommuner, vil mange hudholdninger velge å bosette seg i omlandskommuner med lavere boligkostnader, samtidig som de beholder arbeidsplassen i sentrum. Dette gir høy netto innpendling til de mest sentrale kommunene, og netto utpendling fra omkringliggende kommuner. Pendlingen kan dermed ses som et resultat av vurdering mellom boligkostnader og reiseavstand til arbeid.
 
@@ -102,25 +183,35 @@ Budrenteteorien kan også bidra til å forklare pendlemønstrene vi observerer. 
 
 ## Korelasjon mellom gitte variabler
 
-Som første deskriptive tilnærming presenteres korrelasjonsberegninger på utvalgte variabler. Korrelasjonen er beregnet for alle de norske kommuner i årene 2014 og 2024. Korelasjonsverdien er en indikator på graden av samvariasjon mellom to gitte variabler. Skalen for korelasjon går fra -1 til 1. Jo nærmere 1 et positivt tall er, jo større tyder på det på en positiv samvariasjon, og vice versa med negative tall.
+Som første deskriptive tilnærming presenteres korrelasjonsberegninger på utvalgte variabler.
+Korrelasjonen er beregnet for alle de norske kommuner i årene 2014 og 2024.
+Korelasjonsverdien er en indikator på graden av samvariasjon mellom to gitte variabler.
+Skalen for korelasjon går fra -1 til 1.
+Jo nærmere 1 et positivt tall er, jo større tyder på det på en positiv samvariasjon, og vice versa med negative tall.
 
 ![](images/clipboard-3708177039.png)
 
 ## Paneldata
 
-I paneldata analysen beregnes korrelasjoner basert på årlige endinger innen hver kommuner. Dette skiller seg fra forrige avsnitt hvor nivåforskjellene ble målt mellom kommuner.
+I paneldata analysen beregnes korrelasjoner basert på årlige endinger innen hver kommuner.
+Dette skiller seg fra forrige avsnitt hvor nivåforskjellene ble målt mellom kommuner.
 
 Først er det blitt beregnet Spearman korrelasjonskoefisienter, utifra dette datasettet med delta verdier.
 
 ![](images/clipboard-982896316.png)
 
-Ettersom det er veldig mange kommuner er det lite hensiktsmessig å illustrere hver enkelt kommune sine samvariasjoner. Derfor illustreres et "summary" av hver av de enkelt variabelkombinasjonene
+Ettersom det er veldig mange kommuner er det lite hensiktsmessig å illustrere hver enkelt kommune sine samvariasjoner.
+Derfor illustreres et "summary" av hver av de enkelt variabelkombinasjonene
 
 ![](images/clipboard-4183825931.png)
 
 ### Trege virkninger
 
-Trege virkninger er når en variabels endring ikke nødvendigvis utløser en endring i en annen variabel umiddelbart. Selv om det kan observeres en sammenheng mellom utviklingen i boligpriser og utflytting i en kommune, er det ikke gitt at effekten viser seg i samme år.  For å fange opp disse effektene, kan «laggede variabler» benyttes. Da tester man ikke for korrelasjoner mellom to variabler observert i samme år, men tester en variabel opp mot observasjoner fra en annen periode.  Da kan man for eksempel teste hypoteser som at en endring i boligpriser vil påvirke netto innflytting det påkommende året.
+Trege virkninger er når en variabels endring ikke nødvendigvis utløser en endring i en annen variabel umiddelbart.
+Selv om det kan observeres en sammenheng mellom utviklingen i boligpriser og utflytting i en kommune, er det ikke gitt at effekten viser seg i samme år.
+ For å fange opp disse effektene, kan «laggede variabler» benyttes.
+Da tester man ikke for korrelasjoner mellom to variabler observert i samme år, men tester en variabel opp mot observasjoner fra en annen periode. 
+Da kan man for eksempel teste hypoteser som at en endring i boligpriser vil påvirke netto innflytting det påkommende året.
 
 Dette er et viktig aspekt for å unngå at faktiske sammenhenger blir oversett fordi effekten ikke spiller inn med en gang.
 
@@ -130,32 +221,51 @@ I denne oppgaven for å teste denne effekten lager vi et nytt datasett hvor en a
 
 ![](images/clipboard-2432818359.png)
 
-Pearson-korrelasjonen måler lineær samvariasjon mellom to kontinuerlige variabler, og er følsom for ekstreme verdier. Spearman-korrelasjonen er basert på rangering av observasjoner, og fanger opp monotone sammenhenger, også når forholdet ikke er lineært.
+Pearson-korrelasjonen måler lineær samvariasjon mellom to kontinuerlige variabler, og er følsom for ekstreme verdier.
+Spearman-korrelasjonen er basert på rangering av observasjoner, og fanger opp monotone sammenhenger, også når forholdet ikke er lineært.
 
-Pearson koeffisient måler for liner samvariasjon mellom to kontinuerlige variabler, mens Spearman baserer seg på en rangering av observasjoner. De har hver sin styrke, hvor Pearson er svært følsom for ekstreme verdier, mens Spearman heller fanger opp monotone sammenhenger, også ved ikke livnære sammenhenger.
+Pearson koeffisient måler for liner samvariasjon mellom to kontinuerlige variabler, mens Spearman baserer seg på en rangering av observasjoner.
+De har hver sin styrke, hvor Pearson er svært følsom for ekstreme verdier, mens Spearman heller fanger opp monotone sammenhenger, også ved ikke livnære sammenhenger.
 
 ## Spredningsdiagrammer
 
 ![](images/clipboard-492759142.png)
 
-Spredningdiagrammet viser en svak negativ sammenheng mellom årlig endring i folketall og sysselsetting. Dette indikerer at kommuner med befolkningsvekst ikke nødvendigvis opplever tilsvarende vekst i lokale arbeidsplasser, noe som kan reflektere økt pendling eller konsentrasjon av arbeidsplasser i større regionale sentre. Samtidig er spredningen stor, noe som tyder på at andre faktorer enn befolkningsendring spiller en viktig rolle for sysselsettingsutviklingen.
+Spredningdiagrammet viser en svak negativ sammenheng mellom årlig endring i folketall og sysselsetting.
+Dette indikerer at kommuner med befolkningsvekst ikke nødvendigvis opplever tilsvarende vekst i lokale arbeidsplasser, noe som kan reflektere økt pendling eller konsentrasjon av arbeidsplasser i større regionale sentre.
+Samtidig er spredningen stor, noe som tyder på at andre faktorer enn befolkningsendring spiller en viktig rolle for sysselsettingsutviklingen.
 
 ![](images/clipboard-847073424.png)
 
-Spredningdiagrammet viser en tydelig positiv sammenheng mellom sentralitetsindeks og boligpris, men relasjonen fremstår ikke lineær. Boligprisene øker relativt moderat ved lave nivåer av sentralitet, men sterkere i de mest sentrale kommunene. Dette tilsier at Spearman-korrelasjonen kan gi et mer robust mål på sammenhengen enn Pearson, ettersom Spearman ikke forutsetter lineæritet.
+Spredningdiagrammet viser en tydelig positiv sammenheng mellom sentralitetsindeks og boligpris, men relasjonen fremstår ikke lineær.
+Boligprisene øker relativt moderat ved lave nivåer av sentralitet, men sterkere i de mest sentrale kommunene.
+Dette tilsier at Spearman-korrelasjonen kan gi et mer robust mål på sammenhengen enn Pearson, ettersom Spearman ikke forutsetter lineæritet.
 
 ![](images/clipboard-4170222301.png)
 
-Spredningdiagrammet viser at sammenhengen mellom sentralitetsindeks og innpendling er monotont økende, men ikke fullt ut lineær. Innpendlingen øker relativt svakt ved lave nivåer av sentralitet, men mer markant i de mest sentrale kommunene. Dette innebærer at Pearson-korrelasjonen, som forutsetter lineæritet, kan undervurdere styrken i sammenhengen, mens Spearman-korrelasjonen er bedre egnet til å fange den monotone strukturen i dataene. Selv om sammenhengen er tydelig, viser spredningen i punktene at sentralitet alene ikke forklarer variasjonen i innpendling, og andre faktorer som næringsstruktur og transporttilgang spiller også en rolle.
+Spredningdiagrammet viser at sammenhengen mellom sentralitetsindeks og innpendling er monotont økende, men ikke fullt ut lineær.
+Innpendlingen øker relativt svakt ved lave nivåer av sentralitet, men mer markant i de mest sentrale kommunene.
+Dette innebærer at Pearson-korrelasjonen, som forutsetter lineæritet, kan undervurdere styrken i sammenhengen, mens Spearman-korrelasjonen er bedre egnet til å fange den monotone strukturen i dataene.
+Selv om sammenhengen er tydelig, viser spredningen i punktene at sentralitet alene ikke forklarer variasjonen i innpendling, og andre faktorer som næringsstruktur og transporttilgang spiller også en rolle.
 
 ![](images/clipboard-425484476.png)
 
-Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene. Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster. Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
+Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene.
+Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster.
+Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
 
-*Regionale utviklingstrekk 2025* gir en overordnet framstilling av hvordan demografiske, økonomiske og geografiske prosesser former utviklingen i norske kommuner. Rapporten beskriver et Norge der regionale forskjeller fortsatt er tydelige, og der utviklingen i stor grad følger et mønster som skiller sentrale områder fra mer perifere deler av landet. Befolkningsvekst, arbeidsplasskonsentrasjon, utdanningsnivå og boligmarkedets dynamikk samler seg i økende grad i og rundt de største byene. Dette skaper sterke regionale tyngdepunkt som tiltrekker seg både mennesker og arbiedsplasser. Samtidig står mange distriktskommuner overfor helt andre utfordringer. De preges ofte av en aldrende befolkning, svakere utvikling i arbeidsmarkedet og en vedvarende utflytting av unge voksne.
+*Regionale utviklingstrekk 2025* gir en overordnet framstilling av hvordan demografiske, økonomiske og geografiske prosesser former utviklingen i norske kommuner.
+Rapporten beskriver et Norge der regionale forskjeller fortsatt er tydelige, og der utviklingen i stor grad følger et mønster som skiller sentrale områder fra mer perifere deler av landet.
+Befolkningsvekst, arbeidsplasskonsentrasjon, utdanningsnivå og boligmarkedets dynamikk samler seg i økende grad i og rundt de største byene.
+Dette skaper sterke regionale tyngdepunkt som tiltrekker seg både mennesker og arbiedsplasser.
+Samtidig står mange distriktskommuner overfor helt andre utfordringer.
+De preges ofte av en aldrende befolkning, svakere utvikling i arbeidsmarkedet og en vedvarende utflytting av unge voksne.
 
-Samtidig løftes betydningen av mobilitet fram son en nøkkel til å forstå regionale sammenhenger. Flytting og pendling binder kommuner sammen i større funksjonelle regioner, og endringer i ett område kan få konsekvenser for både nabokommuner og større arbeidsmarkedsregioner. Rapporten viser også at utdanningsnivået stiger i hele landet, men at veksten er sterkest i de mest sentrale kommunene, noe som igjen påvirker både arbeidsmarkedet, inntektsnivå og boligpriser.
+Samtidig løftes betydningen av mobilitet fram son en nøkkel til å forstå regionale sammenhenger.
+Flytting og pendling binder kommuner sammen i større funksjonelle regioner, og endringer i ett område kan få konsekvenser for både nabokommuner og større arbeidsmarkedsregioner.
+Rapporten viser også at utdanningsnivået stiger i hele landet, men at veksten er sterkest i de mest sentrale kommunene, noe som igjen påvirker både arbeidsmarkedet, inntektsnivå og boligpriser.
 
+<<<<<<< HEAD
 Gjennom sin brede tilnærming gir *Regionale utviklingstrekk 2025* et helhetlig bilde av de strukturelle kreftene som driver regional utvikling i Norge. Rapporten fungerer som et viktig kunnskapsgrunnlag for analyser som undersøker systematiske variasjoner mellom kommuner. Den gir samtidig et tydelig rammeverk for å forstå hvordan sentralitet, demografi, arbeidsmarked og mobilitet utvikler seg og påvirker hverandre over tid.
 
 Artikkelen *Sentralisering og regional utvikling i Norge* gir en bred framstilling av hvordan befolkning, arbeidsplasser og økonomisk aktivitet gradvis har konsentrert seg i byer og tettsteder. Utviklingen beskrives som en langsiktig prosess der urbanisering, arbeidsinnvandring og høyt aktivitetsnivå både privat og offentlig sektor har bidratt til sterk vekst i mange byregioner. Samtidig viser artikkelen at Norge skiller seg fra mer urbaniserte europeiske land gjennom en småskala bystrukturer som likevel har lagt grunnlag for høy verdiskaping og produktivitet i store deler av landet. Det pekes også på betydelige nyanser i utviklingen, der enkelte mindre byregioner og distriktsområder har hatt positiv vekst, mens andre har opplevd stagnasjon eller tilbakegang.
@@ -165,3 +275,8 @@ Artikkelen løfter fram hvordan næringsstruktur, innovasjonsevne og regional ar
 *Vareide (2024)* har skrevet en fagfellevurdert bok om regional utvikling i Norge og hvordan ulike steder kan påvirke sin egen vekst. Boka undersøker hvorfor noen kommuner og regioner vokser, mens andre opplever stagnasjon eller befolkningsnedgang. Et sentralt bidrag i arbeidet er utviklingen av den såkalte *attraktivitetsmodellen*, som forklarer vekst gjennom samspillet mellom arbeidsplassutvikling, flyttemønstre og steders attraktivitet. Vareide skiller mellom strukturelle forhold som steder i liten grad kan påvirke (som sentralitet og næringskultur), og lokale faktorer som kan påvirkes gjennom politikk og utviklingsarbeid.
 
 Videre vider analysene at sentralisering i Norge i stor grad drives av flyttemønstre der mennesker foretrekker å bosette seg mer sentralt, og at dette igjen skaper indirekte vekst i arbeidsplasser i sentrale område. Boka finner at økonomisk vekst i stor grad følger av befolkningsutvikling, heller enn omvendt, og at bostedspreferanser spiller en viktig rolle i regionale forskjeller. Vareide peker også på at faktorer som demografi, boligmarked, tilgjengelighet til arbeidsplasser og sentralitet har stor betydning for utviklingen, mens enkelte vanlige forklaringer som utdanningsnivå og innovasjonsgrad i næringslivet har svakere sammenheng med regional vekst enn ofte antatt.
+=======
+Gjennom sin brede tilnærming gir *Regionale utviklingstrekk 2025* et helhetlig bilde av de strukturelle kreftene som driver regional utvikling i Norge.
+Rapporten fungerer som et viktig kunnskapsgrunnlag for analyser som undersøker systematiske variasjoner mellom kommuner.
+Den gir samtidig et tydelig rammeverk for å forstå hvordan sentralitet, demografi, arbeidsmarked og mobilitet utvikler seg og påvirker hverandre over tid.
+>>>>>>> c02f94e62f49587c5abdc1b9b98e22dfdada367c
