@@ -150,14 +150,15 @@ bef_andel24 <- befald |>
   select(-c(år, Alder, befage, beftot))
 ```
 
-Vi har hentet du folketall over kommunene i Norge gjennom Statistisk sentralbyrå (SSB) sine åpne API-tjenester gjennom PxWeb. Dette gjør det mulig å laste ned oppdaterte og detaljerte tall direkte ned i RStudio, og sikrer en reproduserbar arbeidsflyt. Vi hentet først ut totalbefolkningen for alle kommuner fra 1986 til 2025, som danner grunnlaget for å beregne folketallsutvikling og prosentvis vekst etter år 2000. Fra samme tabell hentet vi også demografiske data fordelt på tiårige aldersgrupper, som gjør det mulig å analysere befolkningssammensetningen og beregne andelen innbyggere i aldersgruppen 20-29 år i 2024. 
+Vi har hentet du folketall over kommunene i Norge gjennom Statistisk sentralbyrå (SSB) sine åpne API-tjenester gjennom PxWeb.
+Dette gjør det mulig å laste ned oppdaterte og detaljerte tall direkte ned i RStudio, og sikrer en reproduserbar arbeidsflyt.
+Vi hentet først ut totalbefolkningen for alle kommuner fra 1986 til 2025, som danner grunnlaget for å beregne folketallsutvikling og prosentvis vekst etter år 2000.
+Fra samme tabell hentet vi også demografiske data fordelt på tiårige aldersgrupper, som gjør det mulig å analysere befolkningssammensetningen og beregne andelen innbyggere i aldersgruppen 20-29 år i 2024.
 
-Videre renset vi kommunekoder og fjernet tekniske aggregeringer slik at datasett fra ulike år og tabeller kunne kobles sammen. Totalbefolkningen ble koblet med aldersdata for å beregne andeler, og befolkningstall for 2000-2025 ble brukt til å beregne prosentvis vekst. Disse prosessene ble gjennomført for å kunne lage kart- og kurveframstillinger, samt for å legge grunnlaget for korrelasjons- og regresjonsanalysene. Samlet gir dette et helhetlig og sammenlignbart datagrunnlag som gjør det mulig å studere regionale forskjeller og utviklingstrekk på tvers av norske kommuner. 
-
-
-
-
-
+Videre renset vi kommunekoder og fjernet tekniske aggregeringer slik at datasett fra ulike år og tabeller kunne kobles sammen.
+Totalbefolkningen ble koblet med aldersdata for å beregne andeler, og befolkningstall for 2000-2025 ble brukt til å beregne prosentvis vekst.
+Disse prosessene ble gjennomført for å kunne lage kart- og kurveframstillinger, samt for å legge grunnlaget for korrelasjons- og regresjonsanalysene.
+Samlet gir dette et helhetlig og sammenlignbart datagrunnlag som gjør det mulig å studere regionale forskjeller og utviklingstrekk på tvers av norske kommuner.
 
 ## Sentralitetsindeksen for norske kommuner
 
@@ -1097,7 +1098,6 @@ knitr::kable(
   )
 ```
 
-
 Sentralitetsindeks og andelen av innbyggerne som er i aldersgruppen (20-29)
 
 ```{r}
@@ -1205,7 +1205,6 @@ knitr::kable(
   )
 
 ```
-
 
 ```{r}
 kor_år(master, "andel_SSB.x", "nettoflytting1k_tot")|>
@@ -1342,7 +1341,6 @@ arlig_endring <- master |>
   select(knr24, år, d_bef, pct_syssel, d_andel_ledighet, d_boligpris, d_nettoflytt1k, d_innpendl1k)
 ```
 
-
 Lager en kode som beregner koefisienten for alle kommuner for
 
 ```{r}
@@ -1374,7 +1372,6 @@ cat("Korelasjon mellom arbeidsledighet og sysselsetting\n")
 summary(kor_kommune$kor_ledighet_syssel)
 ```
 
-
 #Korelasjon mellom boligpriser og årlig innflytting
 
 ```{r}
@@ -1391,12 +1388,10 @@ summary(kor_kommune$kor_syssel_bolig)
 
 # Korelasjon mellom pendling og sysselsetting
 
-
 ```{r}
 cat("Korelasjon mellom pendling og sysselsetting\n")
 summary(kor_kommune$kor_pendl_syssel)
 ```
-
 
 # Laggede endringer
 
@@ -1404,7 +1399,6 @@ summary(kor_kommune$kor_pendl_syssel)
 arlig_endring_lag1 <- arlig_endring |>
   mutate(år = år + 1)
 ```
-
 
 ```{r}
 arlig_endring_med_lag <- arlig_endring |>
@@ -1414,7 +1408,6 @@ arlig_endring_med_lag <- arlig_endring |>
     suffix = c("", "_lag1")
   )
 ```
-
 
 ```{r}
 kor_kommune_lag <- arlig_endring_med_lag |>
@@ -1455,7 +1448,6 @@ kor_kommune_lag <- arlig_endring_med_lag |>
   )
 ```
 
-
 ```{r}
 kor_sammenligning <- kor_kommune |>
   left_join(kor_kommune_lag, by = "knr24")
@@ -1476,17 +1468,12 @@ cat("Befolkning og flytting med lag\n")
 summary(kor_sammenligning$kor_bolig_flytt_lag)
 ```
 
-
-
-
-
 ```{r}
-arlig_endring_lag |>
+arlig_endring_med_lag |>
   filter(knr24 == 0301) |>
   select(år, d_boligpris, d_boligpris_lag1) |>
   head(6)
 ```
-
 
 # Spearsman vs Pearson
 
@@ -1535,7 +1522,7 @@ summary(kor_kommune_spearman$kor_bef_syssel)
 ```
 
 ```{r}
-kor_bef_syssel <- arlig_endring_lag |>
+kor_bef_syssel <- arlig_endring_med_lag |>
   group_by(knr24) |>
   summarise(
     pearson = if (sum(complete.cases(d_bef, pct_syssel)) >= 2)
@@ -1546,14 +1533,12 @@ kor_bef_syssel <- arlig_endring_lag |>
   )
 ```
 
-
 ```{r}
 summary(kor_bef_syssel)
 ```
 
-
 ```{r}
-kor_ledighet_syssel_lag <- arlig_endring_lag |>
+kor_ledighet_syssel_lag <- arlig_endring_med_lag |>
   group_by(knr24) |>
   summarise(
     pearson = if (sum(complete.cases(d_andel_ledighet, pct_syssel_lag1)) >= 2)
@@ -1564,7 +1549,6 @@ kor_ledighet_syssel_lag <- arlig_endring_lag |>
   )
 ```
 
-
 ```{r}
 summary(kor_ledighet_syssel_lag)
 ```
@@ -1572,6 +1556,7 @@ summary(kor_ledighet_syssel_lag)
 # Scatterplots og visulaiering
 
 ## Syssesetting ↔ endring i folketall
+
 ```{r}
 ggplot(arlig_endring,
        aes(x = d_bef, y = pct_syssel)) +
@@ -1586,7 +1571,10 @@ ggplot(arlig_endring,
   coord_cartesian(xlim = c(-2000, 5000), ylim = c(-20, 25))
 
 ```
-Spredningdiagrammet viser en svak negativ sammenheng mellom årlig endring i folketall og sysselsetting. Dette indikerer at kommuner med befolkningsvekst ikke nødvendigvis opplever tilsvarende vekst i lokale arbeidsplasser, noe som kan reflektere økt pendling eller konsentrasjon av arbeidsplasser i større regionale sentre. Samtidig er spredningen stor, noe som tyder på at andre faktorer enn befolkningsendring spiller en viktig rolle for sysselsettingsutviklingen.
+
+Spredningdiagrammet viser en svak negativ sammenheng mellom årlig endring i folketall og sysselsetting.
+Dette indikerer at kommuner med befolkningsvekst ikke nødvendigvis opplever tilsvarende vekst i lokale arbeidsplasser, noe som kan reflektere økt pendling eller konsentrasjon av arbeidsplasser i større regionale sentre.
+Samtidig er spredningen stor, noe som tyder på at andre faktorer enn befolkningsendring spiller en viktig rolle for sysselsettingsutviklingen.
 
 ## Sentralitetsindeks ↔ boligpris
 
@@ -1605,8 +1593,10 @@ master %>%
   theme_minimal() +
   coord_cartesian(xlim = c(500, 1000))
 ```
-Spredningdiagrammet viser en tydelig positiv sammenheng mellom sentralitetsindeks og boligpris, men relasjonen fremstår ikke lineær. Boligprisene øker relativt moderat ved lave nivåer av sentralitet, men sterkere i de mest sentrale kommunene. Dette tilsier at Spearman-korrelasjonen kan gi et mer robust mål på sammenhengen enn Pearson, ettersom Spearman ikke forutsetter lineæritet.
 
+Spredningdiagrammet viser en tydelig positiv sammenheng mellom sentralitetsindeks og boligpris, men relasjonen fremstår ikke lineær.
+Boligprisene øker relativt moderat ved lave nivåer av sentralitet, men sterkere i de mest sentrale kommunene.
+Dette tilsier at Spearman-korrelasjonen kan gi et mer robust mål på sammenhengen enn Pearson, ettersom Spearman ikke forutsetter lineæritet.
 
 ## Sentralitetsindeks ↔ innpendling
 
@@ -1624,7 +1614,10 @@ master %>%
   ) +
   theme_minimal()
 ```
-Spredningdiagrammet viser at sammenhengen mellom sentralitetsindeks og innpendling er monotont økende, men ikke fullt ut lineær. Innpendlingen øker relativt svakt ved lave nivåer av sentralitet, men mer markant i de mest sentrale kommunene. Dette innebærer at Pearson-korrelasjonen, som forutsetter lineæritet, kan undervurdere styrken i sammenhengen, mens Spearman-korrelasjonen er bedre egnet til å fange den monotone strukturen i dataene.
+
+Spredningdiagrammet viser at sammenhengen mellom sentralitetsindeks og innpendling er monotont økende, men ikke fullt ut lineær.
+Innpendlingen øker relativt svakt ved lave nivåer av sentralitet, men mer markant i de mest sentrale kommunene.
+Dette innebærer at Pearson-korrelasjonen, som forutsetter lineæritet, kan undervurdere styrken i sammenhengen, mens Spearman-korrelasjonen er bedre egnet til å fange den monotone strukturen i dataene.
 Selv om sammenhengen er tydelig, viser spredningen i punktene at sentralitet alene ikke forklarer variasjonen i innpendling, og andre faktorer som næringsstruktur og transporttilgang spiller også en rolle.
 
 ## Arbeidsledighet ↔ utflytting
@@ -1643,7 +1636,10 @@ master %>%
   ) +
   theme_minimal() 
 ```
-Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene. Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster. Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
+
+Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene.
+Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster.
+Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
 
 # 4. Sammenhengen mellom befolkning og sysselsetting
 
@@ -1677,11 +1673,21 @@ regresjon_fe <- plm(
 summary(regresjon_fe)
 
 ```
-Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselsetting for norske kommuner. Der vi byttet på befolkning og sysselsetting som avhengig variabel. I begge regresjonene er det en svært høy justert r-kvadrert. Det vil si at man ikke kan tolke resultatene kausalt. Man kan ikke bestemme hva som begrunnes av hva.
 
-Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe. Da ser vi at justert r-kvadrat er litt lavere, men fortsatt veldig høy. Det betyr også at vi ikke kan tolke resultatene kausalt.
+Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselsetting for norske kommuner.
+Der vi byttet på befolkning og sysselsetting som avhengig variabel.
+I begge regresjonene er det en svært høy justert r-kvadrert.
+Det vil si at man ikke kan tolke resultatene kausalt.
+Man kan ikke bestemme hva som begrunnes av hva.
 
-Tidligere så vi på kurver for befolkningsutvikling og sysselsetting, der så vi at kurvene hadde en lik utvikling, noe som tyder på at de henger sammen. Det ser vi igjen her at forklaringsgraden er veldig høy. Men det forklarer ikke om sysselsetningen øker hvis befolkningen øker, eller omvendt. Man kan derfor ikke tolke det kausalt.
+Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe.
+Da ser vi at justert r-kvadrat er litt lavere, men fortsatt veldig høy.
+Det betyr også at vi ikke kan tolke resultatene kausalt.
+
+Tidligere så vi på kurver for befolkningsutvikling og sysselsetting, der så vi at kurvene hadde en lik utvikling, noe som tyder på at de henger sammen.
+Det ser vi igjen her at forklaringsgraden er veldig høy.
+Men det forklarer ikke om sysselsetningen øker hvis befolkningen øker, eller omvendt.
+Man kan derfor ikke tolke det kausalt.
 
 Korrelasjonen...
 
@@ -2063,8 +2069,8 @@ tab_B <- coeftest(m_6B, vcov = B_vcov)
 summary(m_6B)
 ```
 
-
 ### Sammenligning av de tre regresjonene
+
 ```{r}
 # Robuste vcov (tilpass cluster-variabelnavn!)
 cs_vcov   <- vcovCL(mod_oppg6,      cluster = ~ kommune)  # hvis mod_oppg6 bruker "kommune"
@@ -2083,8 +2089,6 @@ modelsummary(
   gof_omit = ".*"   # behold som du hadde (skjuler GOF)
 )
 ```
-
-
 
 # En multippel regresjonsmodell for sysselsettingsvekst (Oppgave 7)
 
