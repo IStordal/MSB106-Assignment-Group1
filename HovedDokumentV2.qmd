@@ -1671,7 +1671,6 @@ regresjon_fe <- plm(
 )
 
 summary(regresjon_fe)
-
 ```
 
 Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselsetting for norske kommuner.
@@ -2069,6 +2068,31 @@ tab_B <- coeftest(m_6B, vcov = B_vcov)
 summary(m_6B)
 ```
 
+Modell m_6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst over perioden og gjennomsnittlige strukturelle kjennetegn ved kommunene i samme periode.
+Siden den avhengige variabelen er målt i prosent, kan koeffisientene tolkes som endring i prosentpoeng i folketallsveksten når en forklaringsvariabel øker med én enhet, gitt at øvrige variabler holdes konstante.
+
+Når en ser på resultatene viser den at nettoflytting har en positiv og statistisk signifikant sammenheng med folketallsvekst.
+Koeffisienten på 0,29 innebærer at én ekstra person i netto innflytting per 1000 innbyggere i gjennomsnitt over perioden er assosiert med 0,29 prosentpoeng høyere samlet folketallsvekst.
+Dette er forventet, ettersom nettoflytting per definisjon innebærer en direkte endring i befolkningens størrelse og dermed naturlig henger sammen med folketallsutviklingen.
+
+Arbeidsplasser per 1000 innbyggere har også en positiv og signifikant sammenheng.
+Koeffisienten på 0,035 innebærer at en økning på 10 arbeidsplasser per 1000 innbyggere er assosiert med om lag 0,35 prosentpoeng høyere folketallsvekst.
+Dette indikerer at et sterkt lokalt arbeidsmarked bidrar til langsiktig befolkningsvekst.
+
+Netto pendling har en negativ og signifikant koeffisient på - 0,013.
+En økning på 10 netto utpendlere per 1000 innbyggere er dermed assosiert med omtrent 0,13 prosentpoeng lavere folketallsvekst.
+Dette kan tolkes som at kommuner som i større grad fungerer som bostedskommuner for arbeidstakere i andre kommuner, har svakere egen vekstdynamikk.
+
+Boligpris er inkludert i logaritmert form.
+Koeffisienten på 22,19 innebærer at en én prosents økning i boligprisen er assosiert med omtrent 0,22 prosentpoeng høyere folketallsvekst (siden 1 prosent tilsvarer 0,01 i logaritmisk skala).
+Dette kan tolkes som at høyere boligpriser reflekterer underliggende attraktivitet og etterspørsel etter å bosette seg i kommunen.
+
+Når en ser på arbeidsledighet og andel med høyere utdanning ligger det ikke robuste og konsistente effekter i denne modellen.
+Dette tyder på at når det kontrolleres for arbeidsmarkedets størrelse, flyttestrømmer og boligpriser, har disse variablene begrenset selvstendig forklaringskraft for den langsiktige befolkningsutviklingen.
+
+Modellen har en justert R² på om lag 0,63, noe som innebærer at rundt 63 prosent av variasjonen i kommunenes folketallsvekst kan forklares av de inkluderte variablene.
+For en tverrsnittsanalyse på kommunenivå representerer dette en relativt høy forklaringsgrad, og indikerer at arbeidsmarked, flyttemønstre og boligmarked er sentrale strukturelle drivkrefter bak befolkningsutviklingen.
+
 ### Sammenligning av de tre regresjonene
 
 ```{r}
@@ -2089,6 +2113,27 @@ modelsummary(
   gof_omit = ".*"   # behold som du hadde (skjuler GOF)
 )
 ```
+
+De tre modellene analyserer sammenhengen mellom strukturelle kommuneegenskaper og folketallsvekst, men benytter ulike måter å måle forklaringsvariablene på.
+Som tidliger bruker den første modellen verdier fra startåret (2010), den andre bruker gjennomsnittlige verdier over perioden 2000 - 2024, mens den tredje modellen (Modell B) benytter periodegjennomsnitt uten landsdels- og sentralitetskontroller og estimeres med robuste standardfeil.
+
+Utifra disse modellene fremstår nettoflytting, arbeidsplasser per innbygger og boligpriser som de mest robuste forklaringsfaktorene.
+Nettoflytting har gjennomgående en positiv og statistisk signifikant sammenheng med folketallsvekst, noe som er teoretisk konsistent ettersom flyttestrømmer direkte påvirker befolkningsutviklingen.
+Arbeidsplasser per 1000 innbyggere har også stabil positiv effekt i alle modellene, noe som understreker betydningen av et sterkt lokalt arbeidsmarked for befolkningsvekst.
+Boligpriser er målt i logaritmisk form og viser en tydelig positiv sammenheng i samtlige spesifikasjoner.
+Dette kan tolkes som en indikator på kommunens attraktivitet og etterspørsel etter å bosette seg der.
+
+I modellene finnes det imidlertid enkelte forskjeller.
+Startårsmodellen (2010) har høy forklaringsgrad og fanger betydningen av kommunenes strukturelle utgangspunkt.
+Gjennomsnittsmodellen (2000 - 2024) gir noe høyere forklaringsgrad og reflekterer mer langsiktige trekk ved arbeidsmarked og bosettingsmønstre.
+Modell B har noe lavere justert R², men resultatene er fortsatt konsistente når det gjelder de sentrale variablene.
+Hovedmønstrene for modellene holder seg på tvers av spesifikasjonene og styrker dermed selve robustheten i funnene våres.
+
+Variabler som arbeidsledighet og andel med høyere utdanning viser mindre stabile effekter.
+Når det kontrolleres for arbeidsplasser, flytting og boligpriser, mister disse variablene ofte statistisk signifikans, noe som tyder på at deres effekt i stor grad opererer indirekte gjennom arbeidsmarked og attraktivitet.
+
+Samlet sett peker analysen på at arbeidsmarkedets størrelse, flyttestrømmer og boligmarkedets styrke er de mest sentrale drivkreftene bak kommunal folketallsvekst.
+At disse sammenhengene er stabile på tvers av ulike modellspesifikasjoner, gir økt tillit til at resultatene ikke er drevet av én bestemt modelltilnærming.
 
 # En multippel regresjonsmodell for sysselsettingsvekst (Oppgave 7)
 
@@ -2219,8 +2264,27 @@ tab_7B  <- coeftest(m_7B, vcov = vcov_7B)
 
 summary(m_7B)
 tab_7B
-
 ```
+
+Denne modellen analyserer hvilke faktorer som er assosiert med prosentvis sysselsettingsvekst i kommunene.
+Koeffisientene kan tolkes som endringer i prosentpoeng sysselsettingsvekst når en forklaringsvariabel øker med én enhet, gitt at øvrige forhold holdes konstante.
+
+Den sterkeste og mest statistisk robuste sammenhengen finnes mellom folketallsvekst og sysselsettingsvekst.
+Koeffisienten på 0,84 innebærer at én prosentpoeng høyere folketallsvekst er assosiert med om lag 0,84 prosentpoeng høyere sysselsettingsvekst.
+Dette er teoretisk konsistent, ettersom befolkningsvekst både øker tilbudet av arbeidskraft og etterspørselen etter varer og tjenester.
+Flere innbyggere skaper økt behov for handel, bygg, helse, offentlig tjenesteyting og annen lokal produksjon, noe som igjen genererer flere arbeidsplasser.
+I tillegg kan befolkningsvekst gi opphav til agglomerasjonseffekter, hvor økt økonomisk aktivitet forsterker produktivitet og sysselsetting ytterligere.
+
+Nettoflytting har også en positiv og svakt statistisk signifikant sammenheng med sysselsettingsvekst.
+Koeffisienten på 0,18 indikerer at én ekstra netto innflytter per 1000 innbyggere er assosiert med om lag 0,18 prosentpoeng høyere sysselsettingsvekst.
+Dette kan forklares ved at innflytting ofte består av personer i yrkesaktiv alder, noe som både styrker arbeidsstyrken og øker lokal etterspørsel.
+
+De øvrige variablene arbeidsledighet, andel med høyere utdanning, arbeidsplasser per innbygger, nettopendling og boligpriser, viser ingen statistisk signifikant selvstendig sammenheng når det kontrolleres for folketallsvekst.
+Dette kan tyde på at deres betydning for sysselsettingsutvikling i stor grad opererer indirekte gjennom befolkningsvekst.
+For eksempel kan et sterkt arbeidsmarked eller høye boligpriser først bidra til befolkningsvekst, som deretter stimulerer sysselsettingsvekst.
+
+Modellen har en justert R² på om lag 0,56, noe som innebærer at omtrent 56 prosent av variasjonen i sysselsettingsvekst mellom kommunene kan forklares av de inkluderte variablene.
+Samlet sett indikerer resultatene at sysselsettingsvekst i stor grad følger befolkningsveksten, og at arbeidsmarkedets utvikling dermed synes å være tett knyttet til kommunenes demografiske dynamikk.
 
 # Konklusjon og diskusjon (oppgave 8)
 
