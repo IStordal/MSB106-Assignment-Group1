@@ -35,10 +35,9 @@ options(scipen = 999)
 load("reg_data.rdata")
 ```
 
-
 # Datainnsamling
 
-Vi har hentet du folketall over kommunene i Norge gjennom Statistisk sentralbyrå (SSB) sine åpne API-tjenester gjennom PxWeb.
+Vi har hentet folketall over kommunene i Norge gjennom Statistisk sentralbyrå (SSB) sine åpne API-tjenester gjennom PxWeb.
 Dette gjør det mulig å laste ned oppdaterte og detaljerte tall direkte ned i RStudio, og sikrer en reproduserbar arbeidsflyt.
 Vi hentet først ut totalbefolkningen for alle kommuner fra 1986 til 2025, som danner grunnlaget for å beregne folketallsutvikling og prosentvis vekst etter år 2000.
 Fra samme tabell hentet vi også demografiske data fordelt på tiårige aldersgrupper, som gjør det mulig å analysere befolkningssammensetningen og beregne andelen innbyggere i aldersgruppen 20-29 år i 2024.
@@ -49,36 +48,25 @@ Disse prosessene ble gjennomført for å kunne lage kart- og kurveframstillinger
 Samlet gir dette et helhetlig og sammenlignbart datagrunnlag som gjør det mulig å studere regionale forskjeller og utviklingstrekk på tvers av norske kommuner.
 
 For å finne utdanningsnivå har vi brukt tabellen 09429.
-Denne tabellen har ikke et datasett for nye kommuner per 2024.
+Denne tabellen har ikke oppdaterte data for nye kommuner per 2024.
 Vi måtte derfor hente ut alle kommunene og så sortere etter de nye kommunenavnene ved å bruke "newknr".
-Videre hentet vi ut data for begge kjønn og hentet ut bare høyere utdanning da vi så at det er det oppgaven krever.
+Videre hentet vi ut data for begge kjønn og hentet ut bare høyere utdanning da det er det oppgaven krever.
 Dataene var delt inn i "Universitets- og høgskolenivå, kort" og "Universitets- og høgskolenivå, lang", disse har vi slått sammen.
-Vi har også filtrert vekk data for hele landet samlet.
+Vi har filtrert vekk data for hele landet samlet, samt de utdanningsnivåene som ikke var relevant.
 For å regne ut andelen har vi brukt de nye kommunenummerene og total befolkning.
 
 # Litteratur
 
-@andersson2019 har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.
-De undersøker hvordan norske kommuner utvikler seg over tid.
-Videre undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.
-Artikkelen undersøker også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
+##Regional utvikling i Norge @andersson2019 har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.De undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.Videre undersøker også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
 
 Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene [@andersson2019].
 Dette er det samme som @thorsnæs2025 skriver om befolkningsutvikling.
 Undersøkelsen til @andersson2019 viser at sentralisering hovedsakelig skjer *innenfor* arbeidsmarkedsregioner, ikke mellom dem.
-Kommuner med sterk sysselsettingsvekst, lave ledighetstall og høye boligpriser har hatt klart best befolkningsutvikling, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang [@andersson2019].
+Kommuner uten økonomiske utfordringer har hatt sterkest vekst, mens kommuner med høy arbeidsledighet og lave boligpriser har opplevd både færre jobber per innbygger og befolkningsnedgang [@andersson2019].
 
 Det finnes få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land.
 Sentralisering har vært særlig sterk i perioder med økonomisk oppgang, mens utviklingen var mer dempet i 70‑ og 80‑tallets svakere konjunkturer.
 Undersøkelsen peker også på at migrasjon, utdanningsnivå, demografi og boligmarked spiller viktige roller i å forme regionale forskjeller [@andersson2019].
-
-Harris-Todaro modellen
-
-En modell som sier noe om hvorfor personer flytter til byen selv om det er høy arbeidsledighet.
-Det handler om at selv om det ikke finnes jobber i byen så vil det lønne seg på sikt.
-Muligheten for jobb er større i større byer enn i mer rurale strøk fordi behovet for arbeidskraft er større.
-Dette fører også til at store byer ofte har en konstant høy arbeidsledighet.
-Modellen har fått kritikk for å være for enkel, den legger til grunn at det er bare lønn som bestemmer om man er villig til å flytte [@harris1970].
 
 @regionalutvikling2025 gir en overordnet framstilling av hvordan demografiske, økonomiske og geografiske prosesser former utviklingen i norske kommuner.
 Rapporten beskriver et Norge der regionale forskjeller fortsatt er tydelige, og der utviklingen i stor grad følger et mønster som skiller sentrale områder fra mer perifere deler av landet.
@@ -112,9 +100,9 @@ Vareide skiller mellom strukturelle forhold som steder i liten grad kan påvirke
 
 Videre vider analysene at sentralisering i Norge i stor grad drives av flyttemønstre der mennesker foretrekker å bosette seg mer sentralt, og at dette igjen skaper indirekte vekst i arbeidsplasser i sentrale område.
 Boka finner at økonomisk vekst i stor grad følger av befolkningsutvikling, heller enn omvendt, og at bostedspreferanser spiller en viktig rolle i regionale forskjeller.
-Vareide peker også på at faktorer som demografi, boligmarked, tilgjengelighet til arbeidsplasser og sentralitet har stor betydning for utviklingen, mens enkelte vanlige forklaringer som utdanningsnivå og innovasjonsgrad i næringslivet har svakere sammenheng med regional vekst enn ofte antatt.
+@vareide2024 peker også på at faktorer som demografi, boligmarked, tilgjengelighet til arbeidsplasser og sentralitet har stor betydning for utviklingen, mens enkelte vanlige forklaringer som utdanningsnivå og innovasjonsgrad i næringslivet har svakere sammenheng med regional vekst enn ofte antatt.
 
-Budrenteteorien:
+## Budrenteteori
 
 Budrenteteorien gir et sentralt analytisk rammeverk for å forstå hvordan geografisk plassering påvirker arealbruk og boligpriser [@capello2016].
 Ifølge teorien faller betalingsvilligheten for bolig med økende avstand til sentrum eller sentrale arbeidsmarkeder, fordi tilgjengelighet påvirker både tidsbruk og økonomiske kostnader knyttet til daglige aktiviteter.
@@ -125,6 +113,14 @@ Denne mekanismen nyanseres av Osland og Thorsen \[\@oslandthorsen2005\] , som vi
 Ved å introdusere en gravitasjonsbasert tilgjengelighetsindikator finner de at både en "urban attraction"-effekt og en arbeidsmarkedseffekt bidrar til å forklare romlige variasjoner i boligpriser.
 Dette innebærer at sentralitet kan forstås som et uttrykk for samlet tilgang til arbeidsplasser og tjenester, og at slike strukturelle forhold kan forsterke sentraliseringsprosesser.
 
+## Harris-Todaro modellen
+
+En modell som sier noe om hvorfor personer flytter til byen selv om det er høy arbeidsledighet.
+Det handler om at selv om det ikke finnes jobber i byen så vil det lønne seg på sikt.
+Muligheten for jobb er større i større byer enn i mer rurale strøk fordi behovet for arbeidskraft er større.
+Dette fører også til at store byer ofte har en konstant høy arbeidsledighet.
+Modellen har fått kritikk for å være for enkel, den legger til grunn at det er bare lønn som bestemmer om man er villig til å flytte [@harris1970].
+
 # Visuell fremstilling av utviklingen i Norge etter 1986
 
 ### Folketallsutvikling
@@ -134,12 +130,12 @@ Dette innebærer at sentralitet kan forstås som et uttrykk for samlet tilgang t
 ![*Folketallsutvikling fordelt på sentralitetsklasser*](folketallutv.png){#fig-nsvnovbre}
 
 Kartet viser prosentvis folketallsvekst i norske kommuner etter år 2000.
-Fargene illustrerer utviklingen, der grønne nyanser representerer positiv vekst og rosa nyanser viser negativ utvikling.
 Mange kommuner har hatt nedgang i folketallet, særlig de som ligger langt fra større byer og derfor regnes som mindre sentrale.
+Dette er det samme som @andersson2019 og @regionalutvikling2025 har beskrevet i sine arbeid.
 
 Grafene er delt inn i sentralitetsklassene fra 1 til 6, der klasse 1 er mest sentral og klasse 6 minst.
-På den andre siden ser vi at kommunene med sterk grønnfarge er de største byene i Norge og områdene rundt dem.
-Mindre byer har også grønn farge, men i svakere nyanser.
+Vi ser at kommunene med sterk grønnfarge er de største byene i Norge og områdene rundt dem.
+Videre har mindre byer også grønn farge, men i svakere nyanser.
 Dette gjenspeiles i grafen, der klasse 1, 2 og 3 har hatt den sterkeste veksten, klasse 4 har hatt noe vekst, mens klasse 5 har hatt en mer svingende utvikling.
 
 ### Befolkningsutvikling 20-29
@@ -153,28 +149,27 @@ De mørkeste lilla nyansene markerer kommuner med høyest andel unge voksne, som
 Dette kan henge sammen med tilstedeværelsen av store militærbaser i disse områdene.
 Også kommuner med store byer og gode studiemuligheter har en høy andel unge, noe som understreker betydningen av utdanningstilbud og arbeidsmuligheter.
 
-Grafen viser utviklingen i andelen unge fra år 2000 til 2024, fordelt på sentralitetsklassene.
 Vi ser naturlige svingninger i kurvene, som kan skyldes variasjoner i fødselstall.
 I 2024 har klasse 1 og 2 den høyesre andelen unge, noe som samsvarer med det vi ser på kartet.
-Det som er interresant, er at kommuner med militærbaser, til tross for sin høye andel unge, ikke skiller seg ut på grafen.
+Det som er interessant, er at kommuner med militærbaser, til tross for sin høye andel unge, ikke skiller seg ut på grafen.
 Dette kan skyldes at disse kommunene inngår i klasser med mange andre kommuner, slik at det ikke får like stor visuell betydning i grafen.
 
-### Andel arbeidsledighet
+### Prosentvi arbeidsledighet
 
 ![*Prosentvis arbeidsledighet for 2024, der mørkere farge er høyere andel*](kart/Bilde_Andel_arbeidsledighet.png)
 
 ![*Utvikling i prosentvis arbeisledighet fra 2008-2024, fordelt på sentralitetsklasser*](arbledutv.png)
 
-Kartet viser andel arbeidsledighet i norske kommuner for året 2024, mens grafen illustrerer utviklingen i arbeidsledighet fra 2008 til 2024 fordelt på sentralitetsklassene.
-Sammenlignet med tidligere kart er det vanskeligere å se tydelige mønstre her, men enkelte områder skiller seg ut.
+Sammenlignet med tidligere kart er det vanskeligere å se tydelige mønstre, men enkelte områder skiller seg ut.
 I Finnmark ser vi flere kommuner med sterk rosa farge, som indikerer høy arbeidsledighet.
 Det samme gjelder deler av Østlandet.
-En svakhet ved kartet er at det inneholder mange klasser med korte intervaller, noe som gjør det utfordrende å skille fargene fra hverandre og dermed tolke dataene visuelt.
+En svakhet ved kartet er at det inneholder mange klasser med korte intervaller.
+Dette gjør det utfordrende å skille fargene fra hverandre og dermed tolke dataene visuelt.
 
 Grafen viser at arbeidsledigheten har variert fra år til år, med et tydelig hopp i 2020 da koronapandemien førte til nedstengning av samfunnet.
 Allerede i 2021 ser vi at arbeidsledigheten sank igjen, noe som kan tyde på en relativ rask økonomisk gjenoppretting.
 Vi ser at de mest sentrale klassene har jevnt over høyest arbeidsledighet.
-Årsaken til det kan være det som Harris-Todaro modellen beskriver om at selv om det vil lønne seg på sikt å flytte til store byer fordi mulighetene er større der [@harris1970].
+Årsaken kan være at det vil lønne seg på sikt å flytte til store byer grunnet store mulighetene, og dermed har de konstant høy arbeidsledighet slik som Harris-Todaro modellen beskriver [@harris1970].
 
 ### Sysselsettingsvekst
 
@@ -182,13 +177,11 @@ Vi ser at de mest sentrale klassene har jevnt over høyest arbeidsledighet.
 
 ![*Utvikling i sysselsettingsvekst etter år 2000, fordelt på sentralitetsklasser*](syssutv.png)
 
-Kartet viser utviklingen i sysselsettingen i norske kommuner etter år 2000.
-Kommuner med grønn farge har hatt vekst i sysselsettingen, mens de lilla kommunene har opplevd nedgang.
 Generelt ser vi at det er flest grønne kommuner, og de med sterkest grønnfarge er typisk kommuner med større byer og mer sentral beliggenhet.
-
-Grafen viser utviklingen sysselsatte fra 200o til 2024.
-Her ser vi at klasse 1 og 2 har hatt den sterkeste veksten, mens klasse 6 er den eneste med negativ utvikling.
+Grafen viser at klasse 1 og 2 har hatt den sterkeste veksten, mens klasse 6 er den eneste med negativ utvikling.
 Dette samsvarer med det vi ser på kartet, og understreker hvordan sentralitet henger sammen med arbeidsmarkedet.
+I litteraturen har vi sett at regioner med sysselsettingsvekst og høy arbeidsledighet, samt høye boligpriser er de regionene som vokser mest.
+Dette har vi sett at gjelder for våre kart også.
 
 Når vi sammenligner grafen for sysselsetting med grafen for folketallsvekst, ser vi at utviklingen er svært lik.
 Dette kan tyde på at befolkningsvekst og sysselsettingsvekst ofte går hånd i hånd.
@@ -212,7 +205,7 @@ De største byene fremstår som mest attraktive, noe som gjenspeiles i både pri
 Vi ser også at det kommuner nærliggende byer har også høyt prisnivå, det kan skyldes at prisene presses så høyt at man velger å flytte lengre vekk fra sentrum, da vil prisene der også presses opp.
 Når vi ser på intervallene for kvmpriser på kartet så ser vi også at prisforskjellene er veldig store fra bygd til by.
 
-Mønsteret i kartet for kvadratmeterpris kan tolkes i lys av budrenteteorien.
+Mønsteret i kartet for kvadratmeterpris kan forklares med budrenteteorien.
 De høyeste boligprisene finner vi i de største byene og mest sentrale kommunene, noe som indikerer at sentrale beliggenheter verdsettes høyere i boligmarkedet.
 Prisforskjellene kan dermed knyttes til variasjoner i tilgjengelighet til arbeidsmarkedet og den generelle attraktiviteten ved sentrale lokaliseringer.
 
@@ -224,8 +217,8 @@ Prisforskjellene kan dermed knyttes til variasjoner i tilgjengelighet til arbeid
 
 Kartet viser andelen innbyggere med høyere utdanning i norske kommuner i 2024.
 Kommunene med mørkest rødfarge har den største andelen med høy utdannede.
-Tidligere har vi sett at disse kommunene også har en høy andel unge i aldersgruppen 20-29 år.
 Dette gjelder særlig de største studiebyene i Norge, som Oslo, Bergen og Trondheim.
+Det kan forklares av at kunnskapsintensive bransjer vokser.
 Kommunene som ligger rundt disse byene har noe lavere andel, men fortsatt høyere enn kommuner som ligger lenger unna.
 Dette kan skyldes at personer som bor i nabokommuner har tatt høyere utdanning i nærliggende kommune, og dermed bidrar til å løfte utdanningsnivået også i sin egen kommune.
 
@@ -355,9 +348,51 @@ Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når
 
 # Sammenheng mellom befolkning og sysselsetting
 
-
 ```{r}
 regresjonTest <- lm(formula = Arbeidssted ~ beftot, data = regresjon)
 
 summary(regresjonTest)
 ```
+
+```{r}
+regresjonTest <- lm(formula = beftot ~ Arbeidssted, data = regresjon)
+
+summary(regresjonTest)
+```
+
+```{r}
+regresjon_fe <- plm(
+  Arbeidssted ~ beftot,
+  data = regresjon,
+  index = c("knr24", "år"),
+  model = "within",
+  effect = "twoways"
+)
+
+summary(regresjon_fe)
+```
+
+Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselsetting for norske kommuner.
+Der vi byttet på befolkning og sysselsetting som avhengig variabel.
+I begge regresjonene er det en svært høy justert r-kvadrert.
+Det vil si at man ikke kan tolke resultatene kausalt.
+Man kan ikke bestemme hva som begrunnes av hva.
+
+Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe.
+Da ser vi at justert r-kvadrat er litt lavere, men fortsatt veldig høy.
+Det betyr også at vi ikke kan tolke resultatene kausalt.
+
+Tidligere så vi på kurver for befolkningsutvikling og sysselsetting, der så vi at kurvene hadde en lik utvikling, noe som tyder på at de henger sammen.
+Det ser vi igjen her at forklaringsgraden er veldig høy.
+Men det forklarer ikke om sysselsetningen øker hvis befolkningen øker, eller omvendt.
+Man kan derfor ikke tolke det kausalt.
+
+```{r}
+regresjon |> 
+  select(beftot, Arbeidssted) |> 
+  cor() 
+```
+
+Etter vi har regnet ut korrelasjonen
+
+Korrelasjonen...

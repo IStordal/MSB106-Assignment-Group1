@@ -1693,7 +1693,8 @@ Det ser vi igjen her at forklaringsgraden er veldig høy.
 Men det forklarer ikke om sysselsetningen øker hvis befolkningen øker, eller omvendt.
 Man kan derfor ikke tolke det kausalt.
 
-Korrelasjonen...
+
+Bruke andel sysselsatte istedenfor absolutte verdier slik at man får sett det i forhold til hverandre.
 
 # Relevant hypoteser basert på deskriptiv statistikk (oppgave 6)
 
