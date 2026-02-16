@@ -1650,6 +1650,11 @@ regresjon <- beftot |>
 ```
 
 ```{r}
+save(regresjon, file = "reg_data.rdata")
+```
+
+
+```{r}
 regresjonTest <- lm(formula = Arbeidssted ~ beftot, data = regresjon)
 
 summary(regresjonTest)
