@@ -93,9 +93,15 @@ Begge disse statistikkene bygger på samme ide om hva arbeidsledighet er, men ta
 AKU fanger opp arbeidsledige som ikke melder seg hos NAV, og noen som er registrert hos NAV kan i AKU svare slik at de ikke blir klassifisert som arbeidsledige der.
 I tillegg kan forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at NAV- og AKU-tallene ikke blir like.
 
-Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-arbeidsledighetstall>
-
 ## Sysselsetting
+
+Sysselsettingsdata er hentet fra Statistisk sentralbyrå (SSB), tabell 03321.
+Tabellen gir informasjon om antall arbeidsplasser i norske kommuner fra år 2000 og fremover, basert på tall for 4.
+kvartal hvert år.
+Analysen er avgrenset til sysselsatte personer etter arbeidsstedskommune, og kommuneinndelingen som gjelder i 2026 er benyttet.
+
+Dataene er samlet i en SAS-fil med årlige observasjoner på kommunenivå.
+Filen inneholder variablene knr24 (kommunenummer), år, arbeidssted (antall sysselsatte etter arbeidssted), beftot (totalt folketall) og *syss*, som angir sysselsettingsandelen beregnet som forholdet mellom antall sysselsatte og folketallet.
 
 ## Boligtyper
 
