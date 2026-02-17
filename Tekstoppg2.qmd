@@ -48,6 +48,55 @@ Totalbefolkningen ble koblet med aldersdata for å beregne andeler, og befolknin
 Disse prosessene ble gjennomført for å kunne lage kart- og kurveframstillinger, samt for å legge grunnlaget for korrelasjons- og regresjonsanalysene.
 Samlet gir dette et helhetlig og sammenlignbart datagrunnlag som gjør det mulig å studere regionale forskjeller og utviklingstrekk på tvers av norske kommuner.
 
+## Sentralitetsindeksen for norske kommuner
+
+SSB bruker sentralitetsindeksen for å beskrive hvor sentralt en kommune ligger.
+Dette blir målt gjennom hvor lett det er for innbyggerne å komme seg til viktige funksjoner.
+Indeksen SSB bruker bygger på beregnet reisetid med bil fra bebodde område istedenfor liftlonjeavstand eller innbyggertall som kunne vært bedre.
+Poenget for indeksen er å fange opp faktisk tilgjengelighet som er at kommunene regnes som mer sentrale hvis mange arbeidsplasser og ulike tjenestetilbud kan nås innenfor rimelig reisetid.
+
+Indeksen består av to deler.
+Den ene handler om hvor stort arbeidsmarked innbyggerne har innenfor en reiseramme (opptil 90 minutter), altså hvor mange arbeidsplasser som kan nås.
+Den andre handler om tilgang til et bredt tjenestetilbud, som typisk er ulike typer varer og tjenester (for eksempel handel og offentlige tjenester).
+I begge delene er det lagt opp til korte reiser teller mer enn lange reiser.
+Det vil si at en arbeidsplass eller tjeneste i nærheten påvirker sentraliteten mer enn en som ligger langt unna.
+Kommunens endelige verdi uttrykkes som en kontinuerlig indeks (høyere verdi = mer sentral), og verdiene kan også sorteres inn i seks sentralitetsklasser.
+
+Når vi skulle se på 2017 indeksen så var det ikke direkte sammenlignbart med de senere årene, vi valgte derfor å heller ta år 2020 å sammenligne de med 2023-2024.
+En grunn til dette i indeksen for 2017 kan være pågrunn av i denne perioden har det vært endringer i kommuneinndelingen (sammenslåinger og grensejusteringer), som kan påvirke hvilken samlet verdi en kommune får.
+I tillegg ble det påpekt feil knyttet til deler av beregningen i den tidlige versjonen av indeksen, som senere er korrigert.
+
+![](images/clipboard-1701507729.png)
+
+Utifra t-testen finner vi ut at sentralitetsindeksen fra 2020 til 2023 har ikke så store endringer.
+Vi har med 341 kommuner, og i gjennomsnitt har indeksen økt med ca.
+2,8 poeng.
+Medianen er 2 som betyr at for de fleste kommunene er endringen veldig liten.
+Det er likevel noen kommuner som skiller seg ut, der den største nedgangen er -17 og den største økningen er 79.
+Totalt sett tyder dette på at sentraliteten er ganske stabil i perioden, men med noen få unntak.
+Alt i alt virker det som at sentralitetsmønsteret ikke har endret seg noe særlig, og at endringene heller handler om små oppdateringer enn store skift
+
+## Prosentvis arbeidsledighet
+
+NAV og SSB (AKU) måler begge arbeidsledighet, men de gjør det på forksjellige måter.
+
+NAV måler arbeidsledigheten utifra hvor mange som er registrert som helt arbeidsledige hos NAV.
+Dataen til NAV bygger seg dermed opp på grunnlag av hvem som har meldt seg arbeidsledig i NAV-systemet.
+NAV sine tall er avhengige av at arbeidsledige registrerte ledigeheten sin.
+De blir og indirekte påvirket av hvilke regler som gjelder for å få hjelp (dagpenger) og at man må holde registreringen aktiv (fornye/holde registrering aktiv).
+
+SSB sine tall kommer derimot fra AKU (Arbeidskraftundersøkelsen), som er en spørreundersøkelse der et utvalg av befolkningen blir intervjuet.
+AKU måler arbeidsledigheten i hele befolkningen, Dette gjelder også personer som ikke er registrert hos NAV.
+I AKU blir man regnet som arbeidsledig dersom man er uten jobb, har søkt jobb og er tilgjengelig for arbeid.
+
+Begge disse statistikkene bygger på samme ide om hva arbeidsledighet er, men tallene kan bli forskjellige.
+AKU fanger opp arbeidsledige som ikke melder seg hos NAV, og noen som er registrert hos NAV kan i AKU svare slik at de ikke blir klassifisert som arbeidsledige der.
+I tillegg kan forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at NAV- og AKU-tallene ikke blir like.
+
+Kilde: <https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-arbeidsledighetstall>
+
+## Sysselsetting
+
 ## Boligtyper
 
 For å hente data om boligtyper har vi benyttet tabell 06035, som inneholder data om selveierboliger for delt på regioner.
@@ -551,7 +600,7 @@ Kartet viser samtidig at de høyeste boligprisene er konsentrert rundt større b
 
 # En multippel regresjonsmodell for folketallsutvikling
 
-### For år 2010
+### År 2010
 
 ![](images/clipboard-3612021732.png)2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
 Resultatene viser at kommuner som var mer sentrale i 2010, i gjennomsnitt har hatt noe høyere folketallsvekst.
@@ -580,7 +629,7 @@ Samtidig innebærer dette at rundt 30 prosent av variasjonen ikke forklares av m
 Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for eksempel lokale politiske beslutninger, naturgitte forhold eller andre tilfeldige og historiske faktorer.
 Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
 
-### Fra år 2000 - 2024
+### År 2000 - 2024
 
 ![](images/clipboard-1237205651.png)
 
@@ -607,7 +656,7 @@ Dette betyr at om lag 74 prosent av variasjonen i folketallsvekst mellom kommune
 
 Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er de sentrale faktorene for folketallsutviklingen i norske kommuner.
 
-### Paneldatasett + årlig vekst (log-differanse)
+### Paneldatasett i tillegg til årlig vekst
 
 ![](images/clipboard-3916186516.png)
 
