@@ -504,6 +504,27 @@ Samtidig kan det foreligge en selvforsterkende mekanisme, der kommuner med høyt
 Det er imidlertid viktig å være oppmerksom på at sammenhengen også kan påvirkes av sentralitet, næringsstruktur og historiske utviklingsmønstre.
 Utdanning kan derfor både være en årsak til og et resultat av høy sysselsetting.
 
+Basert på kartvisualisering og korrelasjonsanalyse forventes det en positiv sammenheng mellom sentralitetsindeks og andelen innbyggere med høyere utdanning.
+Kartet viser at kommuner med høy utdanningsandel i stor grad er lokalisert rundt større byregioner og mer sentrale områder, mens perifere kommuner gjennomgående har lavere andeler.
+Korrelasjonsanalysen for 2024 viser også en moderat positiv sammenheng (r ≈ 0,53), noe som støtter antakelsen om at mer sentrale kommuner tiltrekker eller utvikler en større andel høyt utdannet arbeidskraft.
+Samtidig indikerer den moderate styrken på korrelasjonen at sentralitet ikke alene forklarer variasjonen i utdanningsnivå mellom kommuner, og at andre faktorer som næringsstruktur, utdanningstilbud og demografi også kan spille en rolle.
+
+Basert på kartvisualiseringene av netto innpendling og sysselsettingsvekst etter år 2000, samt korrelasjonsanalysen, kan det forventes en sammenheng mellom netto innpendling og sysselsetting per 1000 innbyggere.
+Kommuner med høy netto innpendling, altså områder som tiltrekker arbeidstakere fra omliggende kommuner, kan antas å ha et mer dynamisk arbeidsmarked og dermed høyere sysselsettingsnivå.
+Samtidig viser korrelasjonsanalysen svært lave korrelasjonskoeffisienter for både 2014 og 2024 (r ≈ 0,01–0,02), noe som indikerer at sammenhengen i praksis er svak eller fraværende.
+Dette kan tyde på at pendling i stor grad reflekterer regionale arbeidsmarkedsstrukturer snarere enn direkte sysselsettingsnivå i den enkelte kommune, og at andre faktorer som næringsstruktur, demografi og geografisk beliggenhet også spiller en viktig rolle.
+
+Basert på kartvisualiseringene av sysselsettingsvekst etter år 2000 og gjennomsnittlig kvadratmeterpris for boliger i 2024, kan det forventes en viss positiv sammenheng mellom sysselsettingsvekst og boligpriser.
+Kommuner med sterk sysselsettingsvekst kan antas å oppleve økt etterspørsel etter bolig som følge av arbeidsplassvekst og tilflytting, noe som kan bidra til høyere boligpriser.
+Samtidig viser korrelasjonsanalysen at sammenhengen er relativt svak, med stor variasjon mellom kommuner.
+Dette tyder på at selv om arbeidsmarkedsutvikling kan påvirke boligprisnivået, spiller også andre faktorer som sentralitet, befolkningsvekst, boligtilbud og regionale forskjeller en viktig rolle i utviklingen av boligprisene.
+
+Basert på scatterplotet og kartvisualiseringen av boligpriser, samt korrelasjonsanalysen, kan det forventes en tydelig positiv sammenheng mellom sentralitet og gjennomsnittlig kvadratmeterpris for bolig.
+Scatterplotet viser at boligprisene generelt øker med høyere sentralitetsindeks, og sammenhengen fremstår særlig sterk i de mest sentrale kommunene.
+Korrelasjonsanalysen viser også relativt høye positive korrelasjoner både i 2014 (r ≈ 0,60) og 2024 (r ≈ 0,67), noe som understøtter at sentralitet er en viktig faktor for boligprisnivået.
+Kartet viser samtidig at de høyeste boligprisene er konsentrert rundt større byområder og sentrale regioner.
+
+
 # Oppgave 6
 
 [@ozili]
