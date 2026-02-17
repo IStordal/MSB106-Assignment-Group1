@@ -1,5 +1,5 @@
 ---
-title: "Tekst til oppgaven"
+title: "Regional utvikling i Norge"
 format: 
   pdf:
     number-sections: true
@@ -111,9 +111,9 @@ Ifølge teorien faller betalingsvilligheten for bolig med økende avstand til se
 Sentrale beliggenheter gir bedre tilgang til arbeidsplasser, markeder og tjenester, og dette gir høyere areal- og boligpriser.
 Dermed oppstår systematiske romlige forskjeller i boligmarkedet som reflekterer forskjeller i tilgjengelighet.
 
-Denne mekanismen nyanseres av Osland og Thorsen \[\@oslandthorsen2005\] , som viser at boligpriser ikke bare påvirkes av fysisk avstand til sentrum, men også av regional arbeidsmarkedstilgjenglighet.
+Denne mekanismen nyanseres av @osland2008 , som viser at boligpriser ikke bare påvirkes av fysisk avstand til sentrum, men også av regional arbeidsmarkedstilgjenglighet.
 Ved å introdusere en gravitasjonsbasert tilgjengelighetsindikator finner de at både en "urban attraction"-effekt og en arbeidsmarkedseffekt bidrar til å forklare romlige variasjoner i boligpriser.
-Dette innebærer at sentralitet kan forstås som et uttrykk for samlet tilgang til arbeidsplasser og tjenester, og at slike strukturelle forhold kan forsterke sentraliseringsprosesser.
+Dette innebærer at sentralitet kan forstås som et uttrykk for samlet tilgang til arbeidsplasser og tjenester, og at slike strukturelle forhold kan forsterke sentraliseringsprosesser [@osland2008].
 
 ## Harris-Todaro modellen
 
