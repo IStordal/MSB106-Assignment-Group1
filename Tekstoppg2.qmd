@@ -55,6 +55,16 @@ Dataene var delt inn i "Universitets- og høgskolenivå, kort" og "Universitets-
 Vi har filtrert vekk data for hele landet samlet, samt de utdanningsnivåene som ikke var relevant.
 For å regne ut andelen har vi brukt de nye kommunenummerene og total befolkning.
 
+Videre har vi hentet data om innenlands flytting fra SSB sin tabell 13255 ved hjelp av PxWeb API. Vi hentet ut data for alle kommuner, fordelt på aldersgruppene 18–29 år og 30+ år, for perioden 2010–2024.
+
+Deretter bruker vi `newknr`, slik at alle observasjoner ble koblet til dagens kommunestruktur (knr24).
+Vi fjernet ugyldige og aggregerte enheter, og summerte inn- og utflytting per kommune, år og aldersgruppe.
+Nettoflytting ble så beregnet som differansen mellom innflytting og utflytting, og manglende verdier ble satt til null for å unngå skjevheter i beregningene.
+
+For å gjøre kommunene sammenlignbare beregnet vi nettoflytting per 1000 innbyggere for 2024 ved å koble dataene med totalbefolkningen (beftot).
+Dette gir oss en rate som gjør det mulig å sammenligne flyttemønstre mellom små og store kommuner, samt mellom de to aldersgruppene.
+Samlet gir dette et konsistent og sammenlignbart mål på demografisk utvikling og flytting på kommunenivå.
+
 # Litteratur
 
 ## Regional utvikling i Norge
