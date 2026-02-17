@@ -47,6 +47,17 @@ Totalbefolkningen ble koblet med aldersdata for å beregne andeler, og befolknin
 Disse prosessene ble gjennomført for å kunne lage kart- og kurveframstillinger, samt for å legge grunnlaget for korrelasjons- og regresjonsanalysene.
 Samlet gir dette et helhetlig og sammenlignbart datagrunnlag som gjør det mulig å studere regionale forskjeller og utviklingstrekk på tvers av norske kommuner.
 
+## Boligtyper
+
+For å hente data om boligtyper har vi benyttet tabell 06035, som inneholder data om selveierboliger for delt på regioner.
+I datasettet er boligtypene fordelt på tre kategorier, av disse har vi benyttet variablene eneboliger og blokkleiligheter.
+Når datasettet ble hentet fra API tjenestene ble "boligtype" satt som variabel, og hvert årstall for hver kommune inneholdt to observasjoner.
+Vi omgjorde dette til et "long format" slik at hver av boligtypene ble egne variabler.
+Denne omformateringen gjorde dataset enklere å jobbe med og halverte hvor mange celler det inneholdt.
+Tidsserien for datasettet er fra 2002 til 2024.
+
+## Utdanningsnivå 
+
 For å finne utdanningsnivå har vi brukt tabellen 09429.
 Denne tabellen har ikke oppdaterte data for nye kommuner per 2024.
 Vi måtte derfor hente ut alle kommunene og så sortere etter de nye kommunenavnene ved å bruke "newknr".
@@ -543,9 +554,6 @@ Kartet viser samtidig at de høyeste boligprisene er konsentrert rundt større b
 
 # Oppgave 7: En multippel regresjonsmodell for sysselsettingsvekst
 
-
 # Konklusjon
 
-
 # Kildeliste
-
