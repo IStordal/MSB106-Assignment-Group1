@@ -1098,6 +1098,15 @@ knitr::kable(
   )
 ```
 
+Sentralitetsindeks og befolkning
+
+```{r}
+kor_år(master, "index", "beftot.x")|>
+knitr::kable(
+    caption = "Sentralitetsindeks og befolkningsvekst"
+  )
+```
+
 Sentralitetsindeks og andelen av innbyggerne som er i aldersgruppen (20-29)
 
 ```{r}
@@ -1653,7 +1662,6 @@ regresjon <- beftot |>
 save(regresjon, file = "reg_data.rdata")
 ```
 
-
 ```{r}
 regresjonTest <- lm(formula = Arbeidssted ~ beftot, data = regresjon)
 
@@ -1692,7 +1700,6 @@ Tidligere så vi på kurver for befolkningsutvikling og sysselsetting, der så v
 Det ser vi igjen her at forklaringsgraden er veldig høy.
 Men det forklarer ikke om sysselsetningen øker hvis befolkningen øker, eller omvendt.
 Man kan derfor ikke tolke det kausalt.
-
 
 Bruke andel sysselsatte istedenfor absolutte verdier slik at man får sett det i forhold til hverandre.
 
