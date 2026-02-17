@@ -33,7 +33,6 @@ options(scipen = 999)
 
 ```{r}
 load("reg_data.rdata")
-Load("")
 ```
 
 # Datainnsamling
@@ -364,7 +363,7 @@ Når boligprisene er høye i sentrale kommuner, ser vi at mange husholdninger bo
 Dette gir høy netto innpendling til de mest sentrale kommunene og netto utpendling fra omkringliggende kommuner.
 Pendlingen kan dermed forstås som et uttrykk for romlige tilpasninger i møte med forskjeller i boligkostnader og tilgjengelighet til arbeidsplasser.
 
-# Oppgave 3
+# Korrelasjonsberegninger
 
 ## Korelasjon mellom gitte variabler
 
@@ -492,7 +491,7 @@ Det betyr at man ikke kan tolke resultatene kausalt og det er fare for at det er
 
 For å få et mer hensiktsmessig resultat kunne vi hatt andel sysselsatte eller sett på atbeidsplass per 1000 innbyggere, slik at man hadde sett verdiene i forhold til hverandre.
 
-## Oppgave 5
+# Relevante hypoteser basert på deskriptiv statistikk
 
 Så langt gjennom denne oppgaven er det blitt presentert mye deskriptiv statistikk knyttet til regional utvikling.
 Samlet sett gir dette et godt grunnlag for hypoteser for hvordan ulike variabler henger sammen.
@@ -736,5 +735,34 @@ Modellen har en justert R² på om lag 0,56, noe som innebærer at omtrent 56 pr
 Samlet sett indikerer resultatene at sysselsettingsvekst i stor grad følger befolkningsveksten, og at arbeidsmarkedets utvikling dermed synes å være tett knyttet til kommunenes demografiske dynamikk.
 
 # Konklusjon
+
+I denne oppgaven har vi analysert regional utvikling i Norge ved hjelp av kart, deskriptiv statistikk, korrelasjoner og flere regresjonsmodeller.
+Samlet sett ser vi et tydelig mønster der de mest sentrale kommunene har hatt sterkere befolkningsvekst, høyere sysselsettingsvekst og høyere boligpriser enn mindre sentrale kommuner.
+Dette kommer klart frem i kartene, og resultatene støttes også av regresjonsanalysene.
+
+I modellene for folketallsvekst finner vi at nettoflytting, arbeidsplasser per 1000 innbyggere og boligpriser har en tydelig og gjennomgående positiv sammenheng med vekst.
+Disse variablene er robuste på tvers av modellspesifikasjonene.
+Samtidig ser vi at arbeidsledighet og andel med høyere utdanning ikke alltid er signifikante når vi kontrollerer for andre strukturelle forhold.
+Det kan tyde på at disse faktorene i større grad virker indirekte gjennom arbeidsmarked, sentralitet og attraktivitet.
+
+Når vi analyserer sysselsettingsvekst, finner vi at folketallsvekst er den klart sterkeste forklaringsvariabelen.
+Det viser hvor tett befolkning og arbeidsmarked henger sammen.
+Samtidig skaper dette en viktig metodisk utfordring.
+Flere arbeidsplasser kan føre til befolkningsvekst, men økt befolkning kan også skape flere arbeidsplasser gjennom økt etterspørsel.
+Dette innebærer en form for simultanitet, der det er vanskelig å skille klart mellom årsak og virkning.
+
+Tilsvarende kan høye boligpriser både være et resultat av vekst og en indikator på attraktivitet som trekker til seg nye innbyggere.
+Slike gjensidige sammenhenger skaper utfordringer knyttet til endogenitet.
+Selv om modellene våre har relativt høy forklaringsgrad, betyr ikke det at vi kan tolke sammenhengene kausalt.
+Paneldata med faste effekter hjelper oss med å kontrollere for faste forskjeller mellom kommuner over tid, men det løser ikke fullt ut problemet med at variablene påvirker hverandre samtidig.
+
+For å komme nærmere en kausal tolkning kunne man i videre analyser brukt laggede variabler mer systematisk, slik at forklaringsvariablene måles før utfallet.
+En annen mulighet kunne vært å bruke instrumentvariabler, eller å studere konkrete hendelser som større investeringer eller etablering og nedleggelse av hjørnesteinsbedrifter.
+Slike tilnærminger kunne gjort det lettere å isolere effektene av enkeltfaktorer.
+
+Alt i alt viser analysen at regional utvikling i Norge i stor grad henger sammen med sentralitet, arbeidsmarked og flyttemønstre.
+Funnene våre samsvarer i hovedsak med teoriene vi har presentert, særlig agglomerasjonsteori og budrenteteori.
+Samtidig viser analysen at utviklingen er preget av komplekse og gjensidige sammenhenger.
+Resultatene bør derfor tolkes som sterke og konsistente samvariasjoner, heller enn som entydige bevis på årsak og virkning.
 
 # Kildeliste
