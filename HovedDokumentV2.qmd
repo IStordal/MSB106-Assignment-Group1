@@ -1070,6 +1070,8 @@ ggsave("pendlutv.png",
 
 # Korrelasjonsberegninger
 
+![](images/clipboard-2355047853.png){width="129"}
+
 Lager en funksjon som kan brukes til å utføre korelasjons beregningene med mindre koding
 
 ```{r}

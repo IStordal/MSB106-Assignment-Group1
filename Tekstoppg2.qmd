@@ -57,7 +57,9 @@ For å regne ut andelen har vi brukt de nye kommunenummerene og total befolkning
 
 # Litteratur
 
-##Regional utvikling i Norge @andersson2019 har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.De undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.Videre undersøker også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
+## Regional utvikling i Norge
+
+@andersson2019 har skrevet en artikkel om utviklingen i Norge fra 1970 til 2017.De undersøker de hvordan arbeidsledighet, sysselsetting og boligpriser varierer mellom steder og om det fører til mer sentralisering.Videre undersøker også om forholdet mellom arbeidsmarked og befolkningsvekst kan forklare regionale forskjeller.
 
 Resultatene viser at det har vært en var en høy befolkningsvekst i små kommuner fra 1970 til 1980, etter det har befolkningsveksten vært sterkest i de store kommunene [@andersson2019].
 Dette er det samme som @thorsnæs2025 skriver om befolkningsutvikling.
@@ -121,9 +123,22 @@ Muligheten for jobb er større i større byer enn i mer rurale strøk fordi beho
 Dette fører også til at store byer ofte har en konstant høy arbeidsledighet.
 Modellen har fått kritikk for å være for enkel, den legger til grunn at det er bare lønn som bestemmer om man er villig til å flytte [@harris1970].
 
+## Vekst i Norge
+
+Det er forsket på hva som avgjør at noen byer vokser raskere enn andre.
+Forskningen peker på to hovedforklaringer.
+Den ene er at byer med offshorevirksomhet eller andre naturessursbaserte virksomheter som fisk kraft som har gitt en høyere produksjonsvekst enn andre byer [@grünfeld2016].
+
+Den andre hovedforklaringen de peker på er utdanningsnivået til arbeidsstyrken.
+De ser at byene som har kunnskapsintensive næringer har også en høy andel utdannede mennesker og er de byene som vokser mest.
+Videre ser de at det er byer med store næringer, men som ikke vokser så mye, og peker på at lav utdanningsnivå kan være årsaken til det. De mener sysselsettingsvekst og utfanningsnivå har en sammenheng.
+Videre ser de at byene som Gjøvik, Kongsvinger og Notodden som ligger relativt nærme Oslo, sliter med at de ligger for langt unna til å nyte godt av storbydfordelene, samtidig taper de folk til byen.
+Utdanningsnivået er også lavere her.
+De konkluderer med at utdanning er viktig for steders vekst [@grünfeld2016].
+
 # Visuell fremstilling av utviklingen i Norge etter 1986
 
-### Folketallsutvikling
+## Folketallsutvikling
 
 ![*Prosentvis folketallsvekst etter år 2000, der rosa er negativ utvikling og grønn er positiv utvikling*](kart/Bilde_folketallsvekst.png)
 
@@ -154,7 +169,7 @@ I 2024 har klasse 1 og 2 den høyesre andelen unge, noe som samsvarer med det vi
 Det som er interessant, er at kommuner med militærbaser, til tross for sin høye andel unge, ikke skiller seg ut på grafen.
 Dette kan skyldes at disse kommunene inngår i klasser med mange andre kommuner, slik at det ikke får like stor visuell betydning i grafen.
 
-### Prosentvi arbeidsledighet
+### Prosentvis arbeidsledighet
 
 ![*Prosentvis arbeidsledighet for 2024, der mørkere farge er høyere andel*](kart/Bilde_Andel_arbeidsledighet.png)
 
@@ -221,6 +236,11 @@ Dette gjelder særlig de største studiebyene i Norge, som Oslo, Bergen og Trond
 Det kan forklares av at kunnskapsintensive bransjer vokser.
 Kommunene som ligger rundt disse byene har noe lavere andel, men fortsatt høyere enn kommuner som ligger lenger unna.
 Dette kan skyldes at personer som bor i nabokommuner har tatt høyere utdanning i nærliggende kommune, og dermed bidrar til å løfte utdanningsnivået også i sin egen kommune.
+Forskningen peker på at byer som ligger i nærheten av storbyer, men ikke nært nok til at byene får nyte godene av storbyen, har også lavt utdanningsnivå.
+I tillegg at til byer med kunnskapsintesive bransjer med høyt utdanningsnivå vokser mest.
+Et eksempel fra artikkelen de trekker frem er Haugesund [@grünfeld2016].
+På kartet ser det ut som at Haugesund har en høy andel med høyt utdannede.
+De har også en stor sysselsettingvekst.
 
 Grafen viser utviklingen i andelen med høyere utdanning fra 1986 til 2024.
 Vi ser en tydelig og jevn vekst i alle sentralitetsklasser, noe som kan forklares med økt fokus på utdanning og et samfunn som stiller stadig høyere kompetansekrav.
@@ -282,8 +302,6 @@ Skalen for korelasjon går fra -1 til 1.
 Jo nærmere 1 et positivt tall er, jo større tyder på det på en positiv samvariasjon, og vice versa med negative tall.
 
 ![](images/clipboard-3708177039.png)
-
-![](images/clipboard-2355047853.png){width="129"}
 
 ## Paneldata
 
@@ -395,9 +413,11 @@ regresjon |>
   cor() 
 ```
 
-Etter vi har regnet ut korrelasjonen
+For å regne ut korrelasjonen har vi brukt antall sysselsatte og antall i befolkning.
+Korrelasjonen er veldig sterk, verdien er veldig lik som på den justerte r-kvadraten som vi så på regresjonen vår.
+Det betyr at man ikke kan tolke resultatene kausalt og det er fare for at det er multikollinearitet til stede.
 
-Korrelasjonen...
+For å få et mer hensiktsmessig resultat kunne vi hatt andel sysselsatte eller sett på atbeidsplass per 1000 innbyggere, slik at man hadde sett verdiene i forhold til hverandre.
 
 ## Oppgave 5
 
