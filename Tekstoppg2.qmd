@@ -440,7 +440,7 @@ Dette indikerer en moderat positiv sammenheng og gir empirisk støtte til hypote
 Hypotesen kan underbygges teoretisk gjennom agglomerasjonsteori.
 Agglomerasjonseffekter beskriver hvordan bedrifter og arbeidstakere har insentiver til å lokalisere seg i samme geografiske områder.
 Bedrifter etablerer seg i sentrale områder for å dra nytte av såkalte “matching, sharing og learning”-fordeler.
-Dette innebærer bedre match mellom arbeidsgivere og arbeidstakere, deling av infrastruktur og tjenester, samt kunnskapsspredning mellom aktører.
+Dette innebærer bedre match mellom arbeidsgivere og arbeidstakere, deling av infrastruktur og tjenester, samt kunnskapsspredning mellom aktører @capello2016 s.3.
 
 I sentrale områder oppstår det større og mer diversifiserte arbeidsmarkeder, med høyere grad av spesialisering.
 Dette reduserer risikoen for arbeidstakere og øker sannsynligheten for å finne relevant arbeid, noe som igjen gjør slike områder mer attraktive.
@@ -486,7 +486,8 @@ Dette kan ved første øyekast virke motstridende, ettersom tradisjonell arbeids
 Teori om arbeidsmarkedsjustering og mobilitet tilsier at arbeidskraft beveger seg mot regioner med høy etterspørsel etter arbeidskraft.
 Dette skulle isolert sett tilsi at kommuner med høy arbeidsledighet burde oppleve netto utflytting.
 Samtidig kan sentrale arbeidsmarkeder tiltrekke arbeidssøkere selv om ledigheten midlertidig er høy.
-Store og diversifiserte arbeidsmarkeder gir større sannsynlighet for å finne en jobb som matcher kompetanse og preferanser.
+Store og diversifiserte arbeidsmarkeder gir større sannsynlighet for å finne en jobb som matcher kompetanse og preferanser @capello2016 s.
+155.
 
 Arbeidstakere kan derfor være villige til å akseptere en periode med arbeidsledighet i sentrale områder, dersom forventningen om fremtidige jobbmuligheter er høyere der enn i mindre sentrale kommuner.
 I mindre arbeidsmarkeder kan man få jobb raskere, men innenfor et smalere spekter av yrker.
@@ -533,7 +534,6 @@ Basert på scatterplotet og kartvisualiseringen av boligpriser, samt korrelasjon
 Scatterplotet viser at boligprisene generelt øker med høyere sentralitetsindeks, og sammenhengen fremstår særlig sterk i de mest sentrale kommunene.
 Korrelasjonsanalysen viser også relativt høye positive korrelasjoner både i 2014 (r ≈ 0,60) og 2024 (r ≈ 0,67), noe som understøtter at sentralitet er en viktig faktor for boligprisnivået.
 Kartet viser samtidig at de høyeste boligprisene er konsentrert rundt større byområder og sentrale regioner.
-
 
 # Oppgave 6
 
