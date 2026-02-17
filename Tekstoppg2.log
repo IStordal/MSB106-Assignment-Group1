@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.12.1)  17 FEB 2026 19:30
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.12.1)  17 FEB 2026 20:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -470,85 +470,70 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen168
 \Gm@layoutvoffset=\dimen169
 \Gm@dimlist=\toks25
-) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2025/07/28 4.6 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count315
-\FV@InFile=\read2
-\FV@TabBox=\box58
-\c@FancyVerbLine=\count316
-\FV@StepNumber=\count317
-\FV@OutFile=\write3
-) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip69
-\fb@frw=\dimen170
-\fb@frh=\dimen171
-\FrameRule=\dimen172
-\FrameSep=\dimen173
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
-\LTleft=\skip70
-\LTright=\skip71
-\LTpre=\skip72
-\LTpost=\skip73
-\LTchunksize=\count318
-\LTcapwidth=\dimen174
-\LT@head=\box59
-\LT@firsthead=\box60
-\LT@foot=\box61
-\LT@lastfoot=\box62
-\LT@gbox=\box63
-\LT@cols=\count319
-\LT@rows=\count320
-\c@LT@tables=\count321
-\c@LT@chunks=\count322
+\LTleft=\skip69
+\LTright=\skip70
+\LTpre=\skip71
+\LTpost=\skip72
+\LTchunksize=\count315
+\LTcapwidth=\dimen170
+\LT@head=\box58
+\LT@firsthead=\box59
+\LT@foot=\box60
+\LT@lastfoot=\box61
+\LT@gbox=\box62
+\LT@cols=\count316
+\LT@rows=\count317
+\c@LT@tables=\count318
+\c@LT@chunks=\count319
 \LT@p@ftn=\toks26
 )
-Class scrartcl Info: longtable captions redefined on input line 113.
+Class scrartcl Info: longtable captions redefined on input line 73.
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen175
-\lightrulewidth=\dimen176
-\cmidrulewidth=\dimen177
-\belowrulesep=\dimen178
-\belowbottomsep=\dimen179
-\aboverulesep=\dimen180
-\abovetopsep=\dimen181
-\cmidrulesep=\dimen182
-\cmidrulekern=\dimen183
-\defaultaddspace=\dimen184
-\@cmidla=\count323
-\@cmidlb=\count324
-\@aboverulesep=\dimen185
-\@belowrulesep=\dimen186
-\@thisruleclass=\count325
-\@lastruleclass=\count326
-\@thisrulewidth=\dimen187
+\heavyrulewidth=\dimen171
+\lightrulewidth=\dimen172
+\cmidrulewidth=\dimen173
+\belowrulesep=\dimen174
+\belowbottomsep=\dimen175
+\aboverulesep=\dimen176
+\abovetopsep=\dimen177
+\cmidrulesep=\dimen178
+\cmidrulekern=\dimen179
+\defaultaddspace=\dimen180
+\@cmidla=\count320
+\@cmidlb=\count321
+\@aboverulesep=\dimen181
+\@belowrulesep=\dimen182
+\@thisruleclass=\count322
+\@lastruleclass=\count323
+\@thisrulewidth=\dimen183
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen188
-\ar@mcellbox=\box64
-\extrarowheight=\dimen189
+\col@sep=\dimen184
+\ar@mcellbox=\box63
+\extrarowheight=\dimen185
 \NC@list=\toks27
-\extratabsurround=\skip74
-\backup@length=\skip75
-\ar@cellbox=\box65
+\extratabsurround=\skip73
+\backup@length=\skip74
+\ar@cellbox=\box64
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count327
-\calc@Bcount=\count328
-\calc@Adimen=\dimen190
-\calc@Bdimen=\dimen191
-\calc@Askip=\skip76
-\calc@Bskip=\skip77
+\calc@Acount=\count324
+\calc@Bcount=\count325
+\calc@Adimen=\dimen186
+\calc@Bdimen=\dimen187
+\calc@Askip=\skip75
+\calc@Bskip=\skip76
 LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count329
-\calc@Cskip=\skip78
+\calc@Ccount=\count326
+\calc@Cskip=\skip77
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box66
-\fn@width=\dimen192
+\fn@notes=\box65
+\fn@width=\dimen188
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
@@ -560,12 +545,12 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 106.
 )
-\Gin@req@height=\dimen193
-\Gin@req@width=\dimen194
+\Gin@req@height=\dimen189
+\Gin@req@width=\dimen190
 )
-\pandoc@box=\box67
-\cslhangindent=\skip79
-\csllabelwidth=\skip80
+\pandoc@box=\box66
+\cslhangindent=\skip78
+\csllabelwidth=\skip79
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
@@ -574,39 +559,39 @@ Package tocbasic Info: Loading of class-dependent code for package caption3
 
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen195
-\captionmargin=\dimen196
-\caption@leftmargin=\dimen197
-\caption@rightmargin=\dimen198
-\caption@width=\dimen199
-\caption@indent=\dimen256
-\caption@parindent=\dimen257
-\caption@hangindent=\dimen258
+\caption@tempdima=\dimen191
+\captionmargin=\dimen192
+\caption@leftmargin=\dimen193
+\caption@rightmargin=\dimen194
+\caption@width=\dimen195
+\caption@indent=\dimen196
+\caption@parindent=\dimen197
+\caption@hangindent=\dimen198
 )
-\c@caption@flags=\count330
-\c@continuedfloat=\count331
+\c@caption@flags=\count327
+\c@continuedfloat=\count328
 Package caption Info: longtable package is loaded.
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count332
+\c@float@type=\count329
 \float@exts=\toks28
-\float@box=\box68
+\float@box=\box67
 \@float@everytoks=\toks29
-\@floatcapt=\box69
+\@floatcapt=\box68
 )
 \@float@every@codelisting=\toks30
-\c@codelisting=\count333
+\c@codelisting=\count330
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count334
+\c@subfigure=\count331
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count335
+\c@subtable=\count332
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2025/11/23 v25.16 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
-\babel@savecnt=\count336
+\babel@savecnt=\count333
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2050.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2052.
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input line 2054.
@@ -614,11 +599,11 @@ LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input line
 LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) on input line 2056.
 LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) on input line 2058.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2083.
-\U@D=\dimen259
+\U@D=\dimen199
 \l@unhyphenated=\language6
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/babel/xebabel.def)
-\bbl@readstream=\read3
-\bbl@dirlevel=\count337
+\bbl@readstream=\read2
+\bbl@dirlevel=\count334
 Package babel Info: You haven't specified a language as a class or package
 (babel)             option. I'll load 'nil'. Reported on input line 4233.
 Package babel Info: Importing font and identification data for nil
@@ -628,9 +613,9 @@ Language: nil 2025/11/23 v25.16 Nil language
 \l@nil=\language7
 )) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/babel/locale/no/babel-norsk.tex)
 Package babel Info: Importing data for norsk
-(babel)             from babel-no.ini. Reported on input line 219.
+(babel)             from babel-no.ini. Reported on input line 179.
 Package babel Info: Hyphen rules for 'norsk' set to \l@nil
-(babel)             (\language7). Reported on input line 219.
+(babel)             (\language7). Reported on input line 179.
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -662,19 +647,19 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count338
+\c@section@level=\count335
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen260
-\Hy@linkcounter=\count339
-\Hy@pagecounter=\count340
+\@linkdim=\dimen256
+\Hy@linkcounter=\count336
+\Hy@pagecounter=\count337
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count341
+\Hy@SavedSpaceFactor=\count338
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 )
@@ -686,21 +671,21 @@ Package hyperref Info: Plain pages OFF on input line 4210.
 Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count342
+\c@Hy@tempcnt=\count339
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip19
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4801.
-\XeTeXLinkMargin=\dimen261
+\XeTeXLinkMargin=\dimen257
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count343
-\Field@Width=\dimen262
-\Fld@charsize=\dimen263
+\Fld@menulength=\count340
+\Field@Width=\dimen258
+\Fld@charsize=\dimen259
 Package hyperref Info: Hyper figures OFF on input line 6078.
 Package hyperref Info: Link nesting OFF on input line 6083.
 Package hyperref Info: Hyper index ON on input line 6086.
@@ -708,18 +693,18 @@ Package hyperref Info: backreferencing OFF on input line 6093.
 Package hyperref Info: Link coloring OFF on input line 6098.
 Package hyperref Info: Link coloring with OCG OFF on input line 6103.
 Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count344
-\c@Item=\count345
-\c@Hfootnote=\count346
+\Hy@abspage=\count341
+\c@Item=\count342
+\c@Hfootnote=\count343
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
 File: hxetex.def 2025-07-12 v7.01o Hyperref driver for XeTeX
-\pdfm@box=\box70
-\c@Hy@AnnotLevel=\count347
-\HyField@AnnotCount=\count348
-\Fld@listcount=\count349
-\c@bookmark@seq@number=\count350
+\pdfm@box=\box69
+\c@Hy@AnnotLevel=\count344
+\HyField@AnnotCount=\count345
+\Fld@listcount=\count346
+\c@bookmark@seq@number=\count347
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -727,49 +712,49 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
-\Hy@SectionHShift=\skip81
+\Hy@SectionHShift=\skip80
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
-\BKM@id=\count351
+\BKM@id=\count348
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 235.
+Package hyperref Info: Option `colorlinks' set `true' on input line 195.
 No file Tekstoppg2.aux.
 \openout1 = `Tekstoppg2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 242.
-LaTeX Font Info:    ... okay on input line 242.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 242.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 202.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 242.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 202.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 242.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 202.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 242.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 202.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 242.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 202.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 242.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 202.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 242.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 202.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -797,7 +782,7 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 242.
+(Font)              scaled to size 10.95pt on input line 202.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -833,15 +818,15 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999967668407183]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 242.
+(Font)              scaled to size 10.95pt on input line 202.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 242.
+(Font)              `operators' in the math version `normal' on input line 202.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 242.
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 202.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 242.
+(Font)              `operators' in the math version `bold' on input line 202.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 242.
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 202.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -907,13 +892,13 @@ Package fontspec Info:
 (fontspec)             <->s*[1.000096766517402]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 242.
+(Font)              `symbols' in the math version `normal' on input line 202.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 242.
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 202.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 242.
+(Font)              `symbols' in the math version `bold' on input line 202.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 242.
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 202.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999967668407183.
@@ -973,20 +958,20 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9998967671640342]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 242.
+(Font)              `largesymbols' in the math version `normal' on input line 202.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 242.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 202.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 242.
+(Font)              `largesymbols' in the math version `bold' on input line 202.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 242.
-LaTeX Info: Redefining \microtypecontext on input line 242.
-Package microtype Info: Applying patch `item' on input line 242.
-Package microtype Info: Applying patch `toc' on input line 242.
-Package microtype Info: Applying patch `eqnum' on input line 242.
-Package microtype Info: Applying patch `footnote' on input line 242.
-Package microtype Info: Applying patch `verbatim' on input line 242.
-LaTeX Info: Redefining \microtypesetup on input line 242.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 202.
+LaTeX Info: Redefining \microtypecontext on input line 202.
+Package microtype Info: Applying patch `item' on input line 202.
+Package microtype Info: Applying patch `toc' on input line 202.
+Package microtype Info: Applying patch `eqnum' on input line 202.
+Package microtype Info: Applying patch `footnote' on input line 202.
+Package microtype Info: Applying patch `verbatim' on input line 202.
+LaTeX Info: Redefining \microtypesetup on input line 202.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1033,7 +1018,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 242.
+Package hyperref Info: Link coloring ON on input line 202.
 
 Package hyperref Warning: Rerun to get /PageLabels entry.
 
@@ -1042,34 +1027,34 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 244.
+(Font)              scaled to size 14.4pt on input line 204.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 244.
+(Font)              scaled to size 10.0pt on input line 204.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 244.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 244.
+(Font)              scaled to size 7.0pt on input line 204.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 204.
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.4013pt on input line 244.
+(Font)              scaled to size 14.4013pt on input line 204.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 244.
+(Font)              scaled to size 10.00092pt on input line 204.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 244.
+(Font)              scaled to size 7.00064pt on input line 204.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 244.
+(Font)              scaled to size 14.39845pt on input line 204.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 244.
+(Font)              scaled to size 9.99893pt on input line 204.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 244.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 244.
+(Font)              scaled to size 6.99925pt on input line 204.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 204.
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 244.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 204.
 (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/Users/ivanstordal/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1081,97 +1066,97 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 File: images/clipboard-1701507729.png Graphic file (type bmp)
 <images/clipboard-1701507729.png>
 
-Overfull \hbox (10.96642pt too wide) in paragraph at lines 315--316
+Overfull \hbox (10.96642pt too wide) in paragraph at lines 261--262
 [][] 
  []
 
 
-Underfull \hbox (badness 1953) in paragraph at lines 341--346
+Underfull \hbox (badness 1953) in paragraph at lines 287--292
 []\TU/lmr/m/n/10.95 SSB sine tall kommer derimot fra AKU (Arbeidskraftundersøkelsen), som er en
  []
 
 
-Overfull \hbox (10.05275pt too wide) in paragraph at lines 341--346
+Overfull \hbox (10.05275pt too wide) in paragraph at lines 287--292
 \TU/lmr/m/n/10.95 spørreundersøkelse der et utvalg av befolkningen blir intervjuet. AKU måler arbeidsledigheten
  []
 
-[2]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.665pt on input line 355.
+(Font)              scaled to size 7.665pt on input line 301.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.475pt on input line 355.
+(Font)              scaled to size 5.475pt on input line 301.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.95099pt on input line 355.
+(Font)              scaled to size 10.95099pt on input line 301.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.66568pt on input line 355.
+(Font)              scaled to size 7.66568pt on input line 301.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.4755pt on input line 355.
+(Font)              scaled to size 5.4755pt on input line 301.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.94882pt on input line 355.
+(Font)              scaled to size 10.94882pt on input line 301.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.66417pt on input line 355.
+(Font)              scaled to size 7.66417pt on input line 301.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.47441pt on input line 355.
+(Font)              scaled to size 5.47441pt on input line 301.
 
-Overfull \hbox (50.63087pt too wide) in paragraph at lines 354--356
+Overfull \hbox (50.63087pt too wide) in paragraph at lines 300--302
 []\TU/lmr/m/n/10.95 Kilde: [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][][][] [][] [][] [][] [][][][] [] [][][][][][][][][][][][][] [] [][][][][][][][] [] [][][][][][][] [][] [][][][][] [][] [][][][][][][][][][][][][][][][][][][][]$[][] 
  []
 
+[2]
+
+LaTeX Warning: Citation `ref-andersson2019' on page 3 undefined on input line 356.
+
 [3]
 
-LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 410.
+LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 366.
 
 
-LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 420.
+LaTeX Warning: Citation `ref-thorsnuxe6s2025' on page 4 undefined on input line 367.
 
 
-LaTeX Warning: Citation `ref-thorsnuxe6s2025' on page 4 undefined on input line 421.
+LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 368.
 
 
-LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 422.
+LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 374.
 
 
-LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 428.
+LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 382.
 
 
-LaTeX Warning: Citation `ref-andersson2019' on page 4 undefined on input line 436.
+LaTeX Warning: Citation `ref-regionalutvikling2025' on page 4 undefined on input line 385.
 
 
-LaTeX Warning: Citation `ref-regionalutvikling2025' on page 4 undefined on input line 439.
+LaTeX Warning: Citation `ref-johansenonsager2017' on page 4 undefined on input line 414.
 
 [4]
 
-LaTeX Warning: Citation `ref-johansenonsager2017' on page 5 undefined on input line 468.
+LaTeX Warning: Citation `ref-vareide2024' on page 5 undefined on input line 436.
 
 
-LaTeX Warning: Citation `ref-vareide2024' on page 5 undefined on input line 490.
+LaTeX Warning: Citation `ref-vareide2024' on page 5 undefined on input line 453.
 
 
-LaTeX Warning: Citation `ref-vareide2024' on page 5 undefined on input line 507.
+LaTeX Warning: Citation `ref-capello2016' on page 5 undefined on input line 463.
 
 
-LaTeX Warning: Citation `ref-capello2016' on page 5 undefined on input line 517.
-
-[5]
-
-LaTeX Warning: Citation `ref-osland2008' on page 6 undefined on input line 527.
+LaTeX Warning: Citation `ref-osland2008' on page 5 undefined on input line 473.
 
 
-LaTeX Warning: Citation `ref-osland2008' on page 6 undefined on input line 536.
+LaTeX Warning: Citation `ref-osland2008' on page 5 undefined on input line 482.
 
 
-Underfull \hbox (badness 1132) in paragraph at lines 526--537
+Underfull \hbox (badness 1132) in paragraph at lines 472--483
 \TU/lmr/m/n/10.95 Ved å introdusere en gravitasjonsbasert tilgjengelighetsindikator finner de at både
  []
 
+[5]
 
-LaTeX Warning: Citation `ref-harris1970' on page 6 undefined on input line 547.
-
-
-LaTeX Warning: Citation `ref-gruxfcnfeld2016' on page 6 undefined on input line 555.
+LaTeX Warning: Citation `ref-harris1970' on page 6 undefined on input line 493.
 
 
-LaTeX Warning: Citation `ref-gruxfcnfeld2016' on page 6 undefined on input line 567.
+LaTeX Warning: Citation `ref-gruxfcnfeld2016' on page 6 undefined on input line 501.
+
+
+LaTeX Warning: Citation `ref-gruxfcnfeld2016' on page 6 undefined on input line 513.
 
 File: kart/Bilde_folketallsvekst.png Graphic file (type bmp)
 <kart/Bilde_folketallsvekst.png>
@@ -1179,10 +1164,10 @@ File: kart/Bilde_folketallsvekst.png Graphic file (type bmp)
 File: folketallutv.png Graphic file (type bmp)
 <folketallutv.png>
 
-LaTeX Warning: Citation `ref-andersson2019' on page 7 undefined on input line 601.
+LaTeX Warning: Citation `ref-andersson2019' on page 7 undefined on input line 547.
 
 
-LaTeX Warning: Citation `ref-regionalutvikling2025' on page 7 undefined on input line 603.
+LaTeX Warning: Citation `ref-regionalutvikling2025' on page 7 undefined on input line 549.
 
 [7]
 File: kart/Bilde_andel_befolkning.png Graphic file (type bmp)
@@ -1190,7 +1175,7 @@ File: kart/Bilde_andel_befolkning.png Graphic file (type bmp)
 File: bef2029utv.png Graphic file (type bmp)
 <bef2029utv.png>
 
-Underfull \hbox (badness 1881) in paragraph at lines 633--633
+Underfull \hbox (badness 1881) in paragraph at lines 579--579
 [][][]|\TU/lmr/m/it/10.95 Utvikling i andel befolkning for 20-29 år, fra år 2000-2024, fordelt på
  []
 
@@ -1201,7 +1186,7 @@ File: arbledutv.png Graphic file (type bmp)
 <arbledutv.png>
 [10] [11]
 
-LaTeX Warning: Citation `ref-harris1970' on page 12 undefined on input line 693.
+LaTeX Warning: Citation `ref-harris1970' on page 12 undefined on input line 639.
 
 File: kart/Bilde_Andel_sysselsettingsvekst.png Graphic file (type bmp)
 <kart/Bilde_Andel_sysselsettingsvekst.png>
@@ -1219,7 +1204,7 @@ File: utdutv.png Graphic file (type bmp)
 <utdutv.png>
 [16] [17]
 
-LaTeX Warning: Citation `ref-gruxfcnfeld2016' on page 18 undefined on input line 818.
+LaTeX Warning: Citation `ref-gruxfcnfeld2016' on page 18 undefined on input line 764.
 
 File: kart/Bilde_Utflytting_1829.png Graphic file (type bmp)
 <kart/Bilde_Utflytting_1829.png>
@@ -1230,24 +1215,24 @@ File: flyttutv.png Graphic file (type bmp)
 <flyttutv.png>
 [19] [20]
 
-LaTeX Warning: Citation `ref-harris1970' on page 21 undefined on input line 869.
+LaTeX Warning: Citation `ref-harris1970' on page 21 undefined on input line 815.
 
 File: kart/Bilde_innpendling.png Graphic file (type bmp)
 <kart/Bilde_innpendling.png>
 File: pendlutv.png Graphic file (type bmp)
 <pendlutv.png>
 
-Underfull \hbox (badness 3792) in paragraph at lines 903--903
+Underfull \hbox (badness 3792) in paragraph at lines 849--849
 [][][]|\TU/lmr/m/it/10.95 Utvikling i pendling per 1000 arbeidsplass etter år 2000, fordelt på
  []
 
 [21] [22]
-Underfull \hbox (badness 1107) in paragraph at lines 916--923
+Underfull \hbox (badness 1107) in paragraph at lines 862--869
 []\TU/lmr/m/n/10.95 Grafen viser utviklingen i netto innpendling fra år 2000 til 2024. Her ser vi at
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 938--944
+Underfull \hbox (badness 2547) in paragraph at lines 884--890
 \TU/lmr/m/n/10.95 Som første deskriptive tilnærming presenteres korrelasjonsberegninger på utvalgte
  []
 
@@ -1255,14 +1240,14 @@ Underfull \hbox (badness 2547) in paragraph at lines 938--944
 File: images/clipboard-3708177039.png Graphic file (type bmp)
 <images/clipboard-3708177039.png>
 
-Overfull \hbox (10.96707pt too wide) in paragraph at lines 945--946
+Overfull \hbox (10.96707pt too wide) in paragraph at lines 891--892
 [][] 
  []
 
 File: images/clipboard-982896316.png Graphic file (type bmp)
 <images/clipboard-982896316.png>
 
-Overfull \hbox (10.96732pt too wide) in paragraph at lines 956--957
+Overfull \hbox (10.96732pt too wide) in paragraph at lines 902--903
 [][] 
  []
 
@@ -1275,19 +1260,19 @@ File: images/clipboard-3963928232.png Graphic file (type bmp)
 File: images/clipboard-2432818359.png Graphic file (type bmp)
 <images/clipboard-2432818359.png>
 
-Underfull \hbox (badness 1824) in paragraph at lines 987--991
+Underfull \hbox (badness 1824) in paragraph at lines 933--937
 []\TU/lmr/m/n/10.95 Pearson-korrelasjonen måler lineær samvariasjon mellom to kontinuerlige variabler,
  []
 
 
-Underfull \hbox (badness 1062) in paragraph at lines 987--991
+Underfull \hbox (badness 1062) in paragraph at lines 933--937
 \TU/lmr/m/n/10.95 observasjoner, og fanger opp monotone sammenhenger, også når forholdet ikke er
  []
 
 File: images/clipboard-492759142.png Graphic file (type bmp)
 <images/clipboard-492759142.png>
 
-Overfull \hbox (10.96295pt too wide) in paragraph at lines 1000--1001
+Overfull \hbox (10.96295pt too wide) in paragraph at lines 946--947
 [] 
  []
 
@@ -1295,7 +1280,7 @@ Overfull \hbox (10.96295pt too wide) in paragraph at lines 1000--1001
 File: images/clipboard-847073424.png Graphic file (type bmp)
 <images/clipboard-847073424.png>
 
-Overfull \hbox (10.94945pt too wide) in paragraph at lines 1010--1011
+Overfull \hbox (10.94945pt too wide) in paragraph at lines 956--957
 [][] 
  []
 
@@ -1303,7 +1288,7 @@ Overfull \hbox (10.94945pt too wide) in paragraph at lines 1010--1011
 File: images/clipboard-4170222301.png Graphic file (type bmp)
 <images/clipboard-4170222301.png>
 
-Overfull \hbox (10.94945pt too wide) in paragraph at lines 1019--1020
+Overfull \hbox (10.94945pt too wide) in paragraph at lines 965--966
 [][] 
  []
 
@@ -1311,120 +1296,119 @@ Overfull \hbox (10.94945pt too wide) in paragraph at lines 1019--1020
 File: images/clipboard-425484476.png Graphic file (type bmp)
 <images/clipboard-425484476.png>
 
-Overfull \hbox (10.9659pt too wide) in paragraph at lines 1032--1033
+Overfull \hbox (10.9659pt too wide) in paragraph at lines 978--979
 [][] 
  []
 
 [29] [30]
-Underfull \hbox (badness 3128) in paragraph at lines 1152--1157
+Underfull \hbox (badness 3128) in paragraph at lines 1099--1104
 []\TU/lmr/m/n/10.95 I oppgave 3 fant vi en positiv korrelasjonskoeffisient på om lag 0,42 mellom
  []
 
 [31]
 
-LaTeX Warning: Citation `ref-capello2016' on page 32 undefined on input line 1165.
+LaTeX Warning: Citation `ref-capello2016' on page 32 undefined on input line 1112.
 
 
-Overfull \hbox (0.47269pt too wide) in paragraph at lines 1158--1166
+Overfull \hbox (0.47269pt too wide) in paragraph at lines 1105--1113
 []\TU/lmr/m/n/10.95 Hypotesen kan underbygges teoretisk gjennom agglomerasjonsteori. Agglomerasjonseffekter
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 1158--1166
+Underfull \hbox (badness 1762) in paragraph at lines 1105--1113
 \TU/lmr/m/n/10.95 beskriver hvordan bedrifter og arbeidstakere har insentiver til å lokalisere seg i
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 1158--1166
+Underfull \hbox (badness 1275) in paragraph at lines 1105--1113
 \TU/lmr/m/n/10.95 av såkalte “matching, sharing og learning”-fordeler. Dette innebærer bedre match
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 1158--1166
+Underfull \hbox (badness 1852) in paragraph at lines 1105--1113
 \TU/lmr/m/n/10.95 mellom arbeidsgivere og arbeidstakere, deling av infrastruktur og tjenester, samt
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 1190--1195
+Underfull \hbox (badness 1496) in paragraph at lines 1137--1142
 []\TU/lmr/m/n/10.95 Korrelasjonsberegningene for 2014 og 2024 viser imidlertid en svært svak positiv
  []
 
 [32]
-Underfull \hbox (badness 1406) in paragraph at lines 1226--1231
+Underfull \hbox (badness 1406) in paragraph at lines 1173--1178
 []\TU/lmr/m/n/10.95 I likhet med forrige eksempel er sammenhengen mellom arbeidsledighet og netto
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 1226--1231
+Underfull \hbox (badness 1168) in paragraph at lines 1173--1178
 \TU/lmr/m/n/10.95 utflytting et komplekst tema, hvor flere mekanismer kan trekke i ulike retninger.
  []
 
 
-LaTeX Warning: Citation `ref-capello2016' on page 33 undefined on input line 1246.
+LaTeX Warning: Citation `ref-capello2016' on page 33 undefined on input line 1193.
 
 
-Underfull \hbox (badness 1817) in paragraph at lines 1239--1247
+Underfull \hbox (badness 1817) in paragraph at lines 1186--1194
 []\TU/lmr/m/n/10.95 Teori om arbeidsmarkedsjustering og mobilitet tilsier at arbeidskraft beveger seg
  []
 
-
-Underfull \hbox (badness 1917) in paragraph at lines 1273--1278
+[33]
+Underfull \hbox (badness 1917) in paragraph at lines 1220--1225
 []\TU/lmr/m/n/10.95 Søylediagrammene i oppgave 3, fordelt etter sentralitetsgruppe, underbygger også
  []
 
-[33]
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
 
-Underfull \hbox (badness 1783) in paragraph at lines 1319--1330
+Underfull \hbox (badness 1783) in paragraph at lines 1266--1277
 \TU/lmr/m/n/10.95 mellom sysselsettingsvekst og boligpriser. Kommuner med sterk sysselsettingsvekst
  []
 
-Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
 [34]
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
 File: images/clipboard-3612021732.png Graphic file (type bmp)
 <images/clipboard-3612021732.png>
 
-Overfull \hbox (21.6396pt too wide) in paragraph at lines 1347--1354
+Overfull \hbox (21.6396pt too wide) in paragraph at lines 1294--1301
 []\TU/lmr/m/n/10.95 2010
  []
 
 [35]
 
-LaTeX Warning: Citation `ref-ozili' on page 36 undefined on input line 1388.
+LaTeX Warning: Citation `ref-ozili' on page 36 undefined on input line 1335.
 
 
-Underfull \hbox (badness 1009) in paragraph at lines 1382--1389
+Underfull \hbox (badness 1009) in paragraph at lines 1329--1336
 \TU/lmr/m/n/10.95 kan forklares av variablene som er inkludert i modellen. For en tverrsnittsmodell
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 1390--1396
+Underfull \hbox (badness 1642) in paragraph at lines 1337--1343
 \TU/lmr/m/n/10.95 lokale politiske beslutninger, naturgitte forhold eller andre tilfeldige og historiske
  []
 
 File: images/clipboard-1237205651.png Graphic file (type bmp)
 <images/clipboard-1237205651.png>
 
-Overfull \hbox (10.96626pt too wide) in paragraph at lines 1399--1400
+Overfull \hbox (10.96626pt too wide) in paragraph at lines 1346--1347
 [] 
  []
 
 [36]
-Underfull \hbox (badness 1622) in paragraph at lines 1415--1421
+Underfull \hbox (badness 1622) in paragraph at lines 1362--1368
 []\TU/lmr/m/n/10.95 Antall arbeidsplasser per 1000 innbyggere har en positiv og statistisk signifikant
  []
 
 [37]
-Overfull \hbox (5.99149pt too wide) in paragraph at lines 1422--1431
+Overfull \hbox (5.99149pt too wide) in paragraph at lines 1369--1378
 []\TU/lmr/m/n/10.95 Netto pendling har en negativ og statistisk signifikant sammenheng med folketallsutviklingen.
  []
 
 File: images/clipboard-3916186516.png Graphic file (type bmp)
 <images/clipboard-3916186516.png>
 
-Overfull \hbox (4.02805pt too wide) in paragraph at lines 1450--1451
+Overfull \hbox (4.02805pt too wide) in paragraph at lines 1397--1398
 [] 
  []
 
@@ -1432,31 +1416,31 @@ Overfull \hbox (4.02805pt too wide) in paragraph at lines 1450--1451
 File: images/clipboard-3179852049.png Graphic file (type bmp)
 <images/clipboard-3179852049.png>
 
-Overfull \hbox (10.9445pt too wide) in paragraph at lines 1503--1504
+Overfull \hbox (10.9445pt too wide) in paragraph at lines 1450--1451
 [] 
  []
 
 File: images/clipboard-2683374806.png Graphic file (type bmp)
 <images/clipboard-2683374806.png>
 [40]
-Overfull \hbox (13.2235pt too wide) in paragraph at lines 1505--1513
+Overfull \hbox (13.2235pt too wide) in paragraph at lines 1452--1460
 [][]\TU/lmr/m/n/10.95 De
  []
 
 [41]
-Underfull \hbox (badness 2980) in paragraph at lines 1526--1534
+Underfull \hbox (badness 2980) in paragraph at lines 1473--1481
 \TU/lmr/m/n/10.95 forklaringsgrad og fanger betydningen av kommunenes strukturelle utgangspunkt.
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 1541--1546
+Underfull \hbox (badness 2894) in paragraph at lines 1488--1493
 []\TU/lmr/m/n/10.95 Samlet sett peker analysen på at arbeidsmarkedets størrelse, flyttestrømmer og
  []
 
 File: images/clipboard-2246683593.png Graphic file (type bmp)
 <images/clipboard-2246683593.png>
 
-Overfull \hbox (10.9742pt too wide) in paragraph at lines 1550--1551
+Overfull \hbox (10.9742pt too wide) in paragraph at lines 1497--1498
 [] 
  []
 
@@ -1466,31 +1450,36 @@ File: images/clipboard-2017134160.png Graphic file (type bmp)
 File: images/clipboard-3355675770.png Graphic file (type bmp)
 <images/clipboard-3355675770.png>
 
-Overfull \hbox (460.30219pt too wide) in paragraph at lines 1552--1557
+Overfull \hbox (460.30219pt too wide) in paragraph at lines 1499--1504
 [][][]\TU/lmr/m/n/10.95 Denne
  []
 
 [43]
-Underfull \hbox (badness 1490) in paragraph at lines 1558--1569
+Underfull \hbox (badness 1490) in paragraph at lines 1505--1516
 \TU/lmr/m/n/10.95 og sysselsettingsvekst. Koeffisienten på 0,84 innebærer at én prosentpoeng høyere
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 1570--1576
+Underfull \hbox (badness 1194) in paragraph at lines 1517--1523
 []\TU/lmr/m/n/10.95 Nettoflytting har også en positiv og svakt statistisk signifikant sammenheng med
  []
 
 [44]
-Underfull \hbox (badness 10000) in paragraph at lines 1609--1612
+Underfull \hbox (badness 1231) in paragraph at lines 1567--1575
+[]\TU/lmr/m/n/10.95 Tilsvarende kan høye boligpriser både være et resultat av vekst og en indikator
+ []
+
+[45]
+Underfull \hbox (badness 10000) in paragraph at lines 1605--1608
 \TU/lmr/m/it/10.95 småbyer\TU/lmr/m/n/10.95 . [][]$[][][][][] [] [] [] [][][] [] [][][][][][][][][] [] [][] [] [][][][][][][][] [][] [][][][][][][][][][][][][][][][] [][] [][][][][][][][][][][][][][][][] []$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1624--1626
+Underfull \hbox (badness 10000) in paragraph at lines 1620--1622
 []\TU/lmr/m/n/10.95 Kommunal- og distriktsdepartementet. (2025). Regionale utviklingstrekk 2025.
  []
 
-[45] [46] (./Tekstoppg2.aux)
+[46] (./Tekstoppg2.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
@@ -1503,10 +1492,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 26151 strings out of 470134
- 509439 string characters out of 5476007
- 1231858 words of memory out of 5000000
- 54406 multiletter control sequences out of 15000+600000
+ 25651 strings out of 470134
+ 501492 string characters out of 5476007
+ 1221656 words of memory out of 5000000
+ 53914 multiletter control sequences out of 15000+600000
  634152 words of font info for 90 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  108i,8n,114p,11213b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s

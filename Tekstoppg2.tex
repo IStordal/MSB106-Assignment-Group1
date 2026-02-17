@@ -67,46 +67,6 @@
 \fi
 \makeatother
 
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{241,243,245}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
-\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
@@ -242,20 +202,6 @@
 \begin{document}
 \maketitle
 
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\FunctionTok{library}\NormalTok{(readxl)}
-\FunctionTok{library}\NormalTok{(modelsummary)}
-\FunctionTok{library}\NormalTok{(dplyr)}
-\FunctionTok{library}\NormalTok{(lmtest)}
-\FunctionTok{library}\NormalTok{(plm)}
-\FunctionTok{library}\NormalTok{(sandwich)}
-
-\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen =} \DecValTok{999}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \section{Datainnsamling}\label{datainnsamling}
 
@@ -930,7 +876,7 @@ omkringliggende kommuner. Pendlingen kan dermed forstås som et uttrykk
 for romlige tilpasninger i møte med forskjeller i boligkostnader og
 tilgjengelighet til arbeidsplasser.
 
-\section{Oppgave 3}\label{oppgave-3}
+\section{Korrelasjonsberegninger}\label{korrelasjonsberegninger}
 
 \subsection{Korelasjon mellom gitte
 variabler}\label{korelasjon-mellom-gitte-variabler}
@@ -1143,7 +1089,8 @@ For å få et mer hensiktsmessig resultat kunne vi hatt andel sysselsatte
 eller sett på atbeidsplass per 1000 innbyggere, slik at man hadde sett
 verdiene i forhold til hverandre.
 
-\subsection{Oppgave 5}\label{oppgave-5}
+\section{Relevante hypoteser basert på deskriptiv
+statistikk}\label{relevante-hypoteser-basert-puxe5-deskriptiv-statistikk}
 
 Så langt gjennom denne oppgaven er det blitt presentert mye deskriptiv
 statistikk knyttet til regional utvikling. Samlet sett gir dette et godt
@@ -1591,6 +1538,55 @@ arbeidsmarkedets utvikling dermed synes å være tett knyttet til
 kommunenes demografiske dynamikk.
 
 \section{Konklusjon}\label{konklusjon}
+
+I denne oppgaven har vi analysert regional utvikling i Norge ved hjelp
+av kart, deskriptiv statistikk, korrelasjoner og flere
+regresjonsmodeller. Samlet sett ser vi et tydelig mønster der de mest
+sentrale kommunene har hatt sterkere befolkningsvekst, høyere
+sysselsettingsvekst og høyere boligpriser enn mindre sentrale kommuner.
+Dette kommer klart frem i kartene, og resultatene støttes også av
+regresjonsanalysene.
+
+I modellene for folketallsvekst finner vi at nettoflytting,
+arbeidsplasser per 1000 innbyggere og boligpriser har en tydelig og
+gjennomgående positiv sammenheng med vekst. Disse variablene er robuste
+på tvers av modellspesifikasjonene. Samtidig ser vi at arbeidsledighet
+og andel med høyere utdanning ikke alltid er signifikante når vi
+kontrollerer for andre strukturelle forhold. Det kan tyde på at disse
+faktorene i større grad virker indirekte gjennom arbeidsmarked,
+sentralitet og attraktivitet.
+
+Når vi analyserer sysselsettingsvekst, finner vi at folketallsvekst er
+den klart sterkeste forklaringsvariabelen. Det viser hvor tett
+befolkning og arbeidsmarked henger sammen. Samtidig skaper dette en
+viktig metodisk utfordring. Flere arbeidsplasser kan føre til
+befolkningsvekst, men økt befolkning kan også skape flere arbeidsplasser
+gjennom økt etterspørsel. Dette innebærer en form for simultanitet, der
+det er vanskelig å skille klart mellom årsak og virkning.
+
+Tilsvarende kan høye boligpriser både være et resultat av vekst og en
+indikator på attraktivitet som trekker til seg nye innbyggere. Slike
+gjensidige sammenhenger skaper utfordringer knyttet til endogenitet.
+Selv om modellene våre har relativt høy forklaringsgrad, betyr ikke det
+at vi kan tolke sammenhengene kausalt. Paneldata med faste effekter
+hjelper oss med å kontrollere for faste forskjeller mellom kommuner over
+tid, men det løser ikke fullt ut problemet med at variablene påvirker
+hverandre samtidig.
+
+For å komme nærmere en kausal tolkning kunne man i videre analyser brukt
+laggede variabler mer systematisk, slik at forklaringsvariablene måles
+før utfallet. En annen mulighet kunne vært å bruke instrumentvariabler,
+eller å studere konkrete hendelser som større investeringer eller
+etablering og nedleggelse av hjørnesteinsbedrifter. Slike tilnærminger
+kunne gjort det lettere å isolere effektene av enkeltfaktorer.
+
+Alt i alt viser analysen at regional utvikling i Norge i stor grad
+henger sammen med sentralitet, arbeidsmarked og flyttemønstre. Funnene
+våre samsvarer i hovedsak med teoriene vi har presentert, særlig
+agglomerasjonsteori og budrenteteori. Samtidig viser analysen at
+utviklingen er preget av komplekse og gjensidige sammenhenger.
+Resultatene bør derfor tolkes som sterke og konsistente samvariasjoner,
+heller enn som entydige bevis på årsak og virkning.
 
 \section*{Kildeliste}\label{kildeliste}
 \addcontentsline{toc}{section}{Kildeliste}
