@@ -1,27 +1,31 @@
 % Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
+  norsk,
   letterpaper,
   DIV=11,
   numbers=noendperiod]{scrartcl}
-
+\usepackage{xcolor}
+\usepackage[bottom=3cm]{geometry}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -39,10 +43,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\usepackage[bottom=3cm]{geometry}
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -68,8 +68,7 @@
 \makeatother
 
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -94,6 +93,8 @@
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+
+
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -127,6 +128,26 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
 
 \KOMAoption{captions}{tableheading}
 \makeatletter
@@ -170,20 +191,9 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-
-\ifLuaTeX
-\usepackage[bidi=basic]{babel}
-\else
-\usepackage[bidi=default]{babel}
-\fi
-\babelprovide[main,import]{norsk}
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
 \usepackage{bookmark}
-
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Regional utvikling i Norge},
   pdflang={nb},
@@ -198,9 +208,11 @@
 \title{Regional utvikling i Norge}
 \author{}
 \date{}
-
 \begin{document}
 \maketitle
+\begin{abstract}
+test test
+\end{abstract}
 
 
 \section{Datainnsamling}\label{datainnsamling}
@@ -297,10 +309,20 @@ slik at de ikke blir klassifisert som arbeidsledige der. I tillegg kan
 forskjeller i aldersavgrensning og tidspunktet det måles på bidra til at
 NAV- og AKU-tallene ikke blir like.
 
-Kilde:
-\url{https://www.ssb.no/arbeid-og-lonn/sysselsetting/artikler/hvorfor-ulike-arbeidsledighetstall}
-
 \subsection{Sysselsetting}\label{sysselsetting}
+
+Sysselsettingsdata er hentet fra Statistisk sentralbyrå (SSB), tabell
+03321. Tabellen gir informasjon om antall arbeidsplasser i norske
+kommuner fra år 2000 og fremover, basert på tall for 4. kvartal hvert
+år. Analysen er avgrenset til sysselsatte personer etter
+arbeidsstedskommune, og kommuneinndelingen som gjelder i 2026 er
+benyttet.
+
+Dataene er samlet i en SAS-fil med årlige observasjoner på kommunenivå.
+Filen inneholder variablene knr24 (kommunenummer), år, arbeidssted
+(antall sysselsatte etter arbeidssted), beftot (totalt folketall) og
+\emph{syss}, som angir sysselsettingsandelen beregnet som forholdet
+mellom antall sysselsatte og folketallet.
 
 \subsection{Boligtyper}\label{boligtyper}
 
@@ -568,7 +590,8 @@ har hatt noe vekst, mens klasse 5 har hatt en mer svingende utvikling.
 \caption{\emph{Andel befolkning i alder 20-29 år i 2024, der mørkere
 farge er høyere andel}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{bef2029utv.png}}
@@ -608,7 +631,8 @@ arbeidsledighet}\label{prosentvis-arbeidsledighet-1}
 \caption{\emph{Prosentvis arbeidsledighet for 2024, der mørkere farge er
 høyere andel}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{arbledutv.png}}
@@ -649,7 +673,8 @@ som Harris-Todaro modellen beskriver (\citeproc{ref-harris1970}{Harris
 \caption{\emph{Prosentvis sysselsettingsvekst etter år 2000, der lilla
 er negativ vekst og grønn er positiv vekst}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{syssutv.png}}
@@ -688,7 +713,8 @@ er noe vi skal se nærmere på senere.
 der skravert område betyr 0 omsatte boliger, og jo mørkere farge jo
 høyere pris}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{kvmprisutv.png}}
@@ -736,7 +762,8 @@ attraktiviteten ved sentrale lokaliseringer.
 
 \caption{\emph{Andel innbyggere med høyere utdanning i 2024}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{utdutv.png}}
@@ -781,7 +808,8 @@ stadig høyere kompetansekrav.
 \caption{\emph{Netto utflytting per 1000 innbyggere for alder 18-29, der
 rød er utflytting og blå er innflytting}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{kart/Bilde_utflytting_30.png}}
@@ -791,7 +819,8 @@ rød er utflytting og blå er innflytting}}
 \caption{\emph{Netto utflytting per 1000 innbyggere for alder 30+.', der
 rød er utflytting og blå er innflytting}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{flyttutv.png}}
@@ -838,7 +867,8 @@ påvirker hvor folk velger å bo.
 \caption{\emph{Netto pendling per 1000 arbeidsplasser, der rød er
 utpendling og blå er innpendling}}
 
-\end{figure}%%
+\end{figure}%
+
 \begin{figure}[H]
 
 {\centering \pandocbounded{\includegraphics[keepaspectratio]{pendlutv.png}}
