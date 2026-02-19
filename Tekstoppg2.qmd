@@ -272,6 +272,8 @@ For å få et mer hensiktsmessig resultat kunne vi hatt andel sysselsatte eller 
 Så langt gjennom denne oppgaven er det blitt presentert mye deskriptiv statistikk knyttet til regional utvikling.
 Samlet sett gir dette et godt grunnlag for hypoteser for hvordan ulike variabler henger sammen.
 
+## Kommuner med høy sentralitet opplever større befolknignsvekst 
+
 I oppgave 3 fant vi en positiv korrelasjonskoeffisient på om lag 0,42 mellom sentralitetsindeksen og befolkningsvekst.
 Dette indikerer en moderat positiv sammenheng og gir empirisk støtte til hypotesen om at kommuner med høy sentralitet i større grad opplever befolkningsvekst enn mindre sentrale kommuner.
 
@@ -282,13 +284,15 @@ Dette innebærer bedre match mellom arbeidsgivere og arbeidstakere, deling av in
 
 I sentrale områder oppstår det større og mer diversifiserte arbeidsmarkeder, med høyere grad av spesialisering.
 Dette reduserer risikoen for arbeidstakere og øker sannsynligheten for å finne relevant arbeid, noe som igjen gjør slike områder mer attraktive.
-Resultatet kan bli en selvforsterkende vekstprosess der flere arbeidsplasser tiltrekker flere innbyggere, som igjen skaper grunnlag for ytterligere næringsaktivitet.
+Resultatet kan bli en selvforsterkende vekstprosess der flere arbeidsplasser tiltrekker flere innbyggere, som igjen skaper grunnlag for ytterligere næringsaktivitet
 
 Grafen over befolkningsutvikling etter sentralitetsklasse fra oppgave 2 gir ytterligere støtte til denne mekanismen.
 Kommuner i sentralitetsklasse 1, 2 og 3 viser en tydelig og markant vekst gjennom perioden.
 Klasse 4 viser også økning, men i et mer moderat tempo.
 De minst sentrale kommunene har gjennomgående flat utvikling, og klasse 6 har samlet sett opplevd befolkningsnedgang.
 Dette mønsteret er konsistent med hypotesen om at høyere sentralitet er forbundet med sterkere befolkningsvekst.
+
+## Kommuner med lav andel innbyggere i alderen 20-29 år opplever høyere neto utflytting 
 
 En annen relevant problemstilling er sammenhengen mellom andelen av befolkningen i aldersgruppen 20–29 år og kommunens netto utflytting.
 Hypotesen er at kommuner med lav andel unge voksne i større grad opplever netto utflytting enn kommuner med høyere andel i denne aldersgruppen.
@@ -314,6 +318,8 @@ I enkelte nordnorske kommuner er andelen unge relativt høy, delvis som følge a
 Dette illustrerer at strukturelle forhold kan påvirke alderssammensetningen uavhengig av tradisjonelle migrasjonsmekanismer.
 
 Samlet sett tyder analysen på at sammenhengen mellom andelen 20–29 år og netto utflytting ikke er entydig, og at den påvirkes av både utdanningstilbud, arbeidsmarked, institusjonelle forhold og livsløpsdynamikk.
+
+## 
 
 I likhet med forrige eksempel er sammenhengen mellom arbeidsledighet og netto utflytting et komplekst tema, hvor flere mekanismer kan trekke i ulike retninger.
 Korrelasjonsberegningene viser en svak positiv sammenheng mellom variablene, noe som indikerer at høyere arbeidsledighet ikke entydig er forbundet med økt netto utflytting.
