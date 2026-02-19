@@ -173,7 +173,7 @@ Videre skal vi se på kartfremstillinger som illutreerer utviklinger av diverse 
 
 ![*Netto pendling per 1000 arbeidsplasser, der rød er utpendling og blå er innpendling*](kart/Bilde_innpendling.png){width="496"}
 
-## Pendling utvikling graf 
+## Pendling utvikling graf
 
 ![*Utvikling i pendling per 1000 arbeidsplass etter år 2000, fordelt på sentralitetsklasser*](pendlutv.png)
 
@@ -197,7 +197,7 @@ Laget nytt datasett med Delta verdier
 
 ![](images/clipboard-982896316.png)
 
-## Resultater fra Paneldata analyse 
+## Resultater fra Paneldata analyse
 
 ![](images/clipboard-4183825931.png)
 
@@ -215,11 +215,11 @@ Laget nytt datasett med Delta verdier
 
 ![](images/clipboard-847073424.png)
 
-## Sentralitet og innpendling 
+## Sentralitet og innpendling
 
 ![](images/clipboard-4170222301.png)
 
-## Arbeidsledighet og utflytting 
+## Arbeidsledighet og utflytting
 
 ![](images/clipboard-425484476.png)
 
@@ -272,7 +272,7 @@ For å få et mer hensiktsmessig resultat kunne vi hatt andel sysselsatte eller 
 Så langt gjennom denne oppgaven er det blitt presentert mye deskriptiv statistikk knyttet til regional utvikling.
 Samlet sett gir dette et godt grunnlag for hypoteser for hvordan ulike variabler henger sammen.
 
-## Kommuner med høy sentralitet opplever større befolknignsvekst 
+## Kommuner med høy sentralitet opplever større befolknignsvekst
 
 I oppgave 3 fant vi en positiv korrelasjonskoeffisient på om lag 0,42 mellom sentralitetsindeksen og befolkningsvekst.
 Dette indikerer en moderat positiv sammenheng og gir empirisk støtte til hypotesen om at kommuner med høy sentralitet i større grad opplever befolkningsvekst enn mindre sentrale kommuner.
@@ -292,7 +292,7 @@ Klasse 4 viser også økning, men i et mer moderat tempo.
 De minst sentrale kommunene har gjennomgående flat utvikling, og klasse 6 har samlet sett opplevd befolkningsnedgang.
 Dette mønsteret er konsistent med hypotesen om at høyere sentralitet er forbundet med sterkere befolkningsvekst.
 
-## Kommuner med lav andel innbyggere i alderen 20-29 år opplever høyere neto utflytting 
+## Kommuner med lav andel innbyggere i alderen 20-29 år opplever høyere neto utflytting
 
 En annen relevant problemstilling er sammenhengen mellom andelen av befolkningen i aldersgruppen 20–29 år og kommunens netto utflytting.
 Hypotesen er at kommuner med lav andel unge voksne i større grad opplever netto utflytting enn kommuner med høyere andel i denne aldersgruppen.
@@ -432,7 +432,7 @@ Når en ser på arbeidsledighet og andel med høyere utdanning ligger det ikke r
 
 Modellen har en justert R² på om lag 0,63
 
-## Last 
+## Last
 
 ![](images/clipboard-3179852049.png)
 
@@ -457,60 +457,41 @@ Når det kontrolleres for arbeidsplasser, flytting og boligpriser, mister disse 
 Samlet sett peker analysen på at arbeidsmarkedets størrelse, flyttestrømmer og boligmarkedets styrke er de mest sentrale drivkreftene bak kommunal folketallsvekst.
 At disse sammenhengene er stabile på tvers av ulike modellspesifikasjoner, gir økt tillit til at resultatene ikke er drevet av én bestemt modelltilnærming.
 
-## En multippel regresjonsmodell for sysselsettingsvekst
+## En multippel regresjonsmodell for sysselsettingsvekst 1
 
 ![](images/clipboard-2246683593.png)
 
-![](images/clipboard-2017134160.png)![](images/clipboard-3355675770.png)Denne modellen analyserer hvilke faktorer som er assosiert med prosentvis sysselsettingsvekst i kommunene
-. Koeffisientene kan tolkes som endringer i prosentpoeng sysselsettingsvekst når en forklaringsvariabel øker med én enhet, gitt at øvrige forhold holdes konstante
-.
+## En multippel regresjonsmodell for sysselsettingsvekst 2
+
+![](images/clipboard-2017134160.png)
+
+## En multippel regresjonsmodell for sysselsettingsvekst 3
+
+![](images/clipboard-3355675770.png)
+
+## En multippel regresjonsmodell for sysselsettingsvekst tolkning
+
+Modellen analyserer hvilke faktorer som er assosiert med prosentvis sysselsettingsvekst
 
 Den sterkeste og mest statistisk robuste sammenhengen finnes mellom folketallsvekst og sysselsettingsvekst.
-Koeffisienten på 0,84 innebærer at én prosentpoeng høyere folketallsvekst er assosiert med om lag 0,84 prosentpoeng høyere sysselsettingsvekst.
-Dette er teoretisk konsistent, ettersom befolkningsvekst både øker tilbudet av arbeidskraft og etterspørselen etter varer og tjenester.
-Flere innbyggere skaper økt behov for handel, bygg, helse, offentlig tjenesteyting og annen lokal produksjon, noe som igjen genererer flere arbeidsplasser.
-I tillegg kan befolkningsvekst gi opphav til agglomerasjonseffekter, hvor økt økonomisk aktivitet forsterker produktivitet og sysselsetting ytterligere.
 
 Nettoflytting har også en positiv og svakt statistisk signifikant sammenheng med sysselsettingsvekst.
-Koeffisienten på 0,18 indikerer at én ekstra netto innflytter per 1000 innbyggere er assosiert med om lag 0,18 prosentpoeng høyere sysselsettingsvekst.
-Dette kan forklares ved at innflytting ofte består av personer i yrkesaktiv alder, noe som både styrker arbeidsstyrken og øker lokal etterspørsel.
 
 De øvrige variablene arbeidsledighet, andel med høyere utdanning, arbeidsplasser per innbygger, nettopendling og boligpriser, viser ingen statistisk signifikant selvstendig sammenheng når det kontrolleres for folketallsvekst.
-Dette kan tyde på at deres betydning for sysselsettingsutvikling i stor grad opererer indirekte gjennom befolkningsvekst.
-For eksempel kan et sterkt arbeidsmarked eller høye boligpriser først bidra til befolkningsvekst, som deretter stimulerer sysselsettingsvekst.
+.
 
-Modellen har en justert R² på om lag 0,56, noe som innebærer at omtrent 56 prosent av variasjonen i sysselsettingsvekst mellom kommunene kan forklares av de inkluderte variablene.
-Samlet sett indikerer resultatene at sysselsettingsvekst i stor grad følger befolkningsveksten, og at arbeidsmarkedets utvikling dermed synes å være tett knyttet til kommunenes demografiske dynamikk.
+Modellen har en justert R² på om lag 0,56
 
 ## Konklusjon
 
-I denne oppgaven har vi analysert regional utvikling i Norge ved hjelp av kart, deskriptiv statistikk, korrelasjoner og flere regresjonsmodeller.
-Samlet sett ser vi et tydelig mønster der de mest sentrale kommunene har hatt sterkere befolkningsvekst, høyere sysselsettingsvekst og høyere boligpriser enn mindre sentrale kommuner.
-Dette kommer klart frem i kartene, og resultatene støttes også av regresjonsanalysene.
+De mest sentrale kommunene har hatt sterkere befolkningsvekst, høyere sysselsettingsvekst og høyere boligpriser enn mindre sentrale kommuner
 
 I modellene for folketallsvekst finner vi at nettoflytting, arbeidsplasser per 1000 innbyggere og boligpriser har en tydelig og gjennomgående positiv sammenheng med vekst.
-Disse variablene er robuste på tvers av modellspesifikasjonene.
-Samtidig ser vi at arbeidsledighet og andel med høyere utdanning ikke alltid er signifikante når vi kontrollerer for andre strukturelle forhold.
-Det kan tyde på at disse faktorene i større grad virker indirekte gjennom arbeidsmarked, sentralitet og attraktivitet.
 
 Når vi analyserer sysselsettingsvekst, finner vi at folketallsvekst er den klart sterkeste forklaringsvariabelen.
-Det viser hvor tett befolkning og arbeidsmarked henger sammen.
-Samtidig skaper dette en viktig metodisk utfordring.
-Flere arbeidsplasser kan føre til befolkningsvekst, men økt befolkning kan også skape flere arbeidsplasser gjennom økt etterspørsel.
-Dette innebærer en form for simultanitet, der det er vanskelig å skille klart mellom årsak og virkning.
 
 Tilsvarende kan høye boligpriser både være et resultat av vekst og en indikator på attraktivitet som trekker til seg nye innbyggere.
-Slike gjensidige sammenhenger skaper utfordringer knyttet til endogenitet.
-Selv om modellene våre har relativt høy forklaringsgrad, betyr ikke det at vi kan tolke sammenhengene kausalt.
-Paneldata med faste effekter hjelper oss med å kontrollere for faste forskjeller mellom kommuner over tid, men det løser ikke fullt ut problemet med at variablene påvirker hverandre samtidig.
 
-For å komme nærmere en kausal tolkning kunne man i videre analyser brukt laggede variabler mer systematisk, slik at forklaringsvariablene måles før utfallet.
-En annen mulighet kunne vært å bruke instrumentvariabler, eller å studere konkrete hendelser som større investeringer eller etablering og nedleggelse av hjørnesteinsbedrifter.
-Slike tilnærminger kunne gjort det lettere å isolere effektene av enkeltfaktorer.
-
-Alt i alt viser analysen at regional utvikling i Norge i stor grad henger sammen med sentralitet, arbeidsmarked og flyttemønstre.
-Funnene våre samsvarer i hovedsak med teoriene vi har presentert, særlig agglomerasjonsteori og budrenteteori.
-Samtidig viser analysen at utviklingen er preget av komplekse og gjensidige sammenhenger.
-Resultatene bør derfor tolkes som sterke og konsistente samvariasjoner, heller enn som entydige bevis på årsak og virkning.
+Analysen at regional utvikling i Norge i stor grad henger sammen med sentralitet, arbeidsmarked og flyttemønstre.
 
 ## Kildeliste
