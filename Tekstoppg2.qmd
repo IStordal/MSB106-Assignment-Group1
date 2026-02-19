@@ -191,15 +191,13 @@ Jo nærmere 1 et positivt tall er, jo større tyder på det på en positiv samva
 
 ## Paneldata
 
-I paneldata analysen beregnes korrelasjoner basert på årlige endinger innen hver kommuner.
-Dette skiller seg fra forrige avsnitt hvor nivåforskjellene ble målt mellom kommuner.
+Korrelasjoner basert på årlige endinger innen hver kommuner.
 
-Først er det blitt beregnet Spearman korrelasjonskoefisienter, utifra dette datasettet med delta verdier.
+Laget nytt datasett med Delta verdier
 
 ![](images/clipboard-982896316.png)
 
-Ettersom det er veldig mange kommuner er det lite hensiktsmessig å illustrere hver enkelt kommune sine samvariasjoner.
-Derfor illustreres et "summary" av hver av de enkelt variabelkombinasjonene
+## Resultater fra Paneldata analyse 
 
 ![](images/clipboard-4183825931.png)
 
@@ -213,20 +211,17 @@ Derfor illustreres et "summary" av hver av de enkelt variabelkombinasjonene
 
 ![](images/clipboard-492759142.png)
 
+## Sentralitet og boligpris
+
 ![](images/clipboard-847073424.png)
+
+## Sentralitet og innpendling 
 
 ![](images/clipboard-4170222301.png)
 
-Spredningdiagrammet viser at sammenhengen mellom sentralitetsindeks og innpendling er monotont økende, men ikke fullt ut lineær.
-Innpendlingen øker relativt svakt ved lave nivåer av sentralitet, men mer markant i de mest sentrale kommunene.
-Dette innebærer at Pearson-korrelasjonen, som forutsetter lineæritet, kan undervurdere styrken i sammenhengen, mens Spearman-korrelasjonen er bedre egnet til å fange den monotone strukturen i dataene.
-Selv om sammenhengen er tydelig, viser spredningen i punktene at sentralitet alene ikke forklarer variasjonen i innpendling, og andre faktorer som næringsstruktur og transporttilgang spiller også en rolle.
+## Arbeidsledighet og utflytting 
 
 ![](images/clipboard-425484476.png)
-
-Spredningdiagrammet mellom arbeidsledighet og utflytting viser ingen klar systematisk sammenheng noe som samsvarer med korrelasjonskoeffisientene på 0.06 og 0.02 for de to årene.
-Den glatte kurven er tilnærmet flat, og punktene er spredt uten et tydelig mønster.
-Dette illustrerer en viktig begrensning ved korrelasjonskoeffisienter: selv når de kan beregnes, gir de lite informasjon dersom det ikke foreligger en tydelig strukturell sammenheng mellom variablene.
 
 ## Sammenheng mellom befolkning og sysselsetting
 
@@ -254,20 +249,13 @@ regresjon_fe <- plm(
 summary(regresjon_fe)
 ```
 
-Vi har kjørt en regresjon som viser sammenhengen mellom befolkning og sysselsetting for norske kommuner.
-Der vi byttet på befolkning og sysselsetting som avhengig variabel.
-I begge regresjonene er det en svært høy justert r-kvadrert.
-Det vil si at man ikke kan tolke resultatene kausalt.
-Man kan ikke bestemme hva som begrunnes av hva.
+Regresjon viser sammenhengen mellom befolkning og sysselsetting
+
+Byttet på befolkning og sysselsetting som avhengig variabel.
 
 Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe.
-Da ser vi at justert r-kvadrat er litt lavere, men fortsatt veldig høy.
-Det betyr også at vi ikke kan tolke resultatene kausalt.
 
-Tidligere så vi på kurver for befolkningsutvikling og sysselsetting, der så vi at kurvene hadde en lik utvikling, noe som tyder på at de henger sammen.
-Det ser vi igjen her at forklaringsgraden er veldig høy.
-Men det forklarer ikke om sysselsetningen øker hvis befolkningen øker, eller omvendt.
-Man kan derfor ikke tolke det kausalt.
+Tidligere så vi på kurver for befolkningsutvikling og sysselsetting
 
 ```{r}
 regresjon |> 
@@ -276,10 +264,8 @@ regresjon |>
 ```
 
 For å regne ut korrelasjonen har vi brukt antall sysselsatte og antall i befolkning.
-Korrelasjonen er veldig sterk, verdien er veldig lik som på den justerte r-kvadraten som vi så på regresjonen vår.
-Det betyr at man ikke kan tolke resultatene kausalt og det er fare for at det er multikollinearitet til stede.
 
-For å få et mer hensiktsmessig resultat kunne vi hatt andel sysselsatte eller sett på atbeidsplass per 1000 innbyggere, slik at man hadde sett verdiene i forhold til hverandre.
+For å få et mer hensiktsmessig resultat kunne vi hatt andel sysselsatte eller sett på atbeidsplass per 1000 innbyggere,
 
 ## Relevante hypoteser basert på deskriptiv statistikk
 
