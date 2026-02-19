@@ -50,8 +50,6 @@ Benyttet 2020 indeksen
 
 ![](images/clipboard-1701507729.png)
 
-Utifra t-testen finner vi ut at sentralitetsindeksen fra 2020 til 2023 har ikke så store endringer.
-
 341 kommuner er med
 
 ## Prosentvis arbeidsledighet
@@ -76,12 +74,9 @@ Andersson 2019 skriver om Norges utvikling fra 1970 til 2017
 
 Hvordan uliker variabler varierer rundt om i Norge
 
-Høy befolkingsvekst i små kommuner fra 1970 til 1980
-
-Fra 1980 større vekst i store kommuner.
+Høy befolkingsvekst i små kommuner fra 1970 til 1980, så større vekst i store kommuner.
 
 Sentralisering skjer i arbeidsmarkedsregioner, og ikke mellom dem.
-
 Få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land.
 
 Pendling viktig.
@@ -104,68 +99,81 @@ En modell som sier noe om hvorfor personer flytter til byen selv om det er høy 
 
 ## Vekst i Norge
 
-Det er forsket på hva som avgjør at noen byer vokser raskere enn andre.
-Forskningen peker på to hovedforklaringer.
-Den ene er at byer med offshorevirksomhet eller andre naturessursbaserte virksomheter som fisk kraft som har gitt en høyere produksjonsvekst enn andre byer [@grünfeld2016].
+Hvorfor vokser noen byer raskere enn andreÅ
 
-Den andre hovedforklaringen de peker på er utdanningsnivået til arbeidsstyrken.
-De ser at byene som har kunnskapsintensive næringer har også en høy andel utdannede mennesker og er de byene som vokser mest.
-Videre ser de at det er byer med store næringer, men som ikke vokser så mye, og peker på at lav utdanningsnivå kan være årsaken til det. De mener sysselsettingsvekst og utfanningsnivå har en sammenheng.
-Videre ser de at byene som Gjøvik, Kongsvinger og Notodden som ligger relativt nærme Oslo, sliter med at de ligger for langt unna til å nyte godt av storbydfordelene, samtidig taper de folk til byen.
-Utdanningsnivået er også lavere her.
-De konkluderer med at utdanning er viktig for steders vekst [@grünfeld2016].
+Byer med offshorevirksomhet eller andre naturessursbaserte virksomheter som fisk kraft som har gitt en høyere produksjonsvekst enn andre byer [@grünfeld2016].
+
+Den andre hovedforklaringen de peker på er utdanningsnivået til arbeidsstyrken
 
 ## Visuell fremstilling av utviklingen i Norge etter 1986
 
-Videre skal vi se på kartfremstillinger som illutreser ulike utvikler
+Videre skal vi se på kartfremstillinger som illutreerer utviklinger av diverse variabler
 
-## Folketallsutvikling
+## Folketallsutvikling kart
 
-![*Prosentvis folketallsvekst etter år 2000, der rosa er negativ utvikling og grønn er positiv utvikling*](kart/Bilde_folketallsvekst.png)
+![*Prosentvis folketallsvekst etter år 2000, der rosa er negativ utvikling og grønn er positiv utvikling*](kart/Bilde_folketallsvekst.png){width="432"}
 
-![*Folketallsutvikling fordelt på sentralitetsklasser*](folketallutv.png){#fig-nsvnovbre}
+## Folketallsutvikling graf
 
-## Befolkningsutvikling 20-29
+![*Folketallsutvikling fordelt på sentralitetsklasser*](folketallutv.png){#fig-nsvnovbre width="407"}
 
-![*Andel befolkning i alder 20-29 år i 2024, der mørkere farge er høyere andel*](kart/Bilde_andel_befolkning.png){width="80%"}
+## Befolkningsutvikling 20-29 kart
+
+![*Andel befolkning i alder 20-29 år i 2024, der mørkere farge er høyere andel*](kart/Bilde_andel_befolkning.png){width="45%"}
+
+## Befolkningsutvikling 20-29 graf
 
 ![*Utvikling i andel befolkning for 20-29 år, fra år 2000-2024, fordelt på sentralitetsklasser*](bef2029utv.png)
 
-## Prosentvis arbeidsledighet
+## Prosentvis arbeidsledighet kart
 
-![*Prosentvis arbeidsledighet for 2024, der mørkere farge er høyere andel*](kart/Bilde_Andel_arbeidsledighet.png)
+![*Prosentvis arbeidsledighet for 2024, der mørkere farge er høyere andel*](kart/Bilde_Andel_arbeidsledighet.png){width="455"}
+
+## Prosentvis arbeidsledighet graf
 
 ![*Utvikling i prosentvis arbeisledighet fra 2008-2024, fordelt på sentralitetsklasser*](arbledutv.png)
 
-## Sysselsettingsvekst
+## Sysselsettingsvekst kart
 
-![*Prosentvis sysselsettingsvekst etter år 2000, der lilla er negativ vekst og grønn er positiv vekst*](kart/Bilde_Andel_sysselsettingsvekst.png)
+![*Prosentvis sysselsettingsvekst etter år 2000, der lilla er negativ vekst og grønn er positiv vekst*](kart/Bilde_Andel_sysselsettingsvekst.png){width="492"}
+
+## Sysselsettingsvekst graf
 
 ![*Utvikling i sysselsettingsvekst etter år 2000, fordelt på sentralitetsklasser*](syssutv.png)
 
-## Kvmpris utvikling
+## Kvmpris utvikling kart
 
-![*Gjennomsnittlig kvadratmeterpris for eneboliger i 2024, der skravert område betyr 0 omsatte boliger, og jo mørkere farge jo høyere pris*](kart/Bilde_kvadratmeterpris_eneboliger.png)
+![*Gjennomsnittlig kvadratmeterpris for eneboliger i 2024, der skravert område betyr 0 omsatte boliger, og jo mørkere farge jo høyere pris*](kart/Bilde_kvadratmeterpris_eneboliger.png){width="459"}
+
+## Kvmpris utvikling graf
 
 ![*Utvikling i kvadratmeterpris for eneboliger og leilighet fordelt på sentralitetsklasser etter år 2002*](kvmprisutv.png)
 
-## Utdanning utvikling
+## Utdanning utvikling kart
 
-![*Andel innbyggere med høyere utdanning i 2024*](kart/Bilde_universitetsutdannig.png)
+![*Andel innbyggere med høyere utdanning i 2024*](kart/Bilde_universitetsutdannig.png){width="487"}
+
+## Utdanning utvikling graf
 
 ![*Utvikling i andel personer med høyere utdanning etter år 1986 fordelt på sentralitetsklasser*](utdutv.png)
 
-## Flytting utvikling
+## Flytting utvikling kart (18-29)
 
-![*Netto utflytting per 1000 innbyggere for alder 18-29, der rød er utflytting og blå er innflytting*](kart/Bilde_Utflytting_1829.png)
+![*Netto utflytting per 1000 innbyggere for alder 18-29, der rød er utflytting og blå er innflytting*](kart/Bilde_Utflytting_1829.png){width="540"}
 
-![*Netto utflytting per 1000 innbyggere for alder 30+.', der rød er utflytting og blå er innflytting*](kart/Bilde_utflytting_30.png)
+## Flytting utvikling kart (30+)
+
+![*Netto utflytting per 1000 innbyggere for alder 30+.', der rød er utflytting og blå er innflytting*](kart/Bilde_utflytting_30.png){width="519"}
+
+## Flytting utvikling graf
 
 ![*Utvikling i netto flytting for alder 18-29 og 30+, fordelt på sentralitetsklasseretter år 2010*](flyttutv.png)
 
-## Pendling utvikling
+## Pendling utvikling kart
 
-![*Netto pendling per 1000 arbeidsplasser, der rød er utpendling og blå er innpendling*](kart/Bilde_innpendling.png)
+![*Netto pendling per 1000 arbeidsplasser, der rød er utpendling og blå er innpendling*](kart/Bilde_innpendling.png){width="496"}
+
+## Pendling utvikling graf 
 
 ![*Utvikling i pendling per 1000 arbeidsplass etter år 2000, fordelt på sentralitetsklasser*](pendlutv.png)
 
@@ -384,89 +392,55 @@ Kartet viser samtidig at de høyeste boligprisene er konsentrert rundt større b
 ## År 2010
 
 ![](images/clipboard-3612021732.png)2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
-Resultatene viser at kommuner som var mer sentrale i 2010, i gjennomsnitt har hatt noe høyere folketallsvekst.
-Forskjellen er liten, men målbar (litt høyere sentralitet henger sammen med rundt 0,08 prosentpoeng mer vekst i folketallet).
 
 Boligprisene viser en sterkt positivt vekst knyttet til befolkningsutviklingen.
 En økning i logaritmen til boligprisen i 2010 er assosiert med rundt 27,6 prosentpoeng høyere folketallsvekst, noe som indikerer at boligpriser fungerer som en indikator på kommunens attraktivitet.
 
 Når det kommer til antall arbeidsplasser per 1000 innbyggere har de også en positiv og signifikant sammenheng med folketallsvekst.
-En økning på 10 arbeidsplasser per 1000 innbyggere i 2010 er forbundet med om lag 0,7 prosentpoeng høyere folketallsvekst.
-Tilsvarende har netto innflytting en sterk positiv effekt.
-Den viser blant annet at én ekstra person i netto innflytting per 1000 innbyggere i 2010 er assosiert med rundt 0,74 prosentpoeng høyere folketallsvekst.
 
 På den andre siden er netto utpendling negativt assosiert med befolkningsutviklingen.
-En økning i netto utpendling på 10 personer per 1000 arbeidsplasser er knyttet til om lag 0,2 prosentpoeng lavere folketallsvekst.
-Arbeidsledighet har også en negativ sammenheng med folketallsvekst, der én prosentpoeng høyere ledighet i 2010 er assosiert med rundt 1,75 prosentpoeng lavere folketallsvekst, selv om denne effekten kun er svakt statistisk signifikant.
 
-Når det kommer til Dummyvariablene for landsdel er de ikke statistisk signifikante, noe som indikerer at når det kontrolleres for sentralitet, arbeidsmarked, boligpriser og flyttemønstre, har landsdel i seg selv ingen selvstendig betydning for folketallsutviklingen.
+Når det kommer til Dummyvariablene for landsdel er de ikke statistisk signifikante
 
-Modellen i seg selv har en relativt høy forklaringsgrad, med en justert R² på rundt 0,69.
-Dette betyr at om lag 70 prosent av variasjonen i folketallsvekst mellom kommunene kan forklares av variablene som er inkludert i modellen.
-For en tverrsnittsmodell på kommunenivå er dette en høy forklaringsgrad, og det indikerer at forhold som sentralitet, boligpriser, arbeidsmarked, flytting og pendling spiller en viktig rolle for befolkningsutviklingen.
-[@ozili]
+Modellen i seg selv har en relativt høy forklaringsgrad
 
-Samtidig innebærer dette at rundt 30 prosent av variasjonen ikke forklares av modellen.
-Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for eksempel lokale politiske beslutninger, naturgitte forhold eller andre tilfeldige og historiske faktorer.
-Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
+Innebærer dette at rundt 30 prosent av variasjonen ikke forklares av modellen.
 
 ## År 2000 - 2024
 
 ![](images/clipboard-1237205651.png)
 
-Resultatene fra modellen der forklaringsvariablene er representert ved gjennomsnittsverdier for perioden 2000-2024 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
-Kommuner som i gjennomsnitt er mer sentrale har hatt høyere folketallsvekst.
-Effekten er liten per enhet, men tydelig: én enhets høyere sentralitet er assosiert med rundt 0,09 prosentpoeng høyere folketallsvekst, når andre forhold holdes konstante.
+Resultatene viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
 
-Boligprisene har også en klar positiv sammenheng med befolkningsutviklingen.
-En økning i logaritmen til boligprisen er assosiert med rundt 18,3 prosentpoeng høyere folketallsvekst, noe som indikerer at boligpriser reflekterer underliggende forhold som gjør kommuner mer attraktive som bosted.
+Boligprisene har også en klar positiv sammenheng med befolkningsutviklingen
 
-Antall arbeidsplasser per 1000 innbyggere har en positiv og statistisk signifikant sammenheng med folketallsvekst.
-En økning på 10 arbeidsplasser per 1000 innbyggere er forbundet med om lag 0,78 prosentpoeng høyere folketallsvekst.
-Nettoflytting har også en tydelig positiv effekt: én ekstra person i netto innflytting per 1000 innbyggere er assosiert med rundt 0,56 prosentpoeng høyere folketallsvekst.
+Antall arbeidsplasser per 1000 innbyggere har en positiv og statistisk signifikant sammenheng med folketallsvekst
 
-Netto pendling har en negativ og statistisk signifikant sammenheng med folketallsutviklingen.
-En økning i netto utpendling på 10 personer per 1000 arbeidsplasser er knyttet til om lag 0,25 prosentpoeng lavere folketallsvekst.
-Arbeidsledighet har en negativ koeffisient, men effekten er ikke statistisk signifikant i denne modellen.
-Andelen med høyere utdanning har en negativ og signifikant sammenheng (om lag -0,59 prosentpoeng per ekstra prosentpoeng), noe som kan tyde på at når sentralitet, boligpriser og arbeidsmarked kontrolleres for, fanger utdanningsvariabelen opp andre strukturelle forskjeller mellom kommuner.
+Netto pendling har en negativ og statistisk signifikant sammenheng med folketallsutviklingen
 
-Dummyvariablene for landsdel er i hovedsak ikke statistisk signifikante, som indikerer at når det kontrolleres for sentralitet, boligpriser, arbeidsmarked, flytting og pendling, har landsdel i seg selv liten selvstendig betydning for folketallsutviklingen (landsdel øst er svakt/marginalt signifikant på 10 % -nivå).
+Dummyvariablene for landsdel er i hovedsak ikke statistisk signifikante
 
-Modellen har høy forklaringsgrad, med en justert R² på rundt 0,74.
-Dette betyr at om lag 74 prosent av variasjonen i folketallsvekst mellom kommunene kan forklares av variablene som er inkludert i modellen.
-
-Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er de sentrale faktorene for folketallsutviklingen i norske kommuner.
+Modellen har høy forklaringsgrad, med en justert R² på rundt 0,74
 
 ## Paneldatasett i tillegg til årlig vekst
 
 ![](images/clipboard-3916186516.png)
 
-Modell 6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst over perioden og gjennomsnittlige strukturelle kjennetegn ved kommunene i samme periode.
-Siden den avhengige variabelen er målt i prosent, kan koeffisientene tolkes som endring i prosentpoeng i folketallsveksten når en forklaringsvariabel øker med én enhet, gitt at øvrige variabler holdes konstante.
+Modell 6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst
 
-Når en ser på resultatene viser den at nettoflytting har en positiv og statistisk signifikant sammenheng med folketallsvekst.
-Koeffisienten på 0,29 innebærer at én ekstra person i netto innflytting per 1000 innbyggere i gjennomsnitt over perioden er assosiert med 0,29 prosentpoeng høyere samlet folketallsvekst.
-Dette er forventet, ettersom nettoflytting per definisjon innebærer en direkte endring i befolkningens størrelse og dermed naturlig henger sammen med folketallsutviklingen.
+Når en ser på resultatene viser den at nettoflytting har en positiv og statistisk signifikant sammenheng med folketallsvekst
 
 Arbeidsplasser per 1000 innbyggere har også en positiv og signifikant sammenheng.
-Koeffisienten på 0,035 innebærer at en økning på 10 arbeidsplasser per 1000 innbyggere er assosiert med om lag 0,35 prosentpoeng høyere folketallsvekst.
-Dette indikerer at et sterkt lokalt arbeidsmarked bidrar til langsiktig befolkningsvekst.
 
-Netto pendling har en negativ og signifikant koeffisient på - 0,013.
-En økning på 10 netto utpendlere per 1000 innbyggere er dermed assosiert med omtrent 0,13 prosentpoeng lavere folketallsvekst.
-Dette kan tolkes som at kommuner som i større grad fungerer som bostedskommuner for arbeidstakere i andre kommuner, har svakere egen vekstdynamikk.
+Netto pendling har en negativ og signifikant koeffisient
 
-Boligpris er inkludert i logaritmert form.
-Koeffisienten på 22,19 innebærer at en én prosents økning i boligprisen er assosiert med omtrent 0,22 prosentpoeng høyere folketallsvekst (siden 1 prosent tilsvarer 0,01 i logaritmisk skala).
-Dette kan tolkes som at høyere boligpriser reflekterer underliggende attraktivitet og etterspørsel etter å bosette seg i kommunen.
+Boligpris er inkludert i logaritmert form
 
-Når en ser på arbeidsledighet og andel med høyere utdanning ligger det ikke robuste og konsistente effekter i denne modellen.
-Dette tyder på at når det kontrolleres for arbeidsmarkedets størrelse, flyttestrømmer og boligpriser, har disse variablene begrenset selvstendig forklaringskraft for den langsiktige befolkningsutviklingen.
+Når en ser på arbeidsledighet og andel med høyere utdanning ligger det ikke robuste og konsistente effekter i denne modellen
 
-Modellen har en justert R² på om lag 0,63, noe som innebærer at rundt 63 prosent av variasjonen i kommunenes folketallsvekst kan forklares av de inkluderte variablene.
-For en tverrsnittsanalyse på kommunenivå representerer dette en relativt høy forklaringsgrad, og indikerer at arbeidsmarked, flyttemønstre og boligmarked er sentrale strukturelle drivkrefter bak befolkningsutviklingen.
+Modellen har en justert R² på om lag 0,63
 
-## Sammenligning av de tre regresjonene
+## Last 
 
 ![](images/clipboard-3179852049.png)
 
