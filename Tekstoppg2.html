@@ -446,7 +446,41 @@ Arbeidssted 0.9879029   1.0000000</code></pre>
 </section>
 <section id="år-2010" class="slide level2">
 <h2>År 2010</h2>
-<p><img data-src="images/clipboard-3612021732.png">2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = folkevekst_pct ~ Ledighet_pct + Hoy_utdanning_pct + 
+    Arbeidsplasser_1k + Nettoflytting_1k + Nettopendling_1k + 
+    ln_Boligpris + Sentralitet + Landsdel, data = regdata)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-29.885  -6.626  -1.152   4.230  58.475 
+
+Coefficients:
+                     Estimate  Std. Error t value          Pr(&gt;|t|)    
+(Intercept)       -316.544596   40.659892  -7.785 0.000000000000367 ***
+Ledighet_pct        -1.752344    0.957328  -1.830          0.068670 .  
+Hoy_utdanning_pct   -1.226581    0.295059  -4.157 0.000047788419575 ***
+Arbeidsplasser_1k    0.071147    0.018836   3.777          0.000209 ***
+Nettoflytting_1k     0.736263    0.168148   4.379 0.000019239327349 ***
+Nettopendling_1k    -0.021724    0.005421  -4.007 0.000086655593019 ***
+ln_Boligpris        27.633901    5.093821   5.425 0.000000166396142 ***
+Sentralitet          0.083523    0.015081   5.538 0.000000095260571 ***
+Landsdelsør         -0.018218    3.396064  -0.005          0.995725    
+Landsdeltrøndelag    5.662196    3.680679   1.538          0.125542    
+Landsdelvest         0.846065    2.926797   0.289          0.772823    
+Landsdeløst         -2.712059    3.271839  -0.829          0.408144    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 11.21 on 200 degrees of freedom
+Multiple R-squared:  0.7064,    Adjusted R-squared:  0.6902 
+F-statistic: 43.74 on 11 and 200 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
+<p>2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.</p>
 <p>Boligprisene viser en sterkt positivt vekst knyttet til befolkningsutviklingen. En økning i logaritmen til boligprisen i 2010 er assosiert med rundt 27,6 prosentpoeng høyere folketallsvekst, noe som indikerer at boligpriser fungerer som en indikator på kommunens attraktivitet.</p>
 <p>Når det kommer til antall arbeidsplasser per 1000 innbyggere har de også en positiv og signifikant sammenheng med folketallsvekst.</p>
 <p>På den andre siden er netto utpendling negativt assosiert med befolkningsutviklingen.</p>
@@ -456,8 +490,41 @@ Arbeidssted 0.9879029   1.0000000</code></pre>
 </section>
 <section id="år-2000---2024" class="slide level2">
 <h2>År 2000 - 2024</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = folkevekst_pct ~ Ledighet_pct + Hoy_utdanning_pct + 
+    Arbeidsplasser_1k + Nettoflytting_1k + Nettopendling_1k + 
+    ln_Boligpris + Sentralitet + Landsdel, data = regdata_mean)
 
-<img data-src="images/clipboard-1237205651.png" class="r-stretch"><p>Resultatene viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.</p>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-36.525  -6.005  -1.304   5.046  60.807 
+
+Coefficients:
+                     Estimate  Std. Error t value             Pr(&gt;|t|)    
+(Intercept)       -253.924291   33.030887  -7.687    0.000000000000258 ***
+Ledighet_pct        -0.704458    1.032588  -0.682               0.4957    
+Hoy_utdanning_pct   -0.588402    0.236494  -2.488               0.0134 *  
+Arbeidsplasser_1k    0.077981    0.016679   4.675    0.000004575848587 ***
+Nettoflytting_1k     0.562863    0.126720   4.442    0.000012872682797 ***
+Nettopendling_1k    -0.025428    0.004878  -5.213    0.000000362517610 ***
+ln_Boligpris        18.320239    3.906050   4.690    0.000004277460658 ***
+Sentralitet          0.094354    0.009334  10.109 &lt; 0.0000000000000002 ***
+Landsdelsør          0.452784    2.584522   0.175               0.8611    
+Landsdeltrøndelag    1.393288    2.857181   0.488               0.6262    
+Landsdelvest         1.412573    2.167587   0.652               0.5151    
+Landsdeløst         -4.841401    2.495622  -1.940               0.0534 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 10.62 on 279 degrees of freedom
+Multiple R-squared:  0.7453,    Adjusted R-squared:  0.7353 
+F-statistic: 74.23 on 11 and 279 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
+<p>Resultatene viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.</p>
 <p>Boligprisene har også en klar positiv sammenheng med befolkningsutviklingen</p>
 <p>Antall arbeidsplasser per 1000 innbyggere har en positiv og statistisk signifikant sammenheng med folketallsvekst</p>
 <p>Netto pendling har en negativ og statistisk signifikant sammenheng med folketallsutviklingen</p>
@@ -466,8 +533,36 @@ Arbeidssted 0.9879029   1.0000000</code></pre>
 </section>
 <section id="paneldatasett-i-tillegg-til-årlig-vekst" class="slide level2">
 <h2>Paneldatasett i tillegg til årlig vekst</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = folketallsvekst ~ Ledighet_pct + Hoy_utdanning_pct + 
+    Arbeidsplasser_1k + Nettoflytting_1k + Nettopendling_1k + 
+    ln_Boligpris, data = df_6_csB)
 
-<img data-src="images/clipboard-3916186516.png" class="r-stretch"><p>Modell 6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst</p>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-16.546  -4.102  -0.597   3.529  22.309 
+
+Coefficients:
+                     Estimate  Std. Error t value             Pr(&gt;|t|)    
+(Intercept)       -221.421130   17.299034 -12.800 &lt; 0.0000000000000002 ***
+Ledighet_pct         0.757828    0.567721   1.335             0.182984    
+Hoy_utdanning_pct   -0.278352    0.129933  -2.142             0.033016 *  
+Arbeidsplasser_1k    0.034622    0.009777   3.541             0.000465 ***
+Nettoflytting_1k     0.290941    0.063654   4.571           0.00000724 ***
+Nettopendling_1k    -0.013475    0.002956  -4.558           0.00000764 ***
+ln_Boligpris        22.187834    2.047196  10.838 &lt; 0.0000000000000002 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.525 on 286 degrees of freedom
+Multiple R-squared:  0.6376,    Adjusted R-squared:   0.63 
+F-statistic: 83.88 on 6 and 286 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
+<p>Modell 6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst</p>
 <p>Når en ser på resultatene viser den at nettoflytting har en positiv og statistisk signifikant sammenheng med folketallsvekst</p>
 <p>Arbeidsplasser per 1000 innbyggere har også en positiv og signifikant sammenheng.</p>
 <p>Netto pendling har en negativ og signifikant koeffisient</p>
@@ -477,8 +572,186 @@ Arbeidssted 0.9879029   1.0000000</code></pre>
 </section>
 <section id="last" class="slide level2">
 <h2>Last</h2>
-<p><img data-src="images/clipboard-3179852049.png"></p>
-<p><img data-src="images/clipboard-2683374806.png">De tre modellene analyserer sammenhengen mellom strukturelle kommuneegenskaper og folketallsvekst, men benytter ulike måter å måle forklaringsvariablene på. Som tidliger bruker den første modellen verdier fra startåret (2010), den andre bruker gjennomsnittlige verdier over perioden 2000 - 2024, mens den tredje modellen (Modell B) benytter periodegjennomsnitt uten landsdels- og sentralitetskontroller og estimeres med robuste standardfeil.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>$`_data`
+# A tibble: 26 × 4
+   ` `       `Tverrsnitt (X=2010)` Tverrsnitt (X=snitt …¹ Periode-gjennomsnitt…²
+   &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;                  &lt;chr&gt;                 
+ 1 "(Interc… -316.545***           -253.924***            -221.421***           
+ 2 ""        (47.905)              (42.984)               (16.844)              
+ 3 "Ledighe… -1.752*               -0.704                 0.758                 
+ 4 ""        (0.858)               (1.024)                (0.680)               
+ 5 "Hoy_utd… -1.227**              -0.588+                -0.278*               
+ 6 ""        (0.426)               (0.326)                (0.139)               
+ 7 "Arbeids… 0.071+                0.078*                 0.035**               
+ 8 ""        (0.039)               (0.036)                (0.013)               
+ 9 "Nettofl… 0.736***              0.563**                0.291***              
+10 ""        (0.181)               (0.211)                (0.086)               
+# ℹ 16 more rows
+# ℹ abbreviated names: ¹​`Tverrsnitt (X=snitt 2000-2024)`,
+#   ²​`Periode-gjennomsnitt (Modell B)`
+
+$`_boxhead`
+                              var    type                    column_label
+1                                 default                                
+2             Tverrsnitt (X=2010) default             Tverrsnitt (X=2010)
+3  Tverrsnitt (X=snitt 2000-2024) default  Tverrsnitt (X=snitt 2000-2024)
+4 Periode-gjennomsnitt (Modell B) default Periode-gjennomsnitt (Modell B)
+  column_units column_pattern column_align column_width hidden_px
+1         &lt;NA&gt;           &lt;NA&gt;         left         NULL      NULL
+2         &lt;NA&gt;           &lt;NA&gt;       center         NULL      NULL
+3         &lt;NA&gt;           &lt;NA&gt;       center         NULL      NULL
+4         &lt;NA&gt;           &lt;NA&gt;       center         NULL      NULL
+
+$`_stub_df`
+   rownum_i row_id group_id group_label indent built_group_label
+1         1   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+2         2   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+3         3   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+4         4   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+5         5   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+6         6   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+7         7   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+8         8   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+9         9   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+10       10   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+11       11   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+12       12   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+13       13   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+14       14   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+15       15   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+16       16   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+17       17   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+18       18   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+19       19   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+20       20   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+21       21   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+22       22   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+23       23   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+24       24   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+25       25   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+26       26   &lt;NA&gt;     &lt;NA&gt;        NULL   &lt;NA&gt;              &lt;NA&gt;
+
+$`_row_groups`
+character(0)
+
+$`_row_order`
+list()
+
+$`_heading`
+$`_heading`$title
+NULL
+
+$`_heading`$subtitle
+NULL
+
+$`_heading`$preheader
+NULL
+
+
+$`_spanners`
+[1] vars            spanner_label   spanner_units   spanner_pattern
+[5] spanner_id      spanner_level   gather          built          
+&lt;0 rows&gt; (or 0-length row.names)
+
+$`_stubhead`
+$`_stubhead`$label
+NULL
+
+
+$`_footnotes`
+[1] locname   grpname   colname   locnum    rownum    colnum    footnotes
+[8] placement
+&lt;0 rows&gt; (or 0-length row.names)
+
+$`_source_notes`
+$`_source_notes`[[1]]
+[1] "+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001"
+
+
+$`_formats`
+list()
+
+$`_substitutions`
+list()
+
+$`_styles`
+  locname grpname                         colname locnum rownum colnum
+1    data    &lt;NA&gt;                                      5     24     NA
+2    data    &lt;NA&gt;             Tverrsnitt (X=2010)      5     24     NA
+3    data    &lt;NA&gt;  Tverrsnitt (X=snitt 2000-2024)      5     24     NA
+4    data    &lt;NA&gt; Periode-gjennomsnitt (Modell B)      5     24     NA
+                       styles
+1 bottom, 1px, solid, #000000
+2 bottom, 1px, solid, #000000
+3 bottom, 1px, solid, #000000
+4 bottom, 1px, solid, #000000
+
+$`_summary`
+list()
+
+$`_summary_cols`
+list()
+
+$`_summary_cols_build`
+list()
+
+$`_options`
+# A tibble: 200 × 5
+   parameter              scss  category type   value     
+   &lt;chr&gt;                  &lt;lgl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;list&gt;    
+ 1 table_id               FALSE table    value  &lt;chr [1]&gt; 
+ 2 table_caption          FALSE table    value  &lt;chr [1]&gt; 
+ 3 table_width            TRUE  table    px     &lt;chr [1]&gt; 
+ 4 table_layout           TRUE  table    value  &lt;chr [1]&gt; 
+ 5 table_margin_left      TRUE  table    px     &lt;chr [1]&gt; 
+ 6 table_margin_right     TRUE  table    px     &lt;chr [1]&gt; 
+ 7 table_background_color TRUE  table    value  &lt;chr [1]&gt; 
+ 8 table_additional_css   FALSE table    values &lt;chr [0]&gt; 
+ 9 table_font_names       FALSE table    values &lt;chr [10]&gt;
+10 table_font_size        TRUE  table    px     &lt;chr [1]&gt; 
+# ℹ 190 more rows
+
+$`_transforms`
+list()
+
+$`_locale`
+$`_locale`$locale
+NULL
+
+
+$`_has_built`
+[1] FALSE
+
+attr(,"class")
+[1] "gt_tbl" "list"  
+attr(,"backend")
+attr(,"backend")$`Tverrsnitt (X=2010)`
+attr(,"backend")$`Tverrsnitt (X=2010)`$est
+[1] "parameters"
+
+attr(,"backend")$`Tverrsnitt (X=2010)`$gof
+[1] "parameters"
+
+
+attr(,"backend")$`Tverrsnitt (X=snitt 2000-2024)`
+attr(,"backend")$`Tverrsnitt (X=snitt 2000-2024)`$est
+[1] "parameters"
+
+attr(,"backend")$`Tverrsnitt (X=snitt 2000-2024)`$gof
+[1] "parameters"
+
+
+attr(,"backend")$`Periode-gjennomsnitt (Modell B)`
+attr(,"backend")$`Periode-gjennomsnitt (Modell B)`$est
+[1] "parameters"
+
+attr(,"backend")$`Periode-gjennomsnitt (Modell B)`$gof
+[1] "parameters"</code></pre>
+</div>
+</div>
+<p>De tre modellene analyserer sammenhengen mellom strukturelle kommuneegenskaper og folketallsvekst, men benytter ulike måter å måle forklaringsvariablene på. Som tidliger bruker den første modellen verdier fra startåret (2010), den andre bruker gjennomsnittlige verdier over perioden 2000 - 2024, mens den tredje modellen (Modell B) benytter periodegjennomsnitt uten landsdels- og sentralitetskontroller og estimeres med robuste standardfeil.</p>
 <p>Utifra disse modellene fremstår nettoflytting, arbeidsplasser per innbygger og boligpriser som de mest robuste forklaringsfaktorene. Nettoflytting har gjennomgående en positiv og statistisk signifikant sammenheng med folketallsvekst, noe som er teoretisk konsistent ettersom flyttestrømmer direkte påvirker befolkningsutviklingen. Arbeidsplasser per 1000 innbyggere har også stabil positiv effekt i alle modellene, noe som understreker betydningen av et sterkt lokalt arbeidsmarked for befolkningsvekst. Boligpriser er målt i logaritmisk form og viser en tydelig positiv sammenheng i samtlige spesifikasjoner. Dette kan tolkes som en indikator på kommunens attraktivitet og etterspørsel etter å bosette seg der.</p>
 <p>I modellene finnes det imidlertid enkelte forskjeller. Startårsmodellen (2010) har høy forklaringsgrad og fanger betydningen av kommunenes strukturelle utgangspunkt. Gjennomsnittsmodellen (2000 - 2024) gir noe høyere forklaringsgrad og reflekterer mer langsiktige trekk ved arbeidsmarked og bosettingsmønstre. Modell B har noe lavere justert R², men resultatene er fortsatt konsistente når det gjelder de sentrale variablene. Hovedmønstrene for modellene holder seg på tvers av spesifikasjonene og styrker dermed selve robustheten i funnene våres.</p>
 <p>Variabler som arbeidsledighet og andel med høyere utdanning viser mindre stabile effekter. Når det kontrolleres for arbeidsplasser, flytting og boligpriser, mister disse variablene ofte statistisk signifikans, noe som tyder på at deres effekt i stor grad opererer indirekte gjennom arbeidsmarked og attraktivitet.</p>
@@ -486,16 +759,115 @@ Arbeidssted 0.9879029   1.0000000</code></pre>
 </section>
 <section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-1" class="slide level2">
 <h2>En multippel regresjonsmodell for sysselsettingsvekst 1</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = syssvekst_pct ~ folkevekst_pct + Ledighet_pct + 
+    Hoy_utdanning_pct + Arbeidsplasser_1k + Nettoflytting_1k + 
+    Nettopendling_1k + ln_Boligpris + Sentralitet + Landsdel, 
+    data = regdata_syss_2010)
 
-<img data-src="images/clipboard-2246683593.png" class="r-stretch"></section>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-59.665  -7.948  -0.602   5.989  89.029 
+
+Coefficients:
+                      Estimate   Std. Error t value            Pr(&gt;|t|)    
+(Intercept)       -130.2475511   64.2457817  -2.027              0.0440 *  
+folkevekst_pct       0.9987089    0.0978777  10.204 &lt;0.0000000000000002 ***
+Ledighet_pct        -0.7165934    1.3361868  -0.536              0.5924    
+Hoy_utdanning_pct   -0.2008268    0.4257006  -0.472              0.6376    
+Arbeidsplasser_1k    0.0185654    0.0269866   0.688              0.4923    
+Nettoflytting_1k    -0.0004705    0.2436510  -0.002              0.9985    
+Nettopendling_1k    -0.0030583    0.0077996  -0.392              0.6954    
+ln_Boligpris        16.5010592    7.5518415   2.185              0.0301 *  
+Sentralitet         -0.0330136    0.0224182  -1.473              0.1424    
+Landsdelsør         -2.1208762    4.7008300  -0.451              0.6524    
+Landsdeltrøndelag    0.8470744    5.1248474   0.165              0.8689    
+Landsdelvest        -5.5852821    4.0521175  -1.378              0.1696    
+Landsdeløst         -2.6345419    4.5366507  -0.581              0.5621    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15.52 on 199 degrees of freedom
+Multiple R-squared:  0.6681,    Adjusted R-squared:  0.648 
+F-statistic: 33.38 on 12 and 199 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
+</section>
 <section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-2" class="slide level2">
 <h2>En multippel regresjonsmodell for sysselsettingsvekst 2</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = syssvekst_pct ~ folkevekst_pct + Ledighet_pct + 
+    Hoy_utdanning_pct + Arbeidsplasser_1k + Nettoflytting_1k + 
+    Nettopendling_1k + ln_Boligpris + Sentralitet + Landsdel, 
+    data = regdata_syss_mean)
 
-<img data-src="images/clipboard-2017134160.png" class="r-stretch"></section>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-68.020  -7.332  -0.836   6.189  88.699 
+
+Coefficients:
+                     Estimate  Std. Error t value             Pr(&gt;|t|)    
+(Intercept)       -104.277209   49.376235  -2.112              0.03559 *  
+folkevekst_pct       1.018749    0.081297  12.531 &lt; 0.0000000000000002 ***
+Ledighet_pct         0.316204    1.403356   0.225              0.82190    
+Hoy_utdanning_pct   -0.064136    0.324686  -0.198              0.84356    
+Arbeidsplasser_1k    0.049115    0.023520   2.088              0.03769 *  
+Nettoflytting_1k     0.107253    0.178057   0.602              0.54743    
+Nettopendling_1k    -0.008329    0.006939  -1.200              0.23104    
+ln_Boligpris        12.046538    5.509303   2.187              0.02961 *  
+Sentralitet         -0.041479    0.014816  -2.800              0.00547 ** 
+Landsdelsør          1.080550    3.509806   0.308              0.75841    
+Landsdeltrøndelag   -0.590675    3.881519  -0.152              0.87916    
+Landsdelvest        -2.677481    2.945681  -0.909              0.36416    
+Landsdeløst         -0.810450    3.411672  -0.238              0.81240    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 14.42 on 278 degrees of freedom
+Multiple R-squared:  0.6844,    Adjusted R-squared:  0.6707 
+F-statistic: 50.23 on 12 and 278 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
+</section>
 <section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-3" class="slide level2">
 <h2>En multippel regresjonsmodell for sysselsettingsvekst 3</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = syssvekst_pct ~ folketallsvekst + Ledighet_pct + 
+    Hoy_utdanning_pct + Arbeidsplasser_1k + Nettoflytting_1k + 
+    Nettopendling_1k + ln_Boligpris, data = df_7_csB)
 
-<img data-src="images/clipboard-3355675770.png" class="r-stretch"></section>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-24.087  -4.746  -0.652   4.280  39.805 
+
+Coefficients:
+                    Estimate Std. Error t value            Pr(&gt;|t|)    
+(Intercept)       -35.727634  30.174426  -1.184              0.2374    
+folketallsvekst     0.837185   0.082242  10.180 &lt;0.0000000000000002 ***
+Ledighet_pct        0.445984   0.792063   0.563              0.5738    
+Hoy_utdanning_pct  -0.063800   0.182159  -0.350              0.7264    
+Arbeidsplasser_1k   0.022264   0.013893   1.603              0.1101    
+Nettoflytting_1k    0.184454   0.091709   2.011              0.0452 *  
+Nettopendling_1k   -0.001335   0.004258  -0.314              0.7541    
+ln_Boligpris        2.737649   3.381860   0.810              0.4189    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 9.075 on 285 degrees of freedom
+Multiple R-squared:  0.5743,    Adjusted R-squared:  0.5638 
+F-statistic: 54.92 on 7 and 285 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
+</section>
 <section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-tolkning" class="slide level2">
 <h2>En multippel regresjonsmodell for sysselsettingsvekst tolkning</h2>
 <p>Modellen analyserer hvilke faktorer som er assosiert med prosentvis sysselsettingsvekst</p>

@@ -34,6 +34,22 @@ options(scipen = 999)
 
 ```{r}
 load("reg_data.rdata")
+
+load("reg_data_2010.rdata")
+
+load("reg_data_2024.rdata")
+
+load("reg_data_Paneldatasett_log.rdata")
+
+load("reg_data_sammenligning.rdata")
+
+load("modelsummary_oppg6.rdata")
+
+load("reg_data_oppg7_2010.rdata")
+
+load("reg_data_oppg7_mean.rdata")
+
+load("reg_data_m_7B.rdata")
 ```
 
 ## Datainnsamling
@@ -383,7 +399,13 @@ Kartet viser samtidig at de høyeste boligprisene er konsentrert rundt større b
 
 ## År 2010
 
-![](images/clipboard-3612021732.png)2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
+```{r}
+load("reg_data_2010.rdata")
+
+summary(mod_oppg6)
+```
+
+2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
 
 Boligprisene viser en sterkt positivt vekst knyttet til befolkningsutviklingen.
 En økning i logaritmen til boligprisen i 2010 er assosiert med rundt 27,6 prosentpoeng høyere folketallsvekst, noe som indikerer at boligpriser fungerer som en indikator på kommunens attraktivitet.
@@ -400,7 +422,11 @@ Innebærer dette at rundt 30 prosent av variasjonen ikke forklares av modellen.
 
 ## År 2000 - 2024
 
-![](images/clipboard-1237205651.png)
+```{r}
+load("reg_data_2024.rdata")
+
+summary(mod_oppg6_mean)
+```
 
 Resultatene viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
 
@@ -416,7 +442,11 @@ Modellen har høy forklaringsgrad, med en justert R² på rundt 0,74
 
 ## Paneldatasett i tillegg til årlig vekst
 
-![](images/clipboard-3916186516.png)
+```{r}
+load("reg_data_Paneldatasett_log.rdata")
+
+summary(m_6B)
+```
 
 Modell 6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst
 
@@ -434,9 +464,12 @@ Modellen har en justert R² på om lag 0,63
 
 ## Last
 
-![](images/clipboard-3179852049.png)
+```{r}
+load("modelsummary_oppg6.rdata")
+ms_gt
+```
 
-![](images/clipboard-2683374806.png)De tre modellene analyserer sammenhengen mellom strukturelle kommuneegenskaper og folketallsvekst, men benytter ulike måter å måle forklaringsvariablene på.
+De tre modellene analyserer sammenhengen mellom strukturelle kommuneegenskaper og folketallsvekst, men benytter ulike måter å måle forklaringsvariablene på.
 Som tidliger bruker den første modellen verdier fra startåret (2010), den andre bruker gjennomsnittlige verdier over perioden 2000 - 2024, mens den tredje modellen (Modell B) benytter periodegjennomsnitt uten landsdels- og sentralitetskontroller og estimeres med robuste standardfeil.
 
 Utifra disse modellene fremstår nettoflytting, arbeidsplasser per innbygger og boligpriser som de mest robuste forklaringsfaktorene.
@@ -459,15 +492,26 @@ At disse sammenhengene er stabile på tvers av ulike modellspesifikasjoner, gir 
 
 ## En multippel regresjonsmodell for sysselsettingsvekst 1
 
-![](images/clipboard-2246683593.png)
+```{r}
+
+load("reg_data_oppg7_2010.rdata")
+
+summary(mod_oppg7_2010)
+```
 
 ## En multippel regresjonsmodell for sysselsettingsvekst 2
 
-![](images/clipboard-2017134160.png)
+```{r}
+load("reg_data_oppg7_mean.rdata")
+summary(mod_oppg7_mean)
+```
 
 ## En multippel regresjonsmodell for sysselsettingsvekst 3
 
-![](images/clipboard-3355675770.png)
+```{r}
+load("reg_data_m_7B.rdata")
+summary(m_7B)
+```
 
 ## En multippel regresjonsmodell for sysselsettingsvekst tolkning
 

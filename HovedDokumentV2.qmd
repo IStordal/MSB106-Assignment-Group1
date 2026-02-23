@@ -45,6 +45,8 @@ library(writexl)
 library(lmtest)
 library(plm)
 library(sandwich)
+library(lmtest)
+library(gt)
 
 options(scipen = 999)
 ```
@@ -1705,8 +1707,6 @@ Man kan derfor ikke tolke det kausalt.
 
 Bruke andel sysselsatte istedenfor absolutte verdier slik at man får sett det i forhold til hverandre.
 
-# Relevant hypoteser basert på deskriptiv statistikk (oppgave 6)
-
 # En multippel regresjonsmodell for folketallsutvikling
 
 ### Bare for år 2010
@@ -1837,6 +1837,8 @@ mod_oppg6 <- lm(
 )
 
 summary(mod_oppg6)
+
+save(mod_oppg6, file = "reg_data_2010.rdata")
 ```
 
 2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
@@ -1867,6 +1869,10 @@ Dette kan blant annet skyldes forhold som ikke er inkludert i analysen, for ekse
 Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker folketallsutviklingen i norske kommuner.
 
 ### Bare for 2000 - 2024
+
+```{r}
+save(mod_oppg6_mean, file = "reg_data_2024.rdata")
+```
 
 ```{r}
 # X-variabel: gjennomsnittsverdier over hele perioden (2000-2024)
@@ -1976,6 +1982,10 @@ Dette betyr at om lag 74 prosent av variasjonen i folketallsvekst mellom kommune
 Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er de sentrale faktorene for folketallsutviklingen i norske kommuner.
 
 ### Paneldatasett + årlig vekst (log-differanse)
+
+```{r}
+save(m_6B, file = "reg_data_Paneldatasett_log.rdata")
+```
 
 ```{r}
 to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
@@ -2112,22 +2122,66 @@ For en tverrsnittsanalyse på kommunenivå representerer dette en relativt høy 
 
 ```{r}
 # Robuste vcov (tilpass cluster-variabelnavn!)
-cs_vcov   <- vcovCL(mod_oppg6,      cluster = ~ kommune)  # hvis mod_oppg6 bruker "kommune"
-B_vcov    <- vcovHC(m_6B,           type = "HC1")
+cs_vcov   <- vcovCL(mod_oppg6,      cluster = ~ kommune)  # cluster på kommune
 mean_vcov <- vcovHC(mod_oppg6_mean, type = "HC1")
+B_vcov    <- vcovHC(m_6B,           type = "HC1")
+
+# pakk modeller + vcov i én ryddig liste
+reg_results <- list(
+  models = list(
+    "Tverrsnitt (X=2010)"             = mod_oppg6,
+    "Tverrsnitt (X=snitt 2000-2024)"  = mod_oppg6_mean,
+    "Periode-gjennomsnitt (Modell B)" = m_6B
+  ),
+  vcov = list(
+    cs_vcov,
+    mean_vcov,
+    B_vcov
+  )
+)
+
+## Lagre alt
+save(reg_results, file = "reg_data_sammenligning.rdata")
+
+
+rm(list = c("reg_results", "cs_vcov", "mean_vcov", "B_vcov"))
+load("reg_data_Paneldatasett_log.rdata")
 
 modelsummary(
-  list(
-    "Tverrsnitt (X=2010)"              = mod_oppg6,
-    "Tverrsnitt (X=snitt 2000-2024)"   = mod_oppg6_mean,
-    "Periode-gjennomsnitt (Modell B)"  = m_6B
-  ),
-  vcov = list(cs_vcov, B_vcov, mean_vcov),
+  reg_results$models,
+  vcov = reg_results$vcov,
   statistic = "({std.error})",
   stars = TRUE,
-  gof_omit = ".*"   # behold som du hadde (skjuler GOF)
+  gof_omit = ".*"
 )
 ```
+
+```{r}
+cs_vcov   <- vcovCL(mod_oppg6,      cluster = ~ kommune)
+mean_vcov <- vcovHC(mod_oppg6_mean, type = "HC1")
+B_vcov    <- vcovHC(m_6B,           type = "HC1")
+
+ms_gt <- modelsummary(
+  list(
+    "Tverrsnitt (X=2010)"             = mod_oppg6,
+    "Tverrsnitt (X=snitt 2000-2024)"  = mod_oppg6_mean,
+    "Periode-gjennomsnitt (Modell B)" = m_6B
+  ),
+  vcov = list(cs_vcov, mean_vcov, B_vcov),
+  statistic = "({std.error})",
+  stars = TRUE,
+
+  gof_map = c(
+    "r.squared",
+    "adj.r.squared"
+  ),
+
+  output = "gt"
+)
+
+save(ms_gt, file = "modelsummary_oppg6.rdata")
+```
+
 
 De tre modellene analyserer sammenhengen mellom strukturelle kommuneegenskaper og folketallsvekst, men benytter ulike måter å måle forklaringsvariablene på.
 Som tidliger bruker den første modellen verdier fra startåret (2010), den andre bruker gjennomsnittlige verdier over perioden 2000 - 2024, mens den tredje modellen (Modell B) benytter periodegjennomsnitt uten landsdels- og sentralitetskontroller og estimeres med robuste standardfeil.
@@ -2204,6 +2258,7 @@ mod_oppg7_2010 <- lm(
 
 summary(mod_oppg7_2010)
 
+save(mod_oppg7_2010, file = "reg_data_oppg7_2010.rdata")
 ```
 
 ```{r}
@@ -2236,6 +2291,8 @@ mod_oppg7_mean <- lm(
 )
 
 summary(mod_oppg7_mean)
+
+save(mod_oppg7_mean, file = "reg_data_oppg7_mean.rdata")
 ```
 
 ```{r}
@@ -2279,6 +2336,8 @@ tab_7B  <- coeftest(m_7B, vcov = vcov_7B)
 
 summary(m_7B)
 tab_7B
+
+save(m_7B, file = "reg_data_m_7B.rdata")
 ```
 
 Denne modellen analyserer hvilke faktorer som er assosiert med prosentvis sysselsettingsvekst i kommunene.
