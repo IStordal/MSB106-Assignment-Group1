@@ -2314,6 +2314,38 @@ save(mod_oppg7_mean, file = "reg_data_oppg7_mean.rdata")
 ```
 
 ```{r}
+regdata_syss_mean <- syss_growth %>%
+  left_join(x_mean, by = "kommune") %>%
+  left_join(folke_growth, by = "kommune") %>%
+  filter(
+    is.finite(syssvekst_pct),
+    is.finite(folkevekst_pct),
+    is.finite(Ledighet_pct),
+    is.finite(Hoy_utdanning_pct),
+    is.finite(Arbeidsplasser_1k),
+    is.finite(Nettoflytting_1k),
+    is.finite(Nettopendling_1k),
+    is.finite(ln_Boligpris),
+    is.finite(Sentralitet),
+    !is.na(Landsdel)
+  )
+
+regdata_syss_mean %>%
+  summarise(Antall_kommuner = n()) %>%
+  knitr::kable()
+
+mod_oppg7_mean <- lm(
+  syssvekst_pct ~ folkevekst_pct +
+    Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
+    Nettoflytting_1k + Nettopendling_1k +
+    ln_Boligpris + Sentralitet + Landsdel,
+  data = regdata_syss_mean
+)
+
+summary(mod_oppg7_mean)
+```
+
+```{r}
 #Sysselsetting i startår og sluttår + vekst (%)
 df_7_syss <- df_6 %>%
   inner_join(df_6_period, by = "knr24") %>%
@@ -2328,12 +2360,25 @@ df_7_syss <- df_6 %>%
   ) %>%
   filter(is.finite(syssvekst_pct))
 
-# Bygg "df_7_csB": X-gjennomsnitt + folketallsvekst + syssvekst
+# Bygg "df_7_csB": X-gjennomsnitt + folketallsvekst + syssvekst + Sentralitet/Landsdel
 df_7_csB <- df_6_csB %>%  # har: knr24, start_år, end_år, X-mean, folketallsvekst
-  inner_join(df_7_syss %>% select(knr24, start_år, end_år, syssvekst_pct),
-             by = c("knr24","start_år","end_år")) %>%
-  filter(is.finite(syssvekst_pct), is.finite(folketallsvekst)) %>%
+  inner_join(
+    df_7_syss %>% select(knr24, start_år, end_år, syssvekst_pct),
+    by = c("knr24","start_år","end_år")
+  ) %>%
+  # Hent Sentralitet og Landsdel (samme definisjon som i oppg 6 tverrsnitt)
+  left_join(
+    x_mean %>% select(kommune, Sentralitet, Landsdel),
+    by = c("knr24" = "kommune")
+  ) %>%
+  filter(
+    is.finite(syssvekst_pct),
+    is.finite(folketallsvekst),
+    is.finite(Sentralitet),
+    !is.na(Landsdel)
+  ) %>%
   filter(complete.cases(across(all_of(c("syssvekst_pct","folketallsvekst", x_cols)))))
+
 
 # (valgfritt) Antall kommuner
 df_7_csB %>%
@@ -2344,7 +2389,8 @@ df_7_csB %>%
 m_7B <- lm(
   syssvekst_pct ~ folketallsvekst +
     Ledighet_pct + Hoy_utdanning_pct + Arbeidsplasser_1k +
-    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris,
+    Nettoflytting_1k + Nettopendling_1k + ln_Boligpris +
+    Sentralitet + Landsdel,
   data = df_7_csB
 )
 

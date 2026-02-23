@@ -208,19 +208,19 @@ En positiv koeffisent indikerer positiv kovariasjon og vice versa
 
 ## Korelasjon mellom gitte variabler
 
-## Svak samvariasjon 
+## Svak samvariasjon
 
 Koeffisient på mellom 0 og 0,40
 
 ![](images/clipboard-1072784105.png)
 
-## Moderat samvariasjon 
+## Moderat samvariasjon
 
 Koeffisient på mellom 0,40 og 0,60
 
 ![](images/clipboard-1516976153.png)
 
-## Sterk samvariasjon 
+## Sterk samvariasjon
 
 Koeffisient på mellom 0,60 og 1
 
@@ -449,7 +449,15 @@ load("modelsummary_oppg6.rdata")
 ms_gt
 ```
 
-## En multippel regresjonsmodell for sysselsettingsvekst 1
+## Multiple regresjonsmodeller for sysselsettingsvekst
+
+Hva som henger sammen med sysselsettingsvekst i norske kommuner i perioden 2000 til 2024.
+
+Alle modellene kontrollerer vi for strukturelle forhold som arbeidsledighet, utdanning, arbeidsplasser per innbygger, nettoflytting, pendling og boligpriser.
+
+Vi har også inkludert sentralitet og landsdelsdummyer.
+
+## År 2010
 
 ```{r}
 
@@ -458,32 +466,31 @@ load("reg_data_oppg7_2010.rdata")
 summary(mod_oppg7_2010)
 ```
 
-## En multippel regresjonsmodell for sysselsettingsvekst 2
+## Gjennomsnitt År 2010 - 2024
 
 ```{r}
 load("reg_data_oppg7_mean.rdata")
 summary(mod_oppg7_mean)
 ```
 
-## En multippel regresjonsmodell for sysselsettingsvekst 3
+## Samlet vekst 2010 - 2024
 
 ```{r}
 load("reg_data_m_7B.rdata")
 summary(m_7B)
 ```
 
-## En multippel regresjonsmodell for sysselsettingsvekst tolkning
+## Oppsummert
 
-Modellen analyserer hvilke faktorer som er assosiert med prosentvis sysselsettingsvekst
+Folketallsvekst er den klart viktigste forklaringen på sysselsettingsvekst.
 
-Den sterkeste og mest statistisk robuste sammenhengen finnes mellom folketallsvekst og sysselsettingsvekst.
+Sammenhengen er nesten én-til-én i alle modellene.
 
-Nettoflytting har også en positiv og svakt statistisk signifikant sammenheng med sysselsettingsvekst.
+Strukturelle faktorer som boligpriser og arbeidsplasser per innbygger spiller en rolle, men er mindre viktige.
 
-De øvrige variablene arbeidsledighet, andel med høyere utdanning, arbeidsplasser per innbygger, nettopendling og boligpriser, viser ingen statistisk signifikant selvstendig sammenheng når det kontrolleres for folketallsvekst.
-.
+Landsdel har ingen selvstendig betydning.
 
-Modellen har en justert R² på om lag 0,56
+Hovedmønsteret er stabilt på tvers av modellene.
 
 ## Konklusjon
 

@@ -282,12 +282,28 @@ Figur&nbsp;1: <em>Folketallsutvikling fordelt på sentralitetsklasser</em>
 <img data-src="pendlutv.png" class="r-stretch quarto-figure-center"><p class="caption"><em>Utvikling i pendling per 1000 arbeidsplass etter år 2000, fordelt på sentralitetsklasser</em></p></section>
 <section id="korrelasjonsberegninger" class="slide level2">
 <h2>Korrelasjonsberegninger</h2>
-</section>
+<p>Et statistisk mål på samvariasjonen mellom to variabler</p>
+<p>En positiv koeffisent indikerer positiv kovariasjon og vice versa</p>
+
+<img data-src="images/clipboard-67990640.png" class="r-stretch"></section>
 <section id="korelasjon-mellom-gitte-variabler" class="slide level2">
 <h2>Korelasjon mellom gitte variabler</h2>
-<p>Som første deskriptive tilnærming presenteres korrelasjonsberegninger på utvalgte variabler. Korrelasjonen er beregnet for alle de norske kommuner i årene 2014 og 2024. Korelasjonsverdien er en indikator på graden av samvariasjon mellom to gitte variabler. Skalen for korelasjon går fra -1 til 1. Jo nærmere 1 et positivt tall er, jo større tyder på det på en positiv samvariasjon, og vice versa med negative tall.</p>
+</section>
+<section id="svak-samvariasjon" class="slide level2">
+<h2>Svak samvariasjon</h2>
+<p>Koeffisient på mellom 0 og 0,40</p>
 
-<img data-src="images/clipboard-3708177039.png" class="r-stretch"></section>
+<img data-src="images/clipboard-1072784105.png" class="r-stretch"></section>
+<section id="moderat-samvariasjon" class="slide level2">
+<h2>Moderat samvariasjon</h2>
+<p>Koeffisient på mellom 0,40 og 0,60</p>
+
+<img data-src="images/clipboard-1516976153.png" class="r-stretch"></section>
+<section id="sterk-samvariasjon" class="slide level2">
+<h2>Sterk samvariasjon</h2>
+<p>Koeffisient på mellom 0,60 og 1</p>
+
+<img data-src="images/clipboard-202553310.png" class="r-stretch"></section>
 <section id="paneldata" class="slide level2">
 <h2>Paneldata</h2>
 <p>Korrelasjoner basert på årlige endinger innen hver kommuner.</p>
@@ -554,8 +570,8 @@ F-statistic: 83.88 on 6 and 286 DF,  p-value: &lt; 0.00000000000000022</code></p
 </div>
 </div>
 </section>
-<section id="last" class="slide level2">
-<h2>Last</h2>
+<section id="sammenligning" class="slide level2">
+<h2>Sammenligning</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>$`_data`
@@ -736,8 +752,14 @@ attr(,"backend")$`Periode-gjennomsnitt (Modell B)`$gof
 </div>
 </div>
 </section>
-<section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-1" class="slide level2">
-<h2>En multippel regresjonsmodell for sysselsettingsvekst 1</h2>
+<section id="multiple-regresjonsmodeller-for-sysselsettingsvekst" class="slide level2">
+<h2>Multiple regresjonsmodeller for sysselsettingsvekst</h2>
+<p>Hva som henger sammen med sysselsettingsvekst i norske kommuner i perioden 2000 til 2024.</p>
+<p>Alle modellene kontrollerer vi for strukturelle forhold som arbeidsledighet, utdanning, arbeidsplasser per innbygger, nettoflytting, pendling og boligpriser.</p>
+<p>Vi har også inkludert sentralitet og landsdelsdummyer.</p>
+</section>
+<section id="år-2010-1" class="slide level2">
+<h2>År 2010</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -775,8 +797,8 @@ F-statistic: 33.38 on 12 and 199 DF,  p-value: &lt; 0.00000000000000022</code></
 </div>
 </div>
 </section>
-<section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-2" class="slide level2">
-<h2>En multippel regresjonsmodell for sysselsettingsvekst 2</h2>
+<section id="gjennomsnitt-år-2010---2024" class="slide level2">
+<h2>Gjennomsnitt År 2010 - 2024</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -814,46 +836,52 @@ F-statistic: 50.23 on 12 and 278 DF,  p-value: &lt; 0.00000000000000022</code></
 </div>
 </div>
 </section>
-<section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-3" class="slide level2">
-<h2>En multippel regresjonsmodell for sysselsettingsvekst 3</h2>
+<section id="samlet-vekst-2010---2024" class="slide level2">
+<h2>Samlet vekst 2010 - 2024</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 lm(formula = syssvekst_pct ~ folketallsvekst + Ledighet_pct + 
     Hoy_utdanning_pct + Arbeidsplasser_1k + Nettoflytting_1k + 
-    Nettopendling_1k + ln_Boligpris, data = df_7_csB)
+    Nettopendling_1k + ln_Boligpris + Sentralitet + Landsdel, 
+    data = df_7_csB)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--24.087  -4.746  -0.652   4.280  39.805 
+-26.230  -4.808  -0.637   3.872  40.163 
 
 Coefficients:
                     Estimate Std. Error t value            Pr(&gt;|t|)    
-(Intercept)       -35.727634  30.174426  -1.184              0.2374    
-folketallsvekst     0.837185   0.082242  10.180 &lt;0.0000000000000002 ***
-Ledighet_pct        0.445984   0.792063   0.563              0.5738    
-Hoy_utdanning_pct  -0.063800   0.182159  -0.350              0.7264    
-Arbeidsplasser_1k   0.022264   0.013893   1.603              0.1101    
-Nettoflytting_1k    0.184454   0.091709   2.011              0.0452 *  
-Nettopendling_1k   -0.001335   0.004258  -0.314              0.7541    
-ln_Boligpris        2.737649   3.381860   0.810              0.4189    
+(Intercept)       -60.578982  34.559185  -1.753              0.0807 .  
+folketallsvekst     0.918937   0.088186  10.420 &lt;0.0000000000000002 ***
+Ledighet_pct        0.771741   0.846362   0.912              0.3627    
+Hoy_utdanning_pct  -0.058225   0.189296  -0.308              0.7586    
+Arbeidsplasser_1k   0.019998   0.014147   1.414              0.1586    
+Nettoflytting_1k    0.179663   0.093797   1.915              0.0565 .  
+Nettopendling_1k   -0.001052   0.004313  -0.244              0.8076    
+ln_Boligpris        6.730753   4.036581   1.667              0.0966 .  
+Sentralitet        -0.020455   0.009400  -2.176              0.0304 *  
+Landsdelsør        -0.320602   2.325060  -0.138              0.8904    
+Landsdeltrøndelag   0.276271   2.403320   0.115              0.9086    
+Landsdelvest       -1.729497   1.840499  -0.940              0.3482    
+Landsdeløst         0.377292   2.162419   0.174              0.8616    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 9.075 on 285 degrees of freedom
-Multiple R-squared:  0.5743,    Adjusted R-squared:  0.5638 
-F-statistic: 54.92 on 7 and 285 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+Residual standard error: 9.031 on 275 degrees of freedom
+Multiple R-squared:  0.5921,    Adjusted R-squared:  0.5743 
+F-statistic: 33.27 on 12 and 275 DF,  p-value: &lt; 0.00000000000000022</code></pre>
 </div>
 </div>
 </section>
-<section id="en-multippel-regresjonsmodell-for-sysselsettingsvekst-tolkning" class="slide level2">
-<h2>En multippel regresjonsmodell for sysselsettingsvekst tolkning</h2>
-<p>Modellen analyserer hvilke faktorer som er assosiert med prosentvis sysselsettingsvekst</p>
-<p>Den sterkeste og mest statistisk robuste sammenhengen finnes mellom folketallsvekst og sysselsettingsvekst.</p>
-<p>Nettoflytting har også en positiv og svakt statistisk signifikant sammenheng med sysselsettingsvekst.</p>
-<p>De øvrige variablene arbeidsledighet, andel med høyere utdanning, arbeidsplasser per innbygger, nettopendling og boligpriser, viser ingen statistisk signifikant selvstendig sammenheng når det kontrolleres for folketallsvekst. .</p>
-<p>Modellen har en justert R² på om lag 0,56</p>
+<section id="oppsummert" class="slide level2">
+<h2>Oppsummert</h2>
+<p>Folketallsvekst er den klart viktigste forklaringen på sysselsettingsvekst.</p>
+<p>Sammenhengen er nesten én-til-én i alle modellene.</p>
+<p>Strukturelle faktorer som boligpriser og arbeidsplasser per innbygger spiller en rolle, men er mindre viktige.</p>
+<p>Landsdel har ingen selvstendig betydning.</p>
+<p>Hovedmønsteret er stabilt på tvers av modellene.</p>
 </section>
 <section id="konklusjon" class="slide level2">
 <h2>Konklusjon</h2>
@@ -1094,80 +1122,42 @@ Osland, L., &amp; Thorsen, I. (2008). Effects on Housing Prices of Urban Attract
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
