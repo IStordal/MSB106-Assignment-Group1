@@ -410,21 +410,6 @@ load("reg_data_2010.rdata")
 summary(mod_oppg6)
 ```
 
-2010 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
-
-Boligprisene viser en sterkt positivt vekst knyttet til befolkningsutviklingen.
-En økning i logaritmen til boligprisen i 2010 er assosiert med rundt 27,6 prosentpoeng høyere folketallsvekst, noe som indikerer at boligpriser fungerer som en indikator på kommunens attraktivitet.
-
-Når det kommer til antall arbeidsplasser per 1000 innbyggere har de også en positiv og signifikant sammenheng med folketallsvekst.
-
-På den andre siden er netto utpendling negativt assosiert med befolkningsutviklingen.
-
-Når det kommer til Dummyvariablene for landsdel er de ikke statistisk signifikante
-
-Modellen i seg selv har en relativt høy forklaringsgrad
-
-Innebærer dette at rundt 30 prosent av variasjonen ikke forklares av modellen.
-
 ## År 2000 - 2024
 
 ```{r}
@@ -432,18 +417,6 @@ load("reg_data_2024.rdata")
 
 summary(mod_oppg6_mean)
 ```
-
-Resultatene viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
-
-Boligprisene har også en klar positiv sammenheng med befolkningsutviklingen
-
-Antall arbeidsplasser per 1000 innbyggere har en positiv og statistisk signifikant sammenheng med folketallsvekst
-
-Netto pendling har en negativ og statistisk signifikant sammenheng med folketallsutviklingen
-
-Dummyvariablene for landsdel er i hovedsak ikke statistisk signifikante
-
-Modellen har høy forklaringsgrad, med en justert R² på rundt 0,74
 
 ## Paneldatasett i tillegg til årlig vekst
 
@@ -453,47 +426,12 @@ load("reg_data_Paneldatasett_log.rdata")
 summary(m_6B)
 ```
 
-Modell 6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst
-
-Når en ser på resultatene viser den at nettoflytting har en positiv og statistisk signifikant sammenheng med folketallsvekst
-
-Arbeidsplasser per 1000 innbyggere har også en positiv og signifikant sammenheng.
-
-Netto pendling har en negativ og signifikant koeffisient
-
-Boligpris er inkludert i logaritmert form
-
-Når en ser på arbeidsledighet og andel med høyere utdanning ligger det ikke robuste og konsistente effekter i denne modellen
-
-Modellen har en justert R² på om lag 0,63
-
-## Last
+## Sammenligning
 
 ```{r}
 load("modelsummary_oppg6.rdata")
 ms_gt
 ```
-
-De tre modellene analyserer sammenhengen mellom strukturelle kommuneegenskaper og folketallsvekst, men benytter ulike måter å måle forklaringsvariablene på.
-Som tidliger bruker den første modellen verdier fra startåret (2010), den andre bruker gjennomsnittlige verdier over perioden 2000 - 2024, mens den tredje modellen (Modell B) benytter periodegjennomsnitt uten landsdels- og sentralitetskontroller og estimeres med robuste standardfeil.
-
-Utifra disse modellene fremstår nettoflytting, arbeidsplasser per innbygger og boligpriser som de mest robuste forklaringsfaktorene.
-Nettoflytting har gjennomgående en positiv og statistisk signifikant sammenheng med folketallsvekst, noe som er teoretisk konsistent ettersom flyttestrømmer direkte påvirker befolkningsutviklingen.
-Arbeidsplasser per 1000 innbyggere har også stabil positiv effekt i alle modellene, noe som understreker betydningen av et sterkt lokalt arbeidsmarked for befolkningsvekst.
-Boligpriser er målt i logaritmisk form og viser en tydelig positiv sammenheng i samtlige spesifikasjoner.
-Dette kan tolkes som en indikator på kommunens attraktivitet og etterspørsel etter å bosette seg der.
-
-I modellene finnes det imidlertid enkelte forskjeller.
-Startårsmodellen (2010) har høy forklaringsgrad og fanger betydningen av kommunenes strukturelle utgangspunkt.
-Gjennomsnittsmodellen (2000 - 2024) gir noe høyere forklaringsgrad og reflekterer mer langsiktige trekk ved arbeidsmarked og bosettingsmønstre.
-Modell B har noe lavere justert R², men resultatene er fortsatt konsistente når det gjelder de sentrale variablene.
-Hovedmønstrene for modellene holder seg på tvers av spesifikasjonene og styrker dermed selve robustheten i funnene våres.
-
-Variabler som arbeidsledighet og andel med høyere utdanning viser mindre stabile effekter.
-Når det kontrolleres for arbeidsplasser, flytting og boligpriser, mister disse variablene ofte statistisk signifikans, noe som tyder på at deres effekt i stor grad opererer indirekte gjennom arbeidsmarked og attraktivitet.
-
-Samlet sett peker analysen på at arbeidsmarkedets størrelse, flyttestrømmer og boligmarkedets styrke er de mest sentrale drivkreftene bak kommunal folketallsvekst.
-At disse sammenhengene er stabile på tvers av ulike modellspesifikasjoner, gir økt tillit til at resultatene ikke er drevet av én bestemt modelltilnærming.
 
 ## En multippel regresjonsmodell for sysselsettingsvekst 1
 
