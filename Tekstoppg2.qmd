@@ -208,19 +208,19 @@ En positiv koeffisent indikerer positiv kovariasjon og vice versa
 
 ## Korelasjon mellom gitte variabler
 
-## Svak samvariasjon 
+## Svak samvariasjon
 
 Koeffisient på mellom 0 og 0,40
 
 ![](images/clipboard-1072784105.png)
 
-## Moderat samvariasjon 
+## Moderat samvariasjon
 
 Koeffisient på mellom 0,40 og 0,60
 
 ![](images/clipboard-1516976153.png)
 
-## Sterk samvariasjon 
+## Sterk samvariasjon
 
 Koeffisient på mellom 0,60 og 1
 

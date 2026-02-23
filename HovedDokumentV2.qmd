@@ -1871,10 +1871,6 @@ Resultatene gir dermed et godt, men ikke fullstendig, bilde av hva som påvirker
 ### Bare for 2000 - 2024
 
 ```{r}
-save(mod_oppg6_mean, file = "reg_data_2024.rdata")
-```
-
-```{r}
 period_start <- 2000
 period_end   <- 2024
 
@@ -1974,6 +1970,8 @@ mod_oppg6_mean <- lm(
 )
 
 summary(mod_oppg6_mean)
+
+save(mod_oppg6_mean, file = "reg_data_2024.rdata")
 ```
 
 Resultatene fra modellen der forklaringsvariablene er representert ved gjennomsnittsverdier for perioden 2000-2024 viser at flere strukturelle forhold har sterk samvariasjon med folketallsutviklingen i norske kommuner.
@@ -2000,10 +1998,6 @@ Dette betyr at om lag 74 prosent av variasjonen i folketallsvekst mellom kommune
 Sammenlignet med modellen basert på startårverdier gir gjennomsnittsmodellen noe høyere forklaringsgrad, men hovedmønstrene er de samme: sentralitet, boligpriser, arbeidsmarked og flyttemønstre er de sentrale faktorene for folketallsutviklingen i norske kommuner.
 
 ### Paneldatasett + årlig vekst (log-differanse)
-
-```{r}
-save(m_6B, file = "reg_data_Paneldatasett_log.rdata")
-```
 
 ```{r}
 to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
@@ -2109,6 +2103,8 @@ tab_B <- coeftest(m_6B, vcov = B_vcov)
 
 ```{r}
 summary(m_6B)
+
+save(m_6B, file = "reg_data_Paneldatasett_log.rdata")
 ```
 
 Modell m_6B estimerer sammenhengen mellom samlet prosentvis folketallsvekst over perioden og gjennomsnittlige strukturelle kjennetegn ved kommunene i samme periode.
@@ -2160,18 +2156,6 @@ reg_results <- list(
 
 ## Lagre alt
 save(reg_results, file = "reg_data_sammenligning.rdata")
-
-
-rm(list = c("reg_results", "cs_vcov", "mean_vcov", "B_vcov"))
-load("reg_data_Paneldatasett_log.rdata")
-
-modelsummary(
-  reg_results$models,
-  vcov = reg_results$vcov,
-  statistic = "({std.error})",
-  stars = TRUE,
-  gof_omit = ".*"
-)
 ```
 
 ```{r}
