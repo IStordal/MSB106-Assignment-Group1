@@ -1875,6 +1875,23 @@ save(mod_oppg6_mean, file = "reg_data_2024.rdata")
 ```
 
 ```{r}
+period_start <- 2000
+period_end   <- 2024
+
+to_num <- function(x) suppressWarnings(as.numeric(gsub(",", ".", as.character(x))))
+
+landsdel_fra_knr <- function(knr4) {
+  fylke <- substr(knr4, 1, 2)
+  dplyr::case_when(
+    fylke %in% c("03","31","32","33","34","39") ~ "øst",
+    fylke %in% c("40","42")                   ~ "sør",
+    fylke %in% c("11","15","46")              ~ "vest",
+    fylke %in% c("18","55","56")              ~ "nord",
+    fylke %in% c("50")                        ~ "trøndelag",
+    TRUE                                      ~ NA_character_
+  )
+}
+
 # X-variabel: gjennomsnittsverdier over hele perioden (2000-2024)
 x_mean <- master %>%
   transmute(
@@ -1890,7 +1907,7 @@ x_mean <- master %>%
     Nettoflytting_1k  = to_num(nettoflytting1k_tot),
     Nettopendling_1k  = to_num(nettoInnPendl1k),
 
-    # Boligpris: lag log per observasjon (kommune-år) først
+    # lag log per kommune-år først (som du gjorde)
     ln_Boligpris = log(pmax(to_num(KvPris_Eneboliger), 1)),
 
     Sentralitet = to_num(index)
@@ -1906,7 +1923,7 @@ x_mean <- master %>%
     Nettoflytting_1k  = mean(Nettoflytting_1k, na.rm = TRUE),
     Nettopendling_1k  = mean(Nettopendling_1k, na.rm = TRUE),
 
-    # Gjennomsnitt av log boligpris over perioden (anbefalt)
+    # Gjennomsnitt av log boligpris over perioden
     ln_Boligpris = mean(ln_Boligpris, na.rm = TRUE),
 
     Sentralitet = mean(Sentralitet, na.rm = TRUE),
@@ -1915,6 +1932,7 @@ x_mean <- master %>%
   mutate(
     Landsdel = factor(landsdel_fra_knr(kommune))
   ) %>%
+  # fjern alt som er NA/NaN/Inf i X + krev landsdel
   filter(
     is.finite(Ledighet_pct),
     is.finite(Hoy_utdanning_pct),

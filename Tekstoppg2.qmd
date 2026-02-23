@@ -56,15 +56,20 @@ load("reg_data_m_7B.rdata")
 
 ## Sentralitetsindeksen for norske kommuner
 
-SSB sin sentralitetsindeks- Beksriver hvor sentralt kommuner ligger
+Beksriver hvor sentralt kommuner ligger.
 
-Basert på to hovedvariabler: Arbeidsmarked og og tilgang på tjenester
+Indeksen måler hvor lett det er for innbyggerne å nå arbeidsplasser og viktige tjenester, og bygger på beregnet reisetid med bil fra bebodde områder.
+På denne måten fanger indeksen opp faktisk tilgjengelighet, der korte reiser teller mer enn lange.
 
-6 Sentralitetsklasses
+Den er basert på to hovedvariabler: Tilgang til arbeidsplasser (innenfor en reiseramme på opptil 90 minutter) og tilgang på et bredt tjenestetilbud (som handel og offentlig tjenester).
 
-Benyttet 2020 indeksen
+## t-test (2020 - 2023)
 
-![](images/clipboard-1701507729.png)
+![](images/clipboard-589147072.png)
+
+Gjennomsnitt har indeksen økt med 2,8%, nedgang og økning (-17, 79)
+
+Tyder på at sentraliteten er ganske stabil i perioden
 
 341 kommuner er med
 
