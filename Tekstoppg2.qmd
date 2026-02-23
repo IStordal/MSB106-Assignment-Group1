@@ -356,7 +356,7 @@ Dette illustrerer at strukturelle forhold kan påvirke alderssammensetningen uav
 
 Samlet sett tyder analysen på at sammenhengen mellom andelen 20–29 år og netto utflytting ikke er entydig, og at den påvirkes av både utdanningstilbud, arbeidsmarked, institusjonelle forhold og livsløpsdynamikk.
 
-## 
+## Kommuner med høy arbeidsledighet vil ha høyere netto utflytting
 
 I likhet med forrige eksempel er sammenhengen mellom arbeidsledighet og netto utflytting et komplekst tema, hvor flere mekanismer kan trekke i ulike retninger.
 Korrelasjonsberegningene viser en svak positiv sammenheng mellom variablene, noe som indikerer at høyere arbeidsledighet ikke entydig er forbundet med økt netto utflytting.
@@ -379,6 +379,8 @@ Et relativt sterkt sosialt sikkerhetsnett gjør det mulig å være arbeidsledig 
 
 Samlet sett indikerer analysen at sammenhengen mellom arbeidsledighet og netto utflytting ikke er entydig, og at sentralitet, arbeidsmarkedsstruktur og institusjonelle forhold påvirker relasjonen.
 
+## Kommuner med stor grad av høy utdanning opplever høyere sysselsetting per 1000 inbyggere
+
 Kartet over andel med høyere utdanning viser en tydelig konsentrasjon i Oslo- og Akershusområdet, samt i flere kommuner på Sør- og Vestlandet, herunder deler av Vestfold, Telemark, Agder og tidligere Hordaland.
 
 Sammenlignes dette med kartet over prosentvis vekst i sysselsetting siden 2000, ser vi at mange av de samme områdene også har hatt sterk sysselsettingsutvikling.
@@ -395,6 +397,8 @@ Samtidig kan det foreligge en selvforsterkende mekanisme, der kommuner med høyt
 
 Det er imidlertid viktig å være oppmerksom på at sammenhengen også kan påvirkes av sentralitet, næringsstruktur og historiske utviklingsmønstre.
 Utdanning kan derfor både være en årsak til og et resultat av høy sysselsetting.
+
+## Magnus del 
 
 Basert på kartvisualisering og korrelasjonsanalyse forventes det en positiv sammenheng mellom sentralitetsindeks og andelen innbyggere med høyere utdanning.
 Kartet viser at kommuner med høy utdanningsandel i stor grad er lokalisert rundt større byregioner og mer sentrale områder, mens perifere kommuner gjennomgående har lavere andeler.
