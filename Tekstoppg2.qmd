@@ -311,23 +311,9 @@ Samlet sett gir dette et godt grunnlag for hypoteser for hvordan ulike variabler
 
 ## Kommuner med høy sentralitet opplever større befolknignsvekst
 
-I oppgave 3 fant vi en positiv korrelasjonskoeffisient på om lag 0,42 mellom sentralitetsindeksen og befolkningsvekst.
-Dette indikerer en moderat positiv sammenheng og gir empirisk støtte til hypotesen om at kommuner med høy sentralitet i større grad opplever befolkningsvekst enn mindre sentrale kommuner.
+![](images/clipboard-1411641206.png)
 
-Hypotesen kan underbygges teoretisk gjennom agglomerasjonsteori.
-Agglomerasjonseffekter beskriver hvordan bedrifter og arbeidstakere har insentiver til å lokalisere seg i samme geografiske områder.
-Bedrifter etablerer seg i sentrale områder for å dra nytte av såkalte “matching, sharing og learning”-fordeler.
-Dette innebærer bedre match mellom arbeidsgivere og arbeidstakere, deling av infrastruktur og tjenester, samt kunnskapsspredning mellom aktører @capello2016 s.3.
-
-I sentrale områder oppstår det større og mer diversifiserte arbeidsmarkeder, med høyere grad av spesialisering.
-Dette reduserer risikoen for arbeidstakere og øker sannsynligheten for å finne relevant arbeid, noe som igjen gjør slike områder mer attraktive.
-Resultatet kan bli en selvforsterkende vekstprosess der flere arbeidsplasser tiltrekker flere innbyggere, som igjen skaper grunnlag for ytterligere næringsaktivitet
-
-Grafen over befolkningsutvikling etter sentralitetsklasse fra oppgave 2 gir ytterligere støtte til denne mekanismen.
-Kommuner i sentralitetsklasse 1, 2 og 3 viser en tydelig og markant vekst gjennom perioden.
-Klasse 4 viser også økning, men i et mer moderat tempo.
-De minst sentrale kommunene har gjennomgående flat utvikling, og klasse 6 har samlet sett opplevd befolkningsnedgang.
-Dette mønsteret er konsistent med hypotesen om at høyere sentralitet er forbundet med sterkere befolkningsvekst.
+![](images/clipboard-1666344071.png){width="581"}
 
 ## Kommuner med lav andel innbyggere i alderen 20-29 år opplever høyere neto utflytting
 
