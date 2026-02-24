@@ -132,7 +132,7 @@ Videre skal vi se på kartfremstillinger som illutreerer utviklinger av diverse 
 
 ## Folketallsutvikling kart
 
-![*Prosentvis folketallsvekst etter år 2000, der rosa er negativ utvikling og grønn er positiv utvikling*](kart/Bilde_folketallsvekst.png){width="432"}
+![*Prosentvis folketallsvekst etter år 2000, der rosa er negativ utvikling og grønn er positiv utvikling*](kart/Bilde_folketallsvekst.png){width="484"}
 
 ## Folketallsutvikling graf
 
@@ -315,74 +315,25 @@ Samlet sett gir dette et godt grunnlag for hypoteser for hvordan ulike variabler
 
 ![](images/clipboard-1666344071.png){width="581"}
 
+## Kommuner med høy sentralitet opplever større befolknignsvekst
+
+Agglomerasjonsteori
+
+Kulturtilbud
+
+Selvforsterkende vekstprosess
+
 ## Kommuner med lav andel innbyggere i alderen 20-29 år opplever høyere neto utflytting
 
-En annen relevant problemstilling er sammenhengen mellom andelen av befolkningen i aldersgruppen 20–29 år og kommunens netto utflytting.
-Hypotesen er at kommuner med lav andel unge voksne i større grad opplever netto utflytting enn kommuner med høyere andel i denne aldersgruppen.
+![](images/clipboard-1714307513.png)
 
-Korrelasjonsberegningene for 2014 og 2024 viser imidlertid en svært svak positiv samvariasjon mellom variablene.
-Dette gir ikke empirisk støtte til en sterk lineær sammenheng.
-Resultatet indikerer at variasjon i andelen 20–29 år alene i liten grad forklarer forskjeller i netto utflytting mellom kommuner.
-
-Selv om den statistiske sammenhengen er svak, finnes det teoretiske mekanismer som tilsier at relasjonen kan være kompleks.
-Aldersgruppen 20–29 år er den mest mobile i befolkningen.
-I denne fasen av livsløpet er tilknytningen til hjemstedet ofte svakere, og mange flytter for utdanning eller arbeid.
-Kommuner med attraktive utdanningsinstitusjoner og brede arbeidsmarkeder fremstår derfor som særlig attraktive for denne gruppen.
-
-Dersom en kommune over tid har lav andel unge voksne, kan dette være et resultat av tidligere utflytting etter videregående opplæring.
-Samtidig kan nettoflytting som indikator skjule betydelig brutto mobilitet, ettersom både inn- og utflytting kan være høy uten at nettoen blir stor.
-
-Kartene over netto flytting og andel unge viser at særlig kommuner på Vestlandet og Østlandet, inkludert Oslo-området, har hatt positiv netto innflytting og samtidig relativt høy andel unge voksne.
-Dette kan indikere at sentrale arbeids- og utdanningsmarkeder tiltrekker unge.
-I mer perifere områder kan utflytting av unge bidra til en aldrende befolkningssammensetning.
-
-Samtidig finnes det unntak.
-I enkelte nordnorske kommuner er andelen unge relativt høy, delvis som følge av militær tilstedeværelse.
-Dette illustrerer at strukturelle forhold kan påvirke alderssammensetningen uavhengig av tradisjonelle migrasjonsmekanismer.
-
-Samlet sett tyder analysen på at sammenhengen mellom andelen 20–29 år og netto utflytting ikke er entydig, og at den påvirkes av både utdanningstilbud, arbeidsmarked, institusjonelle forhold og livsløpsdynamikk.
+![](images/clipboard-2376810528.png)
 
 ## Kommuner med høy arbeidsledighet vil ha høyere netto utflytting
 
-I likhet med forrige eksempel er sammenhengen mellom arbeidsledighet og netto utflytting et komplekst tema, hvor flere mekanismer kan trekke i ulike retninger.
-Korrelasjonsberegningene viser en svak positiv sammenheng mellom variablene, noe som indikerer at høyere arbeidsledighet ikke entydig er forbundet med økt netto utflytting.
-
-Kartene viser at flere av kommunene med relativt høy arbeidsledighet befinner seg på Østlandet og i andre sentrale områder, som samtidig har hatt positiv netto innflytting.
-Dette kan ved første øyekast virke motstridende, ettersom tradisjonell arbeidsmarkedsteori tilsier at arbeidstakere flytter fra områder med høy arbeidsledighet til områder med bedre jobbmuligheter.
-
-Teori om arbeidsmarkedsjustering og mobilitet tilsier at arbeidskraft beveger seg mot regioner med høy etterspørsel etter arbeidskraft.
-Dette skulle isolert sett tilsi at kommuner med høy arbeidsledighet burde oppleve netto utflytting.
-Samtidig kan sentrale arbeidsmarkeder tiltrekke arbeidssøkere selv om ledigheten midlertidig er høy.
-Store og diversifiserte arbeidsmarkeder gir større sannsynlighet for å finne en jobb som matcher kompetanse og preferanser @capello2016 s.
-155.
-
-Arbeidstakere kan derfor være villige til å akseptere en periode med arbeidsledighet i sentrale områder, dersom forventningen om fremtidige jobbmuligheter er høyere der enn i mindre sentrale kommuner.
-I mindre arbeidsmarkeder kan man få jobb raskere, men innenfor et smalere spekter av yrker.
-Dette kan særlig være relevant for høyt utdannede og spesialiserte arbeidstakere.
-
-Den norske velferdsmodellen kan også bidra til å forklare dette mønsteret.
-Et relativt sterkt sosialt sikkerhetsnett gjør det mulig å være arbeidsledig i en periode uten umiddelbar økonomisk nød, noe som kan redusere insentivet til rask geografisk mobilitet.
-
-Samlet sett indikerer analysen at sammenhengen mellom arbeidsledighet og netto utflytting ikke er entydig, og at sentralitet, arbeidsmarkedsstruktur og institusjonelle forhold påvirker relasjonen.
+![](images/clipboard-3055620167.png)
 
 ## Kommuner med stor grad av høy utdanning opplever høyere sysselsetting per 1000 inbyggere
-
-Kartet over andel med høyere utdanning viser en tydelig konsentrasjon i Oslo- og Akershusområdet, samt i flere kommuner på Sør- og Vestlandet, herunder deler av Vestfold, Telemark, Agder og tidligere Hordaland.
-
-Sammenlignes dette med kartet over prosentvis vekst i sysselsetting siden 2000, ser vi at mange av de samme områdene også har hatt sterk sysselsettingsutvikling.
-Dette gir empirisk støtte til hypotesen om en positiv sammenheng mellom utdanningsnivå og sysselsetting.
-
-Søylediagrammene i oppgave 3, fordelt etter sentralitetsgruppe, underbygger også denne sammenhengen.
-De mest sentrale kommunene skårer høyest både når det gjelder andel med høyere utdanning og sysselsetting.
-Dette kan indikere at kunnskapsintensive arbeidsmarkeder i sentrale områder bidrar til høyere sysselsettingsnivå.
-
-Teoretisk kan sammenhengen forklares gjennom humankapitalteori.
-Høyere utdanning øker produktiviteten til arbeidskraften og gjør regioner mer attraktive for kunnskapsintensive virksomheter.
-Dette kan bidra til flere arbeidsplasser, høyere verdiskaping og dermed høyere sysselsetting per innbygger.
-Samtidig kan det foreligge en selvforsterkende mekanisme, der kommuner med høyt utdanningsnivå tiltrekker seg både bedrifter og nye høyt utdannede arbeidstakere.
-
-Det er imidlertid viktig å være oppmerksom på at sammenhengen også kan påvirkes av sentralitet, næringsstruktur og historiske utviklingsmønstre.
-Utdanning kan derfor både være en årsak til og et resultat av høy sysselsetting.
 
 ## Magnus del 
 
