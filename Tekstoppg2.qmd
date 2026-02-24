@@ -52,79 +52,7 @@ load("reg_data_oppg7_mean.rdata")
 load("reg_data_m_7B.rdata")
 ```
 
-## Datainnsamling
 
-## Sentralitetsindeksen for norske kommuner
-
-Beksriver hvor sentralt kommuner ligger.
-
-Indeksen måler hvor lett det er for innbyggerne å nå arbeidsplasser og viktige tjenester, og bygger på beregnet reisetid med bil fra bebodde områder.
-På denne måten fanger indeksen opp faktisk tilgjengelighet, der korte reiser teller mer enn lange.
-
-Den er basert på to hovedvariabler: Tilgang til arbeidsplasser (innenfor en reiseramme på opptil 90 minutter) og tilgang på et bredt tjenestetilbud (som handel og offentlig tjenester).
-
-## t-test (2020 - 2023)
-
-![](images/clipboard-589147072.png)
-
-Gjennomsnitt har indeksen økt med 2,8%, nedgang og økning (-17, 79)
-
-Tyder på at sentraliteten er ganske stabil i perioden
-
-341 kommuner er med
-
-## Prosentvis arbeidsledighet
-
-NAV og SSB (AKU) måler begge arbeidsledighet, men de gjør det på forksjellige måter.
-
-NAV- Antall registrert i NAVs system
-
-SSB- Hentet fra AKU (Arbeidskraftundersøkelsen)
-
-Bygger på samme ide om hva arbeidsledighet er
-
-## Datainnhenting
-
-Alle data er hentet fra SSB sine sider, her er en oversikt hvilken tabeller som er benyttet.
-
-![](images/clipboard-3117593310.png)
-
-## Regional utvikling i Norge
-
-Andersson 2019 skriver om Norges utvikling fra 1970 til 2017
-
-Hvordan uliker variabler varierer rundt om i Norge
-
-Høy befolkingsvekst i små kommuner fra 1970 til 1980, så større vekst i store kommuner.
-
-Sentralisering skjer i arbeidsmarkedsregioner, og ikke mellom dem.
-Få tegn til økonomisk konvergens mellom regioner i Norge, i motsetning til mange andre europeiske land.
-
-Pendling viktig.
-
-Gjennom sin brede tilnærming gir *Regionale utviklingstrekk 2025* et helhetlig bilde av strukturelle krefter som driver regional utvikling i Norge
-
-## Budrenteteori
-
-Budrenteteorien gir et sentralt analytisk rammeverk for å forstå hvordan geografisk plassering påvirker arealbruk og boligpriser [@capello2016].
-
-Ifølge teorien faller betalingsvilligheten for bolig med økende avstand til sentrum eller sentrale arbeidsmarkeder.
-
-@osland2008 Nyanseres denne teorien
-
-Viser at boligpriser ikke bare påvirkes av fysisk avstand til sentrum, men også av regional arbeidsmarkedstilgjenglighet.
-
-## Harris-Todaro modellen
-
-En modell som sier noe om hvorfor personer flytter til byen selv om det er høy arbeidsledighet.
-
-## Vekst i Norge
-
-Hvorfor vokser noen byer raskere enn andreÅ
-
-Byer med offshorevirksomhet eller andre naturessursbaserte virksomheter som fisk kraft som har gitt en høyere produksjonsvekst enn andre byer [@grünfeld2016].
-
-Den andre hovedforklaringen de peker på er utdanningsnivået til arbeidsstyrken
 
 ## Visuell fremstilling av utviklingen i Norge etter 1986
 
@@ -272,11 +200,15 @@ regresjonTest <- lm(formula = Arbeidssted ~ beftot, data = regresjon)
 summary(regresjonTest)
 ```
 
+## Sammenheng mellom befolkning og sysselsetting
+
 ```{r}
 regresjonTest <- lm(formula = beftot ~ Arbeidssted, data = regresjon)
 
 summary(regresjonTest)
 ```
+
+## Sammenheng mellom befolkning og sysselsetting
 
 ```{r}
 regresjon_fe <- plm(
@@ -290,13 +222,8 @@ regresjon_fe <- plm(
 summary(regresjon_fe)
 ```
 
-Regresjon viser sammenhengen mellom befolkning og sysselsetting
 
-Byttet på befolkning og sysselsetting som avhengig variabel.
-
-Videre forsøkte vi å sette kommune og år som fast effekt for å se om resultatene endret seg noe.
-
-Tidligere så vi på kurver for befolkningsutvikling og sysselsetting
+## Sammenheng mellom befolkning og sysselsetting
 
 ```{r}
 regresjon |> 
@@ -354,6 +281,7 @@ Sterk velferdstat i Norge
 ## Kommuner med stor grad av høy utdanning opplever høyere sysselsetting per 1000 inbyggere
 
 ## Andelen
+
 av innbyggerne med høyere utdanning og sentralitet
 
 Basert på kartvisualisering og korrelasjonsanalyse forventes det en positiv sammenheng mellom sentralitetsindeks og andelen innbyggere med høyere utdanning.
@@ -362,6 +290,7 @@ Korrelasjonsanalysen for 2024 viser også en moderat positiv sammenheng (r ≈ 0
 Samtidig indikerer den moderate styrken på korrelasjonen at sentralitet ikke alene forklarer variasjonen i utdanningsnivå mellom kommuner, og at andre faktorer som næringsstruktur, utdanningstilbud og demografi også kan spille en rolle.
 
 ## Netto
+
 innpendling og sysselsetting pr 1000 innbyggere
 
 Basert på kartvisualiseringene av netto innpendling og sysselsettingsvekst etter år 2000, samt korrelasjonsanalysen, kan det forventes en sammenheng mellom netto innpendling og sysselsetting per 1000 innbyggere.
@@ -370,6 +299,7 @@ Samtidig viser korrelasjonsanalysen svært lave korrelasjonskoeffisienter for b�
 Dette kan tyde på at pendling i stor grad reflekterer regionale arbeidsmarkedsstrukturer snarere enn direkte sysselsettingsnivå i den enkelte kommune, og at andre faktorer som næringsstruktur, demografi og geografisk beliggenhet også spiller en viktig rolle.
 
 ## Sysselsettingsvekst
+
 og gjennomsnittlig kvadratmeterpris for bolig
 
 Basert på kartvisualiseringene av sysselsettingsvekst etter år 2000 og gjennomsnittlig kvadratmeterpris for boliger i 2024, kan det forventes en viss positiv sammenheng mellom sysselsettingsvekst og boligpriser.
@@ -378,6 +308,7 @@ Samtidig viser korrelasjonsanalysen at sammenhengen er relativt svak, med stor v
 Dette tyder på at selv om arbeidsmarkedsutvikling kan påvirke boligprisnivået, spiller også andre faktorer som sentralitet, befolkningsvekst, boligtilbud og regionale forskjeller en viktig rolle i utviklingen av boligprisene.
 
 ## Sentralitet
+
 og gjennomsnittlig kvadratmeterpris for bolig
 
 Basert på scatterplotet og kartvisualiseringen av boligpriser, samt korrelasjonsanalysen, kan det forventes en tydelig positiv sammenheng mellom sentralitet og gjennomsnittlig kvadratmeterpris for bolig.
