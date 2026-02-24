@@ -52,8 +52,6 @@ load("reg_data_oppg7_mean.rdata")
 load("reg_data_m_7B.rdata")
 ```
 
-
-
 ## Visuell fremstilling av utviklingen i Norge etter 1986
 
 Videre skal vi se på kartfremstillinger som illutreerer utviklinger av diverse variabler
@@ -222,7 +220,6 @@ regresjon_fe <- plm(
 summary(regresjon_fe)
 ```
 
-
 ## Sammenheng mellom befolkning og sysselsetting
 
 ```{r}
@@ -262,8 +259,6 @@ Mest mobile demografien
 
 ![](images/clipboard-2376810528.png)
 
-## 
-
 ## Kommuner med høy arbeidsledighet vil ha høyere netto utflytting
 
 ![](images/clipboard-3055620167.png)
@@ -277,8 +272,6 @@ Migrasjonsteori- Arbeidskraft trekker mot regioner med lav ledighet
 Mer spennende arbeidsmarked i kommuner med høy arbeidsledighet
 
 Sterk velferdstat i Norge
-
-## Kommuner med stor grad av høy utdanning opplever høyere sysselsetting per 1000 inbyggere
 
 ## Andelen
 
